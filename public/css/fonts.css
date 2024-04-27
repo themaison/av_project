@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'Manrope';
+    src: url('./fonts/Manrope-Bold.ttf') format('tff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Manrope';
+    src: url('./fonts/Manrope-Medium.ttf') format('tff');
+    font-weight: medium;
+    font-style: normal;
+}
