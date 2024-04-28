@@ -17,24 +17,24 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/job_search', function () {
-    return view('job_search');
+Route::get('/vacancy_search', function () {
+    return view('vacancy_search');
 });
 
-Route::get('/job_list', function () {
-    return view('job_list');
+Route::get('/vacancy_list', function () {
+    return view('vacancy_list');
 });
 
-Route::get('/favourite_jobs', function () {
-    return view('favourite_jobs');
+Route::get('/favorite_vacancies', function () {
+    return view('favorite_vacancies');
 });
 
-Route::get('/job_detail', function () {
-    return view('job_detail');
+Route::get('/vacancy_detail', function () {
+    return view('vacancy_detail');
 });
 
-Route::get('/job_responses', function () {
-    return view('job_responses');
+Route::get('/vacancy_responses', function () {
+    return view('vacancy_responses');
 });
 
 Route::get('/profile', function () {

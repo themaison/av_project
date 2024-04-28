@@ -12,7 +12,7 @@
     <body>
         
         <header>
-            <a href="/job_search">
+            <a href="/vacancy_search">
                 <img src="{{ asset('images/logo.svg') }}" alt="logo" class="logo">
             </a>
             <div class="menu">

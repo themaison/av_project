@@ -3,7 +3,7 @@
 @section('title', 'поиск работы')
 
 @section('content')
-    <link href="css/job_search.css" rel="stylesheet">
+    <link href="css/vacancy_search.css" rel="stylesheet">
 
     @section('menu')
         <div class="av-btn-v1">
@@ -38,7 +38,7 @@
             <h1>найди работу своей мечты</h1>
             <p>Более <span>1000</span> актуальных вакансий для всех</p>
 
-            <form action="/job_list" method="GET">
+            <form action="/vacancy_list" method="GET">
                 <div class="input-group">
                     <input type="text" name="query" class="search" placeholder="Какая вакансия вас интересует?">
                     <button class="av-btn-v2" type="submit">найти</button>
