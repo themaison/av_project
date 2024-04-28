@@ -4,9 +4,9 @@ body {
     min-height: 100vh;
 
     font-size: 16px;
-    font-family: "Manrope", sans-serif;
     font-weight: 500;
     letter-spacing: -0.05em;
+    font-family: "Manrope", sans-serif;
 
     background-color: #F3F6F6;
 }
@@ -17,7 +17,7 @@ header {
     align-items: center;
 
     height: 80px;
-    padding-inline:5%;
+    padding-inline: 5%;
 
     background-color: #242424;
     color: #EFFBFF;
@@ -57,7 +57,7 @@ h2 {
 }
 
 .content {
-    padding-inline:5%;
+    padding-inline: 5%;
 }
 
 .input-group {
