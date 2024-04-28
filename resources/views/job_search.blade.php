@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>поиск работы</title>
+    
     <link href="{{ asset('css/clear.css') }}" rel="stylesheet">
     {{-- <link href="{{ asset('css/fonts.css') }}" rel="stylesheet">
     <link href="{{ asset('css/base.css') }}" rel="stylesheet"> --}}
