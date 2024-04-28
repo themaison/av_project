@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>поиск работы</title>
+    
     <link href="{{ asset('css/clear.css') }}" rel="stylesheet">
     {{-- <link href="{{ asset('css/fonts.css') }}" rel="stylesheet">
     <link href="{{ asset('css/base.css') }}" rel="stylesheet"> --}}
@@ -15,6 +16,7 @@
     body {
         display: flex;
         flex-direction: column;
+        min-height: 100vh;
 
         font-size: 16px;
         font-family: "Manrope", sans-serif;
@@ -161,20 +163,6 @@
         padding: 10px 30px;
         border-radius: 999px;
     }
-
-    /* .jobs {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-    }
-
-    .job-card {
-        width: 500px;
-        border-radius: 24px;
-        padding: 40px;
-        background-color: #FFFFFF;
-
-    } */
 
     footer {
         margin-top: auto;
