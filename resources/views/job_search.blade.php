@@ -15,6 +15,7 @@
     body {
         display: flex;
         flex-direction: column;
+        min-height: 100vh;
 
         font-size: 16px;
         font-family: "Manrope", sans-serif;
@@ -162,26 +163,14 @@
         border-radius: 999px;
     }
 
-    /* .jobs {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-    }
-
-    .job-card {
-        width: 500px;
-        border-radius: 24px;
-        padding: 40px;
-        background-color: #FFFFFF;
-
-    } */
-
     footer {
         margin-top: auto;
 
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
+        position: relative;
+        bottom: 0;
 
         height: 320px;
         padding-inline: 5%;
