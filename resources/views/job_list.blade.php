@@ -92,7 +92,7 @@
 
         display: flex;
         flex-direction: column;
-        gap: 30px;
+        gap: 15px;
     }
 
     .search {
@@ -372,7 +372,6 @@
         </header>
 
         <div class="content">
-
             <div class="search-box">
                 <h2>«Наименование вакансии»</h2>
                 <p>найдено <span>N вакансий<span></p>
@@ -421,7 +420,7 @@
                     <div class="l3-data">
                         <div class="btns">
                             <button class="av-btn-v2">откликнуться</button>
-                            <button class="icon-btn"><img src="{{ asset('icons/chunk/gem.svg') }}" alt="gem"></button>
+                            <button class="favorite-btn"><img src="{{ asset('icons/chunk/gem.svg') }}" alt="gem"></button>
                         </div>
                         <p>26.04.2024</p>
                     </div>
