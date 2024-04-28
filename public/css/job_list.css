@@ -1,0 +1,239 @@
+body {
+    background-image: url('images/blure.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.content {
+    padding-block: 80px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 30px;
+}
+
+.search-box {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.search-box {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.search {
+    width: 480px;
+    height: 56px;
+    border-radius: 999px;
+    padding: 17px 150px 17px 30px;
+
+    font-family: "Manrope", sans-serif;
+    font-weight: 500;
+
+    background-color: #FFFFFF;
+}
+
+.search-box button {
+    width: 123px;
+    height: 48px;
+    border-radius: 999px;
+
+    font-family: "Manrope", sans-serif;
+    font-weight: 500;
+
+    background-color: #242424;
+    color: #EFFBFF;
+
+    position: absolute;
+    right: 4px;
+    top: 4px;
+}
+
+h1 {
+    font-size: 96px;
+    font-weight: 700;
+    letter-spacing: -0.05em;
+}
+
+h2 {
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: -0.05em;
+}
+
+.search-box span {
+    color: #3FA3FF;
+}
+.search {
+    width: 480px;
+    height: 56px;
+    border-radius: 999px;
+    padding: 17px 150px 17px 30px;
+
+    font-family: "Manrope", sans-serif;
+    font-weight: 500;
+
+    background-color: #FFFFFF;
+}
+
+.search-box button {
+    width: 123px;
+    height: 48px;
+    border-radius: 999px;
+
+    font-family: "Manrope", sans-serif;
+    font-weight: 500;
+
+    background-color: #242424;
+    color: #EFFBFF;
+
+    position: absolute;
+    right: 4px;
+    top: 4px;
+}
+
+.search-box span {
+    color: #3FA3FF;
+}
+
+.av-btn-v1 {
+    padding: 10px 30px;
+    border-radius: 999px;
+    border: 2px solid #EFFBFF;
+}
+
+.av-btn-v1:hover {
+    color: #EFFBFF;
+    background-color: #323232;
+    cursor: pointer;
+}
+
+.av-btn-v1 a {
+    color: #EFFBFF;
+}
+
+.av-btn-v2 {
+    padding: 15px 40px;
+    border-radius: 999px;
+    background-color: #3FA3FF;
+    color: #EFFBFF;
+    font-weight: 500;
+}
+
+.av-btn-v2:hover {
+    background-color: #318eff;
+}
+
+.jobs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.job-card {
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+
+    width: 480px;
+    border-radius: 24px;
+    padding: 40px;
+
+    background-color: #FFFFFF;
+}
+
+.job-card .l1-data {
+    display: flex;
+    position: relative;
+    column-gap: 30px;
+}
+
+.job-card .l1-data::after {
+    content: "";
+    position: absolute;
+    bottom: -15px; /* Регулируйте этот отступ, чтобы переместить линию вверх или вниз */
+    left: 0;
+    width: 100%;
+    height: 1px; /* Регулируйте эту высоту, чтобы изменить толщину линии */
+    background-color: #F3F6F6; /* Измените этот цвет, чтобы изменить цвет линии */
+}
+
+.job-card .job-img {
+    width: 80px;
+    height: auto;
+    border-radius: 100%;
+}
+
+.job-card .l1-data .text-content {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    font-size: 24px;
+}
+
+.job-card .l1-data h3 {
+    font-weight: 700;
+}
+
+.job-card .l1-data p {
+    display: inline-block;
+
+    padding: 5px 15px;
+    border-radius: 999px;
+    font-weight: 500;
+
+    background-color: #EFFBFF;
+}
+
+.job-card .l2-data {
+    display: flex;
+    column-gap: 15px;
+}
+
+.job-card .l3-data{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.job-card .l3-data p {
+    color: #979797;
+}
+
+.job-card .l3-data .btns {
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+}
+
+.job-card .l3-data .icon-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 100%;
+    border: 2px solid #242424;
+}
+
+.job-card .l3-data .icon-btn:hover {
+    background-color: #242424;
+}
+
+.tag {
+    display: flex;
+    column-gap: 5px;
+    align-items: center;
+}

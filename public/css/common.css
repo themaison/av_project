@@ -1,0 +1,100 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+    font-size: 16px;
+    font-family: "Manrope", sans-serif;
+    font-weight: 500;
+    letter-spacing: -0.05em;
+
+    background-color: #F3F6F6;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    height: 80px;
+    padding-inline:5%;
+
+    background-color: #242424;
+    color: #EFFBFF;
+}
+
+.logo {
+    height: 35px;
+    width: 150px;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    column-gap: 30px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #979797;
+}
+
+.menu a:hover {
+    text-decoration: none;
+    color: #EFFBFF;
+}
+
+h1 {
+    font-size: 96px;
+    font-weight: 700;
+    letter-spacing: -0.05em;
+}
+
+h2 {
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: -0.05em;
+}
+
+.content {
+    padding-inline:5%;
+}
+
+.input-group {
+    position: relative;
+    display: inline-block;
+}
+
+footer {
+    margin-top: auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+    bottom: 0;
+
+    height: 320px;
+    padding-inline: 5%;
+    padding-block: 60px;
+
+    background-color: #242424;
+    color: #979797;
+}
+
+footer .site-data {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    font-size: 12px;
+    letter-spacing: -0.03em;
+}
+
+footer p {
+    display: inline-block;
+}
+
+footer span {
+    color: #EFFBFF;
+}
