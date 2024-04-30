@@ -7,47 +7,106 @@
 
     @section('menu')
         <div class="av-btn-v1">
-            Войти
+            <a href="/login">войти</a>
         </div>
-        <div class="av-btn-v2">
-            Зарегистрироваться
+        <div>
+            <a href="/register">зарегистрироваться</a>
         </div>
-        <div class="av-btn-v2">
-            Избранное
+        <div>
+            <a href="/favorite_vacancies">избранное</a>
         </div>
-        <div class="av-btn-v2">
-            Отклики
+        <div>
+            <a href="/vacancy_responses">отклики</a>
         </div>
-        <div class="av-btn-v2">
-            Имя
+        <div>
+            <a href="/profile">имя</a>
         </div>
     @endsection
 
-    <div class="content">
-
-        <div class="jobs">
-            <div class="job-card">
-                <div class="l1-data">
-                    <img src="" alt="preview">
-                    <div class="text-content">
-                        <p>Наименование вакансии</p>
-                        <p>40 000 — 100 000<span>₽</span></p>
-                    </div>
-                </div>
-                
-                <div class="l2-data">
-                    <p>Севастополь</p>
-                    <p>Опыт от 1 года</p>
-                </div>
-
-                <div class="l3-data">
-                    <div class="btns">
-                        <button>откликнуться</button>
-                        <button>в избранное</button>
-                    </div>
-                </div>
-                <p>26.04.2024</p>
+        <div class="content">
+            <div class="title">
+                <h2>отклики</h2>
+                <p>ваши вакансии за последнее время</p>
             </div>
+
+            <div class="responses">
+                <div class="response">
+                    <div class="status">
+                        <p class="stat0">не рассмотрено</p>
+                    </div>
+
+                    <a href="/" class="vacancy-data">
+                        <div class="d1">
+                            <img src="{{  asset('images/job_prev.jpg') }}" class="job-prev">
+                            <p>Наименование вакансии</p>
+                        </div>
+                        <div class="d2">
+                            <div class="tag">
+                                <img src="{{  asset('icons/chunk/map-pin.svg') }}" >
+                                <p>Санкт-Петербург</p>
+                            </div>
+                            <div class="tag">
+                                <img src="{{  asset('icons/chunk/toolbox.svg') }}">
+                                <p>Опыт от 1 года</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <button class="av-btn-v3"><img src="{{  asset('icons/chunk/trash.svg') }}" alt="pencil">удалить</button>
+            
+                </div>
+                <div class="response">
+                    <div class="status">
+                        <p class="stat0">не рассмотрено</p>
+                    </div>
+
+                    <a href="/" class="vacancy-data">
+                        <div class="d1">
+                            <img src="{{  asset('images/job_prev.jpg') }}" class="job-prev">
+                            <p>Наименование вакансии</p>
+                        </div>
+                        <div class="d2">
+                            <div class="tag">
+                                <img src="{{  asset('icons/chunk/map-pin.svg') }}" >
+                                <p>Санкт-Петербург</p>
+                            </div>
+                            <div class="tag">
+                                <img src="{{  asset('icons/chunk/toolbox.svg') }}">
+                                <p>Опыт от 1 года</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <button class="av-btn-v3"><img src="{{  asset('icons/chunk/trash.svg') }}" alt="pencil">удалить</button>
+            
+                </div>
+                <div class="response">
+                    <div class="status">
+                        <p class="stat0">не рассмотрено</p>
+                    </div>
+
+                    <a href="/" class="vacancy-data">
+                        <div class="d1">
+                            <img src="{{  asset('images/job_prev.jpg') }}" class="job-prev">
+                            <p>Наименование вакансии</p>
+                        </div>
+                        <div class="d2">
+                            <div class="tag">
+                                <img src="{{  asset('icons/chunk/map-pin.svg') }}" >
+                                <p>Санкт-Петербург</p>
+                            </div>
+                            <div class="tag">
+                                <img src="{{  asset('icons/chunk/toolbox.svg') }}">
+                                <p>Опыт от 1 года</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <button class="av-btn-v3"><img src="{{  asset('icons/chunk/trash.svg') }}" alt="pencil">удалить</button>
+            
+                </div>
+            </div>
+       
         </div>
 
         <div class="pagination">

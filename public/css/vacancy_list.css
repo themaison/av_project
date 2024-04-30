@@ -49,88 +49,20 @@ body {
     top: 4px;
 }
 
-h1 {
-    font-size: 96px;
-    font-weight: 700;
-    letter-spacing: -0.05em;
-}
-
-h2 {
-    font-size: 48px;
-    font-weight: 700;
-    letter-spacing: -0.05em;
-}
-
-.search-box span {
-    color: #3FA3FF;
-}
-
-.search {
-    width: 480px;
-    height: 56px;
-    border-radius: 999px;
-    padding: 17px 150px 17px 30px;
-
-    font-family: "Manrope", sans-serif;
-    font-weight: 500;
-
-    background-color: #FFFFFF;
-}
-
-.search-box button {
-    width: 123px;
-    height: 48px;
-    border-radius: 999px;
-
-    font-family: "Manrope", sans-serif;
-    font-weight: 500;
-
-    background-color: #242424;
-    color: #EFFBFF;
-
-    position: absolute;
-    right: 4px;
-    top: 4px;
-}
-
-.av-btn-v1 {
-    padding: 10px 30px;
-    border-radius: 999px;
-    border: 2px solid #EFFBFF;
-}
-
-.av-btn-v1:hover {
-    color: #EFFBFF;
-    background-color: #323232;
-    cursor: pointer;
-}
-
-.av-btn-v1 a {
-    color: #EFFBFF;
-}
-
-.av-btn-v2 {
-    padding: 15px 40px;
-    border-radius: 999px;
-    background-color: #242424;
-    color: #EFFBFF;
-    font-weight: 500;
-}
-
-.av-btn-v2:hover {
-    background-color: #323232;
-}
-
 .vacancy-block {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    border: 4px solid red;
+
 }
 
 .jobs {
     display: flex;
     flex-wrap: wrap;
     width: fit-content;
+    border: 4px solid blue;
 
     gap: 10px;
 }
@@ -238,6 +170,14 @@ h2 {
 
 .tag {
     display: flex;
-    column-gap: 5px;
     align-items: center;
+    justify-content: center;
+    column-gap: 5px;
+}
+
+.av-btn-v2 {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
 }

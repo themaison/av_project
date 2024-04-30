@@ -55,7 +55,7 @@
                         <img src="{{ asset('images/job_prev.jpg') }}" alt="preview" class="job-img">
                         <div class="text-content">
                             <h3>Middle+ Front-end Dev...</h3>
-                            <p>40 000 — 100 000<span>₽</span></p>
+                            <p>40 000 — 100 000₽</p>
                         </div>
                     </a>
                     
@@ -83,7 +83,7 @@
                         <img src="{{ asset('images/job_prev.jpg') }}" alt="preview" class="job-img">
                         <div class="text-content">
                             <h3>Middle+ Front-end Dev...</h3>
-                            <p>40 000 — 100 000<span>₽</span></p>
+                            <p>40 000 — 100 000₽</p>
                         </div>
                     </a>
                     
@@ -111,7 +111,7 @@
                         <img src="{{ asset('images/job_prev.jpg') }}" alt="preview" class="job-img">
                         <div class="text-content">
                             <h3>Middle+ Front-end Dev...</h3>
-                            <p>40 000 — 100 000<span>₽</span></p>
+                            <p>40 000 — 100 000₽</p>
                         </div>
                     </a>
                     

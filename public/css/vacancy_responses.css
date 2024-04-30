@@ -1,0 +1,125 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.responses {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 24px;
+    width: 100%;
+}
+
+.response {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px;
+    border-radius: 12px;
+}
+
+.response:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    /* Регулируйте этот отступ, чтобы переместить линию вверх или вниз */
+    left: 0;
+    width: 100%;
+    height: 1px;
+    /* Регулируйте эту высоту, чтобы изменить толщину линии */
+    background-color: #F3F6F6;
+    /* Измените этот цвет, чтобы изменить цвет линии */
+}
+
+a {
+    text-decoration: none;
+    color: #242424;
+}
+
+.vacancy-data {
+    display: flex;
+    gap: 30px;
+    border-radius: 999px;
+    padding-right: 30px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.vacancy-data:hover {
+    color: #3FA3FF;
+    background-color: #F3F6F6;
+    cursor: pointer;
+}
+
+.vacancy-data .d1,
+.vacancy-data .d2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+
+.job-prev {
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+}
+
+.tag {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 5px;
+}
+
+.av-btn-v3 {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 30px;
+    border-radius: 999px;
+    border: 2px solid #242424;
+    color: #242424;
+
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.av-btn-v3:hover {
+    color: #323232;
+    border: 2px solid #323232;
+    cursor: pointer;
+    background-color: #F3F6F6;
+}
+
+.stat0 {
+    color: #979797;
+    width: 200px;
+}
+
+.stat1 {
+    color: #3FA3FF;
+    width: 200px;
+}
+
+.stat2 {
+    color: #FF0000;
+    width: 200px;
+}

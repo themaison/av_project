@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', 'поиск работы')
+@section('title', 'имя фамилия отчество')
 
 @section('content')
 <link href="{{asset('css/profile.css?v=').time()}}" rel="stylesheet">
@@ -26,7 +26,7 @@
     <div class="content">
 
         <div class="profile-main">
-            <img src="{{  asset('images/job_prev.jpg') }}" alt="аватар" class="profile-avatar">
+            <img src="{{  asset('images/pa2.png') }}" alt="аватар" class="profile-avatar">
             <h2>Имя Фамилия Отчество</h2>
         </div>
 
@@ -37,7 +37,7 @@
                     <p>Телефон: +7(978) 888-88-88<br>Телега: the_maison</p>    
                 </div>
 
-                <button class="av-btn-v2"><img src="{{  asset('icons/chunk/pencil.svg') }}" alt="pencil">Изменить</button>
+                <button class="av-btn-v3"><img src="{{  asset('icons/chunk/brush.svg') }}" alt="pencil">Изменить</button>
             </div>
     
             <div class="dblock">
@@ -46,22 +46,20 @@
                     <p>Figma, Adobe Photoshop, Miro</p>
                 </div>
                 
-                <button class="av-btn-v2"><img src="{{  asset('icons/chunk/pencil.svg') }}" alt="pencil">Изменить</button>
+                <button class="av-btn-v3"><img src="{{  asset('icons/chunk/brush.svg') }}" alt="pencil">Изменить</button>
             </div>
-    
+
             <div class="dblock">
                 <div class="text-block">
                     <h3>Резюме</h3>
-                    <p> Изучаю веб-дизайн более трех лет, постоянно совершенствую свои навыки просмотром вебинаров, онлайн-конференций, формуов, анализу продуктов на рынке (исследованию их плюсов или минусов, возможности оптимизации и усовершенствования). <br>
-                        Читаю литературу.Проходил курс по веб-дизайну от МТС. Разрабатывал дизайн макеты для практики в компаннию Крым-Диджитал. <br>
-                        Разрабатывал моб. дизайн приложения для сети библиотек Литкомс (1-е в городе, работа выставлена на конкурс IT-планета). Проводил UX исследования, анализ ЦА, разрабатывал несколько вариантов прототипов, вместе с заказчиком принимали решения.
-                        Имею опыт работы в команде. Быстро адаптируюсь. Готов к прохождению тестовых заданий.
-                        Ответственный, коммуникабельный, исполнительный.
-                    </p>
+                    <p>Сертифицированный специалист с успешно реализованными коммерческими проектами
+                        <br>Хорошо владею Adobe Photoshop
+                        <br>Отлично владею Figma и Tilda</p>
                 </div>
-
-                <button class="av-btn-v2"><img src="{{  asset('icons/chunk/pencil.svg') }}" alt="pencil">Изменить</button>
+                
+                <button class="av-btn-v3"><img src="{{  asset('icons/chunk/brush.svg') }}" alt="pencil">Изменить</button>
             </div>
+    
         </div>
 
     </div>

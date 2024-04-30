@@ -23,6 +23,11 @@ header {
     color: #EFFBFF;
 }
 
+.content {
+    padding-inline: 40px;
+    margin-block: 80px;
+}
+
 .logo {
     height: 35px;
     width: 150px;
@@ -37,6 +42,7 @@ header {
 .menu a {
     text-decoration: none;
     color: #979797;
+    transition: color 0.3s ease;
 }
 
 .menu a:hover {
@@ -48,22 +54,64 @@ h1 {
     font-size: 96px;
     font-weight: 700;
     letter-spacing: -0.05em;
+    color: #242424;
 }
 
 h2 {
     font-size: 48px;
     font-weight: 700;
     letter-spacing: -0.05em;
+    color: #242424;
 }
 
-.content {
-    padding-inline: 40px;
-    margin-block: 80px;
+h3 {
+    font-size: 24px;
+    color: #242424;
 }
+
+span {
+    color: #3FA3FF;
+}
+
 
 .input-group {
     position: relative;
     display: inline-block;
+}
+
+.av-btn-v1 {
+    padding: 10px 30px;
+    border-radius: 999px;
+    height: 48px;
+
+    border: 2px solid #EFFBFF;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.av-btn-v1:hover {
+    color: #EFFBFF;
+    background-color: #323232;
+    cursor: pointer;
+}
+
+.av-btn-v1 a {
+    color: #EFFBFF;
+}
+
+.av-btn-v2 {
+    padding: 15px 30px;
+    border-radius: 999px;
+    font-weight: 500;
+    height: 48px;
+
+    background-color: #242424;
+    color: #EFFBFF;
+
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.av-btn-v2:hover {
+    background-color: #323232;
 }
 
 footer {
@@ -76,7 +124,7 @@ footer {
     bottom: 0;
 
     height: 320px;
-    padding-inline: 5%;
+    padding-inline: 40px;
     padding-block: 60px;
 
     background-color: #242424;
