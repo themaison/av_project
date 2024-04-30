@@ -17,7 +17,7 @@ header {
     align-items: center;
 
     height: 80px;
-    padding-inline: 5%;
+    padding-inline: 40px;
 
     background-color: #242424;
     color: #EFFBFF;
@@ -57,7 +57,8 @@ h2 {
 }
 
 .content {
-    padding-inline: 5%;
+    padding-inline: 40px;
+    margin-block: 80px;
 }
 
 .input-group {

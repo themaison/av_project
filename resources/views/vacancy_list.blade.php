@@ -3,7 +3,7 @@
 @section('title', 'поиск работы')
 
 @section('content')
-    <link href="css/vacancy_list.css" rel="stylesheet">
+    <link href="{{asset('css/vacancy_list.css?v=').time()}}" rel="stylesheet">
 
     @section('menu')
         <div class="av-btn-v1">
@@ -48,148 +48,96 @@
             </select>
         </div>
 
-        <div class="jobs">
-            <div class="job-card">
-                <div class="l1-data">
-                    <img src="{{ asset('images/job_prev.jpg') }}" alt="preview" class="job-img">
-                    <div class="text-content">
-                        <h3>Middle+ Front-end Dev...</h3>
-                        <p>40 000 — 100 000<span>₽</span></p>
+        <div class="vacancy-block">
+            <div class="jobs">
+                <div class="job-card">
+                    <a href="/" class="l1-data">
+                        <img src="{{ asset('images/job_prev.jpg') }}" alt="preview" class="job-img">
+                        <div class="text-content">
+                            <h3>Middle+ Front-end Dev...</h3>
+                            <p>40 000 — 100 000<span>₽</span></p>
+                        </div>
+                    </a>
+                    
+                    <div class="l2-data">
+                        <div class="tag">
+                            <img src="{{ asset('icons/chunk/map-pin.svg') }}" alt="gem">
+                            Севастополь
+                        </div>
+                        <div class="tag">
+                            <img src="{{ asset('icons/chunk/toolbox.svg') }}" alt="gem">
+                            Опыт от 1 года
+                        </div>
+                    </div>
+    
+                    <div class="l3-data">
+                        <div class="btns">
+                            <button class="av-btn-v2">откликнуться</button>
+                            <button class="favorite-btn"><img src="{{ asset('icons/chunk/gem.svg') }}" alt="gem"></button>
+                        </div>
+                        <p>26.04.2024</p>
                     </div>
                 </div>
-                
-                <div class="l2-data">
-                    <div class="tag">
-                        <img src="{{ asset('icons/chunk/map-pin.svg') }}" alt="gem">
-                        Севастополь
+                <div class="job-card">
+                    <a href="/" class="l1-data">
+                        <img src="{{ asset('images/job_prev.jpg') }}" alt="preview" class="job-img">
+                        <div class="text-content">
+                            <h3>Middle+ Front-end Dev...</h3>
+                            <p>40 000 — 100 000<span>₽</span></p>
+                        </div>
+                    </a>
+                    
+                    <div class="l2-data">
+                        <div class="tag">
+                            <img src="{{ asset('icons/chunk/map-pin.svg') }}" alt="gem">
+                            Севастополь
+                        </div>
+                        <div class="tag">
+                            <img src="{{ asset('icons/chunk/toolbox.svg') }}" alt="gem">
+                            Опыт от 1 года
+                        </div>
                     </div>
-                    <div class="tag">
-                        <img src="{{ asset('icons/chunk/toolbox.svg') }}" alt="gem">
-                        Опыт от 1 года
-                    </div>
-                </div>
-
-                <div class="l3-data">
-                    <div class="btns">
-                        <button class="av-btn-v2">откликнуться</button>
-                        <button class="favorite-btn"><img src="{{ asset('icons/chunk/gem.svg') }}" alt="gem"></button>
-                    </div>
-                    <p>26.04.2024</p>
-                </div>
-            </div>
-            <div class="job-card">
-                <div class="l1-data">
-                    <img src="{{ asset('images/job_prev.jpg') }}" alt="preview" class="job-img">
-                    <div class="text-content">
-                        <h3>UI/UX Дизайнер</h3>
-                        <p>40 000 — 100 000<span>₽</span></p>
-                    </div>
-                </div>
-                
-                <div class="l2-data">
-                    <div class="tag">
-                        <img src="{{ asset('icons/chunk/map-pin.svg') }}" alt="gem">
-                        Севастополь
-                    </div>
-                    <div class="tag">
-                        <img src="{{ asset('icons/chunk/toolbox.svg') }}" alt="gem">
-                        Опыт от 1 года
+    
+                    <div class="l3-data">
+                        <div class="btns">
+                            <button class="av-btn-v2">откликнуться</button>
+                            <button class="favorite-btn"><img src="{{ asset('icons/chunk/gem.svg') }}" alt="gem"></button>
+                        </div>
+                        <p>26.04.2024</p>
                     </div>
                 </div>
-
-                <div class="l3-data">
-                    <div class="btns">
-                        <button class="av-btn-v2">откликнуться</button>
-                        <button class="icon-btn"><img src="{{ asset('icons/chunk/gem.svg') }}" alt="gem"></button>
+                <div class="job-card">
+                    <a href="/" class="l1-data">
+                        <img src="{{ asset('images/job_prev.jpg') }}" alt="preview" class="job-img">
+                        <div class="text-content">
+                            <h3>Middle+ Front-end Dev...</h3>
+                            <p>40 000 — 100 000<span>₽</span></p>
+                        </div>
+                    </a>
+                    
+                    <div class="l2-data">
+                        <div class="tag">
+                            <img src="{{ asset('icons/chunk/map-pin.svg') }}" alt="gem">
+                            Севастополь
+                        </div>
+                        <div class="tag">
+                            <img src="{{ asset('icons/chunk/toolbox.svg') }}" alt="gem">
+                            Опыт от 1 года
+                        </div>
                     </div>
-                    <p>26.04.2024</p>
-                </div>
-            </div>
-            <div class="job-card">
-                <div class="l1-data">
-                    <img src="{{ asset('images/job_prev.jpg') }}" alt="preview" class="job-img">
-                    <div class="text-content">
-                        <h3>UI/UX Дизайнер</h3>
-                        <p>40 000 — 100 000<span>₽</span></p>
+    
+                    <div class="l3-data">
+                        <div class="btns">
+                            <button class="av-btn-v2">откликнуться</button>
+                            <button class="favorite-btn"><img src="{{ asset('icons/chunk/gem.svg') }}" alt="gem"></button>
+                        </div>
+                        <p>26.04.2024</p>
                     </div>
-                </div>
-                
-                <div class="l2-data">
-                    <div class="tag">
-                        <img src="{{ asset('icons/chunk/map-pin.svg') }}" alt="gem">
-                        Севастополь
-                    </div>
-                    <div class="tag">
-                        <img src="{{ asset('icons/chunk/toolbox.svg') }}" alt="gem">
-                        Опыт от 1 года
-                    </div>
-                </div>
-
-                <div class="l3-data">
-                    <div class="btns">
-                        <button class="av-btn-v2">откликнуться</button>
-                        <button class="icon-btn"><img src="{{ asset('icons/chunk/gem.svg') }}" alt="gem"></button>
-                    </div>
-                    <p>26.04.2024</p>
-                </div>
-            </div>
-            <div class="job-card">
-                <div class="l1-data">
-                    <img src="{{ asset('images/job_prev.jpg') }}" alt="preview" class="job-img">
-                    <div class="text-content">
-                        <h3>UI/UX Дизайнер</h3>
-                        <p>40 000 — 100 000<span>₽</span></p>
-                    </div>
-                </div>
-                
-                <div class="l2-data">
-                    <div class="tag">
-                        <img src="{{ asset('icons/chunk/map-pin.svg') }}" alt="gem">
-                        Севастополь
-                    </div>
-                    <div class="tag">
-                        <img src="{{ asset('icons/chunk/toolbox.svg') }}" alt="gem">
-                        Опыт от 1 года
-                    </div>
-                </div>
-
-                <div class="l3-data">
-                    <div class="btns">
-                        <button class="av-btn-v2">откликнуться</button>
-                        <button class="icon-btn"><img src="{{ asset('icons/chunk/gem.svg') }}" alt="gem"></button>
-                    </div>
-                    <p>26.04.2024</p>
-                </div>
-            </div>
-            <div class="job-card">
-                <div class="l1-data">
-                    <img src="{{ asset('images/job_prev.jpg') }}" alt="preview" class="job-img">
-                    <div class="text-content">
-                        <h3>UI/UX Дизайнер</h3>
-                        <p>40 000 — 100 000<span>₽</span></p>
-                    </div>
-                </div>
-                
-                <div class="l2-data">
-                    <div class="tag">
-                        <img src="{{ asset('icons/chunk/map-pin.svg') }}" alt="gem">
-                        Севастополь
-                    </div>
-                    <div class="tag">
-                        <img src="{{ asset('icons/chunk/toolbox.svg') }}" alt="gem">
-                        Опыт от 1 года
-                    </div>
-                </div>
-
-                <div class="l3-data">
-                    <div class="btns">
-                        <button class="av-btn-v2">откликнуться</button>
-                        <button class="icon-btn"><img src="{{ asset('icons/chunk/gem.svg') }}" alt="gem"></button>
-                    </div>
-                    <p>26.04.2024</p>
                 </div>
             </div>
         </div>
+
+        
 
         {{-- <div class="pagination">
             <div class="page">1</div>

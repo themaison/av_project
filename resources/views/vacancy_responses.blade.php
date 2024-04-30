@@ -3,7 +3,7 @@
 @section('title', 'Отклики')
 
 @section('content')
-    <link href="css/vacancy_responses.css" rel="stylesheet">
+    <link href="{{asset('css/vacancy_responses.css?v=').time()}}" rel="stylesheet">
 
     @section('menu')
         <div class="av-btn-v1">

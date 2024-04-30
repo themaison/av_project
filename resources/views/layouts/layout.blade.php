@@ -4,9 +4,15 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>@yield('title')</title>
-        <link href="css/clear.css" rel="stylesheet">
+
+        <link href="{{asset('css/clear.css?v=').time()}}" rel="stylesheet">
+        <link href="{{asset('css/fonts.css?v=').time()}}" rel="stylesheet">
+        <link href="{{asset('css/common.css?v=').time()}}" rel="stylesheet">
+
+
+        {{-- <link href="css/clear.css" rel="stylesheet">
         <link href="css/fonts.css" rel="stylesheet"> 
-        <link href="css/common.css" rel="stylesheet">
+        <link href="css/common.css" rel="stylesheet"> --}}
     </head>
 
     <body>

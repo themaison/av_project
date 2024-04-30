@@ -3,7 +3,7 @@
 @section('title', 'поиск работы')
 
 @section('content')
-    <link href="css/vacancy_search.css" rel="stylesheet">
+    <link href="{{asset('css/vacancy_search.css?v=').time()}}" rel="stylesheet">
 
     @section('menu')
         <div class="av-btn-v1">

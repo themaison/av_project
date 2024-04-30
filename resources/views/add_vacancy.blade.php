@@ -3,5 +3,5 @@
 @section('title', 'создание вакансии')
 
 @section('content')
-    <link href="css/add_vacancy.css" rel="stylesheet">
+    <link href="{{asset('css/add_vacancy.css?v=').time()}}" rel="stylesheet">
 @endsection
