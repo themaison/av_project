@@ -13,10 +13,10 @@
             <a href="/register">зарегистрироваться</a>
         </div>
         <div>
-            <a href="/favourite_jobs">избранное</a>
+            <a href="/favorite_vacancies">избранное</a>
         </div>
         <div>
-            <a href="/job_responses">отклики</a>
+            <a href="/vacancy_responses">отклики</a>
         </div>
         <div>
             <a href="/profile">имя</a>
