@@ -29,7 +29,7 @@
     <div class="content">
 
         <div class="breakpoints">
-            <a href="">мои вакансии</a>
+            <a href="/recruiter_vacancies">мои вакансии</a>
             <p>/</p>
             <a href="" id="current-page">новая вакансия</a>
         </div>

@@ -29,7 +29,7 @@
             <p>Редактируйте и создавайте новые вакансии<br>
             привлекайте новых соискателей и отбирайте лучших из них</p>
         </div>
-        <button class="outline-btn"><img src="{{ asset('icons/chunk/brush.svg') }}" alt="pencil"><a>создать вакансию</a></button>
+        <button class="outline-btn"><img src="{{ asset('icons/chunk/brush.svg') }}" alt="pencil"><a href="/new_vacancy">создать вакансию</a></button>
         <div class="vacancies">
             <div class="vacancy">
                 <div class="creation-date">
