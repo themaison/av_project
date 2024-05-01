@@ -24,13 +24,28 @@
     @endsection
 
     <div class="content">
-        <div class="break-points">
-            <a href="/vacancy_list">вакансии</a> / UI/UX Дизайнер
+
+        <div class="breakpoints">
+            <a href="">вакансии</a>
+            <p>/</p>
+            <a href="" id="current-page">UI/UX Дизайнер</a>
         </div>
+
+        <div class="title">
+            <img src="{{  asset('images/vacancy_cover.jpg') }}" alt="preview" class="vacancy-cover">
+            <h2>Дизайнер сайтов на Tilda</h2>
+        </div>
+
+        {{-- <div class="breakpoints">
+            <a href="/vacancy_list">вакансии</a> / UI/UX Дизайнер
+        </div> --}}
+        
+
         <div class="vacancy-content">
-            <img src="{{  asset('images/vacancy_cover.jpg') }}" alt="обложка" class="vacancy-cover">
-            <h2>UI/UX Дизайнер</h2>
+            {{-- <img src="{{  asset('images/vacancy_cover.jpg') }}" alt="обложка" class="vacancy-cover">
+            <h2>UI/UX Дизайнер</h2> --}}
             <button class="outline-btn"><img src="{{  asset('icons/chunk/brush.svg') }}" alt="pencil"><a>редактировать</a></button>
+            
             <div class="vacancy-description">
                 <div class="inline-boxes">
                     <div class="salary">
