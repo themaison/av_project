@@ -6,7 +6,7 @@
     <link href="{{asset('css/vacancy_responses.css?v=').time()}}" rel="stylesheet">
 
     @section('menu')
-        <div class="av-btn-v1">
+        <div class="w-head-btn">
             <a href="/login">войти</a>
         </div>
         <div>
@@ -26,7 +26,7 @@
         <div class="content">
             <div class="title">
                 <h2>отклики</h2>
-                <p>ваши вакансии за последнее время</p>
+                <p>ваши отклики за последнее время</p>
             </div>
 
             <div class="responses">
@@ -52,7 +52,7 @@
                         </div>
                     </a>
 
-                    <button class="av-btn-v3"><img src="{{  asset('icons/chunk/trash.svg') }}" alt="pencil">удалить</button>
+                    <button class="outline-btn"><img src="{{  asset('icons/chunk/trash.svg') }}" alt="pencil">удалить</button>
             
                 </div>
                 <div class="response">
@@ -77,7 +77,7 @@
                         </div>
                     </a>
 
-                    <button class="av-btn-v3"><img src="{{  asset('icons/chunk/trash.svg') }}" alt="pencil">удалить</button>
+                    <button class="outline-btn"><img src="{{  asset('icons/chunk/trash.svg') }}" alt="pencil">удалить</button>
             
                 </div>
                 <div class="response">
@@ -102,16 +102,16 @@
                         </div>
                     </a>
 
-                    <button class="av-btn-v3"><img src="{{  asset('icons/chunk/trash.svg') }}" alt="pencil">удалить</button>
+                    <button class="outline-btn"><img src="{{  asset('icons/chunk/trash.svg') }}" alt="pencil">удалить</button>
             
                 </div>
             </div>
        
         </div>
 
-        <div class="pagination">
+        {{-- <div class="pagination">
             <div class="page">1</div>
             <div class="page">2</div>
             <div class="page">3</div>
-        </div>
+        </div> --}}
 @endsection

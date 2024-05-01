@@ -6,7 +6,7 @@
 <link href="{{asset('css/profile.css?v=').time()}}" rel="stylesheet">
 
     @section('menu')
-        <div class="av-btn-v1">
+        <div class="w-head-btn">
             <a href="/login">войти</a>
         </div>
         <div>
@@ -37,7 +37,7 @@
                     <p>Телефон: +7(978) 888-88-88<br>Телега: the_maison</p>    
                 </div>
 
-                <button class="av-btn-v3"><img src="{{  asset('icons/chunk/brush.svg') }}" alt="pencil">Изменить</button>
+                <button class="outline-btn"><img src="{{  asset('icons/chunk/brush.svg') }}" alt="pencil">Изменить</button>
             </div>
     
             <div class="dblock">
@@ -46,7 +46,7 @@
                     <p>Figma, Adobe Photoshop, Miro</p>
                 </div>
                 
-                <button class="av-btn-v3"><img src="{{  asset('icons/chunk/brush.svg') }}" alt="pencil">Изменить</button>
+                <button class="outline-btn"><img src="{{  asset('icons/chunk/brush.svg') }}" alt="pencil">Изменить</button>
             </div>
 
             <div class="dblock">
@@ -57,7 +57,7 @@
                         <br>Отлично владею Figma и Tilda</p>
                 </div>
                 
-                <button class="av-btn-v3"><img src="{{  asset('icons/chunk/brush.svg') }}" alt="pencil">Изменить</button>
+                <button class="outline-btn"><img src="{{  asset('icons/chunk/brush.svg') }}" alt="pencil">Изменить</button>
             </div>
     
         </div>

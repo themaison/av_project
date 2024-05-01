@@ -6,7 +6,7 @@
     <link href="{{asset('css/vacancy_detail.css?v=').time()}}" rel="stylesheet">
 
     @section('menu')
-        <div class="av-btn-v1">
+        <div class="w-head-btn">
             <a href="/login">войти</a>
         </div>
         <div>

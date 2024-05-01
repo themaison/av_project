@@ -6,7 +6,7 @@
     <link href="{{asset('css/vacancy_list.css?v=').time()}}" rel="stylesheet">
 
     @section('menu')
-        <div class="av-btn-v1">
+        <div class="w-head-btn">
             <a href="/">войти</a>
         </div>
         <div>
@@ -35,7 +35,7 @@
                     name="query" 
                     class="search" 
                     placeholder="Какая вакансия вас интересует?">
-                    <button type="submit">найти</button>
+                    <button class="fill-btn" type="submit">найти</button>
                 </div>
             </form>
         </div>
@@ -71,9 +71,9 @@
                     </div>
     
                     <div class="l3-data">
-                        <div class="btns">
-                            <button class="av-btn-v2">откликнуться</button>
-                            <button class="favorite-btn"><img src="{{ asset('icons/chunk/gem.svg') }}" alt="gem"></button>
+                        <div class="actions">
+                            <button class="fill-btn">откликнуться</button>
+                            <button class="outline-btn"><img src="{{ asset('icons/chunk/gem.svg') }}" alt="gem"></button>
                         </div>
                         <p>26.04.2024</p>
                     </div>
@@ -99,9 +99,9 @@
                     </div>
     
                     <div class="l3-data">
-                        <div class="btns">
-                            <button class="av-btn-v2">откликнуться</button>
-                            <button class="favorite-btn"><img src="{{ asset('icons/chunk/gem.svg') }}" alt="gem"></button>
+                        <div class="actions">
+                            <button class="fill-btn">откликнуться</button>
+                            <button class="outline-btn"><img src="{{ asset('icons/chunk/gem.svg') }}" alt="gem"></button>
                         </div>
                         <p>26.04.2024</p>
                     </div>
@@ -127,9 +127,9 @@
                     </div>
     
                     <div class="l3-data">
-                        <div class="btns">
-                            <button class="av-btn-v2">откликнуться</button>
-                            <button class="favorite-btn"><img src="{{ asset('icons/chunk/gem.svg') }}" alt="gem"></button>
+                        <div class="actions">
+                            <button class="fill-btn">откликнуться</button>
+                            <button class="outline-btn"><img src="{{ asset('icons/chunk/gem.svg') }}" alt="gem"></button>
                         </div>
                         <p>26.04.2024</p>
                     </div>

@@ -6,7 +6,7 @@
     <link href="{{asset('css/vacancy_search.css?v=').time()}}" rel="stylesheet">
 
     @section('menu')
-        <div class="av-btn-v1">
+        <div class="w-head-btn">
             <a href="/login">войти</a>
         </div>
         <div>
@@ -41,7 +41,7 @@
             <form action="/vacancy_list" method="GET">
                 <div class="input-group">
                     <input type="text" name="query" class="search" placeholder="Какая вакансия вас интересует?">
-                    <button class="av-btn-v2" type="submit">найти</button>
+                    <button class="fill-btn" type="submit">найти</button>
                 </div>
             </form>
         </div>
