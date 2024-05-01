@@ -2,13 +2,15 @@
     display: flex;
     margin-left: auto;
     margin-right: auto;
-    column-gap: 10px;
     justify-content: center;
+
+    gap: 10px;
 }
 
 .role-btn {
     padding: 5px 10px;
     border-radius: 999px;
+
     border: 2px solid #242424;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -58,27 +60,6 @@
     top: 4px;
 }
 
-.search-box span {
-    color: #3FA3FF;
-}
-
-.av-btn-v1 {
-    padding: 10px 30px;
-    border-radius: 999px;
-    border: 2px solid #EFFBFF;
-}
-
-.av-btn-v1:hover {
+.w-head-btn a {
     color: #EFFBFF;
-    background-color: #323232;
-    cursor: pointer;
-}
-
-.av-btn-v1 a {
-    color: #EFFBFF;
-}
-
-.av-btn-v2 {
-    padding: 10px 30px;
-    border-radius: 999px;
 }
