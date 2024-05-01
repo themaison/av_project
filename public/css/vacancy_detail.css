@@ -1,5 +1,5 @@
 .break-points {
-    margin-left: 200px;
+    margin-left: -825px;
 }
 
 .vacancy-content {
@@ -17,38 +17,22 @@
     margin-top: 50px;
 }
 
-.av-btn-v4 {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    justify-content: center;
-
-    padding: 10px 30px;
-    border-radius: 999px;
-    background: #242424;
-
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.av-btn-v3:hover {
-    color: #F3F6F6;
-    cursor: pointer;
-    background-color: #323232;
-}
-
-.av-btn-v4 a {
-    color: #EFFBFF;
-}
-
 .inline-boxes {
     display: flex;
     flex-direction: row;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+h3 {
+    margin-bottom: 15px;
 }
 
 .salary {
-    width: 400px;
-    height: 100px;
-    row-gap: 15px;
+    width: 500px;
+    height: 160px;
+    gap: 15px;
+    padding: 40px;
     border-radius: 24px;
     background-color: #D3F2FF;
 }
@@ -66,13 +50,36 @@
 }
 
 .company {
-    width: 400px;
-    height: 100px;
-    row-gap: 15px;
+    width: 500px;
+    height: 160px;
+    gap: 15px;
+    padding: 40px;
     border-radius: 24px;
     background-color: #242424;
 }
 
-.company p, .company h3 {
+.company h3 {
     color: #F3F6F6;
+}
+
+.company p {
+    color: #F3F6F6;
+    display: inline;
+}
+
+.location {
+    width: 110px;
+    border-radius: 24px;
+    background-color: #FFFFFF;
+    color: #242424;
+}
+
+.responsibilities, .requirements, .conditions, .skills {
+    width: 1010px;
+    height: 216px;
+    padding: 40px;
+    gap: 15px;
+    border-radius: 24px;
+    background-color: #FFFFFF;
+    margin-bottom: 10px;
 }

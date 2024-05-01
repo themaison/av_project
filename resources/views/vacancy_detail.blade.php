@@ -30,7 +30,7 @@
         <div class="vacancy-content">
             <img src="{{  asset('images/vacancy_cover.jpg') }}" alt="обложка" class="vacancy-cover">
             <h2>UI/UX Дизайнер</h2>
-            <button class="av-btn-v4"><img src="{{  asset('icons/chunk/brush.svg') }}" alt="pencil"><a>редактировать</a></button>
+            <button class="outline-btn"><img src="{{  asset('icons/chunk/brush.svg') }}" alt="pencil"><a>редактировать</a></button>
             <div class="vacancy-description">
                 <div class="inline-boxes">
                     <div class="salary">
@@ -39,7 +39,7 @@
                     </div>
                     <div class="company">
                         <h3>Компания</h3>
-                        <p>
+                        <p class="company-detail">
                             <a>Бассейны Атлантика</a>
                             <a class="location"><img src="{{  asset('icons/chunk/map-pin.svg') }}" alt="map-pin">Москва</a>
                         </p>
