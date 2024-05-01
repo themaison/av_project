@@ -38,6 +38,10 @@ body {}
     top: 4px;
 }
 
+.job-sort {
+    align-self: flex-start;
+}
+
 .vacancy-block {
     display: flex;
     justify-content: center;

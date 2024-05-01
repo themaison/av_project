@@ -1,8 +1,8 @@
 body {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
 
+    min-height: 100vh;
     font-size: 16px;
     font-weight: 500;
     letter-spacing: -0.05em;
@@ -30,7 +30,7 @@ header {
     align-items: center;
     gap: 30px;
 
-    padding-inline: 40px;
+    padding-inline: 15%;
     margin-block: 80px;
 }
 
@@ -155,11 +155,12 @@ footer {
     flex-direction: column;
     justify-content: flex-end;
     position: relative;
-    bottom: 0;
 
+    bottom: 0;
     height: 320px;
     padding-inline: 40px;
     padding-block: 60px;
+
 
     background-color: #242424;
     color: #979797;

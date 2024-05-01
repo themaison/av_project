@@ -24,13 +24,15 @@
     @endsection
 
     <div class="content">
+
         <div class="title">
-            <h2>ваши вакансии</h2>
+            <h2>мои вакансии</h2>
             <p>Редактируйте и создавайте новые вакансии<br>
             привлекайте новых соискателей и отбирайте лучших из них</p>
+            <button class="outline-btn"><img src="{{ asset('icons/chunk/brush.svg') }}" alt="pencil"><a href="/new_vacancy">создать вакансию</a></button>
         </div>
-        <button class="outline-btn"><img src="{{ asset('icons/chunk/brush.svg') }}" alt="pencil"><a href="/new_vacancy">создать вакансию</a></button>
         <div class="vacancies">
+            
             <div class="vacancy">
                 <div class="creation-date">
                     <p class="date">30.04.2024 | 21:23</p>
@@ -53,6 +55,7 @@
                 </a>
                 <button class="outline-btn"><img src="{{ asset('icons/chunk/trash.svg') }}" alt="pencil">удалить</button>
             </div>
+
             <div class="vacancy">
                 <div class="creation-date">
                     <p class="date">30.04.2024 | 21:23</p>
@@ -75,6 +78,7 @@
                 </a>
                 <button class="outline-btn"><img src="{{ asset('icons/chunk/trash.svg') }}" alt="pencil">удалить</button>
             </div>
+
             <div class="vacancy">
                 <div class="creation-date">
                     <p class="date">30.04.2024 | 21:23</p>
@@ -97,6 +101,7 @@
                 </a>
                 <button class="outline-btn"><img src="{{ asset('icons/chunk/trash.svg') }}" alt="pencil">удалить</button>
             </div>
+
         </div>
     </div>
 @endsection
