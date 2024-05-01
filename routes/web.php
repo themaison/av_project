@@ -14,11 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/vacancy_search');
 });
 
 Route::get('/vacancy_search', function () {
     return view('vacancy_search');
+});
+
+Route::get('/new_vacancy', function () {
+    return view('new_vacancy');
 });
 
 Route::get('/vacancy_list', function () {

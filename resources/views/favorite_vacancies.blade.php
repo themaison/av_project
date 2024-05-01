@@ -6,7 +6,7 @@
     <link href="{{asset('css/vacancy_list.css?v=').time()}}" rel="stylesheet">
 
     @section('menu')
-        <div class="av-btn-v1">
+        <div class="w-head-btn">
             <a href="/">войти</a>
         </div>
         <div>
@@ -25,18 +25,8 @@
 
     <div class="content">
         <div class="search-box">
+            <h2>избранное</h2>
             <p>сохранено <span>N вакансий<span></p>
-
-            {{-- <form action="" method="GET">
-                <div class="input-group">
-                    <input 
-                    type="text" 
-                    name="query" 
-                    class="search" 
-                    placeholder="Какая вакансия вас интересует?">
-                    <button type="submit">найти</button>
-                </div>
-            </form> --}}
         </div>
 
         <div class="job-sort">
@@ -54,7 +44,7 @@
                         <img src="{{ asset('images/job_prev.jpg') }}" alt="preview" class="job-img">
                         <div class="text-content">
                             <h3>Middle+ Front-end Dev...</h3>
-                            <p>40 000 — 100 000<span>₽</span></p>
+                            <p>40 000 — 100 000₽</p>
                         </div>
                     </a>
                     
@@ -70,9 +60,9 @@
                     </div>
     
                     <div class="l3-data">
-                        <div class="btns">
-                            <button class="av-btn-v2">откликнуться</button>
-                            <button class="favorite-btn"><img src="{{ asset('icons/chunk/trash.svg') }}" alt="trash"></button>
+                        <div class="actions">
+                            <button class="fill-btn">откликнуться</button>
+                            <button class="outline-btn"><img src="{{ asset('icons/chunk/trash.svg') }}" alt="trash"></button>
                         </div>
                         <p>26.04.2024</p>
                     </div>
@@ -82,7 +72,7 @@
                         <img src="{{ asset('images/job_prev.jpg') }}" alt="preview" class="job-img">
                         <div class="text-content">
                             <h3>Middle+ Front-end Dev...</h3>
-                            <p>40 000 — 100 000<span>₽</span></p>
+                            <p>40 000 — 100 000₽</p>
                         </div>
                     </a>
                     
@@ -98,9 +88,9 @@
                     </div>
     
                     <div class="l3-data">
-                        <div class="btns">
-                            <button class="av-btn-v2">откликнуться</button>
-                            <button class="favorite-btn"><img src="{{ asset('icons/chunk/trash.svg') }}" alt="trash"></button>
+                        <div class="actions">
+                            <button class="fill-btn">откликнуться</button>
+                            <button class="outline-btn"><img src="{{ asset('icons/chunk/trash.svg') }}" alt="trash"></button>
                         </div>
                         <p>26.04.2024</p>
                     </div>
@@ -110,7 +100,7 @@
                         <img src="{{ asset('images/job_prev.jpg') }}" alt="preview" class="job-img">
                         <div class="text-content">
                             <h3>Middle+ Front-end Dev...</h3>
-                            <p>40 000 — 100 000<span>₽</span></p>
+                            <p>40 000 — 100 000₽</p>
                         </div>
                     </a>
                     
@@ -126,9 +116,9 @@
                     </div>
     
                     <div class="l3-data">
-                        <div class="btns">
-                            <button class="av-btn-v2">откликнуться</button>
-                            <button class="favorite-btn"><img src="{{ asset('icons/chunk/trash.svg') }}" alt="trash"></button>
+                        <div class="actions">
+                            <button class="fill-btn">откликнуться</button>
+                            <button class="outline-btn"><img src="{{ asset('icons/chunk/trash.svg') }}" alt="trash"></button>
                         </div>
                         <p>26.04.2024</p>
                     </div>

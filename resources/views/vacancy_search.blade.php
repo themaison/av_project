@@ -10,6 +10,9 @@
             <a href="/login">войти</a>
         </div>
         <div>
+            <a href="/new_vacancy">новая вакансия</a>
+        </div>
+        <div>
             <a href="/register">зарегистрироваться</a>
         </div>
         <div>
