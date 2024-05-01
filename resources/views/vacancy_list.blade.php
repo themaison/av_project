@@ -51,7 +51,7 @@
         <div class="vacancy-block">
             <div class="jobs">
                 <div class="job-card">
-                    <a href="/" class="l1-data">
+                    <a href="/vacancy_detail" class="l1-data">
                         <img src="{{ asset('images/job_prev.jpg') }}" alt="preview" class="job-img">
                         <div class="text-content">
                             <h3>Middle+ Front-end Dev...</h3>

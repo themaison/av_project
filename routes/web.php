@@ -44,3 +44,7 @@ Route::get('/vacancy_responses', function () {
 Route::get('/profile', function () {
     return view('profile');
 });
+
+Route::get('/recruiter_vacancies', function () {
+    return view('recruiter_vacancies');
+});
