@@ -14,6 +14,46 @@
         <a href="/profile">имя</a>
     @endsection
 
+    <script>
+        window.onload = function() {
+            var modules = document.getElementsByClassName('av-form-module');
+            var nextButtons = document.getElementsByClassName('fill-btn');
+            var backButtons = document.getElementsByClassName('outline-btn');
+            var currentModule = 0;
+
+            // Начальное состояние: показываем только первый модуль
+            for (var i = 0; i < modules.length; i++) {
+                modules[i].style.display = 'none';
+            }
+            modules[currentModule].style.display = 'flex';
+
+            // Обработчики событий для кнопок "Дальше"
+            for (var i = 0; i < nextButtons.length - 1; i++) { // Исключаем последнюю кнопку "Дальше"
+                nextButtons[i].addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (currentModule < modules.length - 1) {
+                        modules[currentModule].style.display = 'none';
+                        currentModule++;
+                        modules[currentModule].style.display = 'flex';
+                    }
+                });
+            }
+
+            // Обработчики событий для кнопок "Назад"
+            for (var i = 0; i < backButtons.length; i++) {
+                backButtons[i].addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (currentModule > 0) {
+                        modules[currentModule].style.display = 'none';
+                        currentModule--;
+                        modules[currentModule].style.display = 'flex';
+                    }
+                });
+            }
+        }
+
+    </script>
+
     <div class="content">
 
         <div class="breakpoints">
