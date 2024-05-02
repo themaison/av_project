@@ -14,88 +14,92 @@
     @endsection
 
     <div class="content">
+
         <div class="title">
             <h2>отклики</h2>
             <p>ваши отклики за последнее время</p>
         </div>
 
-        <div class="responses">
-            <div class="response">
-                <div class="status">
-                    <p class="stat0">не рассмотрено</p>
+        <div class="vacancies">
+            
+            <div class="vacancy">
+                <div class="v-group">
+
+                    <div class="v-data-block">
+                        <p class="stat0">не рассмотрено</p>
+                    </div>
+
+                    <a href="/" class="v-data-block">
+                        <img src="{{ asset('images/job_prev.jpg') }}" class="vac-prev">
+                        <p>Наименование вакансии</p>
+                    </a>
+
+                    <div class="v-data-block">
+                        <img src="{{ asset('icons/gray/company.svg') }}" alt="icon">
+                        <p>IT Pelag</p>
+                    </div>
+
                 </div>
 
-                <a href="/vacancy_detail" class="vacancy-data">
-                    <div class="d1">
-                        <img src="{{  asset('images/job_prev.jpg') }}" class="job-prev">
-                        <p>Наименование вакансии</p>
-                    </div>
-                    <div class="d2">
-                        <div class="tag">
-                            <img src="{{  asset('icons/chunk/map-pin.svg') }}" >
-                            <p>Санкт-Петербург</p>
-                        </div>
-                        <div class="tag">
-                            <img src="{{  asset('icons/chunk/toolbox.svg') }}">
-                            <p>Опыт от 1 года</p>
-                        </div>
-                    </div>
-                </a>
-
-                <button class="outline-btn"><img src="{{  asset('icons/chunk/trash.svg') }}" alt="pencil">удалить</button>
-        
+                <button class="outline-btn"><img src="{{ asset('icons/chunk/trash.svg') }}" alt="pencil">удалить</button>
             </div>
-            <div class="response">
-                <div class="status">
-                    <p class="stat0">не рассмотрено</p>
-                </div>
 
-                <a href="/vacancy_detail" class="vacancy-data">
-                    <div class="d1">
-                        <img src="{{  asset('images/job_prev.jpg') }}" class="job-prev">
-                        <p>Наименование вакансии</p>
-                    </div>
-                    <div class="d2">
-                        <div class="tag">
-                            <img src="{{  asset('icons/chunk/map-pin.svg') }}" >
-                            <p>Санкт-Петербург</p>
-                        </div>
-                        <div class="tag">
-                            <img src="{{  asset('icons/chunk/toolbox.svg') }}">
-                            <p>Опыт от 1 года</p>
-                        </div>
-                    </div>
-                </a>
-
-                <button class="outline-btn"><img src="{{  asset('icons/chunk/trash.svg') }}" alt="pencil">удалить</button>
-        
-            </div>
-            <div class="response">
-                <div class="status">
-                    <p class="stat0">не рассмотрено</p>
-                </div>
-
-                <a href="/vacancy_detail" class="vacancy-data">
-                    <div class="d1">
-                        <img src="{{  asset('images/job_prev.jpg') }}" class="job-prev">
-                        <p>Наименование вакансии</p>
-                    </div>
-                    <div class="d2">
-                        <div class="tag">
-                            <img src="{{  asset('icons/chunk/map-pin.svg') }}" >
-                            <p>Санкт-Петербург</p>
-                        </div>
-                        <div class="tag">
-                            <img src="{{  asset('icons/chunk/toolbox.svg') }}">
-                            <p>Опыт от 1 года</p>
-                        </div>
-                    </div>
-                </a>
-
-                <button class="outline-btn"><img src="{{  asset('icons/chunk/trash.svg') }}" alt="pencil">удалить</button>
-        
-            </div>
         </div>
+
+        
+
+        {{-- <div class="responses">
+            <div class="response">
+                <div class="status">
+                    <p class="stat0">не рассмотрено</p>
+                </div>
+
+                <a href="/vacancy_detail" class="vacancy-data">
+                    <div class="d1">
+                        <img src="{{  asset('images/job_prev.jpg') }}" class="job-prev">
+                        <p>Наименование вакансии</p>
+                    </div>
+                    <div class="d2">
+                        <div class="tag">
+                            <img src="{{  asset('icons/chunk/map-pin.svg') }}" >
+                            <p>Санкт-Петербург</p>
+                        </div>
+                        <div class="tag">
+                            <img src="{{  asset('icons/chunk/toolbox.svg') }}">
+                            <p>Опыт от 1 года</p>
+                        </div>
+                    </div>
+                </a>
+
+                <button class="outline-btn"><img src="{{  asset('icons/chunk/trash.svg') }}" alt="pencil">удалить</button>
+        
+            </div>
+            <div class="response">
+                <div class="status">
+                    <p class="stat0">не рассмотрено</p>
+                </div>
+
+                <a href="/vacancy_detail" class="vacancy-data">
+                    <div class="d1">
+                        <img src="{{  asset('images/job_prev.jpg') }}" class="job-prev">
+                        <p>Наименование вакансии</p>
+                    </div>
+                    <div class="d2">
+                        <div class="tag">
+                            <img src="{{  asset('icons/chunk/map-pin.svg') }}" >
+                            <p>Санкт-Петербург</p>
+                        </div>
+                        <div class="tag">
+                            <img src="{{  asset('icons/chunk/toolbox.svg') }}">
+                            <p>Опыт от 1 года</p>
+                        </div>
+                    </div>
+                </a>
+
+                <button class="outline-btn"><img src="{{  asset('icons/chunk/trash.svg') }}" alt="pencil">удалить</button>
+        
+            </div>
+        </div> --}}
     
     </div>
 

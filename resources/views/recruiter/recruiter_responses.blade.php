@@ -35,7 +35,7 @@
                     </a>
 
                     <div class="v-data-block">
-                        <img src="{{ asset('icons/gray/envelope.svg') }}" alt="icon">
+                        <img src="{{ asset('icons/gray/message.svg') }}" alt="icon">
                         <p>сообщение</p>
                     </div>
 
@@ -57,7 +57,7 @@
                     </a>
 
                     <div class="v-data-block">
-                        <img src="{{ asset('icons/gray/envelope.svg') }}" alt="icon">
+                        <img src="{{ asset('icons/gray/message.svg') }}" alt="icon">
                         <p>сообщение</p>
                     </div>
 
