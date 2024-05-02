@@ -1,5 +1,3 @@
-.content {}
-
 .breakpoints {
     display: flex;
     align-self: flex-start;
@@ -23,24 +21,22 @@
     color: #242424;
 }
 
+.av-form-module {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    border-radius: 24px;
+    background-color: #fff;
+}
+
 .title {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 15px;
-}
-
-.form-section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    gap: 30px;
-    padding: 40px;
-    background-color: #ffffff;
-    border-radius: 24px;
 }
 
 .progress-bar {
@@ -89,71 +85,11 @@
     background-color: #F3F6F6;
 }
 
-.form-section .inputs {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 15px;
-}
-
-.form-section .inputs .input-block {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.form-section .inputs label {
-    font-weight: 700;
-}
-
-.form-section .inputs p {
-    font-size: 12px;
-    color: #979797;
-}
-
-.form-section .inputs .input-block input,
-.form-section .inputs .input-block textarea {
-    width: 360px;
-    height: 48px;
-    padding: 13px 20px;
-    border-radius: 8px;
-
-    background-color: #F3F6F6;
-}
-
-.form-section .inputs .input-block textarea {
-    height: 96px;
-    resize: none;
-}
-
-.form-section .salary-float {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.form-section .salary-float .input-block input {
-    width: 156px;
-}
-
-#preview {
+.preview {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     border: 2px dashed #979797;
     height: 96px;
-}
-
-.form-navigation {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-}
-
-.form-navigation button {
-    width: 100%;
 }

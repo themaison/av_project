@@ -6,21 +6,11 @@
     <link href="{{asset('css/applicant_responses.css?v=').time()}}" rel="stylesheet">
 
     @section('menu')
-        <div class="w-head-btn">
-            <a href="/login">войти</a>
-        </div>
-        <div>
-            <a href="/recruiter_register">зарегистрироваться как рекрутёр</a>
-        </div>
-        <div>
-            <a href="/favorite_vacancies">избранное</a>
-        </div>
-        <div>
-            <a href="/applicant_responses">отклики</a>
-        </div>
-        <div>
-            <a href="/profile">имя</a>
-        </div>
+        <a href="/login" class="w-head-btn">войти</a>
+        <a href="/register">зарегистрироваться</a>
+        <a href="/favorite_vacancies">избранное</a>
+        <a href="/applicant_responses">отклики</a>
+        <a href="/profile">имя</a>
     @endsection
 
     <div class="content">

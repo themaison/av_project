@@ -3,24 +3,15 @@
 @section('title', 'новая вакансия')
 
 @section('content')
+    <link href="{{asset('css/av-form.css?v=').time()}}" rel="stylesheet">
     <link href="{{asset('css/new_vacancy.css?v=').time()}}" rel="stylesheet">
 
     @section('menu')
-        <div class="w-head-btn">
-            <a href="/login">войти</a>
-        </div>
-        <div>
-            <a href="/applicant_register">зарегистрироваться как соискатель</a>
-        </div>
-        <div>
-            <a href="/new_vacancy">новая вакансия</a>
-        </div>
-        <div>
-            <a href="/recruiter_responses">отклики</a>
-        </div>
-        <div>
-            <a href="/profile">имя</a>
-        </div>
+        <a href="/login" class="w-head-btn">войти</a>
+        <a href="/register">зарегистрироваться</a>
+        <a href="/recruiter_responses">отклики</a>
+        <a href="/recruiter_vacancies">мои вакансии</a>
+        <a href="/profile">имя</a>
     @endsection
 
     <div class="content">
@@ -36,10 +27,18 @@
             <p>для добавления новой вакансии заполните все поля</p>
         </div>
 
-        <form class="av-form" method="POST" action="/create-vacancy">
-            <div class="form-section" id="part1">
-                
-                <h3>Создание · Основное</h3>
+        <form class="av-form" method="POST" action="/create_vacancy">
+
+            <div class="av-form-module" id="module_1">
+                <div class="form-title">
+                    <h3>Создание · Основное</h3>
+    
+                    <div class="av-icon">
+                        <img src="{{  asset('icons/chunk/brush.svg') }}" alt="icon">
+                    </div>
+                    
+                </div>
+    
                 <div class="progress-bar">
                     <div class="progress-status" id="current">
                         1
@@ -51,56 +50,66 @@
                         3
                     </div>
                 </div>
-
-                <div class="inputs">
-
+    
+    
+                <div class="inputs-block">
+    
                     <div class="input-block">
                         <label for="title">название вакансии</label>
                         <input type="text" name="title" placeholder="введите текст...">
                     </div>
-
+    
                     <div class="input-block">
                         <label for="company">компания (ИП)</label>
                         <input type="text" name="company" placeholder="введите текст...">
                     </div>
-
+    
                     <div class="input-block">
                         <label for="city">город</label>
                         <input type="text" name="city" placeholder="введите текст...">
                     </div>
-
+    
                     <div class="input-block">
                         <label for="salary">заработная плата (₽)</label>
-
-                        <div class="salary-float">
+    
+                        <div class="double-block">
                             <div class="input-block">
                                 <input type="text" name ="salary-from" placeholder="от 10 000">
                             </div>
-
+    
                             <div>—</div>
     
                             <div class="input-block">
                                 <input type="text" name ="salary-to" placeholder="до 100 000">
                             </div>
                         </div>
+    
                     </div>
-
+    
                     <div class="input-block">
                         <label for="experience">опыт работы</label>
                         <input type="text" name="experience" placeholder="введите число">
                     </div>
 
                 </div>
-
-                <div class="form-navigation">
-                    {{-- <button class="outline-btn">назад</button> --}}
+    
+    
+                <div class="form-nav">
                     <button class="fill-btn">дальше<img src="{{ asset('icons/light/angle-right.svg') }}" alt="icon"></button>
                 </div>
             </div>
-        
-            <div class="form-section" id="part2">
-                
-                <h3>Создание · Описание</h3>
+
+            <div class="av-form-module" id="module_2">
+
+                <div class="form-title">
+                    <h3>Создание · Описание</h3>
+    
+                    <div class="av-icon">
+                        <img src="{{  asset('icons/chunk/brush.svg') }}" alt="icon">
+                    </div>
+                    
+                </div>
+    
                 <div class="progress-bar">
                     <div class="progress-status" id="filled">
                         1
@@ -112,9 +121,10 @@
                         3
                     </div>
                 </div>
-
-                <div class="inputs">
-
+    
+    
+                <div class="inputs-block">
+    
                     <div class="input-block">
                         <label for="responsibilities">обязанности</label>
                         <textarea name="responsibilities" placeholder="введите текст..."></textarea>
@@ -132,21 +142,30 @@
 
                     <div class="input-block">
                         <label for="skills">навыки</label>
-                        <p>введите навыки через запятую</p>
+                        <p class="hint-text">введите навыки через запятую</p>
                         <textarea name="skills" placeholder="введите текст..."></textarea>
                     </div>
-
+                    
                 </div>
-
-                <div class="form-navigation">
+    
+    
+                <div class="form-nav">
                     <button class="fill-btn">дальше<img src="{{ asset('icons/light/angle-right.svg') }}" alt="icon"></button>
                     <button class="outline-btn">назад</button>
                 </div>
             </div>
-        
-            <div class="form-section" id="part3">
-                
-                <h3>Создание · Обложка</h3>
+
+            <div class="av-form-module" id="module_3">
+
+                <div class="form-title">
+                    <h3>Создание · Основное</h3>
+    
+                    <div class="av-icon">
+                        <img src="{{  asset('icons/chunk/brush.svg') }}" alt="icon">
+                    </div>
+                    
+                </div>
+    
                 <div class="progress-bar">
                     <div class="progress-status" id="filled">
                         1
@@ -158,24 +177,26 @@
                         3
                     </div>
                 </div>
-
-                <div class="inputs">
-
+    
+    
+                <div class="inputs-block">
+    
                     <div class="input-block">
                         <label for="preview">превью вакансии</label>
-                        <p>желательный формат : 1520x420 (.png или .jpg)</p>
-                        <input type="file" id="preview" name="preview" accept=".png, .jpg">
+                        <p class="hint-text">желательный формат .png или .jpg</p>
+                        <input type="file" class="preview" name="preview" accept=".png, .jpg">
                     </div>
 
                 </div>
-
-                <div class="form-navigation">
-                    <button type="sybmit" class="fill-btn">опубликовать вакансию<img src="{{ asset('icons/light/arrow-up-from-line.svg') }}" alt="icon"></button>
+    
+    
+                <div class="form-nav">
+                    <button class="fill-btn" type="submit">опубликовать</button>
                     <button class="outline-btn">назад</button>
                 </div>
+
             </div>
 
         </form>
-
     </div>
 @endsection

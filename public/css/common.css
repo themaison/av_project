@@ -17,7 +17,7 @@ header {
     align-items: center;
 
     height: 80px;
-    padding-inline: 40px;
+    padding-inline: 10%;
 
     background-color: #242424;
     color: #EFFBFF;
@@ -30,7 +30,7 @@ header {
     align-items: center;
     gap: 30px;
 
-    padding-inline: 15%;
+    padding-inline: 10%;
     margin-block: 80px;
 }
 
@@ -92,12 +92,13 @@ span {
     border-radius: 999px;
     height: 48px;
 
-    border: 2px solid #EFFBFF;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    border: 2px solid #979797;
+    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
 }
 
 .w-head-btn:hover {
     color: #EFFBFF;
+    border: 2px solid #EFFBFF;
     background-color: #323232;
 }
 
@@ -158,7 +159,7 @@ footer {
 
     bottom: 0;
     height: 320px;
-    padding-inline: 40px;
+    padding-inline: 10%;
     padding-block: 60px;
 
 

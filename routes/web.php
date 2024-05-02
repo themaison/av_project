@@ -37,6 +37,10 @@ Route::get('/login', function () {
     return view('login');
 });
 
+Route::get('/register', function () {
+    return view('register');
+});
+
 Route::get('/new_vacancy', function () {
     return view('recruiter/new_vacancy');
 });

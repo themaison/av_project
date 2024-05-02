@@ -6,30 +6,13 @@
     <link href="{{asset('css/vacancy_list.css?v=').time()}}" rel="stylesheet">
 
     @section('menu')
-    <div class="w-head-btn">
-        <a href="/login">войти</a>
-    </div>
-    <div>
-        <a href="/recruiter_register">рег. рекрутёром</a>
-    </div>
-    <div>
-        <a href="/applicant_register">рег. соискателем</a>
-    </div>
-    <div>
+        <a href="/login" class="w-head-btn">войти</a>
+        <a href="/register">зарегистрироваться</a>
         <a href="/favorite_vacancies">избранное</a>
-    </div>
-    <div>
-        <a href="/recruiter_responses">отклики рекрутёра</a>
-    </div>
-    <div>
         <a href="/applicant_responses">отклики соискателя</a>
-    </div>
-    <div>
-        <a href="/new_vacancy">новая вакансия</a>
-    </div>
-    <div>
+        <a href="/recruiter_responses">отклики рекрутера</a>
+        <a href="/recruiter_vacancies">мои вакансии</a>
         <a href="/profile">имя</a>
-    </div>
     @endsection
 
     <div class="content">
