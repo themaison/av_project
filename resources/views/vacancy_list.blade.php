@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', 'поиск работы')
+@section('title', 'запрос')
 
 @section('content')
     <link href="{{asset('css/vacancy_list.css?v=').time()}}" rel="stylesheet">

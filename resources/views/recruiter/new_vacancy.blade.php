@@ -198,7 +198,7 @@
             <div class="av-form-module" id="module_3">
 
                 <div class="form-title">
-                    <h3>Создание · Основное</h3>
+                    <h3>Создание · Обложка</h3>
     
                     <div class="av-icon">
                         <img src="{{  asset('icons/chunk/brush.svg') }}" alt="icon">

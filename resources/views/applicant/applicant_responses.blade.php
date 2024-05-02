@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', 'Отклики')
+@section('title', 'отклики')
 
 @section('content')
     <link href="{{asset('css/applicant_responses.css?v=').time()}}" rel="stylesheet">
