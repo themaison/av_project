@@ -3,20 +3,20 @@
 @section('title', 'избранное')
 
 @section('content')
-    <link href="{{asset('css/vacancy_list.css?v=').time()}}" rel="stylesheet">
+    <link href="{{asset('css/favorite_vacancies.css?v=').time()}}" rel="stylesheet">
 
     @section('menu')
         <div class="w-head-btn">
-            <a href="/">войти</a>
+            <a href="/login">войти</a>
         </div>
         <div>
-            <a href="/">зарегистрироваться</a>
+            <a href="/recruiter_register">зарегистрироваться как рекрутёр</a>
         </div>
         <div>
-            <a href="/favourite_vacancies">избранное</a>
+            <a href="/favorite_vacancies">избранное</a>
         </div>
         <div>
-            <a href="/vacancy_responses">отклики</a>
+            <a href="/applicant_responses">отклики</a>
         </div>
         <div>
             <a href="/profile">имя</a>
@@ -40,7 +40,7 @@
         <div class="vacancy-block">
             <div class="jobs">
                 <div class="job-card">
-                    <a href="/" class="l1-data">
+                    <a href="/vacancy_detail" class="l1-data">
                         <img src="{{ asset('images/job_prev.jpg') }}" alt="preview" class="job-img">
                         <div class="text-content">
                             <h3>Middle+ Front-end Dev...</h3>
@@ -68,7 +68,7 @@
                     </div>
                 </div>
                 <div class="job-card">
-                    <a href="/" class="l1-data">
+                    <a href="/vacancy_detail" class="l1-data">
                         <img src="{{ asset('images/job_prev.jpg') }}" alt="preview" class="job-img">
                         <div class="text-content">
                             <h3>Middle+ Front-end Dev...</h3>
@@ -96,7 +96,7 @@
                     </div>
                 </div>
                 <div class="job-card">
-                    <a href="/" class="l1-data">
+                    <a href="/vacancy_detail" class="l1-data">
                         <img src="{{ asset('images/job_prev.jpg') }}" alt="preview" class="job-img">
                         <div class="text-content">
                             <h3>Middle+ Front-end Dev...</h3>

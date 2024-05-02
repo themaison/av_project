@@ -3,20 +3,20 @@
 @section('title', 'Отклики')
 
 @section('content')
-    <link href="{{asset('css/vacancy_responses.css?v=').time()}}" rel="stylesheet">
+    <link href="{{asset('css/applicant_responses.css?v=').time()}}" rel="stylesheet">
 
     @section('menu')
         <div class="w-head-btn">
             <a href="/login">войти</a>
         </div>
         <div>
-            <a href="/register">зарегистрироваться</a>
+            <a href="/recruiter_register">зарегистрироваться как рекрутёр</a>
         </div>
         <div>
             <a href="/favorite_vacancies">избранное</a>
         </div>
         <div>
-            <a href="/vacancy_responses">отклики</a>
+            <a href="/applicant_responses">отклики</a>
         </div>
         <div>
             <a href="/profile">имя</a>
@@ -60,7 +60,7 @@
                     <p class="stat0">не рассмотрено</p>
                 </div>
 
-                <a href="/" class="vacancy-data">
+                <a href="/vacancy_detail" class="vacancy-data">
                     <div class="d1">
                         <img src="{{  asset('images/job_prev.jpg') }}" class="job-prev">
                         <p>Наименование вакансии</p>
@@ -85,7 +85,7 @@
                     <p class="stat0">не рассмотрено</p>
                 </div>
 
-                <a href="/" class="vacancy-data">
+                <a href="/vacancy_detail" class="vacancy-data">
                     <div class="d1">
                         <img src="{{  asset('images/job_prev.jpg') }}" class="job-prev">
                         <p>Наименование вакансии</p>

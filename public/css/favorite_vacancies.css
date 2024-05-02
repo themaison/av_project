@@ -1,0 +1,156 @@
+body {}
+
+.search-box {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.search {
+    width: 480px;
+    height: 56px;
+    border-radius: 999px;
+    padding: 17px 150px 17px 30px;
+
+    font-family: "Manrope", sans-serif;
+    font-weight: 500;
+
+    background-color: #FFFFFF;
+}
+
+.search-box button {
+    width: 123px;
+    height: 48px;
+    border-radius: 999px;
+
+    font-family: "Manrope", sans-serif;
+    font-weight: 500;
+
+    background-color: #242424;
+    color: #EFFBFF;
+
+    position: absolute;
+    right: 4px;
+    top: 4px;
+}
+
+.job-sort {
+    align-self: flex-start;
+}
+
+.vacancy-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+}
+
+.jobs {
+    display: flex;
+    flex-wrap: wrap;
+    width: fit-content;
+
+    gap: 10px;
+}
+
+.job-card {
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+    border-radius: 24px;
+    padding: 40px;
+    width: 480px;
+
+    background-color: #FFFFFF;
+}
+
+.job-card .l1-data {
+    display: flex;
+    position: relative;
+    border-radius: 999px;
+    column-gap: 30px;
+    text-decoration: none;
+    color: #242424;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.job-card .l1-data:hover {
+    color: #3FA3FF;
+    background-color: #EFFBFF;
+}
+
+.job-card .l1-data::after {
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    /* Регулируйте этот отступ, чтобы переместить линию вверх или вниз */
+    left: 0;
+    width: 100%;
+    height: 1px;
+    /* Регулируйте эту высоту, чтобы изменить толщину линии */
+    background-color: #F3F6F6;
+    /* Измените этот цвет, чтобы изменить цвет линии */
+}
+
+.job-card .job-img {
+    width: 80px;
+    height: auto;
+    border-radius: 100%;
+}
+
+.job-card .l1-data .text-content {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    font-size: 24px;
+}
+
+.job-card .l1-data p {
+    display: inline-block;
+    width: fit-content;
+
+    padding: 5px 15px;
+    border-radius: 999px;
+    font-weight: 500;
+
+    background-color: #EFFBFF;
+}
+
+.job-card .l2-data {
+    display: flex;
+    column-gap: 15px;
+}
+
+.job-card .l3-data {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.job-card .l3-data p {
+    color: #979797;
+}
+
+.job-card .l3-data .actions {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.outline-btn {
+    width: 48px;
+    height: 48px;
+    padding: 0px;
+}
+
+.tag {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 5px;
+}

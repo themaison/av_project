@@ -6,27 +6,36 @@
     <link href="{{asset('css/vacancy_detail.css?v=').time()}}" rel="stylesheet">
 
     @section('menu')
-        <div class="w-head-btn">
-            <a href="/login">войти</a>
-        </div>
-        <div>
-            <a href="/register">зарегистрироваться</a>
-        </div>
-        <div>
-            <a href="/favorite_vacancies">избранное</a>
-        </div>
-        <div>
-            <a href="/vacancy_responses">отклики</a>
-        </div>
-        <div>
-            <a href="/profile">имя</a>
-        </div>
+    <div class="w-head-btn">
+        <a href="/login">войти</a>
+    </div>
+    <div>
+        <a href="/recruiter_register">рег. рекрутёром</a>
+    </div>
+    <div>
+        <a href="/applicant_register">рег. соискателем</a>
+    </div>
+    <div>
+        <a href="/favorite_vacancies">избранное</a>
+    </div>
+    <div>
+        <a href="/recruiter_responses">отклики рекрутёра</a>
+    </div>
+    <div>
+        <a href="/applicant_responses">отклики соискателя</a>
+    </div>
+    <div>
+        <a href="/new_vacancy">новая вакансия</a>
+    </div>
+    <div>
+        <a href="/profile">имя</a>
+    </div>
     @endsection
 
     <div class="content">
 
         <div class="breakpoints">
-            <a href="">вакансии</a>
+            <a href="/vacancy_list">вакансии</a>
             <p>/</p>
             <a href="" id="current-page">UI/UX Дизайнер</a>
         </div>

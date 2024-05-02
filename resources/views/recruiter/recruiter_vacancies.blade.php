@@ -10,13 +10,13 @@
             <a href="/login">войти</a>
         </div>
         <div>
-            <a href="/register">зарегистрироваться</a>
+            <a href="/applicant_register">зарегистрироваться как соискатель</a>
         </div>
         <div>
-            <a href="/favorite_vacancies">избранное</a>
+            <a href="/recruiter_responses">отклики</a>
         </div>
         <div>
-            <a href="/vacancy_responses">отклики</a>
+            <a href="/new_vacancy">новая вакансия</a>
         </div>
         <div>
             <a href="/profile">имя</a>
