@@ -93,9 +93,17 @@
     letter-spacing: -0.03em;
 }
 
-.fill-btn,
-.outline-btn {
-    width: 100%;
+.av-form p a {
+    color: #3FA3FF;
+}
+
+.av-form .input-block p {
+    color: #979797;
+}
+
+.av-form .input-block .error-text {
+    align-self: center;
+    color: #FF001F;
 }
 
 .av-form .form-nav {
@@ -107,10 +115,7 @@
     width: 100%;
 }
 
-.hint-text {
-    color: #979797;
-}
-
-.special-text {
-    color: #3FA3FF
+.fill-btn,
+.outline-btn {
+    width: 100%;
 }

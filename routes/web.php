@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\Recruiter\VacancyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,12 +15,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return redirect('/vacancy_search');
-});
+Route::get('/logout', [UserController::class, 'logout']);
+
+Route::get('/login_form', [UserController::class, 'login_form']);
+Route::post('/login_form/login', [UserController::class, 'login']);
+
+Route::get('/register_form', [UserController::class, 'register_form']);
+Route::post('/register_form/register', [UserController::class, 'register']);
 
 Route::get('/vacancy_search', function () {
     return view('vacancy_search');
+});
+
+Route::get('/new_vacancy/create', [VacancyController::class, 'index']);
+
+Route::get('/', function () {
+    return redirect('/vacancy_search');
 });
 
 Route::get('/vacancy_list', function () {
@@ -33,14 +45,6 @@ Route::get('/profile', function () {
     return view('profile');
 });
 
-Route::get('/login', function () {
-    return view('login');
-});
-
-Route::get('/register', function () {
-    return view('register');
-});
-
 Route::get('/new_vacancy', function () {
     return view('recruiter/new_vacancy');
 });
@@ -49,20 +53,12 @@ Route::get('/recruiter_vacancies', function () {
     return view('recruiter/recruiter_vacancies');
 });
 
-Route::get('/recruiter_register', function () {
-    return view('recruiter/recruiter_register');
-});
-
 Route::get('/recruiter_responses', function () {
     return view('recruiter/recruiter_responses');
 });
 
 Route::get('/favorite_vacancies', function () {
     return view('applicant/favorite_vacancies');
-});
-
-Route::get('/applicant_register', function () {
-    return view('applicant/applicant_register');
 });
 
 Route::get('/applicant_responses', function () {
