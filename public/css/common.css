@@ -102,8 +102,13 @@ span {
     background-color: #323232;
 }
 
-.w-head-btn a {
+.w-head-btn a,
+.fill-btn a {
     color: #EFFBFF;
+}
+
+.outline-btn a {
+    color: #242424;
 }
 
 .fill-btn {
@@ -135,6 +140,7 @@ span {
     gap: 10px;
     padding: 10px 30px;
     border-radius: 999px;
+    font-weight: 500;
 
     border: 2px solid #242424;
     color: #242424;
@@ -147,6 +153,17 @@ span {
 
     background-color: #EFFBFF;
     border: 2px solid #3FA3FF;
+}
+
+.square-btn {
+    width: 48px;
+    height: 48px;
+    padding: 0;
+}
+
+.double-btn {
+    display: flex;
+    gap: 10px;
 }
 
 footer {

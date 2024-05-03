@@ -3,6 +3,7 @@
 @section('title', 'отклики')
 
 @section('content')
+    <link href="{{asset('css/av-list.css?v=').time()}}" rel="stylesheet">
     <link href="{{asset('css/applicant_responses.css?v=').time()}}" rel="stylesheet">
 
     @section('menu')
@@ -20,30 +21,33 @@
             <p>ваши отклики за последнее время</p>
         </div>
 
-        <div class="vacancies">
-            
-            <div class="vacancy">
-                <div class="v-group">
+        <div class="av-list">
+            <div class="l-row">
 
-                    <div class="v-data-block">
+                <div class="set">
+                    <div class="elem">
+                        <p class="hint-text">30.04.2024 | 21:23</p>
+                    </div>
+
+
+                    <div class="elem">
                         <p class="stat0">не рассмотрено</p>
                     </div>
 
-                    <a href="/" class="v-data-block">
-                        <img src="{{ asset('images/job_prev.jpg') }}" class="vac-prev">
+                    <a href="/" class="elem">
+                        <img src="{{ asset('images/job_prev.jpg') }}" class="prev">
                         <p>Наименование вакансии</p>
                     </a>
 
-                    <div class="v-data-block">
+                    <div class="elem">
                         <img src="{{ asset('icons/gray/company.svg') }}" alt="icon">
                         <p>IT Pelag</p>
                     </div>
 
                 </div>
 
-                <button class="outline-btn"><img src="{{ asset('icons/chunk/trash.svg') }}" alt="pencil">удалить</button>
+                <button class="outline-btn square-btn"><img src="{{ asset('icons/chunk/trash.svg') }}" alt="icon"></button>
             </div>
-
         </div>
 
         

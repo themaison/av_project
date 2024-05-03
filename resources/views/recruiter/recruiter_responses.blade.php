@@ -3,6 +3,7 @@
 @section('title', 'отклики')
 
 @section('content')
+    <link href="{{asset('css/av-list.css?v=').time()}}" rel="stylesheet">
     <link href="{{asset('css/recruiter_responses.css?v=').time()}}" rel="stylesheet">
 
     @section('menu')
@@ -20,52 +21,34 @@
             <p>отклики на ваши вакансии за последнее время</p>
         </div>
 
-        <div class="vacancies">
-            
-            <div class="vacancy">
-                <div class="v-group">
+        <div class="av-list">   
+            <div class="l-row">
+                <div class="set">
 
-                    <div class="v-data-block">
+                    <div class="elem">
                         <p class="hint-text">30.04.2024 | 21:23</p>
                     </div>
 
-                    <a href="/" class="v-data-block">
-                        <img src="{{ asset('images/job_prev.jpg') }}" class="vac-prev">
+                    <a href="/" class="elem">
+                        <div class="prev"></div>
+                        {{-- <img src="{{ asset('images/job_prev.jpg') }}" class="prev"> --}}
                         <p>Имя Фамилия Отчество</p>
                     </a>
 
-                    <div class="v-data-block">
+                    <div class="elem">
                         <img src="{{ asset('icons/gray/message.svg') }}" alt="icon">
                         <p>сообщение</p>
                     </div>
 
-                </div>
-
-                <button class="outline-btn"><img src="{{ asset('icons/chunk/trash.svg') }}" alt="pencil">удалить</button>
-            </div>
-
-            <div class="vacancy">
-                <div class="v-group">
-
-                    <div class="v-data-block">
-                        <p class="hint-text">30.04.2024 | 21:23</p>
-                    </div>
-
-                    <a href="/" class="v-data-block">
-                        <img src="{{ asset('images/job_prev.jpg') }}" class="vac-prev">
-                        <p>Имя Фамилия Отчество</p>
+                    <a href="/" class="elem">
+                        <img src="{{ asset('images/job_prev.jpg') }}" class="prev">
+                        <p>Наименование вакансии</p>
                     </a>
 
-                    <div class="v-data-block">
-                        <img src="{{ asset('icons/gray/message.svg') }}" alt="icon">
-                        <p>сообщение</p>
-                    </div>
-
                 </div>
 
-                <button class="outline-btn"><img src="{{ asset('icons/chunk/trash.svg') }}" alt="pencil">удалить</button>
+                <button class="outline-btn square-btn"><img src="{{ asset('icons/gray/3-dots-vertical.svg') }}" alt="icon"></button>
             </div>
-
         </div>
     </div>
 @endsection

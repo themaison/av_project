@@ -26,7 +26,12 @@
         <div class="title">
             <img src="{{  asset('images/vacancy_cover.jpg') }}" alt="preview" class="vacancy-cover">
             <h2>Дизайнер сайтов на Tilda</h2>
-            <button class="outline-btn"><img src="{{  asset('icons/chunk/brush.svg') }}" alt="pencil"><a>редактировать</a></button>
+
+            <div class="double-btn">
+                <button class="fill-btn"><img src="{{  asset('icons/light/brush.svg') }}" alt="icon"><a>откликнуться</a></button>
+                <button class="outline-btn square-btn"><img src="{{  asset('icons/chunk/gem.svg') }}" alt="icon"></button>
+                <button class="fill-btn"><img src="{{  asset('icons/light/pencil.svg') }}" alt="icon"><a>редактировать</a></button>
+            </div>
         </div>
 
         <div class="vacancy-description">

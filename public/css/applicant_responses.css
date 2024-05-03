@@ -6,163 +6,17 @@
     align-items: center;
 }
 
-.vacancies {
-    display: flex;
-    flex-direction: column;
-
-    gap: 15px;
-    padding: 40px;
-    border-radius: 24px;
-    width: 100%;
-
-    background-color: #ffffff;
-}
-
-.vacancy {
-    display: flex;
-    position: relative;
-    justify-content: space-between;
-    align-items: center;
-
-    padding: 10px;
-    border-radius: 12px;
-}
-
-.vacancy:not(:last-child)::after {
-    content: "";
-    position: absolute;
-    bottom: -15px;
-    /* Регулируйте этот отступ, чтобы переместить линию вверх или вниз */
-    left: 0;
-    width: 100%;
-    height: 1px;
-    /* Регулируйте эту высоту, чтобы изменить толщину линии */
-    background-color: #F3F6F6;
-    /* Измените этот цвет, чтобы изменить цвет линии */
-}
-
-a {
-    text-decoration: none;
-    color: #242424;
-}
-
-.v-group {
-    display: flex;
-    gap: 30px;
-    border-radius: 999px;
-    padding-right: 30px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.v-data-block {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    gap: 15px;
-    border-radius: 12px;
-    padding-inline: 10px;
-    height: 48px;
-}
-
-.v-data-block:hover {
-    cursor: pointer;
-    color: #3FA3FF;
-    background-color: #F3F6F6;
-}
-
-/* .hint-text {
-    color: #979797;
-} */
-
-.vac-prev {
-    width: 32px;
-    height: 32px;
-    border-radius: 100%;
-}
-
-/* .responses {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    padding: 40px;
-    background-color: #ffffff;
-    border-radius: 24px;
-    width: 100%;
-}
-
-.response {
-    display: flex;
-    position: relative;
-    justify-content: space-between;
-    align-items: center;
-
-    padding: 10px;
-    border-radius: 12px;
-}
-
-.response:not(:last-child)::after {
-    content: "";
-    position: absolute;
-    bottom: -15px;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background-color: #F3F6F6;
-}
-
-a {
-    text-decoration: none;
-    color: #242424;
-} */
-
-/* .vacancy-data {
-    display: flex;
-    gap: 30px;
-    border-radius: 999px;
-    padding-right: 30px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.vacancy-data:hover {
-    color: #3FA3FF;
-    background-color: #F3F6F6;
-    cursor: pointer;
-}
-
-.vacancy-data .d1,
-.vacancy-data .d2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-}
-
-
-.job-prev {
-    width: 60px;
-    height: 60px;
-    border-radius: 100%;
-}
-
-.tag {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    column-gap: 5px;
-} */
-
 .stat0 {
     color: #979797;
-    width: 200px;
+    width: 120px;
 }
 
 .stat1 {
     color: #3FA3FF;
-    width: 200px;
+    width: 120px;
 }
 
 .stat2 {
     color: #FF0000;
-    width: 200px;
+    width: 120px;
 }

@@ -1,0 +1,78 @@
+.av-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 15px;
+    padding: 40px;
+    border-radius: 24px;
+    width: 100%;
+
+    background-color: #ffffff;
+}
+
+.av-list .l-row {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px;
+    border-radius: 12px;
+}
+
+.av-list .l-row:not(:last-child)::after {
+    content: "";
+    position: absolute;
+
+    bottom: -15px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+
+    background-color: #F3F6F6;
+}
+
+.av-list .set {
+    display: flex;
+    gap: 30px;
+    border-radius: 999px;
+    padding-right: 30px;
+
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.av-list .elem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 15px;
+    border-radius: 12px;
+    padding-inline: 10px;
+    height: 48px;
+
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.av-list .elem:hover {
+    cursor: pointer;
+
+    color: #3FA3FF;
+    background-color: #F3F6F6;
+}
+
+.av-list .prev {
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+    background-color: #F3F6F6;
+}
+
+.av-list a {
+    text-decoration: none;
+    color: #242424;
+}
+
+.hint-text {
+    color: #979797;
+}

@@ -65,7 +65,7 @@
                     <div class="l3-data">
                         <div class="actions">
                             <button class="fill-btn">откликнуться</button>
-                            <button class="outline-btn"><img src="{{ asset('icons/chunk/gem.svg') }}" alt="gem"></button>
+                            <button class="outline-btn square-btn"><img src="{{ asset('icons/chunk/gem.svg') }}" alt="gem"></button>
                         </div>
                         <p>26.04.2024</p>
                     </div>
@@ -93,7 +93,7 @@
                     <div class="l3-data">
                         <div class="actions">
                             <button class="fill-btn">откликнуться</button>
-                            <button class="outline-btn"><img src="{{ asset('icons/chunk/gem.svg') }}" alt="gem"></button>
+                            <button class="outline-btn square-btn"><img src="{{ asset('icons/chunk/gem.svg') }}" alt="gem"></button>
                         </div>
                         <p>26.04.2024</p>
                     </div>
@@ -121,7 +121,7 @@
                     <div class="l3-data">
                         <div class="actions">
                             <button class="fill-btn">откликнуться</button>
-                            <button class="outline-btn"><img src="{{ asset('icons/chunk/gem.svg') }}" alt="gem"></button>
+                            <button class="outline-btn square-btn"><img src="{{ asset('icons/chunk/gem.svg') }}" alt="gem"></button>
                         </div>
                         <p>26.04.2024</p>
                     </div>

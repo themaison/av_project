@@ -3,6 +3,7 @@
 @section('title', 'мои вакансии')
 
 @section('content')
+    <link href="{{asset('css/av-list.css?v=').time()}}" rel="stylesheet">
     <link href="{{ asset('css/recruiter_vacancies.css?v=').time() }}" rel="stylesheet">
     
     @section('menu')
@@ -19,43 +20,29 @@
             <h2>мои вакансии</h2>
             <p>редактируйте и создавайте новые вакансии<br>
             привлекайте новых соискателей и отбирайте лучших из них</p>
-            <button class="outline-btn"><img src="{{ asset('icons/chunk/brush.svg') }}" alt="pencil"><a href="/new_vacancy">создать вакансию</a></button>
+            <button class="fill-btn"><img src="{{ asset('icons/light/brush.svg') }}" alt="icon"><a href="/new_vacancy">создать вакансию</a></button>
         </div>
 
-        <div class="vacancies">
+        <div class="av-list">
             
-            <div class="vacancy">
-                <div class="v-group">
+            <div class="l-row">
+                <div class="set">
 
-                    <div class="v-data-block">
+                    <div class="elem">
                         <p class="hint-text">30.04.2024 | 21:23</p>
                     </div>
 
-                    <a href="/" class="v-data-block">
-                        <img src="{{ asset('images/job_prev.jpg') }}" class="vac-prev">
+                    <a href="/" class="elem">
+                        <img src="{{ asset('images/job_prev.jpg') }}" class="prev">
                         <p>Наименование вакансии</p>
                     </a>
 
                 </div>
-
-                <button class="outline-btn"><img src="{{ asset('icons/chunk/trash.svg') }}" alt="pencil">удалить</button>
-            </div>
-
-            <div class="vacancy">
-                <div class="v-group">
-
-                    <div class="v-data-block">
-                        <p class="hint-text">30.04.2024 | 21:23</p>
-                    </div>
-
-                    <a href="/" class="v-data-block">
-                        <img src="{{ asset('images/job_prev.jpg') }}" class="vac-prev">
-                        <p>Наименование вакансии</p>
-                    </a>
-
+                
+                <div class="double-btn">
+                    <button class="outline-btn"><img src="{{ asset('icons/chunk/pencil.svg') }}" alt="icon">редактировать</button>
+                    <button class="outline-btn square-btn"><img src="{{ asset('icons/chunk/trash.svg') }}" alt="icon"></button>
                 </div>
-
-                <button class="outline-btn"><img src="{{ asset('icons/chunk/trash.svg') }}" alt="pencil">удалить</button>
             </div>
 
         </div>
