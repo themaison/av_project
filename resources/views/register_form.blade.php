@@ -65,10 +65,10 @@
                 </div>
 
                 <div class="input-block">
-                    <label for="pass_confirmation">подтверждение пароля</label>
-                    <input type="password" name="pass_confirmation" placeholder="введите пароль...">
+                    <label for="password_confirmation">подтверждение пароля</label>
+                    <input type="password" name="password_confirmation" placeholder="введите пароль...">
                     
-                    @error('pass_confirmation')
+                    @error('password_confirmation')
                         <p class="error-text">{{ $message }}</p>
                     @enderror
 

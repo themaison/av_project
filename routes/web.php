@@ -17,15 +17,15 @@ use App\Http\Controllers\Recruiter\VacancyController;
 
 Route::get('/logout', [UserController::class, 'logout']);
 
-Route::get('/login_form', [UserController::class, 'login_form']);
+Route::get('/login_form', [UserController::class, 'login_form'])->name('login_form');
 Route::post('/login_form/login', [UserController::class, 'login']);
 
-Route::get('/register_form', [UserController::class, 'register_form']);
+Route::get('/register_form', [UserController::class, 'register_form'])->name('register_form');;
 Route::post('/register_form/register', [UserController::class, 'register']);
 
 Route::get('/vacancy_search', function () {
     return view('vacancy_search');
-});
+})->name('vacancy_search');
 
 Route::get('/new_vacancy/create', [VacancyController::class, 'index']);
 
