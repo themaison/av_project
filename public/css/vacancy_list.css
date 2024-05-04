@@ -39,7 +39,23 @@ body {}
 }
 
 .vacancies-sort {
-    align-self: flex-start;
+    display: flex;
+    align-self: flex-end;
+    gap: 5px;
+
+    padding: 10px;
+    border-radius: 12px;
+
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.vacancies-sort:hover {
+    cursor: pointer;
+    background-color: #e3e8e8;
+}
+
+.vacancies-sort .list {
+    cursor: pointer;
 }
 
 .vacancies {
@@ -139,9 +155,21 @@ body {}
     gap: 10px;
 }
 
-.tag {
+.pagination {
     display: flex;
-    align-items: center;
+    gap: 15px;
+}
+
+.pagination .page,
+.pagination .arrow-btn {
+    display: flex;
     justify-content: center;
-    gap: 5px;
+    align-items: center;
+
+    width: 48px;
+    height: 48px;
+
+    border-radius: 100%;
+
+    transition: background-color 0.3s ease, color 0.3s ease;
 }

@@ -44,6 +44,7 @@
         </div>
 
         <div class="vacancies-sort">
+            <img src="{{ asset('icons/blue/filter.svg') }}" alt="icon">
             <select class="list">
                 <option value="new" selected>сначала новые</option>
                 <option value="old">сначала старые</option>
@@ -53,22 +54,27 @@
 
         <div class="vacancies">
             <div class="v-grid">
+
                 <div class="v-card">
                     <a href="/vacancy_detail" class="l1-data">
                         <img src="{{ asset('images/job_prev.jpg') }}" alt="img" class="av-img">
                         <div class="text-content">
-                            <h3>Middle+ Front-end Dev...</h3>
+                            <h3>UX/UI Дизайнер</h3>
                             <p>40 000 — 100 000₽</p>
                         </div>
                     </a>
                     
                     <div class="l2-data">
-                        <div class="tag">
-                            <img src="{{ asset('icons/blue/map-pin.svg') }}" alt="gem">
+                        <div class="icon-block">
+                            <img src="{{ asset('icons/blue/castle.svg') }}" alt="icon">
+                            It Pelag
+                        </div>
+                        <div class="icon-block">
+                            <img src="{{ asset('icons/blue/map-pin.svg') }}" alt="icon">
                             Севастополь
                         </div>
-                        <div class="tag">
-                            <img src="{{ asset('icons/blue/toolbox.svg') }}" alt="gem">
+                        <div class="icon-block">
+                            <img src="{{ asset('icons/blue/toolbox.svg') }}" alt="icon">
                             Опыт от 1 года
                         </div>
                     </div>
@@ -81,22 +87,27 @@
                         <p>26.04.2024</p>
                     </div>
                 </div>
+
                 <div class="v-card">
-                    <a href="/" class="l1-data">
-                        <img src="{{ asset('images/job_prev.jpg') }}" alt="preview" class="av-img">
+                    <a href="/vacancy_detail" class="l1-data">
+                        <img src="{{ asset('images/job_prev.jpg') }}" alt="img" class="av-img">
                         <div class="text-content">
-                            <h3>Middle+ Front-end Dev...</h3>
+                            <h3>UX/UI Дизайнер</h3>
                             <p>40 000 — 100 000₽</p>
                         </div>
                     </a>
                     
                     <div class="l2-data">
-                        <div class="tag">
-                            <img src="{{ asset('icons/blue/map-pin.svg') }}" alt="gem">
+                        <div class="icon-block">
+                            <img src="{{ asset('icons/blue/castle.svg') }}" alt="icon">
+                            It Pelag
+                        </div>
+                        <div class="icon-block">
+                            <img src="{{ asset('icons/blue/map-pin.svg') }}" alt="icon">
                             Севастополь
                         </div>
-                        <div class="tag">
-                            <img src="{{ asset('icons/blue/toolbox.svg') }}" alt="gem">
+                        <div class="icon-block">
+                            <img src="{{ asset('icons/blue/toolbox.svg') }}" alt="icon">
                             Опыт от 1 года
                         </div>
                     </div>
@@ -109,22 +120,27 @@
                         <p>26.04.2024</p>
                     </div>
                 </div>
+
                 <div class="v-card">
-                    <a href="/" class="l1-data">
-                        <img src="{{ asset('images/job_prev.jpg') }}" alt="preview" class="av-img">
+                    <a href="/vacancy_detail" class="l1-data">
+                        <img src="{{ asset('images/job_prev.jpg') }}" alt="img" class="av-img">
                         <div class="text-content">
-                            <h3>Middle+ Front-end Dev...</h3>
+                            <h3>UX/UI Дизайнер</h3>
                             <p>40 000 — 100 000₽</p>
                         </div>
                     </a>
                     
                     <div class="l2-data">
-                        <div class="tag">
-                            <img src="{{ asset('icons/blue/map-pin.svg') }}" alt="gem">
+                        <div class="icon-block">
+                            <img src="{{ asset('icons/blue/castle.svg') }}" alt="icon">
+                            It Pelag
+                        </div>
+                        <div class="icon-block">
+                            <img src="{{ asset('icons/blue/map-pin.svg') }}" alt="icon">
                             Севастополь
                         </div>
-                        <div class="tag">
-                            <img src="{{ asset('icons/blue/toolbox.svg') }}" alt="gem">
+                        <div class="icon-block">
+                            <img src="{{ asset('icons/blue/toolbox.svg') }}" alt="icon">
                             Опыт от 1 года
                         </div>
                     </div>
@@ -137,16 +153,27 @@
                         <p>26.04.2024</p>
                     </div>
                 </div>
+
             </div>
         </div>
 
         
 
-        {{-- <div class="pagination">
-            <div class="page">1</div>
-            <div class="page">2</div>
-            <div class="page">3</div>
-        </div> --}}
+        <div class="pagination">
+            <a href="" class="arrow-btn">
+                <img src="{{ asset('icons/black/angle-left.svg') }}" alt="icon">
+            </a>
+
+            <a href="" class="page">1</a>
+            <a href="" class="page">2</a>
+            <a href="" class="page">3</a>
+            <a href="" class="page">...</a>
+            <a href="" class="page">5</a>
+
+            <a href="" class="arrow-btn">
+                <img src="{{ asset('icons/black/angle-right.svg') }}" alt="icon">
+            </a>
+        </div>
     </div>
             
 @endsection
