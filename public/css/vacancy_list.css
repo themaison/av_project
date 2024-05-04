@@ -96,6 +96,7 @@ body {}
 .v-card .av-img {
     width: 80px;
     height: 80px;
+    padding: 0px;
 }
 
 .v-card .l1-data .text-content {
