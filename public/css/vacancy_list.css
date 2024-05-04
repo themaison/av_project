@@ -38,26 +38,25 @@ body {}
     top: 4px;
 }
 
-.job-sort {
+.vacancies-sort {
     align-self: flex-start;
 }
 
-.vacancy-block {
+.vacancies {
     display: flex;
     justify-content: center;
-    align-items: center;
-    width: fit-content;
 }
 
-.jobs {
+.v-grid {
     display: flex;
+    justify-content: flex-start;
     flex-wrap: wrap;
     width: fit-content;
 
     gap: 10px;
 }
 
-.job-card {
+.v-card {
     display: flex;
     flex-direction: column;
     row-gap: 30px;
@@ -68,7 +67,7 @@ body {}
     background-color: #FFFFFF;
 }
 
-.job-card .l1-data {
+.v-card .l1-data {
     display: flex;
     position: relative;
     border-radius: 999px;
@@ -78,38 +77,35 @@ body {}
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.job-card .l1-data:hover {
+.v-card .l1-data:hover {
     color: #3FA3FF;
-    background-color: #EFFBFF;
 }
 
-.job-card .l1-data::after {
+.v-card .l1-data::after {
     content: "";
     position: absolute;
     bottom: -15px;
-    /* Регулируйте этот отступ, чтобы переместить линию вверх или вниз */
+
     left: 0;
     width: 100%;
     height: 1px;
-    /* Регулируйте эту высоту, чтобы изменить толщину линии */
+
     background-color: #F3F6F6;
-    /* Измените этот цвет, чтобы изменить цвет линии */
 }
 
-.job-card .job-img {
+.v-card .av-img {
     width: 80px;
-    height: auto;
-    border-radius: 100%;
+    height: 80px;
 }
 
-.job-card .l1-data .text-content {
+.v-card .l1-data .text-content {
     display: flex;
     flex-direction: column;
     row-gap: 5px;
     font-size: 24px;
 }
 
-.job-card .l1-data p {
+.v-card .l1-data p {
     display: inline-block;
     width: fit-content;
 
@@ -120,22 +116,22 @@ body {}
     background-color: #EFFBFF;
 }
 
-.job-card .l2-data {
+.v-card .l2-data {
     display: flex;
     column-gap: 15px;
 }
 
-.job-card .l3-data {
+.v-card .l3-data {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
 }
 
-.job-card .l3-data p {
+.v-card .l3-data p {
     color: #979797;
 }
 
-.job-card .l3-data .actions {
+.v-card .l3-data .actions {
     display: flex;
     align-items: center;
 
@@ -146,5 +142,5 @@ body {}
     display: flex;
     align-items: center;
     justify-content: center;
-    column-gap: 5px;
+    gap: 5px;
 }

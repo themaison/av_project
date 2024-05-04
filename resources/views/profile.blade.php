@@ -17,12 +17,15 @@
             @if(auth()->user()->hasRole('applicant'))
                 <a href="/favorite_vacancies">избранное</a>
                 <a href="/applicant_responses">отклики</a>
-                <a href="/profile">имя</a>
             @elseif(auth()->user()->hasRole('recruiter'))
                 <a href="/recruiter_responses">отклики</a>
                 <a href="/recruiter_vacancies">мои вакансии</a>
-                <a href="/profile">имя</a>
             @endif
+
+            <a href="/profile" class="icon-block">
+                <img src="{{  asset('icons/light/user.svg') }}" alt="icon" class="av-img">
+                {{ auth()->user()->name }}
+            </a>
         @endauth
     @endsection
 
@@ -30,7 +33,7 @@
 
         <div class="profile-main">
             <img src="{{  asset('images/pa2.png') }}" alt="аватар" class="profile-avatar">
-            <h2>Имя Фамилия Отчество</h2>
+            <h2>{{ auth()->user()->name }}</h2>
         </div>
 
         <div class="profile-data">
