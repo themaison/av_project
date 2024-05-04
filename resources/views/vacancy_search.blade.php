@@ -15,15 +15,13 @@
 
         @auth
             <a href="/logout" class="w-head-btn">выйти</a>
-        @endauth
 
-        @auth
             @if(auth()->user()->hasRole('applicant'))
                 <a href="/favorite_vacancies">избранное</a>
-                <a href="/applicant_responses">отклики соискателя</a>
+                <a href="/applicant_responses">отклики</a>
                 <a href="/profile">имя</a>
             @elseif(auth()->user()->hasRole('recruiter'))
-                <a href="/recruiter_responses">отклики рекрутера</a>
+                <a href="/recruiter_responses">отклики</a>
                 <a href="/recruiter_vacancies">мои вакансии</a>
                 <a href="/profile">имя</a>
             @endif

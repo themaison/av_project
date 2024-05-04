@@ -7,11 +7,24 @@
     <link href="{{ asset('css/recruiter_vacancies.css?v=').time() }}" rel="stylesheet">
     
     @section('menu')
-        <a href="/login" class="w-head-btn">войти</a>
-        <a href="/register">зарегистрироваться</a>
-        <a href="/recruiter_responses">отклики</a>
-        <a href="/recruiter_vacancies">мои вакансии</a>
-        <a href="/profile">имя</a>
+        @guest
+            <a href="/login_form" class="w-head-btn">войти</a>
+            <a href="/register_form">зарегистрироваться</a>
+        @endguest
+
+        @auth
+            <a href="/logout" class="w-head-btn">выйти</a>
+
+            @if(auth()->user()->hasRole('applicant'))
+                <a href="/favorite_vacancies">избранное</a>
+                <a href="/applicant_responses">отклики</a>
+                <a href="/profile">имя</a>
+            @elseif(auth()->user()->hasRole('recruiter'))
+                <a href="/recruiter_responses">отклики</a>
+                <a href="/recruiter_vacancies">мои вакансии</a>
+                <a href="/profile">имя</a>
+            @endif
+        @endauth
     @endsection
 
     <div class="content">
@@ -40,8 +53,8 @@
                 </div>
                 
                 <div class="double-btn">
-                    <button class="outline-btn"><img src="{{ asset('icons/chunk/pencil.svg') }}" alt="icon">редактировать</button>
-                    <button class="outline-btn square-btn"><img src="{{ asset('icons/chunk/trash.svg') }}" alt="icon"></button>
+                    <button class="outline-btn"><img src="{{ asset('icons/black/pencil.svg') }}" alt="icon">редактировать</button>
+                    <button class="outline-btn square-btn"><img src="{{ asset('icons/black/trash.svg') }}" alt="icon"></button>
                 </div>
             </div>
 

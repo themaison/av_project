@@ -7,11 +7,24 @@
     <link href="{{asset('css/applicant_responses.css?v=').time()}}" rel="stylesheet">
 
     @section('menu')
-        <a href="/login" class="w-head-btn">войти</a>
-        <a href="/register">зарегистрироваться</a>
-        <a href="/favorite_vacancies">избранное</a>
-        <a href="/applicant_responses">отклики</a>
-        <a href="/profile">имя</a>
+        @guest
+            <a href="/login_form" class="w-head-btn">войти</a>
+            <a href="/register_form">зарегистрироваться</a>
+        @endguest
+
+        @auth
+            <a href="/logout" class="w-head-btn">выйти</a>
+
+            @if(auth()->user()->hasRole('applicant'))
+                <a href="/favorite_vacancies">избранное</a>
+                <a href="/applicant_responses">отклики</a>
+                <a href="/profile">имя</a>
+            @elseif(auth()->user()->hasRole('recruiter'))
+                <a href="/recruiter_responses">отклики</a>
+                <a href="/recruiter_vacancies">мои вакансии</a>
+                <a href="/profile">имя</a>
+            @endif
+        @endauth
     @endsection
 
     <div class="content">
@@ -40,13 +53,13 @@
                     </a>
 
                     <div class="elem">
-                        <img src="{{ asset('icons/gray/company.svg') }}" alt="icon">
+                        <img src="{{ asset('icons/blue/castle.svg') }}" alt="icon">
                         <p>IT Pelag</p>
                     </div>
 
                 </div>
 
-                <button class="outline-btn square-btn"><img src="{{ asset('icons/chunk/trash.svg') }}" alt="icon"></button>
+                <button class="outline-btn square-btn"><img src="{{ asset('icons/black/trash.svg') }}" alt="icon"></button>
             </div>
         </div>
 
@@ -65,17 +78,17 @@
                     </div>
                     <div class="d2">
                         <div class="tag">
-                            <img src="{{  asset('icons/chunk/map-pin.svg') }}" >
+                            <img src="{{  asset('icons/black/map-pin.svg') }}" >
                             <p>Санкт-Петербург</p>
                         </div>
                         <div class="tag">
-                            <img src="{{  asset('icons/chunk/toolbox.svg') }}">
+                            <img src="{{  asset('icons/black/toolbox.svg') }}">
                             <p>Опыт от 1 года</p>
                         </div>
                     </div>
                 </a>
 
-                <button class="outline-btn"><img src="{{  asset('icons/chunk/trash.svg') }}" alt="pencil">удалить</button>
+                <button class="outline-btn"><img src="{{  asset('icons/black/trash.svg') }}" alt="pencil">удалить</button>
         
             </div>
             <div class="response">
@@ -90,17 +103,17 @@
                     </div>
                     <div class="d2">
                         <div class="tag">
-                            <img src="{{  asset('icons/chunk/map-pin.svg') }}" >
+                            <img src="{{  asset('icons/black/map-pin.svg') }}" >
                             <p>Санкт-Петербург</p>
                         </div>
                         <div class="tag">
-                            <img src="{{  asset('icons/chunk/toolbox.svg') }}">
+                            <img src="{{  asset('icons/black/toolbox.svg') }}">
                             <p>Опыт от 1 года</p>
                         </div>
                     </div>
                 </a>
 
-                <button class="outline-btn"><img src="{{  asset('icons/chunk/trash.svg') }}" alt="pencil">удалить</button>
+                <button class="outline-btn"><img src="{{  asset('icons/black/trash.svg') }}" alt="pencil">удалить</button>
         
             </div>
         </div> --}}

@@ -6,13 +6,24 @@
 <link href="{{asset('css/profile.css?v=').time()}}" rel="stylesheet">
 
     @section('menu')
-        <a href="/login" class="w-head-btn">войти</a>
-        <a href="/register">зарегистрироваться</a>
-        <a href="/favorite_vacancies">избранное</a>
-        <a href="/applicant_responses">отклики соискателя</a>
-        <a href="/recruiter_responses">отклики рекрутера</a>
-        <a href="/recruiter_vacancies">мои вакансии</a>
-        <a href="/profile">имя</a>
+        @guest
+            <a href="/login_form" class="w-head-btn">войти</a>
+            <a href="/register_form">зарегистрироваться</a>
+        @endguest
+
+        @auth
+            <a href="/logout" class="w-head-btn">выйти</a>
+
+            @if(auth()->user()->hasRole('applicant'))
+                <a href="/favorite_vacancies">избранное</a>
+                <a href="/applicant_responses">отклики</a>
+                <a href="/profile">имя</a>
+            @elseif(auth()->user()->hasRole('recruiter'))
+                <a href="/recruiter_responses">отклики</a>
+                <a href="/recruiter_vacancies">мои вакансии</a>
+                <a href="/profile">имя</a>
+            @endif
+        @endauth
     @endsection
 
     <div class="content">
@@ -29,7 +40,7 @@
                     <p>Телефон: +7(978) 888-88-88<br>Телега: the_maison</p>    
                 </div>
 
-                <button class="outline-btn"><img src="{{  asset('icons/chunk/brush.svg') }}" alt="pencil">Изменить</button>
+                <button class="outline-btn"><img src="{{  asset('icons/black/brush.svg') }}" alt="pencil">Изменить</button>
             </div>
     
             <div class="dblock">
@@ -38,7 +49,7 @@
                     <p>Figma, Adobe Photoshop, Miro</p>
                 </div>
                 
-                <button class="outline-btn"><img src="{{  asset('icons/chunk/brush.svg') }}" alt="pencil">Изменить</button>
+                <button class="outline-btn"><img src="{{  asset('icons/black/brush.svg') }}" alt="pencil">Изменить</button>
             </div>
 
             <div class="dblock">
@@ -49,7 +60,7 @@
                         <br>Отлично владею Figma и Tilda</p>
                 </div>
                 
-                <button class="outline-btn"><img src="{{  asset('icons/chunk/brush.svg') }}" alt="pencil">Изменить</button>
+                <button class="outline-btn"><img src="{{  asset('icons/black/brush.svg') }}" alt="pencil">Изменить</button>
             </div>
     
         </div>

@@ -6,13 +6,24 @@
     <link href="{{asset('css/vacancy_list.css?v=').time()}}" rel="stylesheet">
 
     @section('menu')
-        <a href="/login" class="w-head-btn">войти</a>
-        <a href="/register">зарегистрироваться</a>
-        <a href="/favorite_vacancies">избранное</a>
-        <a href="/applicant_responses">отклики соискателя</a>
-        <a href="/recruiter_responses">отклики рекрутера</a>
-        <a href="/recruiter_vacancies">мои вакансии</a>
-        <a href="/profile">имя</a>
+        @guest
+            <a href="/login_form" class="w-head-btn">войти</a>
+            <a href="/register_form">зарегистрироваться</a>
+        @endguest
+
+        @auth
+            <a href="/logout" class="w-head-btn">выйти</a>
+
+            @if(auth()->user()->hasRole('applicant'))
+                <a href="/favorite_vacancies">избранное</a>
+                <a href="/applicant_responses">отклики</a>
+                <a href="/profile">имя</a>
+            @elseif(auth()->user()->hasRole('recruiter'))
+                <a href="/recruiter_responses">отклики</a>
+                <a href="/recruiter_vacancies">мои вакансии</a>
+                <a href="/profile">имя</a>
+            @endif
+        @endauth
     @endsection
 
     <div class="content">
@@ -53,11 +64,11 @@
                     
                     <div class="l2-data">
                         <div class="tag">
-                            <img src="{{ asset('icons/chunk/map-pin.svg') }}" alt="gem">
+                            <img src="{{ asset('icons/blue/map-pin.svg') }}" alt="gem">
                             Севастополь
                         </div>
                         <div class="tag">
-                            <img src="{{ asset('icons/chunk/toolbox.svg') }}" alt="gem">
+                            <img src="{{ asset('icons/blue/toolbox.svg') }}" alt="gem">
                             Опыт от 1 года
                         </div>
                     </div>
@@ -65,7 +76,7 @@
                     <div class="l3-data">
                         <div class="actions">
                             <button class="fill-btn">откликнуться</button>
-                            <button class="outline-btn square-btn"><img src="{{ asset('icons/chunk/gem.svg') }}" alt="gem"></button>
+                            <button class="outline-btn square-btn"><img src="{{ asset('icons/black/gem.svg') }}" alt="gem"></button>
                         </div>
                         <p>26.04.2024</p>
                     </div>
@@ -81,11 +92,11 @@
                     
                     <div class="l2-data">
                         <div class="tag">
-                            <img src="{{ asset('icons/chunk/map-pin.svg') }}" alt="gem">
+                            <img src="{{ asset('icons/blue/map-pin.svg') }}" alt="gem">
                             Севастополь
                         </div>
                         <div class="tag">
-                            <img src="{{ asset('icons/chunk/toolbox.svg') }}" alt="gem">
+                            <img src="{{ asset('icons/blue/toolbox.svg') }}" alt="gem">
                             Опыт от 1 года
                         </div>
                     </div>
@@ -93,7 +104,7 @@
                     <div class="l3-data">
                         <div class="actions">
                             <button class="fill-btn">откликнуться</button>
-                            <button class="outline-btn square-btn"><img src="{{ asset('icons/chunk/gem.svg') }}" alt="gem"></button>
+                            <button class="outline-btn square-btn"><img src="{{ asset('icons/black/gem.svg') }}" alt="gem"></button>
                         </div>
                         <p>26.04.2024</p>
                     </div>
@@ -109,11 +120,11 @@
                     
                     <div class="l2-data">
                         <div class="tag">
-                            <img src="{{ asset('icons/chunk/map-pin.svg') }}" alt="gem">
+                            <img src="{{ asset('icons/blue/map-pin.svg') }}" alt="gem">
                             Севастополь
                         </div>
                         <div class="tag">
-                            <img src="{{ asset('icons/chunk/toolbox.svg') }}" alt="gem">
+                            <img src="{{ asset('icons/blue/toolbox.svg') }}" alt="gem">
                             Опыт от 1 года
                         </div>
                     </div>
@@ -121,7 +132,7 @@
                     <div class="l3-data">
                         <div class="actions">
                             <button class="fill-btn">откликнуться</button>
-                            <button class="outline-btn square-btn"><img src="{{ asset('icons/chunk/gem.svg') }}" alt="gem"></button>
+                            <button class="outline-btn square-btn"><img src="{{ asset('icons/black/gem.svg') }}" alt="gem"></button>
                         </div>
                         <p>26.04.2024</p>
                     </div>

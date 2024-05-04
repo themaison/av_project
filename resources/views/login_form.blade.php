@@ -7,8 +7,10 @@
     <link href="{{asset('css/login.css?v=').time()}}" rel="stylesheet">
 
     @section('menu')
-        <a href="/login_form" class="w-head-btn">войти</a>
-        <a href="/register_form">зарегистрироваться</a>
+        @guest
+            <a href="/login_form" class="w-head-btn">войти</a>
+            <a href="/register_form">зарегистрироваться</a>
+        @endguest
     @endsection
 
     <div class="content">
@@ -18,7 +20,7 @@
             <div class="form-title">
                 <h3>Авторизация</h3>
                 <div class="av-icon">
-                    <img src="{{  asset('icons/chunk/door-open.svg') }}" alt="icon">
+                    <img src="{{  asset('icons/black/door-open.svg') }}" alt="icon">
                 </div>
             </div>
 

@@ -6,13 +6,24 @@
     <link href="{{asset('css/vacancy_detail.css?v=').time()}}" rel="stylesheet">
 
     @section('menu')
-        <a href="/login" class="w-head-btn">войти</a>
-        <a href="/register">зарегистрироваться</a>
-        <a href="/favorite_vacancies">избранное</a>
-        <a href="/applicant_responses">отклики соискателя</a>
-        <a href="/recruiter_responses">отклики рекрутера</a>
-        <a href="/recruiter_vacancies">мои вакансии</a>
-        <a href="/profile">имя</a>
+        @guest
+            <a href="/login_form" class="w-head-btn">войти</a>
+            <a href="/register_form">зарегистрироваться</a>
+        @endguest
+
+        @auth
+            <a href="/logout" class="w-head-btn">выйти</a>
+
+            @if(auth()->user()->hasRole('applicant'))
+                <a href="/favorite_vacancies">избранное</a>
+                <a href="/applicant_responses">отклики</a>
+                <a href="/profile">имя</a>
+            @elseif(auth()->user()->hasRole('recruiter'))
+                <a href="/recruiter_responses">отклики</a>
+                <a href="/recruiter_vacancies">мои вакансии</a>
+                <a href="/profile">имя</a>
+            @endif
+        @endauth
     @endsection
 
     <div class="content">
@@ -27,11 +38,16 @@
             <img src="{{  asset('images/vacancy_cover.jpg') }}" alt="preview" class="vacancy-cover">
             <h2>Дизайнер сайтов на Tilda</h2>
 
-            <div class="double-btn">
-                <button class="fill-btn"><img src="{{  asset('icons/light/brush.svg') }}" alt="icon"><a>откликнуться</a></button>
-                <button class="outline-btn square-btn"><img src="{{  asset('icons/chunk/gem.svg') }}" alt="icon"></button>
-                <button class="fill-btn"><img src="{{  asset('icons/light/pencil.svg') }}" alt="icon"><a>редактировать</a></button>
-            </div>
+            @auth
+                <div class="double-btn">
+                    @if(auth()->user()->hasRole('applicant'))
+                        <button class="fill-btn">откликнуться</button>
+                        <button class="outline-btn square-btn"><img src="{{  asset('icons/black/gem.svg') }}" alt="icon"></button>
+                    @elseif(auth()->user()->hasRole('recruiter'))
+                        <button class="fill-btn"><img src="{{  asset('icons/light/pencil.svg') }}" alt="icon">редактировать</button>
+                    @endif
+                </div>
+            @endauth
         </div>
 
         <div class="vacancy-description">
@@ -46,7 +62,7 @@
                     <h3>Компания</h3>
                     <div class="company-detail">
                         <p>Бассейны Атлантика</p>
-                        <p class="tag"><img src="{{  asset('icons/chunk/map-pin.svg') }}" alt="map-pin">Москва</p>
+                        <p class="tag"><img src="{{  asset('icons/black/map-pin.svg') }}" alt="map-pin">Москва</p>
                     </div>
                 </div>
 
