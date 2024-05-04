@@ -25,7 +25,7 @@
                     </div>
 
                     <a href="/" class="elem">
-                        <img src="{{ asset('images/job_prev.jpg') }}" class="prev">
+                        <img src="{{ asset('images/job_prev.jpg') }}" class="av-img">
                         <p>Наименование вакансии</p>
                     </a>
 

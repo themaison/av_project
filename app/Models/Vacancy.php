@@ -11,15 +11,31 @@ class Vacancy extends Model
 
     protected $fillable = [
         'user_id',
+        'cover',
         'title',
-        'company_name',
+        'company',
         'city',
-        'salary_min',
-        'salary_max',
+        'salary_from',
+        'salary_to',
         'experience',
         'responsibilities',
         'requirements',
         'conditions',
         'skills',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function responses()
+    {
+        return $this->hasMany(Response::class);
+    }
+
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
 }

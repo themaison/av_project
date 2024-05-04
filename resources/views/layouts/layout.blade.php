@@ -34,7 +34,7 @@
                     @endif
 
                     <a href="/profile" class="icon-block">
-                        <img src="{{  asset('icons/light/user.svg') }}" alt="icon" class="small-img">
+                        <img src="{{  asset('icons/light/user.svg') }}" alt="icon" class="av-img">
                         {{ auth()->user()->name }}
                     </a>
                 @endauth

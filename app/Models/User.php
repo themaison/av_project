@@ -30,9 +30,24 @@ class User extends Authenticatable
         // 'email_verified_at' => 'datetime',
     ];
 
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+
     public function vacancies()
     {
         return $this->hasMany(Vacancy::class);
+    }
+
+    public function responses()
+    {
+        return $this->hasMany(Response::class);
+    }
+
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
     }
     
 }

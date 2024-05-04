@@ -27,7 +27,7 @@
                     </div>
 
                     <a href="/" class="elem">
-                        <img src="{{ asset('images/job_prev.jpg') }}" class="prev">
+                        <img src="{{ asset('images/job_prev.jpg') }}" class="av-img">
                         <p>Наименование вакансии</p>
                     </a>
 
@@ -40,63 +40,7 @@
 
                 <button class="outline-btn square-btn"><img src="{{ asset('icons/black/trash.svg') }}" alt="icon"></button>
             </div>
-        </div>
-
-        
-
-        {{-- <div class="responses">
-            <div class="response">
-                <div class="status">
-                    <p class="stat0">не рассмотрено</p>
-                </div>
-
-                <a href="/vacancy_detail" class="vacancy-data">
-                    <div class="d1">
-                        <img src="{{  asset('images/job_prev.jpg') }}" class="job-prev">
-                        <p>Наименование вакансии</p>
-                    </div>
-                    <div class="d2">
-                        <div class="tag">
-                            <img src="{{  asset('icons/black/map-pin.svg') }}" >
-                            <p>Санкт-Петербург</p>
-                        </div>
-                        <div class="tag">
-                            <img src="{{  asset('icons/black/toolbox.svg') }}">
-                            <p>Опыт от 1 года</p>
-                        </div>
-                    </div>
-                </a>
-
-                <button class="outline-btn"><img src="{{  asset('icons/black/trash.svg') }}" alt="pencil">удалить</button>
-        
-            </div>
-            <div class="response">
-                <div class="status">
-                    <p class="stat0">не рассмотрено</p>
-                </div>
-
-                <a href="/vacancy_detail" class="vacancy-data">
-                    <div class="d1">
-                        <img src="{{  asset('images/job_prev.jpg') }}" class="job-prev">
-                        <p>Наименование вакансии</p>
-                    </div>
-                    <div class="d2">
-                        <div class="tag">
-                            <img src="{{  asset('icons/black/map-pin.svg') }}" >
-                            <p>Санкт-Петербург</p>
-                        </div>
-                        <div class="tag">
-                            <img src="{{  asset('icons/black/toolbox.svg') }}">
-                            <p>Опыт от 1 года</p>
-                        </div>
-                    </div>
-                </a>
-
-                <button class="outline-btn"><img src="{{  asset('icons/black/trash.svg') }}" alt="pencil">удалить</button>
-        
-            </div>
-        </div> --}}
-    
+        </div> 
     </div>
 
     {{-- <div class="pagination">
