@@ -22,7 +22,7 @@
             </form>
         </div>
 
-        <div class="job-sort">
+        <div class="vacancies-sort">
             <select class="list">
                 <option value="new" selected>сначала новые</option>
                 <option value="old">сначала старые</option>
@@ -30,11 +30,11 @@
             </select>
         </div>
 
-        <div class="vacancy-block">
-            <div class="jobs">
-                <div class="job-card">
+        <div class="vacancies">
+            <div class="v-grid">
+                <div class="v-card">
                     <a href="/vacancy_detail" class="l1-data">
-                        <img src="{{ asset('images/job_prev.jpg') }}" alt="preview" class="job-img">
+                        <img src="{{ asset('images/job_prev.jpg') }}" alt="img" class="av-img">
                         <div class="text-content">
                             <h3>Middle+ Front-end Dev...</h3>
                             <p>40 000 — 100 000₽</p>
@@ -60,9 +60,9 @@
                         <p>26.04.2024</p>
                     </div>
                 </div>
-                <div class="job-card">
+                <div class="v-card">
                     <a href="/" class="l1-data">
-                        <img src="{{ asset('images/job_prev.jpg') }}" alt="preview" class="job-img">
+                        <img src="{{ asset('images/job_prev.jpg') }}" alt="preview" class="av-img">
                         <div class="text-content">
                             <h3>Middle+ Front-end Dev...</h3>
                             <p>40 000 — 100 000₽</p>
@@ -88,9 +88,9 @@
                         <p>26.04.2024</p>
                     </div>
                 </div>
-                <div class="job-card">
+                <div class="v-card">
                     <a href="/" class="l1-data">
-                        <img src="{{ asset('images/job_prev.jpg') }}" alt="preview" class="job-img">
+                        <img src="{{ asset('images/job_prev.jpg') }}" alt="preview" class="av-img">
                         <div class="text-content">
                             <h3>Middle+ Front-end Dev...</h3>
                             <p>40 000 — 100 000₽</p>
