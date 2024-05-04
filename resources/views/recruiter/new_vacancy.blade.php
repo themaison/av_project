@@ -5,27 +5,21 @@
 @section('content')
     <link href="{{asset('css/av-form.css?v=').time()}}" rel="stylesheet">
     <link href="{{asset('css/new_vacancy.css?v=').time()}}" rel="stylesheet">
-
-    @section('menu')
-        @guest
-            <a href="/login_form" class="w-head-btn">войти</a>
-            <a href="/register_form">зарегистрироваться</a>
-        @endguest
-
-        @auth
-            <a href="/logout" class="w-head-btn">выйти</a>
-
-            @if(auth()->user()->hasRole('applicant'))
-                <a href="/favorite_vacancies">избранное</a>
-                <a href="/applicant_responses">отклики</a>
-                <a href="/profile">имя</a>
-            @elseif(auth()->user()->hasRole('recruiter'))
-                <a href="/recruiter_responses">отклики</a>
-                <a href="/recruiter_vacancies">мои вакансии</a>
-                <a href="/profile">имя</a>
-            @endif
-        @endauth
-    @endsection
+    <script>
+        let fileInput = document.getElementById('preview');
+        let fileLabel = document.getElementById('fileLabel');
+        
+        fileLabel.addEventListener('dragover', (event) => {
+            event.preventDefault();
+            event.dataTransfer.dropEffect = 'copy';
+        });
+        
+        fileLabel.addEventListener('drop', (event) => {
+            event.preventDefault();
+            let files = event.dataTransfer.files;
+            fileInput.files = files;
+        });
+    </script>
 
     <script>
         window.onload = function() {
@@ -64,7 +58,6 @@
                 });
             }
         }
-
     </script>
 
     <div class="content">
@@ -206,7 +199,7 @@
                     <button class="fill-btn">дальше<img src="{{ asset('icons/light/angle-right.svg') }}" alt="icon"></button>
                     <button class="outline-btn">назад</button>
                 </div>
-            </div>
+            </div>    
 
             <div class="av-form-module" id="module_3">
 
@@ -237,7 +230,15 @@
                     <div class="input-block">
                         <label for="preview">превью вакансии</label>
                         <p class="hint-text">желательный формат .png или .jpg</p>
-                        <input type="file" class="preview" name="preview" accept=".png, .jpg">
+                        <div class="input-wrapper">
+                            <div class="form-group">
+                                <label class="label">
+                                    <img class="upload-image" src="{{ asset('icons/gray/load.svg') }}">
+                                    <span class="title">Добавить файл</span>
+                                    <input type="file" id="preview" class="preview" name="preview" accept=".png, .jpg"/>
+                                </label>
+                            </div>
+                        </div>
                     </div>
 
                 </div>

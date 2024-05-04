@@ -6,27 +6,6 @@
     <link href="{{asset('css/av-list.css?v=').time()}}" rel="stylesheet">
     <link href="{{asset('css/recruiter_responses.css?v=').time()}}" rel="stylesheet">
 
-    @section('menu')
-        @guest
-            <a href="/login_form" class="w-head-btn">войти</a>
-            <a href="/register_form">зарегистрироваться</a>
-        @endguest
-
-        @auth
-            <a href="/logout" class="w-head-btn">выйти</a>
-
-            @if(auth()->user()->hasRole('applicant'))
-                <a href="/favorite_vacancies">избранное</a>
-                <a href="/applicant_responses">отклики</a>
-                <a href="/profile">имя</a>
-            @elseif(auth()->user()->hasRole('recruiter'))
-                <a href="/recruiter_responses">отклики</a>
-                <a href="/recruiter_vacancies">мои вакансии</a>
-                <a href="/profile">имя</a>
-            @endif
-        @endauth
-    @endsection
-
     <div class="content">
 
         <div class="title">
@@ -60,7 +39,7 @@
 
                 </div>
 
-                <button class="outline-btn square-btn"><img src="{{ asset('icons/gray/3-dots-vertical.svg') }}" alt="icon"></button>
+                <button class="outline-btn square-btn"><img src="{{ asset('icons/black/3-dots-vertical.svg') }}" alt="icon"></button>
             </div>
         </div>
     </div>

@@ -6,13 +6,6 @@
     <link href="{{asset('css/av-form.css?v=').time()}}" rel="stylesheet">
     <link href="{{asset('css/register.css?v=').time()}}" rel="stylesheet">
 
-    @section('menu')
-        @guest
-            <a href="/login_form" class="w-head-btn">войти</a>
-            <a href="/register_form">зарегистрироваться</a>
-        @endguest
-    @endsection
-
     <div class="content">
         <form class="av-form" method="POST" action="/register_form/register" enctype="multipart/form-data">
             @csrf
