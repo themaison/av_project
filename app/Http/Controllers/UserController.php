@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\Profile;
 use Spatie\Permission\Models\Role;
 
 
@@ -55,6 +56,11 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        $profile = new Profile;
+        $profile->user_id = $user->id;
+        $profile->contacts = $user->email;
+        $profile->save();
 
         // Назначение роли пользователю
         $role = Role::findByName($request->role);

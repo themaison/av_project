@@ -47,5 +47,15 @@ class User extends Authenticatable
     {
         return $this->hasMany(Favorite::class);
     }
+
+    public function responsedVacancies()
+    {
+        return $this->belongsToMany(Vacancy::class, 'responses');
+    }
+
+    public function favoritedVacancies()
+    {
+        return $this->belongsToMany(Vacancy::class, 'favorites');
+    }
     
 }
