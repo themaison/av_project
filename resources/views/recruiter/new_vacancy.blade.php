@@ -5,7 +5,7 @@
 @section('content')
     <link href="{{asset('css/av-form.css?v=').time()}}" rel="stylesheet">
     <link href="{{asset('css/new_vacancy.css?v=').time()}}" rel="stylesheet">
-    <script>
+    {{-- <script>
         let fileInput = document.getElementById('preview');
         let fileLabel = document.getElementById('fileLabel');
         
@@ -19,7 +19,7 @@
             let files = event.dataTransfer.files;
             fileInput.files = files;
         });
-    </script>
+    </script> --}}
 
     <script>
         window.onload = function() {
@@ -73,7 +73,8 @@
             <p>для добавления новой вакансии заполните все поля</p>
         </div>
 
-        <form class="av-form" method="POST" action="/create_vacancy">
+        <form class="av-form" method="POST" action="/recruiter_vacancies/new_vacancy/create">
+            @csrf
 
             <div class="av-form-module" id="module_1">
                 <div class="form-title">
@@ -102,39 +103,54 @@
     
                     <div class="input-block">
                         <label for="title">название вакансии</label>
-                        <input type="text" name="title" placeholder="введите текст...">
+                        <input type="text" name="title" value="{{ old('title') }}" placeholder="введите текст...">
+                        
+                        @error('title')
+                            <p class="error-text">{{ $message }}</p>
+                        @enderror
+                        
                     </div>
     
                     <div class="input-block">
                         <label for="company">компания (ИП)</label>
-                        <input type="text" name="company" placeholder="введите текст...">
+                        <input type="text" name="company"  value="{{ old('company') }}" placeholder="введите текст...">
+                        
+                        @error('company')
+                            <p class="error-text">{{ $message }}</p>
+                        @enderror
+                    
                     </div>
     
                     <div class="input-block">
                         <label for="city">город</label>
-                        <input type="text" name="city" placeholder="введите текст...">
+                        <input type="text" name="city"  value="{{ old('city') }}" placeholder="введите текст...">
+                        
+                        @error('city')
+                            <p class="error-text">{{ $message }}</p>
+                        @enderror
+                    
                     </div>
-    
+
                     <div class="input-block">
                         <label for="salary">заработная плата (₽)</label>
     
                         <div class="double-block">
                             <div class="input-block">
-                                <input type="text" name ="salary-from" placeholder="от 10 000">
+                                <input type="text" name ="salary-from"  value="{{ old('salary-from') }}" placeholder="от 10 000">
                             </div>
     
                             <div>—</div>
     
                             <div class="input-block">
-                                <input type="text" name ="salary-to" placeholder="до 100 000">
+                                <input type="text" name ="salary-to"  value="{{ old('salary-to') }}" placeholder="до 100 000">
                             </div>
                         </div>
     
                     </div>
     
                     <div class="input-block">
-                        <label for="experience">опыт работы</label>
-                        <input type="text" name="experience" placeholder="введите число">
+                        <label for="experience">опыт работы (год)</label>
+                        <input type="number" name="experience" value="{{ old('experience') }}" placeholder="введите число">
                     </div>
 
                 </div>
@@ -173,23 +189,23 @@
     
                     <div class="input-block">
                         <label for="responsibilities">обязанности</label>
-                        <textarea name="responsibilities" placeholder="введите текст..."></textarea>
+                        <textarea name="responsibilities" placeholder="введите текст...">{{ old('responsibilities') }}</textarea>
                     </div>
 
                     <div class="input-block">
                         <label for="requirements">требования</label>
-                        <textarea name="requirements" placeholder="введите текст..."></textarea>
+                        <textarea name="requirements" placeholder="введите текст...">{{ old('requirements') }}</textarea>
                     </div>
 
                     <div class="input-block">
                         <label for="conditions">условия</label>
-                        <textarea name="conditions" placeholder="введите текст..."></textarea>
+                        <textarea name="conditions" placeholder="введите текст...">{{ old('conditions') }}</textarea>
                     </div>
 
                     <div class="input-block">
                         <label for="skills">навыки</label>
                         <p class="hint-text">введите навыки через запятую</p>
-                        <textarea name="skills" placeholder="введите текст..."></textarea>
+                        <textarea name="skills" placeholder="введите текст...">{{ old('skills') }}</textarea>
                     </div>
                     
                 </div>
@@ -228,17 +244,19 @@
                 <div class="inputs-block">
     
                     <div class="input-block">
-                        <label for="preview">превью вакансии</label>
+                        <label for="caver">превью вакансии</label>
                         <p class="hint-text">желательный формат .png или .jpg</p>
+
                         <div class="input-wrapper">
                             <div class="form-group">
                                 <label class="label">
                                     <img class="upload-image" src="{{ asset('icons/gray/load.svg') }}">
-                                    <span class="title">Добавить файл</span>
-                                    <input type="file" id="preview" class="preview" name="preview" accept=".png, .jpg"/>
+                                    <p>загрузите файл</p>
+                                    <input type="file" id="preview" class="preview" name="cover" accept=".png, .jpg"/>
                                 </label>
                             </div>
                         </div>
+
                     </div>
 
                 </div>

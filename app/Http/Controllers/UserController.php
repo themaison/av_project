@@ -38,7 +38,7 @@ class UserController extends Controller
         }
 
         return back()->withErrors([
-            'error' => 'Неверная почта или пароль',
+            'mismatch' => 'Неверная почта или пароль',
         ]);
     }
 
@@ -67,7 +67,7 @@ class UserController extends Controller
         $user->assignRole($role);
 
         // Перенаправление пользователя на страницу входа с сообщением об успешной регистрации
-        return redirect()->route('login_form')->with('status', 'Регистрация прошла успешно! Теперь вы можете войти в систему.');
+        return redirect('/login_form')->with('status', 'Регистрация прошла успешно! Теперь вы можете войти в систему.');
     }
 
     public function logout()

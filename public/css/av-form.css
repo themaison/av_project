@@ -59,32 +59,32 @@ input[type="file"] {
 }
 
 .input-wrapper .label {
-    width:360px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    width: 360px;
     height: 96px;
-    display:block;
-    padding:1.2em;
-    transition:border 300ms ease;
-    cursor:pointer;
-    text-align:center;
-    
-    border-radius:8px;
-    border:2px dashed grey;
+    cursor: pointer;
+    text-align: center;
+
+    border-radius: 8px;
+    border: 2px dashed grey;
+    color: #979797;
+    background-color: #fff;
+
+    transition: border 300ms ease, background-color 300ms ease;
+}
+
+
+.input-wrapper .label:hover {
     background-color: #F3F6F6;
 }
 
-.input-wrapper .label img, 
-.input-wrapper .label .title {
-    color:grey;
-    transition:200ms color; 
-}
-
-.input-wrapper .label:hover {
-    border:2px solid #3FA3FF;
-}
-
-.input-wrapper .label:hover img,
-.input-wrapper .label:hover .title {
-    color:#3FA3FF;
+.input-wrapper .label p {
+    font-weight: 500;
+    font-size: 16px;
 }
 
 .av-form .double-block {
@@ -134,7 +134,8 @@ input[type="file"] {
     color: #979797;
 }
 
-.av-form .input-block .error-text {
+.av-form .input-block .error-text,
+.error-text {
     align-self: center;
     color: #FF2E00;
 }

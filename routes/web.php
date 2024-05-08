@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\Recruiter\VacancyController;
+use App\Http\Controllers\VacancyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,37 +20,25 @@ Route::get('/logout', [UserController::class, 'logout']);
 Route::get('/login_form', [UserController::class, 'login_form'])->name('login_form');
 Route::post('/login_form/login', [UserController::class, 'login']);
 
-Route::get('/register_form', [UserController::class, 'register_form'])->name('register_form');;
+Route::get('/register_form', [UserController::class, 'register_form'])->name('register_form');
 Route::post('/register_form/register', [UserController::class, 'register']);
+
+Route::get('/recruiter_vacancies', [VacancyController::class, 'recruiter_vacancies_index']);
+Route::get('/recruiter_vacancies/new_vacancy', [VacancyController::class, 'new_vacancy_index']);
+Route::post('/recruiter_vacancies/new_vacancy/create', [VacancyController::class, 'create_vacancy']);
+
+Route::get('/vacancy_detail/{id}', [VacancyController::class, 'vacancy_detail_index']);
 
 Route::get('/vacancy_search', function () {
     return view('vacancy_search');
 })->name('vacancy_search');
 
-Route::get('/new_vacancy/create', [VacancyController::class, 'index']);
-
-Route::get('/', function () {
-    return redirect('/vacancy_search');
-});
-
 Route::get('/vacancy_list', function () {
     return view('vacancy_list');
 });
 
-Route::get('/vacancy_detail', function () {
-    return view('vacancy_detail');
-});
-
 Route::get('/profile', function () {
     return view('profile');
-});
-
-Route::get('/new_vacancy', function () {
-    return view('recruiter/new_vacancy');
-});
-
-Route::get('/recruiter_vacancies', function () {
-    return view('recruiter/recruiter_vacancies');
 });
 
 Route::get('/recruiter_responses', function () {

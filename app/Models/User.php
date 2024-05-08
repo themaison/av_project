@@ -43,10 +43,10 @@ class User extends Authenticatable
         return $this->hasMany(Response::class);
     }
 
-    public function favorites()
-    {
-        return $this->hasMany(Favorite::class);
-    }
+    // public function favorites()
+    // {
+    //     return $this->hasMany(Favorite::class);
+    // }
 
     public function responsedVacancies()
     {

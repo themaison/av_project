@@ -41,6 +41,10 @@
 
             </div>
 
+            @if($errors->first('mismatch'))
+                <p class="error-text">{{ $errors->first('mismatch') }}</p>
+            @endif
+
             <div class="form-nav">
                 <button type="sybmit" class="fill-btn">войти</button>
                 <p>Еще не зарегистрированы? <a href="/register_form">Зарегистрироваться</a></p>
