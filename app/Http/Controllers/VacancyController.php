@@ -74,4 +74,12 @@ class VacancyController extends Controller
         return redirect('/recruiter_vacancies');
     }
 
+    public function vacancy_destroy($id)
+    {
+        $vacancy = Vacancy::find($id);
+        $vacancy->delete();
+
+        return redirect('/recruiter_vacancies');
+    }
+
 }

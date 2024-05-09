@@ -59,12 +59,11 @@
 
                         <div class="double-btn">
                             <button class="outline-btn"><a href="/vacancies/{{ $vacancy->id }}/edit"><img src="{{ asset('icons/black/pencil.svg') }}" alt="icon">редактировать</a></button>
-                            <button type="submit" class="outline-btn square-btn"><img src="{{ asset('icons/black/trash.svg') }}" alt="icon"></button>
-                            {{-- <form action="/vacancies/{{ $vacancy->id }}" method="POST">
+                            <form action="{{ route('vacancy_destroy', $vacancy->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="outline-btn square-btn"><img src="{{ asset('icons/black/trash.svg') }}" alt="icon"></button>
-                            </form> --}}
+                            </form>
                         </div>
 
                     </div>
