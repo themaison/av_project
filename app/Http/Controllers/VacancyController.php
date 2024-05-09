@@ -40,20 +40,20 @@ class VacancyController extends Controller
             'city' => 'required',
         ]);
 
-        // Загрузка изображения
-        // $imageName = time().'.'.$request->cover->extension();  
-        // $request->cover->move(public_path('images'), $imageName);
-
         // Создание новой вакансии
         $vacancy = new Vacancy;
 
+        // if ($request->hasFile('cover')) {
+        //     $imageName = time().'.'.$request->cover->extension();  
+        //     $request->cover->move(public_path('images/covers'), $imageName);
+        //     $vacancy->cover = $imageName;
+        // }
+
         if ($request->hasFile('cover')) {
-            $imageName = time().'.'.$request->cover->extension();  
-            $request->cover->move(public_path('images'), $imageName);
-            $vacancy->cover = $imageName;
+            $path = $request->file('cover')->store('public/images/covers');
+            $vacancy->cover = $path;
         }
 
-        // $vacancy->cover = $imageName;
         $vacancy->title = $request->title;
         $vacancy->company = $request->company;
         $vacancy->city = $request->city;
@@ -67,11 +67,21 @@ class VacancyController extends Controller
 
         // Получение текущего пользователя
         $user = auth()->user();
-
         // Связывание вакансии с пользователем
         $user->vacancies()->save($vacancy);
 
         return redirect('/recruiter_vacancies');
     }
 
+    public function uploadCover(Request $request)
+    {
+        $request->validate([
+            'cover' => 'required|file|image|max:2048',  // Проверка файла
+        ]);
+
+        $cover = $request->file('cover');
+        $path = $cover->store('covers', 'public');  // Загрузка файла
+
+        return response()->file(storage_path("app/public/{$path}"));  // Отправка файла обратно в браузер
+    }
 }

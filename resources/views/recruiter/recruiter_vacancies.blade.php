@@ -12,7 +12,11 @@
             <h2>мои вакансии</h2>
             <p>редактируйте и создавайте новые вакансии<br>
             привлекайте новых соискателей и отбирайте лучших из них</p>
-            <button class="fill-btn"><img src="{{ asset('icons/light/brush.svg') }}" alt="icon"><a href="/recruiter_vacancies/new_vacancy/">создать вакансию</a></button>
+            {{-- <button class="fill-btn"><img src="{{ asset('icons/light/brush.svg') }}" alt="icon"><a href="/recruiter_vacancies/new_vacancy/">создать вакансию</a></button> --}}
+            <a href="/recruiter_vacancies/new_vacancy/" class="fill-btn">
+                <img src="{{ asset('icons/light/brush.svg') }}" alt="icon">
+                создать вакансию
+            </a>
         </div>
 
         @isset($vacancies)
@@ -48,7 +52,7 @@
 
                             <a href="/vacancy_detail/{{ $vacancy->id }}" class="elem">
                                 @if($vacancy->cover)
-                                    <img src="{{ asset('images/' . $vacancy->cover) }}" class="av-img">
+                                    <img src="{{ Storage::url($vacancy->cover) }}" class="av-img">
                                 @else
                                     <div class="av-img"></div>
                                 @endif

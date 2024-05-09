@@ -80,7 +80,7 @@
     color: #EFFBFF;
 }
 
-.company-detail {
+.v-block-detail {
     display: flex;
     align-items: center;
     gap: 15px;

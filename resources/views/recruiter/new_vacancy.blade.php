@@ -57,7 +57,41 @@
                     }
                 });
             }
+
+            var cover_input = document.querySelector('.file-cover');
+
+            // Обработчик события изменения input
+            cover_input.addEventListener('change', function(e) {
+                var file = e.target.files[0];
+                var reader = new FileReader();
+
+                reader.onloadend = function() {
+                    // Удаляем старый элемент .cover, если он существует
+                    var old_cover = document.querySelector('.cover');
+                    if (old_cover) {
+                        old_cover.remove();
+                    }
+
+                    // Создаем новый элемент div и img
+                    var cover_div = document.createElement('div');
+                    cover_div.className = 'cover';
+                    var cover_img = document.createElement('img');
+                    cover_img.src = reader.result;
+
+                    // Добавляем img в div
+                    cover_div.appendChild(cover_img);
+
+                    // Добавляем div в DOM после .hint-text
+                    var anchor = document.querySelector('#file_cover-text');
+                    anchor.insertAdjacentElement('afterend', cover_div);
+                }
+
+                if (file) {
+                    reader.readAsDataURL(file);
+                }
+            });
         }
+
     </script>
 
     <div class="content">
@@ -73,7 +107,7 @@
             <p>для добавления новой вакансии заполните все поля</p>
         </div>
 
-        <form class="av-form" method="POST" action="/recruiter_vacancies/new_vacancy/create">
+        <form class="av-form" method="POST" action="/recruiter_vacancies/new_vacancy/create" enctype="multipart/form-data">
             @csrf
 
             <div class="av-form-module" id="module_1">
@@ -244,18 +278,17 @@
                 <div class="inputs-block">
     
                     <div class="input-block">
-                        <label for="caver">превью вакансии</label>
-                        <p class="hint-text">желательный формат .png или .jpg</p>
 
-                        <div class="input-wrapper">
-                            <div class="form-group">
-                                <label class="label">
-                                    <img class="upload-image" src="{{ asset('icons/gray/load.svg') }}">
-                                    <p>загрузите файл</p>
-                                    <input type="file" id="preview" class="preview" name="cover" accept=".png, .jpg"/>
-                                </label>
-                            </div>
-                        </div>
+                        <label for="cover">обложка вакансии</label>
+                        <p class="hint-text" id="file_cover-text">желательный формат .png или .jpg</p>
+                        
+                        {{-- <div class="cover">
+                            <img src="{{  asset('images/love.jpg') }}" alt="">
+                        </div> --}}
+
+                        <input type="file" class="file-cover" name="cover" accept=".png, .jpg, .jpeg"/>
+
+                        <p class="error-text cover-error"></p>
 
                     </div>
 

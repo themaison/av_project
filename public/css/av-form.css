@@ -54,39 +54,6 @@
     gap: 5px;
 }
 
-input[type="file"] {
-    display: none;
-}
-
-.input-wrapper .label {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-
-    width: 360px;
-    height: 96px;
-    cursor: pointer;
-    text-align: center;
-
-    border-radius: 8px;
-    border: 2px dashed grey;
-    color: #979797;
-    background-color: #fff;
-
-    transition: border 300ms ease, background-color 300ms ease;
-}
-
-
-.input-wrapper .label:hover {
-    background-color: #F3F6F6;
-}
-
-.input-wrapper .label p {
-    font-weight: 500;
-    font-size: 16px;
-}
-
 .av-form .double-block {
     display: flex;
     justify-content: space-between;

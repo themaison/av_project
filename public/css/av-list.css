@@ -70,6 +70,10 @@
     color: #979797;
 }
 
+.elem .hint-text {
+    width: 150px;
+}
+
 
 .av-list .av-img {
     width: 32px;
