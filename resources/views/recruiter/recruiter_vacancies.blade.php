@@ -67,12 +67,20 @@
                         </div>
 
                         <div class="double-btn">
-                            <button class="outline-btn"><a href="/vacancies/{{ $vacancy->id }}/edit"><img src="{{ asset('icons/black/pencil.svg') }}" alt="icon">редактировать</a></button>
-                            <form action="{{ route('vacancy_destroy', $vacancy->id) }}" method="POST">
+
+                            <div class="outline-btn" id="v-edit-{{  $vacancy->id }}">
+                                <img src="{{ asset('icons/black/pencil.svg') }}" alt="icon">
+                                редактировать
+                            </div>
+ 
+                            <form action="/recruiter_vacancies/vacancy_delete/{{  $vacancy->id }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="outline-btn square-btn"><img src="{{ asset('icons/black/trash.svg') }}" alt="icon"></button>
+                                <button type="submit" class="outline-btn square-btn">
+                                    <img src="{{ asset('icons/black/trash.svg') }}" alt="icon">
+                                </button>
                             </form>
+
                         </div>
 
                     </div>

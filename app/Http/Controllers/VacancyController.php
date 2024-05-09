@@ -43,12 +43,6 @@ class VacancyController extends Controller
         // Создание новой вакансии
         $vacancy = new Vacancy;
 
-        // if ($request->hasFile('cover')) {
-        //     $imageName = time().'.'.$request->cover->extension();  
-        //     $request->cover->move(public_path('images/covers'), $imageName);
-        //     $vacancy->cover = $imageName;
-        // }
-
         if ($request->hasFile('cover')) {
             $path = $request->file('cover')->store('public/images/covers');
             $vacancy->cover = $path;
@@ -73,7 +67,7 @@ class VacancyController extends Controller
         return redirect('/recruiter_vacancies');
     }
 
-    public function vacancy_destroy($id)
+    public function vacancy_delete($id)
     {
         $vacancy = Vacancy::find($id);
         $vacancy->delete();

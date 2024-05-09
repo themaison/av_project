@@ -24,7 +24,7 @@ Route::get('/register_form', [UserController::class, 'register_form'])->name('re
 Route::post('/register_form/register', [UserController::class, 'register']);
 
 Route::get('/recruiter_vacancies', [VacancyController::class, 'recruiter_vacancies_index']);
-Route::delete('/recruiter_vacancies/{id}', [VacancyController::class, 'vacancy_destroy'])->name('vacancy_destroy');
+Route::delete('/recruiter_vacancies/vacancy_delete/{id}', [VacancyController::class, 'vacancy_delete']);
 Route::get('/recruiter_vacancies/new_vacancy', [VacancyController::class, 'new_vacancy_index']);
 Route::post('/recruiter_vacancies/new_vacancy/create', [VacancyController::class, 'create_vacancy']);
 Route::post('/recruiter_vacancies/new_vacancy/create/upload_cover', [VacancyController::class, 'upload_cover']);
