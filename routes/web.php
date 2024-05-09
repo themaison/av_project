@@ -27,6 +27,7 @@ Route::get('/recruiter_vacancies', [VacancyController::class, 'recruiter_vacanci
 Route::delete('/recruiter_vacancies/{id}', [VacancyController::class, 'vacancy_destroy'])->name('vacancy_destroy');
 Route::get('/recruiter_vacancies/new_vacancy', [VacancyController::class, 'new_vacancy_index']);
 Route::post('/recruiter_vacancies/new_vacancy/create', [VacancyController::class, 'create_vacancy']);
+Route::post('/recruiter_vacancies/new_vacancy/create/upload_cover', [VacancyController::class, 'upload_cover']);
 
 Route::get('/vacancy_detail/{id}', [VacancyController::class, 'vacancy_detail_index']);
 

@@ -15,7 +15,7 @@
 
         <div class="title">
             @if($vacancy->cover)
-                <img src="{{  asset('images/' . $vacancy->cover) }}" alt="preview" class="vacancy-cover">
+                <img src="{{ Storage::url($vacancy->cover) }}" alt="preview" class="vacancy-cover">
             @else
                 <div class="vacancy-cover"></div>
             @endif
@@ -38,21 +38,31 @@
 
             <div class="double-block">
                 <div class="inline-block" id="salary-block">
-                    <h3>Заработная плата</h3>
-                    @if($vacancy->salary_from && $vacancy->salary_to)
-                        <p class="tag">{{ $vacancy->salary_from }} — {{ $vacancy->salary_to }}₽</p>
-                    @elseif($vacancy->salary_from)
-                        <p class="tag">от {{ $vacancy->salary_from }}₽</p>
-                    @elseif($vacancy->salary_to)
-                        <p class="tag">до {{ $vacancy->salary_to }}₽</p>
-                    @else
-                        <p class="tag">Не указана</p>
-                    @endif
+                    <h3>Вакансия</h3>
+
+                    <div class="v-block-detail">
+                        @if($vacancy->experience <= 0)
+                            <p>Без опыта</p>
+                        @else
+                            <p>Опыт от {{ $vacancy->experience }} лет</p>
+                        @endif
+
+                        @if($vacancy->salary_from && $vacancy->salary_to)
+                            <p class="tag">{{ $vacancy->salary_from }} — {{ $vacancy->salary_to }}₽</p>
+                        @elseif($vacancy->salary_from)
+                            <p class="tag">от {{ $vacancy->salary_from }}₽</p>
+                        @elseif($vacancy->salary_to)
+                            <p class="tag">до {{ $vacancy->salary_to }}₽</p>
+                        @else
+                            <p class="tag">Не указана</p>
+                        @endif
+                    </div>
                 </div>
 
                 <div class="inline-block" id="company-block">
                     <h3>Компания</h3>
-                    <div class="company-detail">
+
+                    <div class="v-block-detail">
                         <p>{{ $vacancy->company }}</p>
                         <p class="tag"><img src="{{  asset('icons/black/map-pin.svg') }}" alt="map-pin">{{ $vacancy->city }}</p>
                     </div>
