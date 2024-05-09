@@ -3,6 +3,7 @@
 @section('title', 'мои вакансии')
 
 @section('content')
+    <link href="{{asset('css/av-cover.css?v=').time()}}" rel="stylesheet">
     <link href="{{asset('css/av-list.css?v=').time()}}" rel="stylesheet">
     <link href="{{ asset('css/recruiter_vacancies.css?v=').time() }}" rel="stylesheet">
 
@@ -52,9 +53,13 @@
 
                             <a href="/vacancy_detail/{{ $vacancy->id }}" class="elem">
                                 @if($vacancy->cover)
-                                    <img src="{{ Storage::url($vacancy->cover) }}" class="av-img">
+                                    <div class="cover">
+                                        <img src="{{ Storage::url($vacancy->cover) }}" alt="cover">
+                                    </div>
+                                    {{-- <img src="{{ Storage::url($vacancy->cover) }}" class="av-img"> --}}
                                 @else
-                                    <div class="av-img"></div>
+                                    {{-- <div class="av-img"></div> --}}
+                                    <div class="cover"></div>
                                 @endif
                                 <p>{{ $vacancy->title }}</p>
                             </a>

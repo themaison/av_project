@@ -3,6 +3,7 @@
 @section('title', $vacancy->title)
 
 @section('content')
+    <link href="{{asset('css/av-cover.css?v=').time()}}" rel="stylesheet">
     <link href="{{asset('css/vacancy_detail.css?v=').time()}}" rel="stylesheet">
 
     <div class="content">
@@ -15,9 +16,11 @@
 
         <div class="title">
             @if($vacancy->cover)
-                <img src="{{ Storage::url($vacancy->cover) }}" alt="preview" class="vacancy-cover">
+                <div class="cover">
+                    <img src="{{ Storage::url($vacancy->cover) }}" alt="cover">
+                </div>
             @else
-                <div class="vacancy-cover"></div>
+                <div class="cover"></div>
             @endif
             
             <h2>{{ $vacancy->title }}</h2>
