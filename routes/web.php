@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VacancyController;
 
 /*
@@ -39,9 +40,13 @@ Route::get('/vacancy_list', function () {
     return view('vacancy_list');
 });
 
-Route::get('/profile', function () {
-    return view('profile');
-});
+// Route::get('/profile', function () {
+//     return view('profile');
+// });
+
+Route::get('/profile', [ProfileController::class, 'index']);
+Route::post('/profile/update-profile', [ProfileController::class, 'update_profile']);
+
 
 Route::get('/recruiter_responses', function () {
     return view('recruiter/recruiter_responses');

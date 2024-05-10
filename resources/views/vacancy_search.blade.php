@@ -11,10 +11,10 @@
         <div class="search-box">
             <div class="user-role">
                 <div class="role-btn" id="active-role">
-                    я соискатель
+                    вакансии
                 </div>
                 <div class="role-btn">
-                    я работодатель
+                    резюме
                 </div>
             </div>
 

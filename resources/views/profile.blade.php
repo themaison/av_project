@@ -5,6 +5,84 @@
 @section('content')
 <link href="{{asset('css/profile.css?v=').time()}}" rel="stylesheet">
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+
+        $('.add-btn, .edit-btn').click(function() {
+            var field = $(this).data('field');
+
+            $('#' + field + '-text').hide();
+            $('#' + field + '-input').val($('#' + field + '-text').text()).fadeIn();
+            
+            $(this).hide();
+            $('.double-btn[data-field="' + field + '"]').fadeIn();
+        });
+
+        $('.cancel-btn').click(function() {
+            var field = $(this).parent().data('field');
+
+            $('#' + field + '-text').fadeIn();
+            $('#' + field + '-input').hide();
+
+            $('.double-btn[data-field="' + field + '"]').hide();
+            if ($('#' + field + '-text').text() === '') {
+                $('.add-btn[data-field="' + field + '"]').fadeIn();
+            } else {
+                $('.edit-btn[data-field="' + field + '"]').fadeIn();
+            }
+        });
+
+        $('.save-btn').click(function() {
+            var field = $(this).parent().data('field');
+            var newValue = $('#' + field + '-input').val();
+            var currentValue = $('#' + field + '-text').text().trim();
+
+            // Если новое значение совпадает с текущим, скрываем поле ввода и показываем текстовый блок
+            if (newValue === currentValue) {
+                $('#' + field + '-input').hide();
+                $('#' + field + '-text').fadeIn();
+                $('.double-btn[data-field="' + field + '"]').hide();
+                if (newValue === '') {
+                    $('.add-btn[data-field="' + field + '"]').fadeIn();
+                } else {
+                    $('.edit-btn[data-field="' + field + '"]').fadeIn();
+                }
+                return;
+            }
+
+            $.ajax({
+                url: '/profile/update-profile',
+                method: 'POST',
+                data: {
+                    field: field,
+                    value: newValue,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function() {
+                    if (newValue === '') {
+                        $('#' + field + '-text').text(' ').fadeIn();
+                        $('.edit-btn[data-field="' + field + '"]').hide();
+                        $('.add-btn[data-field="' + field + '"]').fadeIn();
+                    } else {
+                        $('#' + field + '-text').text(newValue).fadeIn();
+                        $('.edit-btn[data-field="' + field + '"]').fadeIn();
+                        $('.add-btn[data-field="' + field + '"]').hide();
+                    }
+                    $('#' + field + '-input').hide();
+                    $('.double-btn[data-field="' + field + '"]').hide();
+                }
+            });
+        });
+
+        $('textarea').on('input', function () {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+        });
+    });
+</script>
+
     <div class="content">
 
         <div class="profile-main">
@@ -13,36 +91,33 @@
         </div>
 
         <div class="profile-data">
-            <div class="dblock">
-                <div class="text-block">
-                    <h3>Контакты</h3>
-                    <p>Телефон: +7(978) 888-88-88<br>Телега: the_maison</p>    
+            @foreach(['contacts' => 'Контакты', 'description' => 'Навыки', 'resume' => 'Резюме'] as $key => $field)
+            <div class="p-block">
+        
+                <div class="p-block-title">
+                    <h3>{{ $field }}</h3>
+                    @if(!empty(auth()->user()->profile->$key))
+                        <button class="outline-btn edit-btn" data-field="{{ $key }}"><img src="{{  asset('icons/black/brush.svg') }}" alt="icon">изменить</button>
+                    @else
+                        <button class="fill-btn add-btn" data-field="{{ $key }}"><img src="{{  asset('icons/light/brush.svg') }}" alt="icon">добавить</button>
+                    @endif
+                    <div class="double-btn" data-field="{{ $key }}" style="display: none;">
+                        <button class="fill-btn save-btn">сохранить</button>
+                        <button class="outline-btn cancel-btn">Отмена</button>
+                    </div>
+        
                 </div>
-
-                <button class="outline-btn"><img src="{{  asset('icons/black/brush.svg') }}" alt="pencil">Изменить</button>
-            </div>
-    
-            <div class="dblock">
-                <div class="text-block">
-                    <h3>Навыки</h3>
-                    <p>Figma, Adobe Photoshop, Miro</p>
+        
+                <div class="p-block-data">
+                    <p id="{{ $key }}-text">{{ auth()->user()->profile->$key }}</p>
+                    <textarea id="{{ $key }}-input" style="display: none;" placeholder="Введите текст..."></textarea>
                 </div>
-                
-                <button class="outline-btn"><img src="{{  asset('icons/black/brush.svg') }}" alt="pencil">Изменить</button>
+        
             </div>
-
-            <div class="dblock">
-                <div class="text-block">
-                    <h3>Резюме</h3>
-                    <p>Сертифицированный специалист с успешно реализованными коммерческими проектами
-                        <br>Хорошо владею Adobe Photoshop
-                        <br>Отлично владею Figma и Tilda</p>
-                </div>
-                
-                <button class="outline-btn"><img src="{{  asset('icons/black/brush.svg') }}" alt="pencil">Изменить</button>
-            </div>
-    
+            @endforeach
         </div>
+        
+        
 
     </div>
 @endsection
