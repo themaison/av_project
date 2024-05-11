@@ -1,3 +1,7 @@
+h1 {
+    line-height: 1.1;
+}
+
 .user-role {
     display: flex;
     margin-left: auto;
@@ -11,16 +15,25 @@
     padding: 5px 10px;
     border-radius: 999px;
 
-    border: 2px solid #242424;
+    border: 2px solid #3FA3FF;
+    color: #3FA3FF;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-#active-role,
-.role-btn:hover {
+#active-role {
     background-color: #242424;
+    border-color: #242424;
     color: #EFFBFF;
     cursor: pointer;
 }
+
+.role-btn:hover {
+    cursor: pointer;
+    background-color: #3FA3FF;
+    border-color: #3FA3FF;
+    color: #EFFBFF;
+}
+
 
 .search-box {
     margin-left: auto;
@@ -29,7 +42,7 @@
 
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 30px;
 }
 
 .search {
@@ -62,4 +75,18 @@
 
 .w-head-btn a {
     color: #EFFBFF;
+}
+
+.search-box>* {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease-out forwards;
+    animation-delay: calc(var(--i) * 0.07s);
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

@@ -86,14 +86,16 @@
     <div class="content">
 
         <div class="profile-main">
-            <img src="{{  asset('images/pa2.png') }}" alt="аватар" class="profile-avatar">
-            <h2>{{ auth()->user()->name }}</h2>
+            <img src="{{  asset('images/pa2.png') }}" alt="аватар" class="profile-avatar" style="--i: 0">
+            <h2 style="--i: 1">{{ auth()->user()->name }}</h2>
         </div>
 
         <div class="profile-data">
-            @foreach(['contacts' => 'Контакты', 'description' => 'Навыки', 'resume' => 'Резюме'] as $key => $field)
-            <div class="p-block">
-        
+            @foreach(array_keys(['contacts' => 'Контакты', 'description' => 'Навыки', 'resume' => 'Резюме']) as $index => $key)
+            @php
+                $field = ['contacts' => 'Контакты', 'description' => 'Навыки', 'resume' => 'Резюме'][$key];
+            @endphp
+            <div class="p-block" style="--i: {{ $index + 2 }}">
                 <div class="p-block-title">
                     <h3>{{ $field }}</h3>
                     @if(!empty(auth()->user()->profile->$key))
@@ -101,6 +103,7 @@
                     @else
                         <button class="fill-btn add-btn" data-field="{{ $key }}"><img src="{{  asset('icons/light/brush.svg') }}" alt="icon">добавить</button>
                     @endif
+
                     <div class="double-btn" data-field="{{ $key }}" style="display: none;">
                         <button class="fill-btn save-btn">сохранить</button>
                         <button class="outline-btn cancel-btn">Отмена</button>
@@ -116,8 +119,5 @@
             </div>
             @endforeach
         </div>
-        
-        
-
     </div>
 @endsection

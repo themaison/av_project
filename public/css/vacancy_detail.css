@@ -105,3 +105,22 @@
     color: #242424;
     font-weight: 700;
 }
+
+.breakpoints,
+.double-btn,
+.vacancy-title,
+.inline-block,
+.cover,
+.vacancy-content-block {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease-out forwards;
+    animation-delay: calc(var(--i) * 0.07s);
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

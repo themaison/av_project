@@ -9,14 +9,14 @@
     <div class="content">
         <div class="search-box">
             @if(isset($vacancies) && $vacancies->count() > 0)
-                <h2>«{{ $query }}»</h2>
-                <p>найдено <span>{{ $vacancies->count() }} вакансий</span></p>
+                <h2  style="--i: 0">«{{ $query }}»</h2>
+                <p  style="--i: 1">найдено <span>{{ $vacancies->count() }} вакансий</span></p>
             @else
-                <h2>Пусто</h2>
-                <p>по запросу ничего не найдено</span></p>
+                <h2  style="--i: 0">Пусто</h2>
+                <p  style="--i: 1">по запросу ничего не найдено</span></p>
             @endif
             
-            <form action="/vacancy_list" method="GET">
+            <form action="/vacancy_list" method="GET"  style="--i: 3">
                 <div class="input-group">
                     <input 
                     type="text" 
@@ -28,22 +28,11 @@
             </form>
         </div>
 
-        {{-- @if(isset($query) && isset($vacancies) && $vacancies->count()>0)
-        <div class="vacancies-sort">
-            <img src="{{ asset('icons/blue/filter.svg') }}" alt="icon">
-            <select class="list" id="sort">
-                <option value="new" selected>сначала новые</option>
-                <option value="old">сначала старые</option>
-                <option value="responses">по откликам</option>
-            </select>
-        </div>
-        @endif --}}
-
         @if(isset($vacancies))
         <div class="vacancies" id="vacancies">
             <div class="v-grid">
-                @forelse($vacancies as $vacancy)
-                    <div class="v-card">
+                @forelse($vacancies as $index => $vacancy)
+                    <div class="v-card" style="--i: {{ $index + 4 }}">
 
                         <a href="/vacancy_detail/{{ $vacancy->id }}" class="l1-data">
                             <div class="cover">
