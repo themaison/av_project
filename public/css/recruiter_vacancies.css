@@ -13,3 +13,14 @@
     height: 32px;
     border-radius: 999px;
 }
+
+.edit-modal {
+    position:relative;
+    
+}
+
+.x-btn {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+}

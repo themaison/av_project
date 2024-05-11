@@ -5,21 +5,6 @@
 @section('content')
     <link href="{{asset('css/av-form.css?v=').time()}}" rel="stylesheet">
     <link href="{{asset('css/new_vacancy.css?v=').time()}}" rel="stylesheet">
-    {{-- <script>
-        let fileInput = document.getElementById('preview');
-        let fileLabel = document.getElementById('fileLabel');
-        
-        fileLabel.addEventListener('dragover', (event) => {
-            event.preventDefault();
-            event.dataTransfer.dropEffect = 'copy';
-        });
-        
-        fileLabel.addEventListener('drop', (event) => {
-            event.preventDefault();
-            let files = event.dataTransfer.files;
-            fileInput.files = files;
-        });
-    </script> --}}
 
     <script>
         window.onload = function() {
@@ -91,6 +76,20 @@
                 }
             });
         }
+        
+        let fileInput = document.getElementById('preview');
+        let fileLabel = document.getElementById('fileLabel');
+        
+        fileLabel.addEventListener('dragover', (event) => {
+            event.preventDefault();
+            event.dataTransfer.dropEffect = 'copy';
+        });
+        
+        fileLabel.addEventListener('drop', (event) => {
+            event.preventDefault();
+            let files = event.dataTransfer.files;
+            fileInput.files = files;
+        });
 
     </script>
 
