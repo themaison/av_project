@@ -3,12 +3,19 @@
 @section('title', 'запрос')
 
 @section('content')
+    <link href="{{asset('css/av-cover.css?v=').time()}}" rel="stylesheet">
     <link href="{{asset('css/vacancy_list.css?v=').time()}}" rel="stylesheet">
 
     <div class="content">
         <div class="search-box">
-            <h2>«Наименование вакансии»</h2>
-            <p>найдено <span>N вакансий<span></p>
+            <h2>«{{ $query }}»</h2>
+
+            @if($vacancies->count() > 0)
+                <p>найдено <span>{{ $vacancies->count() }} вакансий</span></p>
+            @else
+                <p>ничего не найдено</p>
+            @endif
+
 
             <form action="" method="GET">
                 <div class="input-group">
@@ -32,7 +39,8 @@
         </div>
 
         <div class="vacancies">
-            <div class="v-grid">
+
+            {{-- <div class="v-grid">
 
                 <div class="v-card">
                     <a href="/vacancy_detail" class="l1-data">
@@ -67,7 +75,55 @@
                     </div>
                 </div>
 
+            </div> --}}
+
+            <div class="v-grid">
+                @forelse($vacancies as $vacancy)
+                    <div class="v-card">
+                        <a href="/vacancy_detail/{{ $vacancy->id }}" class="l1-data">
+                            <div class="cover">
+                                <img src="{{ Storage::url($vacancy->cover) }}" alt="cover">
+                            </div>
+                            <div class="text-content">
+                                <h3>{{ $vacancy->title }}</h3>
+                                <p>{{ $vacancy->salary_from }} — {{ $vacancy->salary_to }}₽</p>
+                            </div>
+                        </a>
+                        
+                        <div class="l2-data">
+                            <div class="icon-block">
+                                <img src="{{ asset('icons/blue/castle.svg') }}" alt="icon">
+                                {{ $vacancy->company }}
+                            </div>
+                            <div class="icon-block">
+                                <img src="{{ asset('icons/blue/map-pin.svg') }}" alt="icon">
+                                {{ $vacancy->city }}
+                            </div>
+                            <div class="icon-block">
+                                <img src="{{ asset('icons/blue/toolbox.svg') }}" alt="icon">
+                                @if($vacancy->experience <= 0)
+                                    Без опыта
+                                @else
+                                    Опыт от {{ $vacancy->experience }} лет
+                                @endif
+                            </div>
+                        </div>
+            
+                        <div class="l3-data">
+                            <div class="actions">
+                                <button class="fill-btn">откликнуться</button>
+                                <button class="outline-btn square-btn"><img src="{{ asset('icons/black/gem.svg') }}" alt="icon"></button>
+                            </div>
+                            <p>{{ $vacancy->created_at->format('d.m.Y') }}</p>
+                        </div>
+                    </div>
+                @empty
+                    {{-- <p>Ничего не найдено</p> --}}
+                @endforelse
             </div>
+        
+            {{ $vacancies->links() }}
+            
         </div>
 
         

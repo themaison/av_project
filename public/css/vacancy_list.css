@@ -109,9 +109,10 @@ body {}
     background-color: #F3F6F6;
 }
 
-.v-card .av-img {
+.v-card .cover {
     width: 80px;
     height: 80px;
+    border-radius: 999px;
     padding: 0px;
 }
 

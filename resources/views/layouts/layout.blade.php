@@ -40,7 +40,7 @@
 
                     <div class="dropdown">
                         <a href="/profile" class="icon-block dropdown-toggle">
-                            <img src="{{  asset('icons/light/user.svg') }}" alt="icon" class="av-img">
+                            <img src="{{  asset('icons/gray/user.svg') }}" alt="icon" class="av-img">
                             {{ auth()->user()->name }}
                         </a>
                         <div class="dropdown-menu">

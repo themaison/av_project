@@ -9,7 +9,7 @@
     <div class="content">
 
         <div class="breakpoints">
-            <a href="/vacancy_list">вакансии</a>
+            <a href="{{ url()->previous() }}">вакансии</a>
             <p>/</p>
             <a href="/vacancy_detail/{{  $vacancy->id }}" id="current-page">{{ $vacancy->title }}</a>
         </div>

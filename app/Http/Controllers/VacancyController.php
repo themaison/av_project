@@ -8,6 +8,28 @@ use Illuminate\Http\Request;
 
 class VacancyController extends Controller
 {
+    public function search(Request $request)
+    {
+        // Получение запроса поиска из GET-параметров
+        $query = $request->input('query');
+
+        // Поиск вакансий, которые соответствуют запросу
+        $vacancies = Vacancy::where('title', 'like', "%{$query}%")->paginate(6);
+
+        // Возврат представления с результатами поиска
+        return view('vacancy_list', compact('vacancies', 'query'));
+    }
+
+    public function vacancy_search_index()
+    {
+        return view('vacancy_search');
+    }
+
+    // public function vacancy_list_index()
+    // {
+    //     return view('vacancy_list');
+    // }
+
     public function vacancy_detail_index($id)
     {
         $vacancy = Vacancy::find($id);
