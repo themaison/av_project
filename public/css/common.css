@@ -136,6 +136,8 @@ span {
 }
 
 .fill-btn {
+    cursor: pointer;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -157,6 +159,8 @@ span {
 }
 
 .outline-btn {
+    cursor: pointer;
+
     display: flex;
     align-items: center;
     justify-content: center;
