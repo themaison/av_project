@@ -23,17 +23,10 @@ class VacancyController extends Controller
         return view('vacancy_list', compact('vacancies', 'query'));
     }
 
-
-
     public function vacancy_search_index()
     {
         return view('vacancy_search');
     }
-
-    // public function vacancy_list_index()
-    // {
-    //     return view('vacancy_list');
-    // }
 
     public function vacancy_detail_index($id)
     {
