@@ -23,7 +23,7 @@
                 @endguest
         
                 @auth
-                    <a href="/logout" class="w-head-btn">выйти</a>
+                    {{-- <a href="/logout" class="w-head-btn">выйти</a> --}}
         
                     @if(auth()->user()->hasRole('applicant'))
                         <a href="/favorite_vacancies">избранное</a>
@@ -33,10 +33,21 @@
                         <a href="/recruiter_vacancies">мои вакансии</a>
                     @endif
 
-                    <a href="/profile" class="icon-block">
+                    {{-- <a href="/profile" class="icon-block">
                         <img src="{{  asset('icons/light/user.svg') }}" alt="icon" class="av-img">
                         {{ auth()->user()->name }}
-                    </a>
+                    </a> --}}
+
+                    <div class="dropdown">
+                        <a href="/profile" class="icon-block dropdown-toggle">
+                            <img src="{{  asset('icons/light/user.svg') }}" alt="icon" class="av-img">
+                            {{ auth()->user()->name }}
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="/profile" class="drop-box">Профиль</a>
+                            <a href="/logout"  class="drop-box">Выйти</a>
+                        </div>
+                    </div>
                 @endauth
             </div>
         </header>

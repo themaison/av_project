@@ -61,7 +61,7 @@
                     _token: '{{ csrf_token() }}'
                 },
                 success: function() {
-                    if (newValue === '') {
+                    if (newValue.trim() === '') {
                         $('#' + field + '-text').text(' ').fadeIn();
                         $('.edit-btn[data-field="' + field + '"]').hide();
                         $('.add-btn[data-field="' + field + '"]').fadeIn();

@@ -40,9 +40,6 @@ Route::get('/vacancy_list', function () {
     return view('vacancy_list');
 });
 
-// Route::get('/profile', function () {
-//     return view('profile');
-// });
 
 Route::get('/profile', [ProfileController::class, 'index']);
 Route::post('/profile/update-profile', [ProfileController::class, 'update_profile']);
