@@ -141,11 +141,13 @@ body {
     width: 48px;
     height: 48px;
     border-radius: 999px;
+
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* .av-form .x-btn:hover {
+.av-form .x-btn:hover {
     background-color: #F3F6F6;
-} */
+}
 
 
 .av-form .fill-btn,

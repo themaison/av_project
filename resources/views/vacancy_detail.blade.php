@@ -35,12 +35,6 @@
 
         <div class="blur-bg"></div>
 
-        <div class="breakpoints" style="--i: 0">
-            <a href="{{ url()->previous() }}">вакансии</a>
-            <p>/</p>
-            <a href="/vacancy_detail/{{  $vacancy->id }}" id="current-page">{{ $vacancy->title }}</a>
-        </div>
-
         <form class="av-form" method="POST" action="/applicant/create_response" enctype="multipart/form-data"  style="display: none">
             @csrf
 
@@ -77,6 +71,12 @@
             </div>
 
         </form>
+
+        <div class="breakpoints" style="--i: 0">
+            <a href="{{ url()->previous() }}">вакансии</a>
+            <p>/</p>
+            <a href="/vacancy_detail/{{  $vacancy->id }}" id="current-page">{{ $vacancy->title }}</a>
+        </div>
 
         <div class="title">
             @if($vacancy->cover)
