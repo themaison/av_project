@@ -9,11 +9,11 @@
     <div class="content">
         <div class="search-box">
             @if(isset($vacancies) && $vacancies->count() > 0)
-                <h2  style="--i: 0">«{{ $query }}»</h2>
-                <p  style="--i: 1">найдено <span>{{ $vacancies->count() }} вакансий</span></p>
+                <h2 style="--i: 0">«{{ $query }}»</h2>
+                <p style="--i: 1">найдено <span>{{ $vacancies->count() }} вакансий</span></p>
             @else
-                <h2  style="--i: 0">Пусто</h2>
-                <p  style="--i: 1">по запросу ничего не найдено</span></p>
+                <h2 style="--i: 0">Пусто</h2>
+                <p style="--i: 1">по запросу ничего не найдено</span></p>
             @endif
             
             <form action="/vacancy_list" method="GET"  style="--i: 3">

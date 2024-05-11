@@ -7,7 +7,7 @@
     <link href="{{asset('css/login.css?v=').time()}}" rel="stylesheet">
 
     <div class="content">
-        <form class="av-form" method="POST" action="/login_form/login" enctype="multipart/form-data">
+        <form class="av-form" method="POST" action="/login_form/login" enctype="multipart/form-data"  style="--i: 0">
             @csrf
 
             <div class="form-title">

@@ -115,3 +115,17 @@
     gap: 10px;
     width: 100%;
 }
+
+.av-form {
+    opacity: 0;
+    transform: translateY(5px);
+    animation: fadeInUp 0.5s ease-out forwards;
+    animation-delay: calc(var(--i) * 0.07s);
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
