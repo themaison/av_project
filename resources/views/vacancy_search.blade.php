@@ -5,6 +5,11 @@
 @section('content')
 
     <link href="{{asset('css/vacancy_search.css?v=').time()}}" rel="stylesheet">
+    
+    <script>
+ 
+    </script>
+    
 
     <div class="content">
 
@@ -23,7 +28,7 @@
 
             <form action="/vacancy_list" method="GET">
                 <div class="input-group">
-                    <input type="text" name="query" class="search" placeholder="Какая вакансия вас интересует?">
+                    <input type="text" name="query" class="search" id="search" placeholder="Какая вакансия вас интересует?">
                     <button class="fill-btn" type="submit">найти</button>
                 </div>
             </form>

@@ -5,19 +5,18 @@
 @section('content')
     <link href="{{asset('css/av-cover.css?v=').time()}}" rel="stylesheet">
     <link href="{{asset('css/vacancy_list.css?v=').time()}}" rel="stylesheet">
-
+ 
     <div class="content">
         <div class="search-box">
-            <h2>«{{ $query }}»</h2>
-
-            @if($vacancies->count() > 0)
+            @if(isset($vacancies) && $vacancies->count() > 0)
+                <h2>«{{ $query }}»</h2>
                 <p>найдено <span>{{ $vacancies->count() }} вакансий</span></p>
             @else
-                <p>ничего не найдено</p>
+                <h2>Пусто</h2>
+                <p>по запросу ничего не найдено</span></p>
             @endif
-
-
-            <form action="" method="GET">
+            
+            <form action="/vacancy_list" method="GET">
                 <div class="input-group">
                     <input 
                     type="text" 
@@ -29,64 +28,39 @@
             </form>
         </div>
 
+        {{-- @if(isset($query) && isset($vacancies) && $vacancies->count()>0)
         <div class="vacancies-sort">
             <img src="{{ asset('icons/blue/filter.svg') }}" alt="icon">
-            <select class="list">
+            <select class="list" id="sort">
                 <option value="new" selected>сначала новые</option>
                 <option value="old">сначала старые</option>
                 <option value="responses">по откликам</option>
             </select>
         </div>
+        @endif --}}
 
-        <div class="vacancies">
-
-            {{-- <div class="v-grid">
-
-                <div class="v-card">
-                    <a href="/vacancy_detail" class="l1-data">
-                        <img src="{{ asset('images/job_prev.jpg') }}" alt="img" class="av-img">
-                        <div class="text-content">
-                            <h3>UX/UI Дизайнер</h3>
-                            <p>40 000 — 100 000₽</p>
-                        </div>
-                    </a>
-                    
-                    <div class="l2-data">
-                        <div class="icon-block">
-                            <img src="{{ asset('icons/blue/castle.svg') }}" alt="icon">
-                            It Pelag
-                        </div>
-                        <div class="icon-block">
-                            <img src="{{ asset('icons/blue/map-pin.svg') }}" alt="icon">
-                            Севастополь
-                        </div>
-                        <div class="icon-block">
-                            <img src="{{ asset('icons/blue/toolbox.svg') }}" alt="icon">
-                            Опыт от 1 года
-                        </div>
-                    </div>
-    
-                    <div class="l3-data">
-                        <div class="actions">
-                            <button class="fill-btn">откликнуться</button>
-                            <button class="outline-btn square-btn"><img src="{{ asset('icons/black/gem.svg') }}" alt="gem"></button>
-                        </div>
-                        <p>26.04.2024</p>
-                    </div>
-                </div>
-
-            </div> --}}
-
+        @if(isset($vacancies))
+        <div class="vacancies" id="vacancies">
             <div class="v-grid">
                 @forelse($vacancies as $vacancy)
                     <div class="v-card">
+
                         <a href="/vacancy_detail/{{ $vacancy->id }}" class="l1-data">
                             <div class="cover">
                                 <img src="{{ Storage::url($vacancy->cover) }}" alt="cover">
                             </div>
                             <div class="text-content">
                                 <h3>{{ $vacancy->title }}</h3>
-                                <p>{{ $vacancy->salary_from }} — {{ $vacancy->salary_to }}₽</p>
+
+                                @if($vacancy->salary_from && $vacancy->salary_to)
+                                    <p>{{ $vacancy->salary_from }} — {{ $vacancy->salary_to }}₽</p>
+                                @elseif($vacancy->salary_from)
+                                    <p>от {{ $vacancy->salary_from }}₽</p>
+                                @elseif($vacancy->salary_to)
+                                    <p>до {{ $vacancy->salary_to }}₽</p>
+                                @else
+                                    <p>Не указана</p>
+                                @endif
                             </div>
                         </a>
                         
@@ -120,16 +94,12 @@
                 @empty
                     {{-- <p>Ничего не найдено</p> --}}
                 @endforelse
-            </div>
-        
-            {{ $vacancies->links() }}
-            
-        </div>
-
-        
+            </div>       
+        </div>  
 
         <div class="pagination">
-            <a href="" class="arrow-btn">
+            {{ $vacancies->links() }}
+            {{-- <a href="" class="arrow-btn">
                 <img src="{{ asset('icons/black/angle-left.svg') }}" alt="icon">
             </a>
 
@@ -141,8 +111,9 @@
 
             <a href="" class="arrow-btn">
                 <img src="{{ asset('icons/black/angle-right.svg') }}" alt="icon">
-            </a>
+            </a> --}}
         </div>
+        @endif
     </div>
             
 @endsection

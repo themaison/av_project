@@ -13,12 +13,17 @@ class VacancyController extends Controller
         // Получение запроса поиска из GET-параметров
         $query = $request->input('query');
 
-        // Поиск вакансий, которые соответствуют запросу
-        $vacancies = Vacancy::where('title', 'like', "%{$query}%")->paginate(6);
+        // Проверка, что поле поиска не пустое
+        if($query == null || trim($query) === "") {
+            return view('vacancy_list');
+        }
 
-        // Возврат представления с результатами поиска
+        $vacancies = Vacancy::where('title', 'like', "%{$query}%")->orderBy('created_at', 'desc')->paginate(6);
+
         return view('vacancy_list', compact('vacancies', 'query'));
     }
+
+
 
     public function vacancy_search_index()
     {
