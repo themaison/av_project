@@ -126,3 +126,8 @@ input[type="file"]:hover {
 .outline-btn {
     width: 100%;
 }
+
+.av-form .form-nav {
+    flex-direction: row;
+    gap: 10px;
+}

@@ -66,8 +66,8 @@
             </div>
 
             <div class="form-nav">
-                <button type="sybmit" class="fill-btn">откликнуться</button>
                 <div class="outline-btn cancel-btn">отменить</div>
+                <button type="sybmit" class="fill-btn">откликнуться</button>
             </div>
 
         </form>
