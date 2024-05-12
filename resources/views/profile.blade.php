@@ -3,83 +3,83 @@
 @section('title', 'имя фамилия отчество')
 
 @section('content')
-<link href="{{asset('css/profile.css?v=').time()}}" rel="stylesheet">
+    <link href="{{asset('css/profile.css?v=').time()}}" rel="stylesheet">
 
-<script>
-    $(document).ready(function() {
+    <script>
+        $(document).ready(function() {
 
-        $('.add-btn, .edit-btn').click(function() {
-            var field = $(this).data('field');
+            $('.add-btn, .edit-btn').click(function() {
+                var field = $(this).data('field');
 
-            $('#' + field + '-text').hide();
-            $('#' + field + '-input').val($('#' + field + '-text').text()).fadeIn();
-            
-            $(this).hide();
-            $('.double-btn[data-field="' + field + '"]').fadeIn();
-        });
+                $('#' + field + '-text').hide();
+                $('#' + field + '-input').val($('#' + field + '-text').text()).fadeIn();
+                
+                $(this).hide();
+                $('.double-btn[data-field="' + field + '"]').fadeIn();
+            });
 
-        $('.cancel-btn').click(function() {
-            var field = $(this).parent().data('field');
+            $('.cancel-btn').click(function() {
+                var field = $(this).parent().data('field');
 
-            $('#' + field + '-text').fadeIn();
-            $('#' + field + '-input').hide();
-
-            $('.double-btn[data-field="' + field + '"]').hide();
-            if ($('#' + field + '-text').text() === '') {
-                $('.add-btn[data-field="' + field + '"]').fadeIn();
-            } else {
-                $('.edit-btn[data-field="' + field + '"]').fadeIn();
-            }
-        });
-
-        $('.save-btn').click(function() {      
-            var field = $(this).parent().data('field');
-            var newValue = $('#' + field + '-input').val();
-            var currentValue = $('#' + field + '-text').text().trim();
-
-            // Если новое значение совпадает с текущим, скрываем поле ввода и показываем текстовый блок
-            if (newValue === currentValue) {
-                $('#' + field + '-input').hide();
                 $('#' + field + '-text').fadeIn();
+                $('#' + field + '-input').hide();
+
                 $('.double-btn[data-field="' + field + '"]').hide();
-                if (newValue === '') {
+                if ($('#' + field + '-text').text() === '') {
                     $('.add-btn[data-field="' + field + '"]').fadeIn();
                 } else {
                     $('.edit-btn[data-field="' + field + '"]').fadeIn();
                 }
-                return;
-            }
+            });
 
-            $.ajax({
-                url: '/profile/' + {{ $user->id }} + '/update-profile',
-                method: 'POST',
-                data: {
-                    field: field,
-                    value: newValue,
-                    _token: '{{ csrf_token() }}'
-                },
-                success: function() {
-                    if (newValue.trim() === '') {
-                        $('#' + field + '-text').text(' ').fadeIn();
-                        $('.edit-btn[data-field="' + field + '"]').hide();
+            $('.save-btn').click(function() {      
+                var field = $(this).parent().data('field');
+                var newValue = $('#' + field + '-input').val();
+                var currentValue = $('#' + field + '-text').text().trim();
+
+                // Если новое значение совпадает с текущим, скрываем поле ввода и показываем текстовый блок
+                if (newValue === currentValue) {
+                    $('#' + field + '-input').hide();
+                    $('#' + field + '-text').fadeIn();
+                    $('.double-btn[data-field="' + field + '"]').hide();
+                    if (newValue === '') {
                         $('.add-btn[data-field="' + field + '"]').fadeIn();
                     } else {
-                        $('#' + field + '-text').text(newValue).fadeIn();
                         $('.edit-btn[data-field="' + field + '"]').fadeIn();
-                        $('.add-btn[data-field="' + field + '"]').hide();
                     }
-                    $('#' + field + '-input').hide();
-                    $('.double-btn[data-field="' + field + '"]').hide();
+                    return;
                 }
+
+                $.ajax({
+                    url: '/profile/' + {{ $user->id }} + '/update-profile',
+                    method: 'POST',
+                    data: {
+                        field: field,
+                        value: newValue,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function() {
+                        if (newValue.trim() === '') {
+                            $('#' + field + '-text').text(' ').fadeIn();
+                            $('.edit-btn[data-field="' + field + '"]').hide();
+                            $('.add-btn[data-field="' + field + '"]').fadeIn();
+                        } else {
+                            $('#' + field + '-text').text(newValue).fadeIn();
+                            $('.edit-btn[data-field="' + field + '"]').fadeIn();
+                            $('.add-btn[data-field="' + field + '"]').hide();
+                        }
+                        $('#' + field + '-input').hide();
+                        $('.double-btn[data-field="' + field + '"]').hide();
+                    }
+                });
+            });
+
+            $('textarea').on('input', function () {
+                this.style.height = 'auto';
+                this.style.height = (this.scrollHeight) + 'px';
             });
         });
-
-        $('textarea').on('input', function () {
-            this.style.height = 'auto';
-            this.style.height = (this.scrollHeight) + 'px';
-        });
-    });
-</script>
+    </script>
 
     <div class="content">
 

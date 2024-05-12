@@ -11,13 +11,13 @@
             <p>сохранено <span>N вакансий<span></p>
         </div>
 
-        <div class="job-sort">
+        {{-- <div class="job-sort">
             <select class="list">
                 <option value="new" selected>сначала новые</option>
                 <option value="old">сначала старые</option>
                 <option value="responses">по откликам</option>
             </select>
-        </div>
+        </div> --}}
 
         <div class="vacancy-block">
             <div class="jobs">

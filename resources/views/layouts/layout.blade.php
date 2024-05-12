@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>@yield('title')</title>
 
+        <link href="{{asset('css/av-buttons.css?v=').time()}}" rel="stylesheet">
         <link href="{{asset('css/clear.css?v=').time()}}" rel="stylesheet">
         <link href="{{asset('css/fonts.css?v=').time()}}" rel="stylesheet">
         <link href="{{asset('css/common.css?v=').time()}}" rel="stylesheet">

@@ -95,11 +95,6 @@
 
                         <div class="double-btn">
 
-                            {{-- <div class="outline-btn" id="v-edit-{{ $vacancy->id }}">
-                                <img src="{{ asset('icons/black/pencil.svg') }}" alt="icon">
-                                редактировать
-                            </div> --}}
-
                             <button type="button" class="outline-btn" id="edit-btn" data-toggle="modal" data-target="#edit-modal">
                                 <img src="{{ asset('icons/black/pencil.svg') }}" alt="icon">
                                 редактировать

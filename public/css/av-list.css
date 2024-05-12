@@ -11,8 +11,9 @@
 }
 
 .av-list .l-row {
-    display: flex;
     position: relative;
+
+    display: flex;
     justify-content: space-between;
     align-items: center;
 
@@ -34,9 +35,20 @@
 
 .av-list .set {
     display: flex;
-    gap: 30px;
+    flex-wrap: wrap;
+    gap: 15px 30px;
     border-radius: 999px;
     padding-right: 30px;
+}
+
+.av-list .group-elem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    /* border-radius: 12px; */
+    padding-inline: 10px;
+
 
     transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -46,19 +58,24 @@
     justify-content: center;
     align-items: center;
 
-    gap: 15px;
-    border-radius: 12px;
-    padding-inline: 10px;
+    gap: 10px;
+    /* border-radius: 12px; */
+    /* padding-inline: 10px; */
     height: 48px;
 
-    transition: background-color 0.3s ease, color 0.3s ease;
+    /* transition: background-color 0.3s ease, color 0.3s ease; */
 }
 
-.av-list .elem:hover {
-    cursor: pointer;
+.av-list .group-elem .elem {
+    padding: 0;
+    transition: none;
+    background-color: transparent;
+}
 
+.av-list .group-elem:hover {
+    cursor: pointer;
     color: #3FA3FF;
-    background-color: #F3F6F6;
+    /* background-color: #F3F6F6; */
 }
 
 .av-list a {
@@ -73,11 +90,3 @@
 .elem .hint-text {
     width: 150px;
 }
-
-
-/* .av-list .av-img {
-    width: 32px;
-    height: 32px;
-    padding: 0px;
-    background-color: #F3F6F6;
-} */
