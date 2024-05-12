@@ -43,6 +43,10 @@ Route::post('/profile/{id}/update-profile', [ProfileController::class, 'update_p
 Route::post('/vacancy_detail/{id}/create_response', [ResponseController::class, 'create_response']);
 
 
+Route::get('/applicant_responses', [ResponseController::class, 'applicant_responses_index']);
+Route::delete('/responses/delete_response/{id}', [ResponseController::class, 'delete_response']);
+
+
 Route::get('/recruiter_responses', function () {
     return view('recruiter/recruiter_responses');
 });
@@ -51,6 +55,6 @@ Route::get('/favorite_vacancies', function () {
     return view('applicant/favorite_vacancies');
 });
 
-Route::get('/applicant_responses', function () {
-    return view('applicant/applicant_responses');
-});
+// Route::get('/applicant_responses', function () {
+//     return view('applicant/applicant_responses');
+// });

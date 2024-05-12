@@ -9,20 +9,38 @@ use App\Models\Response;
 
 class ResponseController extends Controller
 {
+    public function applicant_responses_index()
+    {
+        $responses = auth()->user()->responses()->paginate(5);
+        return view('applicant/applicant_responses', compact('responses'));
+    }
+
     public function create_response(Request $request, $id)
     {
         $request->validate([
-            'message' => 'nullable|string',
+            'cover_letter' => 'nullable|string',
         ]);
 
         $response = new Response;
         $response->user_id = Auth::id();
         $response->vacancy_id = $id;
         $response->cover_letter = $request->message;
-        $response->status = 'не рассмотренно';
+        $response->status = 'не рассмотрено';
         $response->save();
 
         return response()->json(['success' => true]);
+    }
+
+    public function delete_response($id)
+    {
+        $response = Response::find($id);
+
+        if ($response && $response->user_id == Auth::id()) {
+            $response->delete();
+            return response()->json(['success' => true]);
+        }
+
+        return response()->json(['success' => false]);
     }
 
 }

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade')->cascadeOnUpdate();
             $table->foreignId('vacancy_id')->constrained()->onDelete('cascade')->cascadeOnUpdate();
             $table->text('cover_letter')->nullable();
-            $table->enum('status', ['не рассмотренно', 'принят', 'отказ'])->default('не рассмотренно');
+            $table->enum('status', ['не рассмотрено', 'принят', 'отказ'])->default('не рассмотренно');
             $table->timestamps();
         });
     }
