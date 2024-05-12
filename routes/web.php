@@ -32,17 +32,11 @@ Route::post('/recruiter_vacancies/new_vacancy/create/upload_cover', [VacancyCont
 
 Route::get('/vacancy_detail/{id}', [VacancyController::class, 'vacancy_detail_index']);
 
-Route::get('/vacancy_search', function () {
-    return view('vacancy_search');
-})->name('vacancy_search');
+Route::get('/vacancy_search', [VacancyController::class, 'vacancy_search_index']);
+Route::get('/vacancy_list', [VacancyController::class, 'search']);
 
-Route::get('/vacancy_list', function () {
-    return view('vacancy_list');
-});
-
-
-Route::get('/profile', [ProfileController::class, 'index']);
-Route::post('/profile/update-profile', [ProfileController::class, 'update_profile']);
+Route::get('/profile/{id}', [ProfileController::class, 'index']);
+Route::post('/profile/{id}/update-profile', [ProfileController::class, 'update_profile']);
 
 
 Route::get('/recruiter_responses', function () {

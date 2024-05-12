@@ -45,7 +45,7 @@ header {
     justify-content: center;
     align-items: center;
 
-    gap: 5px;
+    gap: 10px;
 }
 
 .menu {
@@ -136,6 +136,8 @@ span {
 }
 
 .fill-btn {
+    cursor: pointer;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -157,6 +159,8 @@ span {
 }
 
 .outline-btn {
+    cursor: pointer;
+
     display: flex;
     align-items: center;
     justify-content: center;

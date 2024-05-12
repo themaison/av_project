@@ -8,6 +8,8 @@
         <link href="{{asset('css/clear.css?v=').time()}}" rel="stylesheet">
         <link href="{{asset('css/fonts.css?v=').time()}}" rel="stylesheet">
         <link href="{{asset('css/common.css?v=').time()}}" rel="stylesheet">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
 
     <body>
@@ -33,18 +35,13 @@
                         <a href="/recruiter_vacancies">мои вакансии</a>
                     @endif
 
-                    {{-- <a href="/profile" class="icon-block">
-                        <img src="{{  asset('icons/light/user.svg') }}" alt="icon" class="av-img">
-                        {{ auth()->user()->name }}
-                    </a> --}}
-
                     <div class="dropdown">
-                        <a href="/profile" class="icon-block dropdown-toggle">
-                            <img src="{{  asset('icons/light/user.svg') }}" alt="icon" class="av-img">
+                        <a href="/profile/{{ auth()->user()->id }}" class="icon-block dropdown-toggle">
+                            <img src="{{  asset('icons/gray/user.svg') }}" alt="icon" class="av-img">
                             {{ auth()->user()->name }}
                         </a>
                         <div class="dropdown-menu">
-                            <a href="/profile" class="drop-box">Профиль</a>
+                            <a href="/profile/{{ auth()->user()->id }}" class="drop-box">Профиль</a>
                             <a href="/logout"  class="drop-box">Выйти</a>
                         </div>
                     </div>
