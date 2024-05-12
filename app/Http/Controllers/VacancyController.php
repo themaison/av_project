@@ -95,6 +95,32 @@ class VacancyController extends Controller
         return redirect('/recruiter_vacancies');
     }
 
+    public function vacancy_update(Request $request, $id)
+    {
+        $vacancy = Vacancy::find($id);
+        $vacancy->title = $request->title;
+        $vacancy->company = $request->company;
+        $vacancy->city = $request->city;
+        $vacancy->salary_from = $request->input('salary-from');
+        $vacancy->salary_to = $request->input('salary-to');
+        $vacancy->experience = $request->experience;
+        $vacancy->responsibilities = $request->responsibilities;
+        $vacancy->requirements = $request->requirements;
+        $vacancy->conditions = $request->conditions;
+        $vacancy->skills = $request->skills;
+        // $vacancy->title = $request->input('title');
+        // $vacancy->city = $request->input('city');
+        // $vacancy->salary_from = $request->input('salary-from');
+        // $vacancy->salary_to = $request->input('salary-to');
+        // $vacancy->experience = $request->input('experience');
+        // $vacancy->responsibilities = $request->input('responsibilities');
+        // $vacancy->requirements = $request->input('requirements');
+        // добавьте здесь обновление других полей, если они есть
+
+        $vacancy->save();
+        return redirect('/recruiter_vacancies');
+    }
+
     // public function upload_cover(Request $request)
     // {
     //     $request->validate([

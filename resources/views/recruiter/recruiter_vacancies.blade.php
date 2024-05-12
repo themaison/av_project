@@ -101,6 +101,27 @@
                 }
             });
         });
+        // $(document).ready(function(){
+        //     $('#edit-submit').click(function(e){
+        //         e.preventDefault();
+
+        //         var id = $(this).data('id'); // получаем ID вакансии из кнопки
+
+        //         $.ajax({
+        //             type:'PUT',
+        //             url:'/recruiter_vacancies/' + id, // добавляем ID вакансии к URL
+        //             data:$('.av-form').serialize(),
+        //             success:function(response){
+        //                 alert(response.message); // выводим сообщение об успехе
+        //             },
+        //             error: function (response) {
+        //                 console.log(response);
+        //                 alert('Ошибка. Данные не отправлены.');
+        //             }
+        //         });
+        //     });
+        // });
+
     </script>
 
     <div class="content">
@@ -112,7 +133,7 @@
             <p>редактируйте и создавайте новые вакансии<br>
             привлекайте новых соискателей и отбирайте лучших из них</p>
             {{-- <button class="fill-btn"><img src="{{ asset('icons/light/brush.svg') }}" alt="icon"><a href="/recruiter_vacancies/new_vacancy/">создать вакансию</a></button> --}}
-            <a href="/recruiter_vacancies/new_vacancy/" class="fill-btn">
+            <a href="/recruiter_vacancies/new_vacancy/" class="new-vacancy-btn">
                 <img src="{{ asset('icons/light/brush.svg') }}" alt="icon">
                 создать вакансию
             </a>
@@ -174,8 +195,9 @@
             </div>
         @endisset
                 
-        <form class="av-form" method="PUT" enctype="multipart/form-data" action="" style="display: none">
+        <form class="av-form" method="POST" enctype="multipart/form-data" action="/recruiter_vacancies/{{ $vacancy->id }}/vacancy_update" style="display: none">
             @csrf
+            @method('PUT')
 
             <button type="submit" class="x-btn">
                 <img src="{{ asset('icons/black/x.svg') }}" alt="icon">
@@ -273,8 +295,8 @@
                 </div>
     
                 <div class="form-nav">
-                    <button class="fill-btn">дальше<img src="{{ asset('icons/light/angle-right.svg') }}" alt="icon"></button>
                     <button class="outline-btn">назад</button>
+                    <button class="fill-btn">дальше<img src="{{ asset('icons/light/angle-right.svg') }}" alt="icon"></button>
                 </div>
             </div>    
 
@@ -302,7 +324,7 @@
                     <button type="button" class="outline-btn">
                         назад
                     </button>
-                    <button type="button" class="fill-btn" id="edit-submit">
+                    <button type="submit" class="fill-btn" id="edit-submit">
                         сохранить
                     </button>
                 </div>
