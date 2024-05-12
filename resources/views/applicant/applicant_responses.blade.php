@@ -5,6 +5,7 @@
 @section('content')
     <link href="{{asset('css/av-cover.css?v=').time()}}" rel="stylesheet">
     <link href="{{asset('css/av-list.css?v=').time()}}" rel="stylesheet">
+    <link href="{{asset('css/av-form.css?v=').time()}}" rel="stylesheet">
     <link href="{{asset('css/applicant_responses.css?v=').time()}}" rel="stylesheet">
 
     <script>
@@ -19,7 +20,8 @@
             $('.delete-btn').click(function() {
                 var responseId = $(this).data('response-id');
                 var row = $(this).closest('.l-row');
-        
+                var avList = $('.av-list');
+
                 $.ajax({
                     url: '/responses/delete_response/' + responseId,
                     method: 'DELETE',
@@ -29,6 +31,10 @@
                     success: function(response) {
                         if (response.success) {
                             row.remove();
+                            if (!avList.children('.l-row')) {
+                                $('<p class="hint-text">откликов нет</p>').insertBefore('.av-list');
+                                avList.remove();
+                            }
                         } else {
                             // Обработка ошибок
                         }
@@ -72,9 +78,9 @@
             <div class="form-title">
                 <h3>Сопроводительно письмо</h3>
 
-                <div class="av-icon">
+                {{-- <div class="av-icon">
                     <img src="{{  asset('icons/black/hand-tap.svg') }}" alt="icon">
-                </div>
+                </div> --}}
 
             </div>
 

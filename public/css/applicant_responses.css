@@ -20,6 +20,12 @@ body {
     z-index: 2;
 }
 
+.av-form p {
+    display: inline-block;
+    word-wrap: break-word;
+    width: 320px;
+}
+
 .av-form .x-btn {
     cursor: pointer;
     position: absolute;

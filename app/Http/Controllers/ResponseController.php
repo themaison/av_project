@@ -24,7 +24,7 @@ class ResponseController extends Controller
         $response = new Response;
         $response->user_id = Auth::id();
         $response->vacancy_id = $id;
-        $response->cover_letter = $request->message;
+        $response->cover_letter = $request->cover_letter;
         $response->status = 'не рассмотрено';
         $response->save();
 
