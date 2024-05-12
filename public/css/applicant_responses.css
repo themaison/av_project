@@ -6,6 +6,12 @@
     align-items: center;
 }
 
+.cover {
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+}
+
 .stat0 {
     color: #979797;
     width: 120px;

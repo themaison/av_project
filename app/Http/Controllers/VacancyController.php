@@ -95,15 +95,15 @@ class VacancyController extends Controller
         return redirect('/recruiter_vacancies');
     }
 
-    public function uploadCover(Request $request)
-    {
-        $request->validate([
-            'cover' => 'required|file|image|max:2048',  // Проверка файла
-        ]);
+    // public function upload_cover(Request $request)
+    // {
+    //     $request->validate([
+    //         'cover' => 'required|file|image|max:2048',  // Проверка файла
+    //     ]);
 
-        $cover = $request->file('cover');
-        $path = $cover->store('covers', 'public');  // Загрузка файла
+    //     $cover = $request->file('cover');
+    //     $path = $cover->store('covers', 'public');  // Загрузка файла
 
-        return response()->file(storage_path("app/public/{$path}"));  // Отправка файла обратно в браузер
-    }
+    //     return response()->file(storage_path("app/public/{$path}"));  // Отправка файла обратно в браузер
+    // }
 }

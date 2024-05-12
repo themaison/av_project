@@ -3,6 +3,7 @@
 @section('title', 'отклики')
 
 @section('content')
+    <link href="{{asset('css/av-cover.css?v=').time()}}" rel="stylesheet">
     <link href="{{asset('css/av-list.css?v=').time()}}" rel="stylesheet">
     <link href="{{asset('css/applicant_responses.css?v=').time()}}" rel="stylesheet">
 
@@ -26,7 +27,27 @@
                         <p class="stat0">не рассмотрено</p>
                     </div>
 
-                    <a href="/" class="elem">
+                    <a href="/" class="group-elem">
+                        <div class="elem">
+                            @if(isset($vacancy)  && $vacancy->cover)
+                                <div class="cover">
+                                    <img src="{{ Storage::url($vacancy->cover) }}" alt="cover">
+                                </div>
+                                {{-- <img src="{{ Storage::url($vacancy->cover) }}" class="av-img"> --}}
+                            @else
+                                    {{-- <div class="av-img"></div> --}}
+                                <div class="cover"></div>
+                            @endif
+                            {{-- <img src="{{ asset('images/job_prev.jpg') }}" class="av-img"> --}}
+                            <p>Наименование вакансии</p>
+                        </div>
+    
+                        <div class="elem">
+                            <img src="{{ asset('icons/blue/castle.svg') }}" alt="icon">
+                            <p>IT Pelag</p>
+                        </div>
+                    </a>
+                    {{-- <a href="/" class="elem">
                         <img src="{{ asset('images/job_prev.jpg') }}" class="av-img">
                         <p>Наименование вакансии</p>
                     </a>
@@ -34,7 +55,7 @@
                     <div class="elem">
                         <img src="{{ asset('icons/blue/castle.svg') }}" alt="icon">
                         <p>IT Pelag</p>
-                    </div>
+                    </div> --}}
 
                 </div>
 

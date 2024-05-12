@@ -1,0 +1,75 @@
+.fill-btn a {
+    color: #EFFBFF;
+}
+
+.outline-btn a {
+    color: #242424;
+}
+
+.fill-btn,
+.outline-btn,
+.w-head-btn,
+.resbled-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+    padding: 15px 30px;
+    border-radius: 999px;
+    font-weight: 500;
+    height: 48px;
+
+    background-color: #242424;
+    color: #EFFBFF;
+
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.outline-btn {
+    border: 2px solid #242424;
+    background-color: transparent;
+    color: #242424;
+
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.w-head-btn {
+    border: 2px solid #979797;
+    background-color: transparent;
+
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.resbled-btn {
+    cursor: default;
+    background-color: #EBEBEB;
+    color: #979797;
+}
+
+.fill-btn:hover {
+    cursor: pointer;
+
+    background-color: #323232;
+}
+
+.outline-btn:hover {
+    cursor: pointer;
+
+    background-color: #EFFBFF;
+    border: 2px solid #3FA3FF;
+}
+
+.w-head-btn:hover {
+    cursor: pointer;
+
+    color: #EFFBFF;
+    border-color: #EFFBFF;
+    background-color: #323232;
+}
+
+.square-btn {
+    width: 48px;
+    height: 48px;
+    padding: 0;
+}

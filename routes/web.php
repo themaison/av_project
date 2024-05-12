@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VacancyController;
+use App\Http\Controllers\ResponseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,7 @@ Route::get('/recruiter_vacancies', [VacancyController::class, 'recruiter_vacanci
 Route::delete('/recruiter_vacancies/vacancy_delete/{id}', [VacancyController::class, 'vacancy_delete']);
 Route::get('/recruiter_vacancies/new_vacancy', [VacancyController::class, 'new_vacancy_index']);
 Route::post('/recruiter_vacancies/new_vacancy/create', [VacancyController::class, 'create_vacancy']);
-Route::post('/recruiter_vacancies/new_vacancy/create/upload_cover', [VacancyController::class, 'upload_cover']);
+// Route::post('/recruiter_vacancies/new_vacancy/create/upload_cover', [VacancyController::class, 'upload_cover']);
 
 Route::get('/vacancy_detail/{id}', [VacancyController::class, 'vacancy_detail_index']);
 
@@ -37,6 +38,8 @@ Route::get('/vacancy_list', [VacancyController::class, 'search']);
 
 Route::get('/profile/{id}', [ProfileController::class, 'index']);
 Route::post('/profile/{id}/update-profile', [ProfileController::class, 'update_profile']);
+
+Route::post('/vacancy_detail/{id}/create_response', [ResponseController::class, 'create_response']);
 
 
 Route::get('/recruiter_responses', function () {

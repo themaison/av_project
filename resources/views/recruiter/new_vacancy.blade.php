@@ -245,8 +245,13 @@
     
     
                 <div class="form-nav">
-                    <button class="fill-btn">дальше<img src="{{ asset('icons/light/angle-right.svg') }}" alt="icon"></button>
-                    <button class="outline-btn">назад</button>
+                    <button class="outline-btn">
+                        назад
+                    </button>
+                    <button class="fill-btn">
+                        дальше
+                        <img src="{{ asset('icons/light/angle-right.svg') }}" alt="icon">
+                    </button>
                 </div>
             </div>    
 
@@ -295,8 +300,8 @@
     
     
                 <div class="form-nav">
-                    <button class="fill-btn" type="submit">опубликовать</button>
                     <button class="outline-btn">назад</button>
+                    <button class="fill-btn" type="submit">опубликовать</button>
                 </div>
 
             </div>
