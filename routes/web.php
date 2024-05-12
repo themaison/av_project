@@ -29,7 +29,6 @@ Route::get('/recruiter_vacancies', [VacancyController::class, 'recruiter_vacanci
 Route::delete('/recruiter_vacancies/vacancy_delete/{id}', [VacancyController::class, 'vacancy_delete']);
 Route::get('/recruiter_vacancies/new_vacancy', [VacancyController::class, 'new_vacancy_index']);
 Route::post('/recruiter_vacancies/new_vacancy/create', [VacancyController::class, 'create_vacancy']);
-// Route::post('/recruiter_vacancies/new_vacancy/create/upload_cover', [VacancyController::class, 'upload_cover']);
 
 Route::get('/vacancy_detail/{id}', [VacancyController::class, 'vacancy_detail_index']);
 
@@ -42,6 +41,10 @@ Route::post('/profile/{id}/update-profile', [ProfileController::class, 'update_p
 Route::post('/vacancy_detail/{id}/create_response', [ResponseController::class, 'create_response']);
 
 
+Route::get('/applicant_responses', [ResponseController::class, 'applicant_responses_index']);
+Route::delete('/responses/delete_response/{id}', [ResponseController::class, 'delete_response']);
+
+
 Route::get('/recruiter_responses', function () {
     return view('recruiter/recruiter_responses');
 });
@@ -50,6 +53,6 @@ Route::get('/favorite_vacancies', function () {
     return view('applicant/favorite_vacancies');
 });
 
-Route::get('/applicant_responses', function () {
-    return view('applicant/applicant_responses');
-});
+// Route::get('/applicant_responses', function () {
+//     return view('applicant/applicant_responses');
+// });
