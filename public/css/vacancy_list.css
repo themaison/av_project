@@ -64,7 +64,7 @@
 .v-grid {
     display: flex;
     justify-content: flex-start;
-    /* flex-wrap: wrap; */
+    flex-wrap: wrap;
     width: fit-content;
 
     gap: 10px;
@@ -91,7 +91,7 @@
     display: flex;
     position: relative;
     border-radius: 999px;
-    column-gap: 30px;
+    column-gap: 15px;
     text-decoration: none;
     color: #242424;
     transition: background-color 0.3s ease, color 0.3s ease;
@@ -140,8 +140,12 @@
 
 .v-card .l2-data {
     display: flex;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     column-gap: 15px;
+}
+
+.v-card .l2-data .icon-block {
+    gap: 5px;
 }
 
 .v-card .l3-data {

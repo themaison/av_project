@@ -9,6 +9,14 @@ use App\Models\Response;
 
 class ResponseController extends Controller
 {
+    public function recruiter_responses_index()
+    {
+        $vacancies = auth()->user()->vacancies;
+        $responses = Response::whereIn('vacancy_id', $vacancies->pluck('id'))->paginate(5);
+        return view('recruiter/recruiter_responses', compact('responses'));
+    }
+    
+
     public function applicant_responses_index()
     {
         $responses = auth()->user()->responses()->paginate(5);

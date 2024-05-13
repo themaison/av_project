@@ -46,10 +46,11 @@ Route::post('/vacancy_detail/{id}/create_response', [ResponseController::class, 
 Route::get('/applicant_responses', [ResponseController::class, 'applicant_responses_index']);
 Route::delete('/responses/delete_response/{id}', [ResponseController::class, 'delete_response']);
 
+Route::get('/recruiter_responses', [ResponseController::class, 'recruiter_responses_index']);
 
-Route::get('/recruiter_responses', function () {
-    return view('recruiter/recruiter_responses');
-});
+// Route::get('/recruiter_responses', function () {
+//     return view('recruiter/recruiter_responses');
+// });
 
 Route::get('/favorite_vacancies', function () {
     return view('applicant/favorite_vacancies');
