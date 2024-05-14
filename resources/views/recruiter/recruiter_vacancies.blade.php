@@ -101,26 +101,6 @@
                 }
             });
         });
-        // $(document).ready(function(){
-        //     $('#edit-submit').click(function(e){
-        //         e.preventDefault();
-
-        //         var id = $(this).data('id'); // получаем ID вакансии из кнопки
-
-        //         $.ajax({
-        //             type:'PUT',
-        //             url:'/recruiter_vacancies/' + id, // добавляем ID вакансии к URL
-        //             data:$('.av-form').serialize(),
-        //             success:function(response){
-        //                 alert(response.message); // выводим сообщение об успехе
-        //             },
-        //             error: function (response) {
-        //                 console.log(response);
-        //                 alert('Ошибка. Данные не отправлены.');
-        //             }
-        //         });
-        //     });
-        // });
 
     </script>
 
@@ -180,158 +160,159 @@
                             <form action="/recruiter_vacancies/vacancy_delete/{{ $vacancy->id }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="outline-btn square-btn">
+                                <button type="submit" class="delete-btn square-btn">
                                     <img src="{{ asset('icons/black/trash.svg') }}" alt="icon">
                                 </button>
                             </form>
-
                         </div>
-
                     </div>
+
                 @empty
                     <p>У вас пока нет вакансий.</p>
                 @endforelse
 
             </div>
+            @forelse ($vacancies as $vacancy)            
+                <form class="av-form" method="POST" enctype="multipart/form-data" action="/recruiter_vacancies/{{ $vacancy->id }}/vacancy_update" style="display: none">
+                    @csrf
+                    @method('PUT')
+
+                    <button type="submit" class="x-btn">
+                        <img src="{{ asset('icons/black/x.svg') }}" alt="icon">
+                    </button>
+                    <div class="form-title">
+                        <h3>Редактировать вакансию</h3>
+                    </div>
+
+                    <div class="av-form-module" id="module_1">
+                        <div class="inputs-block">
+            
+                            <div class="input-block">
+                                <label for="title">название вакансии</label>
+                                <input type="text" name="title" value="{{ $vacancy->title }}" placeholder="введите текст...">
+                                
+                                @error('title')
+                                    <p class="error-text">{{ $message }}</p>
+                                @enderror
+                                
+                            </div>
+            
+                            <div class="input-block">
+                                <label for="company">компания (ИП)</label>
+                                <input type="text" name="company"  value="{{ $vacancy->company }}" placeholder="введите текст...">
+                                
+                                @error('company')
+                                    <p class="error-text">{{ $message }}</p>
+                                @enderror
+                            
+                            </div>
+            
+                            <div class="input-block">
+                                <label for="city">город</label>
+                                <input type="text" name="city"  value="{{ $vacancy->city }}" placeholder="введите текст...">
+                                
+                                @error('city')
+                                    <p class="error-text">{{ $message }}</p>
+                                @enderror
+                            
+                            </div>
+
+                            <div class="input-block">
+                                <label for="salary">заработная плата (₽)</label>
+            
+                                <div class="double-block">
+                                    <div class="input-block">
+                                        <input type="text" name ="salary-from"  value="{{ $vacancy->salary_from }}" placeholder="от 10 000">
+                                    </div>
+            
+                                    <div>—</div>
+            
+                                    <div class="input-block">
+                                        <input type="text" name ="salary-to"  value="{{ $vacancy->salary_to }}" placeholder="до 100 000">
+                                    </div>
+                                </div>
+            
+                            </div>
+            
+                            <div class="input-block">
+                                <label for="experience">опыт работы (год)</label>
+                                <input type="number" name="experience" value="{{ $vacancy->experience }}" placeholder="введите число">
+                            </div>
+
+                        </div>
+            
+                        <div class="form-nav">
+                            <button class="fill-btn">дальше<img src="{{ asset('icons/light/angle-right.svg') }}" alt="icon"></button>
+                        </div>
+                    </div>
+
+                    <div class="av-form-module" id="module_2">
+                        <div class="inputs-block">
+            
+                            <div class="input-block">
+                                <label for="responsibilities">обязанности</label>
+                                <textarea name="responsibilities" placeholder="введите текст...">{{ $vacancy->responsibilities }}</textarea>
+                            </div>
+
+                            <div class="input-block">
+                                <label for="requirements">требования</label>
+                                <textarea name="requirements" placeholder="введите текст...">{{ $vacancy->requirements }}</textarea>
+                            </div>
+
+                            <div class="input-block">
+                                <label for="conditions">условия</label>
+                                <textarea name="conditions" placeholder="введите текст...">{{ $vacancy->conditions }}</textarea>
+                            </div>
+
+                            <div class="input-block">
+                                <label for="skills">навыки</label>
+                                <p class="hint-text">введите навыки через запятую</p>
+                                <textarea name="skills" placeholder="введите текст...">{{ $vacancy->skills }}</textarea>
+                            </div>
+                            
+                        </div>
+            
+                        <div class="form-nav">
+                            <button class="outline-btn">назад</button>
+                            <button class="fill-btn">дальше<img src="{{ asset('icons/light/angle-right.svg') }}" alt="icon"></button>
+                        </div>
+                    </div>    
+
+                    <div class="av-form-module" id="module_3">
+                        <div class="inputs-block">
+            
+                            <div class="input-block">
+
+                                <label for="cover">обложка вакансии</label>
+                                <p class="hint-text" id="file_cover-text">желательный формат .png или .jpg</p>
+                                
+                                <div class="cover">
+                                    <img src="{{ Storage::url($vacancy->cover) }}" alt="">
+                                </div>
+
+                                <input type="file" class="file-cover" name="cover" accept=".png, .jpg, .jpeg"/>
+
+                                <p class="error-text cover-error"></p>
+
+                            </div>
+
+                        </div>
+            
+                        <div class="form-nav">
+                            <button type="button" class="outline-btn">
+                                назад
+                            </button>
+                            <button type="submit" class="fill-btn" id="edit-submit">
+                                сохранить
+                            </button>
+                        </div>
+
+                    </div>
+
+                </form>
+            @empty
+            @endforelse
         @endisset
-                
-        <form class="av-form" method="POST" enctype="multipart/form-data" action="/recruiter_vacancies/{{ $vacancy->id }}/vacancy_update" style="display: none">
-            @csrf
-            @method('PUT')
-
-            <button type="submit" class="x-btn">
-                <img src="{{ asset('icons/black/x.svg') }}" alt="icon">
-            </button>
-            <div class="form-title">
-                <h3>Редактировать вакансию</h3>
-            </div>
-
-            <div class="av-form-module" id="module_1">
-                <div class="inputs-block">
-    
-                    <div class="input-block">
-                        <label for="title">название вакансии</label>
-                        <input type="text" name="title" value="{{ $vacancy->title }}" placeholder="введите текст...">
-                        
-                        @error('title')
-                            <p class="error-text">{{ $message }}</p>
-                        @enderror
-                        
-                    </div>
-    
-                    <div class="input-block">
-                        <label for="company">компания (ИП)</label>
-                        <input type="text" name="company"  value="{{ $vacancy->company }}" placeholder="введите текст...">
-                        
-                        @error('company')
-                            <p class="error-text">{{ $message }}</p>
-                        @enderror
-                    
-                    </div>
-    
-                    <div class="input-block">
-                        <label for="city">город</label>
-                        <input type="text" name="city"  value="{{ $vacancy->city }}" placeholder="введите текст...">
-                        
-                        @error('city')
-                            <p class="error-text">{{ $message }}</p>
-                        @enderror
-                    
-                    </div>
-
-                    <div class="input-block">
-                        <label for="salary">заработная плата (₽)</label>
-    
-                        <div class="double-block">
-                            <div class="input-block">
-                                <input type="text" name ="salary-from"  value="{{ $vacancy->salary_from }}" placeholder="от 10 000">
-                            </div>
-    
-                            <div>—</div>
-    
-                            <div class="input-block">
-                                <input type="text" name ="salary-to"  value="{{ $vacancy->salary_to }}" placeholder="до 100 000">
-                            </div>
-                        </div>
-    
-                    </div>
-    
-                    <div class="input-block">
-                        <label for="experience">опыт работы (год)</label>
-                        <input type="number" name="experience" value="{{ $vacancy->experience }}" placeholder="введите число">
-                    </div>
-
-                </div>
-    
-                <div class="form-nav">
-                    <button class="fill-btn">дальше<img src="{{ asset('icons/light/angle-right.svg') }}" alt="icon"></button>
-                </div>
-            </div>
-
-            <div class="av-form-module" id="module_2">
-                <div class="inputs-block">
-    
-                    <div class="input-block">
-                        <label for="responsibilities">обязанности</label>
-                        <textarea name="responsibilities" placeholder="введите текст...">{{ $vacancy->responsibilities }}</textarea>
-                    </div>
-
-                    <div class="input-block">
-                        <label for="requirements">требования</label>
-                        <textarea name="requirements" placeholder="введите текст...">{{ $vacancy->requirements }}</textarea>
-                    </div>
-
-                    <div class="input-block">
-                        <label for="conditions">условия</label>
-                        <textarea name="conditions" placeholder="введите текст...">{{ $vacancy->conditions }}</textarea>
-                    </div>
-
-                    <div class="input-block">
-                        <label for="skills">навыки</label>
-                        <p class="hint-text">введите навыки через запятую</p>
-                        <textarea name="skills" placeholder="введите текст...">{{ $vacancy->skills }}</textarea>
-                    </div>
-                    
-                </div>
-    
-                <div class="form-nav">
-                    <button class="outline-btn">назад</button>
-                    <button class="fill-btn">дальше<img src="{{ asset('icons/light/angle-right.svg') }}" alt="icon"></button>
-                </div>
-            </div>    
-
-            <div class="av-form-module" id="module_3">
-                <div class="inputs-block">
-    
-                    <div class="input-block">
-
-                        <label for="cover">обложка вакансии</label>
-                        <p class="hint-text" id="file_cover-text">желательный формат .png или .jpg</p>
-                        
-                        <div class="cover">
-                            <img src="{{ Storage::url($vacancy->cover) }}" alt="">
-                        </div>
-
-                        <input type="file" class="file-cover" name="cover" accept=".png, .jpg, .jpeg"/>
-
-                        <p class="error-text cover-error"></p>
-
-                    </div>
-
-                </div>
-    
-                <div class="form-nav">
-                    <button type="button" class="outline-btn">
-                        назад
-                    </button>
-                    <button type="submit" class="fill-btn" id="edit-submit">
-                        сохранить
-                    </button>
-                </div>
-
-            </div>
-
-        </form>
 
     </div>
 @endsection

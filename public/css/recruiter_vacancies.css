@@ -118,3 +118,34 @@ body.no-scroll {
 
     background-color: #323232;
 }
+
+
+
+
+.delete-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 999px;
+
+    background-color: #242424;
+    color: #EFFBFF;
+
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.delete-btn {
+    border: 2px solid #242424;
+    background-color: transparent;
+    color: #242424;
+
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.delete-btn:hover {
+    cursor: pointer;
+
+    background-color: #EFFBFF;
+    border: 2px solid #3FA3FF;
+}
