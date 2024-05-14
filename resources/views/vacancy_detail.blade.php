@@ -9,6 +9,24 @@
 
     <script>
         $(document).ready(function() {
+
+            var previousUrl = document.referrer;
+            var linkText;
+
+            if (previousUrl.includes('vacancy_list')) {
+                linkText = 'список вакансий';
+            } else if (previousUrl.includes('recruiter_vacancies')) {
+                linkText = 'мои вакансии';
+            } else if (previousUrl.includes('response')) {
+                linkText = 'отклики';
+            } else if (previousUrl.includes('favorite')) {
+                linkText = 'избранное';
+            } else {
+                linkText = 'вакансии';
+            }
+
+            $('#previous-page').text(linkText);
+
             $('.response-btn').click(function() {
                 $('.av-form').fadeIn().css('display', 'flex');
                 $('.blur-bg').fadeIn();
@@ -115,7 +133,7 @@
         </form>
 
         <div class="breakpoints" style="--i: 0">
-            <a href="{{ url()->previous() }}">вакансии</a>
+            <a href="{{ url()->previous() }}" id="previous-page"></a>
             <p>/</p>
             <a href="/vacancy_detail/{{  $vacancy->id }}" id="current-page">{{ $vacancy->title }}</a>
         </div>

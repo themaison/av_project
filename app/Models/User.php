@@ -32,6 +32,10 @@ class User extends Authenticatable
     {
         return $this->hasOne(Profile::class);
     }
+    
+    public function vacancies() {
+        return $this->hasMany(Vacancy::class);
+    }
 
     public function responses()
     {

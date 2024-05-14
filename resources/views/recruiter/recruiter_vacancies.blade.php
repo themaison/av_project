@@ -201,9 +201,9 @@
             @csrf
             @method('PUT')
 
-            <button type="submit" class="x-btn">
+            <div class="x-btn">
                 <img src="{{ asset('icons/black/x.svg') }}" alt="icon">
-            </button>
+            </div>
             <div class="form-title">
                 <h3>{{ $vacancy->title }}</h3>
             </div>
