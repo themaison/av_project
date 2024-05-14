@@ -42,11 +42,13 @@ body.no-scroll {
     /* overflow: scroll; Добавить прокрутку */
     overflow-x: hidden;
     overflow-y: scroll;
-    max-height: 90%; /* Ограничить максимальную высоту */
+    max-height: 90%;
+    /* Ограничить максимальную высоту */
     justify-content: start;
     /* -ms-overflow-style: none;
     scrollbar-width: none; */
 }
+
 /* .modal::-webkit-scrollbar {
     display: none;
 } */
@@ -92,7 +94,7 @@ body.no-scroll {
     background-color: #fff;
 }
 
-.new-vacancy-btn a {
+/* .new-vacancy-btn a {
     color: #EFFBFF;
 }
 
@@ -117,4 +119,22 @@ body.no-scroll {
     cursor: pointer;
 
     background-color: #323232;
+} */
+
+.av-form .cover {
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; */
+
+    width: 100%;
+    height: 96px;
+
+    border-radius: 8px;
+
+    /* position: relative;
+    overflow: hidden;
+
+    background-color: #F3F6F6; */
 }

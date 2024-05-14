@@ -12,6 +12,7 @@
                 event.preventDefault();
         
                 var vacancyId = $(this).data('vacancy-id');
+                console.log(vacancyId);
                 var button = $(this);
         
                 $.ajax({
@@ -184,16 +185,9 @@
                             @php
                                 $isFavorite = Auth::user()->favorites()->where('id', $vacancy->id)->exists();
                             @endphp
-                        
-                            <div 
-                            href="/vacancy/{{  $vacancy->id }}/toggle_favorite "
-                            class="favorite-btn {{ $isFavorite ? 'hint-btn square-btn' : 'outline-btn square-btn' }}" 
-                            data-vacancy-id="{{ $vacancy->id }}">       
 
-                                <img id="favorite-icon" src="{{  $isFavorite ? asset('icons/gray/gem.svg') : asset('icons/black/gem.svg') }}" alt="icon">
-                            </div>
-                            {{-- <button class="outline-btn square-btn"><img src="{{ asset('icons/black/gem.svg') }}" alt="icon"></button> --}}
-                            
+                            <a class="favorite-btn {{ $isFavorite ? 'resbled-btn square-btn' : 'outline-btn square-btn' }}" data-vacancy-id="{{ $vacancy->id }}"><img src="{{  asset('icons/black/gem.svg') }}" alt="icon"></a>
+                                                        
                         </div>
                         @else
                         <div class="actions">
