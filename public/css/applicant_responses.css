@@ -16,8 +16,16 @@ body {
 .av-form {
     display: flex;
     position: fixed;
+    overflow-y: auto;
+    max-height: 50vh;
     top: 25%;
     z-index: 2;
+}
+
+.av-form p {
+    display: inline-block;
+    word-wrap: break-word;
+    width: 320px;
 }
 
 .av-form .x-btn {
@@ -65,13 +73,14 @@ body {
     border-radius: 999px;
 }
 
-.secondary-btn {
+/* .secondary-btn {
+    color: #979797;
     background-color: #F3F6F6;
 }
 
 .secondary-btn:hover {
     background-color: #EBEBEB;
-}
+} */
 
 .stat0 {
     color: #979797;

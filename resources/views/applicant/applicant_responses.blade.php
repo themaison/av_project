@@ -5,6 +5,7 @@
 @section('content')
     <link href="{{asset('css/av-cover.css?v=').time()}}" rel="stylesheet">
     <link href="{{asset('css/av-list.css?v=').time()}}" rel="stylesheet">
+    <link href="{{asset('css/av-form.css?v=').time()}}" rel="stylesheet">
     <link href="{{asset('css/applicant_responses.css?v=').time()}}" rel="stylesheet">
 
     <script>
@@ -19,7 +20,8 @@
             $('.delete-btn').click(function() {
                 var responseId = $(this).data('response-id');
                 var row = $(this).closest('.l-row');
-        
+                var avList = $('.av-list');
+
                 $.ajax({
                     url: '/responses/delete_response/' + responseId,
                     method: 'DELETE',
@@ -29,6 +31,10 @@
                     success: function(response) {
                         if (response.success) {
                             row.remove();
+                            if (!avList.children('.l-row')) {
+                                $('<p class="hint-text">откликов нет</p>').insertBefore('.av-list');
+                                avList.remove();
+                            }
                         } else {
                             // Обработка ошибок
                         }
@@ -50,14 +56,13 @@
                 }
             });
         });
-    </script>
-        
+    </script>     
 
     <div class="content">
 
         <div class="title">
-            <h2>отклики</h2>
-            <p>ваши отклики за последнее время</p>
+            <h2 style="--i: 0">отклики</h2>
+            <p style="--i: 1">ваши отклики за последнее время</p>
         </div>
 
         <div class="blur-bg"></div>
@@ -72,9 +77,9 @@
             <div class="form-title">
                 <h3>Сопроводительно письмо</h3>
 
-                <div class="av-icon">
+                {{-- <div class="av-icon">
                     <img src="{{  asset('icons/black/hand-tap.svg') }}" alt="icon">
-                </div>
+                </div> --}}
 
             </div>
 
@@ -83,11 +88,11 @@
         </div>
         
         @if($responses->isEmpty())
-            <p class="hint-text">откликов нет</p>
+            <p class="hint-text" style="--i: 2">откликов нет</p>
         @else
-        <div class="av-list">
-            @foreach($responses as $response)
-                <div class="l-row">
+        <div class="av-list" style="--i: 3">
+            @foreach($responses as $index => $response)
+                <div class="l-row" style="--i: {{ $index + 3 }}">
                     <div class="set">
                         <div class="elem">
                             <p class="hint-text">{{ $response->created_at }}</p>
@@ -98,8 +103,26 @@
                                 {{ $response->status }}
                             </p>
                         </div>
+
+                        <a href="/vacancy_detail/{{ $response->vacancy->id }}" class="elem">
+                            @if($response->vacancy->cover)
+                                <div class="cover">
+                                    <img src="{{ Storage::url($response->vacancy->cover) }}" alt="cover">
+                                </div>
+                            @else
+                                <div class="cover"></div>
+                            @endif
+                            <p>{{ $response->vacancy->title }}</p>
+                            
+                            <div class="icon-block">
+                                <img src="{{ asset('icons/blue/castle.svg') }}" alt="icon">
+                                <p>{{ $response->vacancy->company }}</p>
+                            </div>
+
+                        </a>
         
-                        <a href="/vacancy_detail/{{ $response->vacancy->id }}" class="group-elem">
+                        {{-- <a href="/vacancy_detail/{{ $response->vacancy->id }}" class="group-elem">
+                            
                             <div class="elem">
                                 @if($response->vacancy->cover)
                                     <div class="cover">
@@ -109,13 +132,16 @@
                                     <div class="cover"></div>
                                 @endif
                                 <p>{{ $response->vacancy->title }}</p>
+                                
+                                <div class="icon-block">
+                                    <img src="{{ asset('icons/blue/castle.svg') }}" alt="icon">
+                                    <p>{{ $response->vacancy->company }}</p>
+                                </div>
+
                             </div>
-        
-                            <div class="elem">
-                                <img src="{{ asset('icons/blue/castle.svg') }}" alt="icon">
-                                <p>{{ $response->vacancy->company }}</p>
-                            </div>
-                        </a>
+
+                        </a> --}}
+
                         @isset($response->cover_letter)
                             <div class="fill-btn square-btn secondary-btn cover-letter-btn" data-letter="{{ $response->cover_letter }}">
                                 <img src="{{ asset('icons/gray/newspaper.svg') }}" alt="icon">
@@ -139,4 +165,5 @@
     <div class="pagination">
         {{ $responses->links() }}
     </div>
+
 @endsection
