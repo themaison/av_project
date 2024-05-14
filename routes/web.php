@@ -49,4 +49,4 @@ Route::delete('/responses/delete_response/{id}', [ResponseController::class, 'de
 Route::get('/recruiter_responses', [ResponseController::class, 'recruiter_responses_index']);
 
 Route::get('/favorite_vacancies', [FavoriteController::class, 'favorite_vacancies_index']);
-Route::post('/vacancy_detail/{id}/toggle_favorite', [FavoriteController::class, 'toggle_favorite']);
+Route::post('/vacancy/{id}/toggle_favorite', [FavoriteController::class, 'toggle_favorite']);

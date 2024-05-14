@@ -8,10 +8,18 @@
     {{-- <link href="{{asset('css/favorite_vacancies.css?v=').time()}}" rel="stylesheet"> --}}
 
     <div class="content">
+        @php
+            function getWordForm($number, $words) {
+                $cases = array (2, 0, 1, 1, 1, 2);
+                $index = ($number % 100 > 4 && $number % 100 < 20) ? 2 : $cases[min($number % 10, 5)];
+                return $words[$index];
+            }
+        @endphp
+
         <div class="search-box">
             <h2 style="--i: 0">избранное</h2>
-            @if(isset($vacancies))
-            <p style="--i: 1">сохранено <span>{{ $vacancies->count() }} вакансий<span></p>
+            @if(isset($vacancies) && $vacancies->count()>0)
+            <p style="--i: 1">{{ getWordForm($vacancies->count(), ['сохранена', 'сохранено', 'сохранены']) }} <span>{{ $vacancies->count() }} {{ getWordForm($vacancies->count(), ['вакансия', 'вакансии', 'вакансий']) }}<span></p>
             @else
             <p class="hint-text" style="--i: 1">вы еще не добавили ни одной вакансии</span></p>
             @endif

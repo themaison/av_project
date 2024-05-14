@@ -144,9 +144,9 @@
     column-gap: 15px;
 }
 
-.v-card .l2-data .icon-block {
+/* .v-card .l2-data .icon-block {
     gap: 5px;
-}
+} */
 
 .v-card .l3-data {
     display: flex;

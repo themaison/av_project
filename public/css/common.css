@@ -112,83 +112,6 @@ span {
     display: inline-block;
 }
 
-/* .w-head-btn {
-    padding: 10px 30px;
-    border-radius: 999px;
-    height: 48px;
-
-    border: 2px solid #979797;
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-}
-
-.w-head-btn:hover {
-    color: #EFFBFF;
-    border-color: #EFFBFF;
-    background-color: #323232;
-}
-
-.fill-btn a {
-    color: #EFFBFF;
-}
-
-.outline-btn a {
-    color: #242424;
-}
-
-.fill-btn {
-    cursor: pointer;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    gap: 10px;
-    padding: 15px 30px;
-    border-radius: 999px;
-    height: 48px;
-    font-weight: 500;
-
-    background-color: #242424;
-    color: #EFFBFF;
-
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.fill-btn:hover {
-    background-color: #323232;
-}
-
-.outline-btn {
-    cursor: pointer;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    gap: 10px;
-    padding: 10px 30px;
-    border-radius: 999px;
-    font-weight: 500;
-
-    border: 2px solid #242424;
-    color: #242424;
-
-    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
-}
-
-.outline-btn:hover {
-    cursor: pointer;
-
-    background-color: #EFFBFF;
-    border: 2px solid #3FA3FF;
-}
-
-.square-btn {
-    width: 48px;
-    height: 48px;
-    padding: 0;
-} */
-
 .double-btn {
     display: flex;
     gap: 10px;
@@ -276,4 +199,8 @@ footer p {
 
 footer span {
     color: #EFFBFF;
+}
+
+.hint-text {
+    color: #979797;
 }

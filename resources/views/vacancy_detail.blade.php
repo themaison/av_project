@@ -53,7 +53,7 @@
                 var vacancyId = $(this).data('vacancy-id');
 
                 $.ajax({
-                    url: '/vacancy_detail/' + vacancyId + '/toggle_favorite',
+                    url: '/vacancy/' + vacancyId + '/toggle_favorite',
                     method: 'POST',
                     data: {
                         _token: '{{ csrf_token() }}'
@@ -146,14 +146,14 @@
                                 $isFavorite = Auth::user()->favorites()->where('vacancy_id', $vacancy->id)->exists();
                             @endphp
 
-                            <a 
+                            <div 
                             id="favorite-btn" 
-                            href="/vacancy_detail/{{ $vacancy->id }}/toggle_favorite" 
+                            href="/vacancy/{{ $vacancy->id }}/toggle_favorite" 
                             class="{{ $isFavorite ? 'hint-btn square-btn' : 'outline-btn square-btn' }}" 
                             data-vacancy-id="{{ $vacancy->id }}">
                             
                                 <img id="favorite-icon" src="{{  $isFavorite ? asset('icons/gray/gem.svg') : asset('icons/black/gem.svg') }}" alt="icon">
-                            </a>
+                            </div>
 
 
                         @elseif(auth()->user()->hasRole('recruiter'))
