@@ -3,118 +3,183 @@
 @section('title', 'избранное')
 
 @section('content')
-    <link href="{{asset('css/favorite_vacancies.css?v=').time()}}" rel="stylesheet">
+    <link href="{{asset('css/av-cover.css?v=').time()}}" rel="stylesheet">
+    <link href="{{asset('css/vacancy_list.css?v=').time()}}" rel="stylesheet">
+    {{-- <link href="{{asset('css/favorite_vacancies.css?v=').time()}}" rel="stylesheet"> --}}
 
     <div class="content">
         <div class="search-box">
-            <h2>избранное</h2>
-            <p>сохранено <span>N вакансий<span></p>
+            <h2 style="--i: 0">избранное</h2>
+            @if(isset($vacancies))
+            <p style="--i: 1">сохранено <span>{{ $vacancies->count() }} вакансий<span></p>
+            @else
+            <p class="hint-text" style="--i: 1">вы еще не добавили ни одной вакансии</span></p>
+            @endif
         </div>
 
-        {{-- <div class="job-sort">
-            <select class="list">
-                <option value="new" selected>сначала новые</option>
-                <option value="old">сначала старые</option>
-                <option value="responses">по откликам</option>
-            </select>
-        </div> --}}
+        @if(isset($vacancies))
+        <div class="vacancies" id="vacancies">
+            <div class="v-grid">
 
-        <div class="vacancy-block">
-            <div class="jobs">
-                <div class="job-card">
-                    <a href="/vacancy_detail" class="l1-data">
-                        <img src="{{ asset('images/job_prev.jpg') }}" alt="preview" class="job-img">
+                @php
+
+                function getWord($number, $variants) {
+                    $cases = array (2, 0, 1, 1, 1, 2);
+                    $index = ($number % 100 > 4 && $number % 100 < 20) ? 2 : $cases[min($number % 10, 5)];
+                    return $variants[$index];
+                }
+
+                function getDayWord($days) {
+                    $lastDigit = $days % 10;
+                    if ($days >= 11 && $days <= 14) {
+                        return 'дней';
+                    } elseif ($lastDigit == 1) {
+                        return 'день';
+                    } elseif ($lastDigit >= 2 && $lastDigit <= 4) {
+                        return 'дня';
+                    } else {
+                        return 'дней';
+                    }
+                }
+
+                function getWeekWord($weeks) {
+                    $lastDigit = $weeks % 10;
+                    if ($weeks >= 11 && $weeks <= 14) {
+                        return 'недель';
+                    } elseif ($lastDigit == 1) {
+                        return 'неделю';
+                    } elseif ($lastDigit >= 2 && $lastDigit <= 4) {
+                        return 'недели';
+                    } else {
+                        return 'недель';
+                    }
+                }
+
+                function getMonthWord($months) {
+                    $lastDigit = $months % 10;
+                    if ($months >= 11 && $months <= 14) {
+                        return 'месяцев';
+                    } elseif ($lastDigit == 1) {
+                        return 'месяц';
+                    } elseif ($lastDigit >= 2 && $lastDigit <= 4) {
+                        return 'месяца';
+                    } else {
+                        return 'месяцев';
+                    }
+                }
+                @endphp
+
+                @forelse($vacancies as $index => $vacancy)
+
+                @php
+                $now = \Carbon\Carbon::now();
+                $created = \Carbon\Carbon::parse($vacancy->created_at);
+                $diffInSeconds = $created->diffInSeconds($now);
+                $diffInMinutes = $created->diffInMinutes($now);
+                $diffInHours = $created->diffInHours($now);
+                $diffInDays = $created->diffInDays($now);
+                $diffInWeeks = $created->diffInWeeks($now);
+                $diffInMonths = $created->diffInMonths($now);
+                @endphp
+
+                <div class="v-card" style="--i: {{ $index + 2 }}">
+                    <a href="/vacancy_detail/{{ $vacancy->id }}" class="l1-data">
+                        
+                        <div class="cover">
+                            <img src="{{ Storage::url($vacancy->cover) }}" alt="cover">
+                        </div>
+
                         <div class="text-content">
-                            <h3>Middle+ Front-end Dev...</h3>
-                            <p>40 000 — 100 000₽</p>
+                            <h3>{{ $vacancy->title }}</h3>
+
+                            @if($vacancy->salary_from && $vacancy->salary_to)
+                                    <p>{{ $vacancy->salary_from }} — {{ $vacancy->salary_to }}₽</p>
+                            @elseif($vacancy->salary_from)
+                                    <p>от {{ $vacancy->salary_from }}₽</p>
+                            @elseif($vacancy->salary_to)
+                                    <p>до {{ $vacancy->salary_to }}₽</p>
+                            @else
+                                    <p>Не указана</p>
+                            @endif
                         </div>
+
                     </a>
-                    
+                        
                     <div class="l2-data">
-                        <div class="tag">
-                            <img src="{{ asset('icons/blue/map-pin.svg') }}" alt="gem">
-                            Севастополь
+                        <div class="icon-block">
+                            <img src="{{ asset('icons/blue/castle.svg') }}" alt="icon">
+                            {{ $vacancy->company }}
                         </div>
-                        <div class="tag">
-                            <img src="{{ asset('icons/blue/toolbox.svg') }}" alt="gem">
-                            Опыт от 1 года
+                        <div class="icon-block">
+                            <img src="{{ asset('icons/blue/map-pin.svg') }}" alt="icon">
+                            {{ $vacancy->city }}
+                        </div>
+                        <div class="icon-block">
+                            <img src="{{ asset('icons/blue/toolbox.svg') }}" alt="icon">
+                            @if($vacancy->experience <= 0)
+                                Без опыта
+                            @else
+                                Опыт от {{ $vacancy->experience }} {{ getWord($vacancy->experience, ['года', 'года', 'лет']) }}
+                            @endif
                         </div>
                     </div>
-    
+            
                     <div class="l3-data">
+                        @auth
+
+                        @if(auth()->user()->hasRole('applicant'))
                         <div class="actions">
-                            <button class="fill-btn">откликнуться</button>
-                            <button class="outline-btn"><img src="{{ asset('icons/black/trash.svg') }}" alt="trash"></button>
+                            @if(auth()->user()->responses()->where('vacancy_id', $vacancy->id)->exists())
+                                <div class="hint-btn">уже откликнулись</div>
+                            @else
+                                <div class="fill-btn response-btn">откликнуться</div>
+                            @endif
+                            {{-- <button class="fill-btn">откликнуться</button> --}}
+                            <button class="outline-btn square-btn"><img src="{{ asset('icons/black/gem.svg') }}" alt="icon"></button>
                         </div>
-                        <p>26.04.2024</p>
-                    </div>
-                </div>
-                <div class="job-card">
-                    <a href="/vacancy_detail" class="l1-data">
-                        <img src="{{ asset('images/job_prev.jpg') }}" alt="preview" class="job-img">
-                        <div class="text-content">
-                            <h3>Middle+ Front-end Dev...</h3>
-                            <p>40 000 — 100 000₽</p>
-                        </div>
-                    </a>
-                    
-                    <div class="l2-data">
-                        <div class="tag">
-                            <img src="{{ asset('icons/blue/map-pin.svg') }}" alt="gem">
-                            Севастополь
-                        </div>
-                        <div class="tag">
-                            <img src="{{ asset('icons/blue/toolbox.svg') }}" alt="gem">
-                            Опыт от 1 года
-                        </div>
-                    </div>
-    
-                    <div class="l3-data">
+                        @else
                         <div class="actions">
-                            <button class="fill-btn">откликнуться</button>
-                            <button class="outline-btn"><img src="{{ asset('icons/black/trash.svg') }}" alt="trash"></button>
+                            <div class="hint-btn">откликнуться</div>
+                            <button class="hint-btn square-btn"><img src="{{ asset('icons/gray/gem.svg') }}" alt="icon"></button>
                         </div>
-                        <p>26.04.2024</p>
-                    </div>
-                </div>
-                <div class="job-card">
-                    <a href="/vacancy_detail" class="l1-data">
-                        <img src="{{ asset('images/job_prev.jpg') }}" alt="preview" class="job-img">
-                        <div class="text-content">
-                            <h3>Middle+ Front-end Dev...</h3>
-                            <p>40 000 — 100 000₽</p>
-                        </div>
-                    </a>
-                    
-                    <div class="l2-data">
-                        <div class="tag">
-                            <img src="{{ asset('icons/blue/map-pin.svg') }}" alt="gem">
-                            Севастополь
-                        </div>
-                        <div class="tag">
-                            <img src="{{ asset('icons/blue/toolbox.svg') }}" alt="gem">
-                            Опыт от 1 года
-                        </div>
-                    </div>
-    
-                    <div class="l3-data">
+                        @endif
+
+                        @endauth
+
+                        @guest
                         <div class="actions">
-                            <button class="fill-btn">откликнуться</button>
-                            <button class="outline-btn"><img src="{{ asset('icons/black/trash.svg') }}" alt="trash"></button>
+                            <div class="hint-btn">откликнуться</div>
+                            <button class="hint-btn square-btn"><img src="{{ asset('icons/gray/gem.svg') }}" alt="icon"></button>
                         </div>
-                        <p>26.04.2024</p>
+                        @endguest
+
+                        @if ($diffInSeconds < 60)
+                            <p>{{ $diffInSeconds }} {{ getWord($diffInSeconds, ['секунда', 'секунды', 'секунд']) }} назад</p>
+                        @elseif ($diffInMinutes < 60)
+                            <p>{{ $diffInMinutes }} {{ getWord($diffInMinutes, ['минута', 'минуты', 'минут']) }} назад</p>
+                        @elseif ($diffInHours < 24)
+                            <p>{{ $diffInHours }} {{ getWord($diffInHours, ['час', 'часа', 'часов']) }} назад</p>
+                        @elseif ($diffInDays < 7)
+                            <p>{{ $diffInDays }} {{ getWord($diffInDays, ['день', 'дня', 'дней']) }} назад</p>
+                        @elseif ($diffInDays >= 7 && $diffInMonths < 1)
+                            <p>{{ $diffInWeeks }} {{ getWord($diffInWeeks, ['неделя', 'недели', 'недель']) }} назад</p>
+                        @else
+                            <p>{{ $diffInMonths }} {{ getWord($diffInMonths, ['месяц', 'месяца', 'месяцев']) }} назад</p>
+                        @endif
+
+                            {{-- <p>{{ $vacancy->created_at->format('d.m.Y') }}</p> --}}
+                        </div>
                     </div>
-                </div>
-            </div>
+                @empty
+                    {{-- <p>Ничего не найдено</p> --}}
+                @endforelse
+            </div>       
+        </div>  
+
+        <div class="pagination">
+            {{ $vacancies->links() }}
         </div>
-
-        
-
-        {{-- <div class="pagination">
-            <div class="page">1</div>
-            <div class="page">2</div>
-            <div class="page">3</div>
-        </div> --}}
+        @endif
     </div>
             
 @endsection

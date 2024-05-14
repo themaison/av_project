@@ -46,6 +46,29 @@
                     }
                 });
             });
+
+            $('#favorite-btn').click(function(event) {
+                event.preventDefault();
+
+                var vacancyId = $(this).data('vacancy-id');
+
+                $.ajax({
+                    url: '/vacancy_detail/' + vacancyId + '/toggle_favorite',
+                    method: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(data) {
+                        if (data.favorite) {
+                            $('#favorite-btn').removeClass('outline-btn').addClass('resbled-btn');
+                            $('#favorite-icon').attr('src', '{{ asset('icons/gray/gem.svg') }}');
+                        } else {
+                            $('#favorite-btn').removeClass('resbled-btn').addClass('outline-btn');
+                            $('#favorite-icon').attr('src', '{{ asset('icons/black/gem.svg') }}');
+                        }
+                    }
+                });
+            });
         });
     </script>
         
@@ -109,19 +132,35 @@
             <div class="vacancy-actions">
                 <h2 class="vacancy-title" style="--i: 2">{{ $vacancy->title }}</h2>
                 @auth
+
                     <div class="double-btn" style="--i: 3">
                         @if(auth()->user()->hasRole('applicant'))
+
                             @if(auth()->user()->responses()->where('vacancy_id', $vacancy->id)->exists())
-                                <div class="resbled-btn">уже откликнулись</div>
+                                <div class="hint-btn">уже откликнулись</div>
                             @else
                                 <div class="fill-btn response-btn">откликнуться</div>
                             @endif
-                            {{-- <div class="fill-btn response-btn">откликнуться</div> --}}
-                            <a href="/applicant/add_to_favorite" class="outline-btn square-btn"><img src="{{  asset('icons/black/gem.svg') }}" alt="icon"></a>
+                            
+                            @php
+                                $isFavorite = Auth::user()->favorites()->where('vacancy_id', $vacancy->id)->exists();
+                            @endphp
+
+                            <a 
+                            id="favorite-btn" 
+                            href="/vacancy_detail/{{ $vacancy->id }}/toggle_favorite" 
+                            class="{{ $isFavorite ? 'hint-btn square-btn' : 'outline-btn square-btn' }}" 
+                            data-vacancy-id="{{ $vacancy->id }}">
+                            
+                                <img id="favorite-icon" src="{{  $isFavorite ? asset('icons/gray/gem.svg') : asset('icons/black/gem.svg') }}" alt="icon">
+                            </a>
+
+
                         @elseif(auth()->user()->hasRole('recruiter'))
-                            <div class="fill-btn"><a href="/vacancies/{{ $vacancy->id }}/edit"><img src="{{  asset('icons/light/pencil.svg') }}" alt="icon">редактировать</a></div>
+                            <a class="fill-btn" href="/vacancies/{{ $vacancy->id }}/edit"><img src="{{  asset('icons/light/pencil.svg') }}" alt="icon">редактировать</a>
                         @endif
                     </div>
+
                 @endauth
             </div>
 

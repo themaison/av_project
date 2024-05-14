@@ -108,28 +108,8 @@ class VacancyController extends Controller
         $vacancy->requirements = $request->requirements;
         $vacancy->conditions = $request->conditions;
         $vacancy->skills = $request->skills;
-        // $vacancy->title = $request->input('title');
-        // $vacancy->city = $request->input('city');
-        // $vacancy->salary_from = $request->input('salary-from');
-        // $vacancy->salary_to = $request->input('salary-to');
-        // $vacancy->experience = $request->input('experience');
-        // $vacancy->responsibilities = $request->input('responsibilities');
-        // $vacancy->requirements = $request->input('requirements');
-        // добавьте здесь обновление других полей, если они есть
 
         $vacancy->save();
         return redirect('/recruiter_vacancies');
     }
-
-    // public function upload_cover(Request $request)
-    // {
-    //     $request->validate([
-    //         'cover' => 'required|file|image|max:2048',  // Проверка файла
-    //     ]);
-
-    //     $cover = $request->file('cover');
-    //     $path = $cover->store('covers', 'public');  // Загрузка файла
-
-    //     return response()->file(storage_path("app/public/{$path}"));  // Отправка файла обратно в браузер
-    // }
 }

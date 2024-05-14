@@ -205,7 +205,7 @@
                 <img src="{{ asset('icons/black/x.svg') }}" alt="icon">
             </button>
             <div class="form-title">
-                <h3>Редактировать вакансию</h3>
+                <h3>{{ $vacancy->title }}</h3>
             </div>
 
             <div class="av-form-module" id="module_1">

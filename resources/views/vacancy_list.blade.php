@@ -13,7 +13,7 @@
                 <p style="--i: 1">найдено <span>{{ $vacancies->count() }} вакансий</span></p>
             @else
                 <h2 style="--i: 0">Пусто</h2>
-                <p style="--i: 1">по запросу ничего не найдено</span></p>
+                <p class="hint-text" style="--i: 1">по запросу ничего не найдено</span></p>
             @endif
             
             <form action="/vacancy_list" method="GET"  style="--i: 3">
@@ -141,17 +141,20 @@
                         @if(auth()->user()->hasRole('applicant'))
                         <div class="actions">
                             @if(auth()->user()->responses()->where('vacancy_id', $vacancy->id)->exists())
-                                <div class="resbled-btn">уже откликнулись</div>
+                                <div class="hint-btn">уже откликнулись</div>
                             @else
                                 <div class="fill-btn response-btn">откликнуться</div>
                             @endif
                             {{-- <button class="fill-btn">откликнуться</button> --}}
+
                             <button class="outline-btn square-btn"><img src="{{ asset('icons/black/gem.svg') }}" alt="icon"></button>
+                            
+                            
                         </div>
                         @else
                         <div class="actions">
-                            <div class="resbled-btn">откликнуться</div>
-                            <button class="resbled-btn square-btn"><img src="{{ asset('icons/gray/gem.svg') }}" alt="icon"></button>
+                            <div class="hint-btn">откликнуться</div>
+                            <div class="hint-btn square-btn"><img src="{{ asset('icons/gray/gem.svg') }}" alt="icon"></div>
                         </div>
                         @endif
 
@@ -159,8 +162,8 @@
 
                         @guest
                         <div class="actions">
-                            <div class="resbled-btn">откликнуться</div>
-                            <button class="resbled-btn square-btn"><img src="{{ asset('icons/gray/gem.svg') }}" alt="icon"></button>
+                            <div class="hint-btn">откликнуться</div>
+                            <div class="hint-btn square-btn"><img src="{{ asset('icons/gray/gem.svg') }}" alt="icon"></div>
                         </div>
                         @endguest
 

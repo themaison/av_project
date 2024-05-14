@@ -9,7 +9,7 @@
 .fill-btn,
 .outline-btn,
 .w-head-btn,
-.resbled-btn {
+.hint-btn {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -30,21 +30,21 @@
     border: 2px solid #242424;
     background-color: transparent;
     color: #242424;
-
-    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .w-head-btn {
     border: 2px solid #979797;
     background-color: transparent;
-
-    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.resbled-btn {
-    cursor: default;
+.hint-btn {
+    cursor: pointer;
     background-color: #EBEBEB;
     color: #979797;
+}
+
+.hint-btn:hover {
+    background-color: #e2e2e2;
 }
 
 .fill-btn:hover {
@@ -72,13 +72,4 @@
     width: 48px;
     height: 48px;
     padding: 0;
-}
-
-.secondary-btn {
-    color: #979797;
-    background-color: #F3F6F6;
-}
-
-.secondary-btn:hover {
-    background-color: #EBEBEB;
 }
