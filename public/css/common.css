@@ -112,12 +112,12 @@ span {
     display: inline-block;
 }
 
-.double-btn {
+/* .double-btn {
     display: flex;
     gap: 10px;
-}
+} */
 
-.dropdown {
+/* .dropdown {
     position: relative;
     display: inline-block;
 }
@@ -125,7 +125,6 @@ span {
 
 .dropdown-menu {
     visibility: hidden;
-    /* display: none; */
     position: absolute;
     top: 100%;
 
@@ -164,7 +163,7 @@ span {
 
 .dropdown .drop-box:hover {
     background-color: #323232;
-}
+} */
 
 footer {
     margin-top: auto;

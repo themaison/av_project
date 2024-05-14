@@ -76,11 +76,11 @@
                             <p class="hint-text">{{ $response->created_at }}</p>
                         </div>
         
-                        {{-- <div class="elem">
+                        <div class="elem">
                             <p class="{{ $response->status == 'не рассмотрено' ? 'stat0' : ($response->status == 'принят' ? 'stat1' : 'stat2') }}">
                                 {{ $response->status }}
                             </p>
-                        </div> --}}
+                        </div>
 
                         <a href="/vacancy_detail/{{ $response->vacancy->id }}" class="elem">       
                             @if($response->vacancy->cover)
@@ -90,7 +90,9 @@
                             @else
                                 <div class="cover"></div>
                             @endif
-                            <p>{{ $response->vacancy->title }}</p>                
+
+                            <p>{{ $response->vacancy->title }}</p>  
+
                             {{-- <div class="icon-block">
                                 <img src="{{ asset('icons/blue/castle.svg') }}" alt="icon">
                                 <p>{{ $response->vacancy->company }}</p>
@@ -117,6 +119,7 @@
                     </div>
         
                     <div class="outline-btn square-btn set-status-btn" data-response-id="{{ $response->id }}">
+                        {{-- this button for set status from dropdown menu --}}
                         <img src="{{ asset('icons/black/3-dots-vertical.svg') }}" alt="icon">
                     </div>
                 </div>
