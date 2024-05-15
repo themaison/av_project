@@ -41,7 +41,7 @@ body.no-scroll {
     z-index: 2;
     /* overflow: scroll; Добавить прокрутку */
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
     max-height: 90%; /* Ограничить максимальную высоту */
     justify-content: start;
     /* -ms-overflow-style: none;

@@ -33,6 +33,7 @@ Route::put('/recruiter_vacancies/{id}/vacancy_update', [VacancyController::class
 // Route::post('/recruiter_vacancies/new_vacancy/create/upload_cover', [VacancyController::class, 'upload_cover']);
 
 Route::get('/vacancy_detail/{id}', [VacancyController::class, 'vacancy_detail_index']);
+Route::put('/vacancy_detail/{id}/vacancy_update', [VacancyController::class,'vacancy_update']);
 
 Route::get('/vacancy_search', [VacancyController::class, 'vacancy_search_index']);
 Route::get('/vacancy_list', [VacancyController::class, 'search']);
