@@ -55,6 +55,45 @@
             @endif
         </div>
 
+        <div class="blur-bg"></div>
+
+        <form class="av-form" method="POST" action="/vacancy/vacancy->id/create_response" enctype="multipart/form-data"  style="display: none">
+            @csrf
+
+            <div class="x-btn">
+                <img src="{{ asset('icons/black/x.svg') }}" alt="icon">
+            </div>
+
+            <div class="form-title">
+                <h3>Отклик</h3>
+
+                <div class="av-icon">
+                    <img src="{{  asset('icons/black/hand-tap.svg') }}" alt="icon">
+                </div>
+
+            </div>
+
+            <div class="inputs-block">
+
+                <div class="input-block">
+                    <label for="cover_letter">сопроводительное письмо</label>
+                    <textarea name="cover_letter" placeholder="введите текст...">{{ old('cover_letter') }}</textarea>
+                    
+                    @error('cover_letter')
+                        <p class="error-text">{{ $message }}</p>
+                    @enderror
+
+                </div>
+
+            </div>
+
+            <div class="form-nav">
+                <div class="outline-btn cancel-btn">отменить</div>
+                <button type="sybmit" class="fill-btn">откликнуться</button>
+            </div>
+
+        </form>
+
         @if(isset($vacancies))
         <div class="vacancies" id="vacancies">
             <div class="v-grid">
@@ -182,7 +221,7 @@
                             data-vacancy-id="{{ $vacancy->id }}">
                                 <img id="favorite-icon" src="{{  $isFavorite ? asset('icons/gray/gem.svg') : asset('icons/black/gem.svg') }}" alt="icon">
                             </div>
-                            
+
                         </div>
                         @else
                         <div class="actions">

@@ -25,7 +25,7 @@
                 linkText = 'вакансии';
             }
 
-            $('#previous-page').text(linkText);
+            $('.previous-page').text(linkText);
 
             $('.response-btn').click(function() {
                 $('.av-form').fadeIn().css('display', 'flex');
@@ -57,7 +57,7 @@
                         if (response.success) {
                             $('.av-form').fadeOut();
                             $('.blur-bg').fadeOut();
-                            $('.response-btn').replaceWith('<div class="resbled-btn">уже откликнулись</div>');
+                            $('.response-btn').replaceWith('<div class="hint-btn">уже откликнулись</div>');
                         } else {
                             // Обработка ошибок
                         }
@@ -65,7 +65,7 @@
                 });
             });
 
-            $('#favorite-btn').click(function(event) {
+            $('.favorite-btn').click(function(event) {
                 event.preventDefault();
 
                 var vacancyId = $(this).data('vacancy-id');
@@ -95,7 +95,7 @@
 
         <div class="blur-bg"></div>
 
-        <form class="av-form" method="POST" action="/vacancy_detail/{{ $vacancy->id }}/create_response" enctype="multipart/form-data"  style="display: none">
+        <form class="av-form" method="POST" action="/vacancy/{{ $vacancy->id }}/create_response" enctype="multipart/form-data"  style="display: none">
             @csrf
 
             <div class="x-btn">
@@ -133,7 +133,7 @@
         </form>
 
         <div class="breakpoints" style="--i: 0">
-            <a href="{{ url()->previous() }}" id="previous-page"></a>
+            <a href="{{ url()->previous() }}" class="previous-page"></a>
             <p>/</p>
             <a href="/vacancy_detail/{{  $vacancy->id }}" id="current-page">{{ $vacancy->title }}</a>
         </div>
@@ -165,9 +165,8 @@
                             @endphp
 
                             <div 
-                            id="favorite-btn" 
                             href="/vacancy/{{ $vacancy->id }}/toggle_favorite" 
-                            class="{{ $isFavorite ? 'hint-btn square-btn' : 'outline-btn square-btn' }}" 
+                            class="favorite-btn {{ $isFavorite ? 'hint-btn square-btn' : 'outline-btn square-btn' }}" 
                             data-vacancy-id="{{ $vacancy->id }}">
                             
                                 <img id="favorite-icon" src="{{  $isFavorite ? asset('icons/gray/gem.svg') : asset('icons/black/gem.svg') }}" alt="icon">

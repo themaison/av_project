@@ -1,4 +1,56 @@
-body {}
+body {
+    position: relative;
+}
+
+.blur-bg {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.av-form {
+    display: flex;
+    position: fixed;
+    top: 25%;
+    z-index: 2;
+}
+
+.av-form .x-btn {
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 999px;
+
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.av-form .x-btn:hover {
+    background-color: #F3F6F6;
+}
+
+
+.av-form .fill-btn,
+.av-form .outline-btn {
+    width: 100%;
+}
+
+.av-form .form-nav {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
 
 .search-box {
     margin-left: auto;

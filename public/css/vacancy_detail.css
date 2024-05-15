@@ -13,6 +13,45 @@ body {
     z-index: 1;
 }
 
+.av-form {
+    display: flex;
+    position: fixed;
+    top: 25%;
+    z-index: 2;
+}
+
+.av-form .x-btn {
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 999px;
+
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.av-form .x-btn:hover {
+    background-color: #F3F6F6;
+}
+
+
+.av-form .fill-btn,
+.av-form .outline-btn {
+    width: 100%;
+}
+
+.av-form .form-nav {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
 
 .breakpoints {
     display: flex;
@@ -129,45 +168,6 @@ body {
     border-radius: 999px;
     color: #242424;
     font-weight: 700;
-}
-
-.av-form {
-    display: flex;
-    position: fixed;
-    top: 25%;
-    z-index: 2;
-}
-
-.av-form .x-btn {
-    cursor: pointer;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 48px;
-    height: 48px;
-    border-radius: 999px;
-
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.av-form .x-btn:hover {
-    background-color: #F3F6F6;
-}
-
-
-.av-form .fill-btn,
-.av-form .outline-btn {
-    width: 100%;
-}
-
-.av-form .form-nav {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
 }
 
 .breakpoints,
