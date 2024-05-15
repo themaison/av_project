@@ -12,8 +12,9 @@
                 event.preventDefault();
         
                 var vacancyId = $(this).data('vacancy-id');
-                console.log(vacancyId);
-                var button = $(this);
+                // console.log(vacancyId);
+                var toggleFavoriteBtn = $(this);
+                var favoriteIcon = toggleFavoriteBtn.find('#favorite-icon');
         
                 $.ajax({
                     url: '/vacancy/' + vacancyId + '/toggle_favorite',
@@ -23,9 +24,11 @@
                     },
                     success: function(data) {
                         if (data.favorite) {
-                            button.removeClass('outline-btn').addClass('hint-btn');
+                            toggleFavoriteBtn.removeClass('outline-btn').addClass('hint-btn');
+                            favoriteIcon.attr('src', '{{ asset('icons/gray/gem.svg') }}');
                         } else {
-                            button.removeClass('hint-btn').addClass('outline-btn');
+                            toggleFavoriteBtn.removeClass('hint-btn').addClass('outline-btn');
+                            favoriteIcon.attr('src', '{{ asset('icons/black/gem.svg') }}');
                         }
                     }
                 });
@@ -183,10 +186,14 @@
                             @endif
                             
                             @php
-                                $isFavorite = Auth::user()->favorites()->where('id', $vacancy->id)->exists();
+                                $isFavorite = Auth::user()->favorites()->where('vacancy_id', $vacancy->id)->exists();
                             @endphp
 
-                            <a class="favorite-btn {{ $isFavorite ? 'resbled-btn square-btn' : 'outline-btn square-btn' }}" data-vacancy-id="{{ $vacancy->id }}"><img src="{{  asset('icons/black/gem.svg') }}" alt="icon"></a>
+                            <div 
+                            class="favorite-btn {{ $isFavorite ? 'hint-btn square-btn' : 'outline-btn square-btn' }}" 
+                            data-vacancy-id="{{ $vacancy->id }}">
+                                <img id="favorite-icon" src="{{  $isFavorite ? asset('icons/gray/gem.svg') : asset('icons/black/gem.svg') }}" alt="icon">
+                            </div>
                                                         
                         </div>
                         @else
