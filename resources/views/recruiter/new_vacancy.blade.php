@@ -3,6 +3,8 @@
 @section('title', 'новая вакансия')
 
 @section('content')
+
+    <link href="{{asset('css/av-cover.css?v=').time()}}" rel="stylesheet">
     <link href="{{asset('css/av-form.css?v=').time()}}" rel="stylesheet">
     <link href="{{asset('css/new_vacancy.css?v=').time()}}" rel="stylesheet">
 

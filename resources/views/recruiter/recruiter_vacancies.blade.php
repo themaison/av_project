@@ -3,8 +3,8 @@
 @section('title', 'мои вакансии')
 
 @section('content')
-    <link href="{{asset('css/av-cover.css?v=').time()}}" rel="stylesheet">
     <link href="{{asset('css/av-list.css?v=').time()}}" rel="stylesheet">
+    <link href="{{asset('css/av-cover.css?v=').time()}}" rel="stylesheet">
     <link href="{{asset('css/av-form.css?v=').time()}}" rel="stylesheet">
     <link href="{{ asset('css/recruiter_vacancies.css?v=').time() }}" rel="stylesheet">
 
@@ -111,8 +111,8 @@
             <h2 style="--i: 0">мои вакансии</h2>
             <p style="--i: 1">редактируйте и создавайте новые вакансии<br>
             привлекайте новых соискателей и отбирайте лучших из них</p>
-            {{-- <button class="fill-btn"><img src="{{ asset('icons/light/brush.svg') }}" alt="icon"><a href="/recruiter_vacancies/new_vacancy/">создать вакансию</a></button> --}}
-            <a href="/recruiter_vacancies/new_vacancy/" class="new-vacancy-btn" style="--i: 2">
+            
+            <a href="/recruiter_vacancies/new_vacancy/" class="fill-btn new-vacancy-btn" style="--i: 2">
                 <img src="{{ asset('icons/light/brush.svg') }}" alt="icon">
                 создать вакансию
             </a>
@@ -184,6 +184,12 @@
                     <div class="form-title">
                         <h3>Редактировать вакансию</h3>
                     </div>
+            <div class="x-btn">
+                <img src="{{ asset('icons/black/x.svg') }}" alt="icon">
+            </div>
+            <div class="form-title">
+                <h3>{{ $vacancy->title }}</h3>
+            </div>
 
                     <div class="av-form-module" id="module_1">
                         <div class="inputs-block">

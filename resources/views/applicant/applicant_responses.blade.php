@@ -75,7 +75,7 @@
             </div>
 
             <div class="form-title">
-                <h3>Сопроводительно письмо</h3>
+                <h3>сопроводительное письмо</h3>
 
                 {{-- <div class="av-icon">
                     <img src="{{  asset('icons/black/hand-tap.svg') }}" alt="icon">
@@ -143,7 +143,7 @@
                         </a> --}}
 
                         @isset($response->cover_letter)
-                            <div class="fill-btn square-btn secondary-btn cover-letter-btn" data-letter="{{ $response->cover_letter }}">
+                            <div class="hint-btn square-btn cover-letter-btn" data-letter="{{ $response->cover_letter }}">
                                 <img src="{{ asset('icons/gray/newspaper.svg') }}" alt="icon">
                             </div>
                         @endisset

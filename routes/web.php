@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VacancyController;
 use App\Http\Controllers\ResponseController;
+use App\Http\Controllers\FavoriteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,11 +27,10 @@ Route::get('/register_form', [UserController::class, 'register_form'])->name('re
 Route::post('/register_form/register', [UserController::class, 'register']);
 
 Route::get('/recruiter_vacancies', [VacancyController::class, 'recruiter_vacancies_index']);
-Route::delete('/recruiter_vacancies/vacancy_delete/{id}', [VacancyController::class, 'vacancy_delete']);
 Route::get('/recruiter_vacancies/new_vacancy', [VacancyController::class, 'new_vacancy_index']);
 Route::post('/recruiter_vacancies/new_vacancy/create', [VacancyController::class, 'create_vacancy']);
 Route::put('/recruiter_vacancies/{id}/vacancy_update', [VacancyController::class, 'vacancy_update']);
-// Route::post('/recruiter_vacancies/new_vacancy/create/upload_cover', [VacancyController::class, 'upload_cover']);
+Route::delete('/recruiter_vacancies/vacancy_delete/{id}', [VacancyController::class, 'vacancy_delete']);
 
 Route::get('/vacancy_detail/{id}', [VacancyController::class, 'vacancy_detail_index']);
 Route::put('/vacancy_detail/{id}/vacancy_update', [VacancyController::class,'vacancy_update']);
@@ -49,14 +49,5 @@ Route::delete('/responses/delete_response/{id}', [ResponseController::class, 'de
 
 Route::get('/recruiter_responses', [ResponseController::class, 'recruiter_responses_index']);
 
-// Route::get('/recruiter_responses', function () {
-//     return view('recruiter/recruiter_responses');
-// });
-
-Route::get('/favorite_vacancies', function () {
-    return view('applicant/favorite_vacancies');
-});
-
-// Route::get('/applicant_responses', function () {
-//     return view('applicant/applicant_responses');
-// });
+Route::get('/favorite_vacancies', [FavoriteController::class, 'favorite_vacancies_index']);
+Route::post('/vacancy/{id}/toggle_favorite', [FavoriteController::class, 'toggle_favorite']);

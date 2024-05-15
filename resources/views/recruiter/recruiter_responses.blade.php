@@ -53,7 +53,7 @@
             </div>
 
             <div class="form-title">
-                <h3 style="--i: 0">Сопроводительно письмо</h3>
+                <h3 style="--i: 0">сопроводительное письмо</h3>
 
                 {{-- <div class="av-icon">
                     <img src="{{  asset('icons/black/hand-tap.svg') }}" alt="icon">
@@ -76,11 +76,11 @@
                             <p class="hint-text">{{ $response->created_at }}</p>
                         </div>
         
-                        {{-- <div class="elem">
+                        <div class="elem">
                             <p class="{{ $response->status == 'не рассмотрено' ? 'stat0' : ($response->status == 'принят' ? 'stat1' : 'stat2') }}">
                                 {{ $response->status }}
                             </p>
-                        </div> --}}
+                        </div>
 
                         <a href="/vacancy_detail/{{ $response->vacancy->id }}" class="elem">       
                             @if($response->vacancy->cover)
@@ -90,7 +90,9 @@
                             @else
                                 <div class="cover"></div>
                             @endif
-                            <p>{{ $response->vacancy->title }}</p>                
+
+                            <p>{{ $response->vacancy->title }}</p>  
+
                             {{-- <div class="icon-block">
                                 <img src="{{ asset('icons/blue/castle.svg') }}" alt="icon">
                                 <p>{{ $response->vacancy->company }}</p>
@@ -109,7 +111,7 @@
                         </a>
 
                         @isset($response->cover_letter)
-                            <div class="fill-btn square-btn secondary-btn cover-letter-btn" data-letter="{{ $response->cover_letter }}">
+                            <div class="hint-btn square-btn cover-letter-btn" data-letter="{{ $response->cover_letter }}">
                                 <img src="{{ asset('icons/gray/newspaper.svg') }}" alt="icon">
                             </div>
                         @endisset
@@ -117,6 +119,7 @@
                     </div>
         
                     <div class="outline-btn square-btn set-status-btn" data-response-id="{{ $response->id }}">
+                        {{-- this button for set status from dropdown menu --}}
                         <img src="{{ asset('icons/black/3-dots-vertical.svg') }}" alt="icon">
                     </div>
                 </div>

@@ -120,6 +120,24 @@
         });
 
         $(document).ready(function() {
+
+            var previousUrl = document.referrer;
+            var linkText;
+
+            if (previousUrl.includes('vacancy_list')) {
+                linkText = 'список вакансий';
+            } else if (previousUrl.includes('recruiter_vacancies')) {
+                linkText = 'мои вакансии';
+            } else if (previousUrl.includes('response')) {
+                linkText = 'отклики';
+            } else if (previousUrl.includes('favorite')) {
+                linkText = 'избранное';
+            } else {
+                linkText = 'вакансии';
+            }
+
+            $('#previous-page').text(linkText);
+
             $('.response-btn').click(function() {
                 $('#response-form').fadeIn().css('display', 'flex');
                 $('.blur-bg').fadeIn();
@@ -153,6 +171,29 @@
                             $('.response-btn').replaceWith('<div class="resbled-btn">уже откликнулись</div>');
                         } else {
                             // Обработка ошибок
+                        }
+                    }
+                });
+            });
+
+            $('#favorite-btn').click(function(event) {
+                event.preventDefault();
+
+                var vacancyId = $(this).data('vacancy-id');
+
+                $.ajax({
+                    url: '/vacancy/' + vacancyId + '/toggle_favorite',
+                    method: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(data) {
+                        if (data.favorite) {
+                            $('#favorite-btn').removeClass('outline-btn').addClass('resbled-btn');
+                            $('#favorite-icon').attr('src', '{{ asset('icons/gray/gem.svg') }}');
+                        } else {
+                            $('#favorite-btn').removeClass('resbled-btn').addClass('outline-btn');
+                            $('#favorite-icon').attr('src', '{{ asset('icons/black/gem.svg') }}');
                         }
                     }
                 });
@@ -342,7 +383,7 @@
         </form>
 
         <div class="breakpoints" style="--i: 0">
-            <a href="{{ url()->previous() }}">вакансии</a>
+            <a href="{{ url()->previous() }}" id="previous-page"></a>
             <p>/</p>
             <a href="/vacancy_detail/{{  $vacancy->id }}" id="current-page">{{ $vacancy->title }}</a>
         </div>
@@ -359,22 +400,35 @@
             <div class="vacancy-actions">
                 <h2 class="vacancy-title" style="--i: 2">{{ $vacancy->title }}</h2>
                 @auth
+
                     <div class="double-btn" style="--i: 3">
                         @if(auth()->user()->hasRole('applicant'))
+
                             @if(auth()->user()->responses()->where('vacancy_id', $vacancy->id)->exists())
-                                <div class="resbled-btn">уже откликнулись</div>
+                                <div class="hint-btn">уже откликнулись</div>
                             @else
                                 <div class="fill-btn response-btn">откликнуться</div>
                             @endif
-                            {{-- <div class="fill-btn response-btn">откликнуться</div> --}}
-                            <a href="/applicant/add_to_favorite" class="outline-btn square-btn"><img src="{{  asset('icons/black/gem.svg') }}" alt="icon"></a>
-                        @elseif(auth()->user()->hasRole('recruiter'))                            
-                            <button type="button" class="fill-btn edit-btn" id="edit-btn" data-toggle="modal" data-target="#edit-modal">
-                                <img src="{{ asset('icons/light/pencil.svg') }}" alt="icon">
-                                редактировать
-                            </button>
+                            
+                            @php
+                                $isFavorite = Auth::user()->favorites()->where('vacancy_id', $vacancy->id)->exists();
+                            @endphp
+
+                            <div 
+                            id="favorite-btn" 
+                            href="/vacancy/{{ $vacancy->id }}/toggle_favorite" 
+                            class="{{ $isFavorite ? 'hint-btn square-btn' : 'outline-btn square-btn' }}" 
+                            data-vacancy-id="{{ $vacancy->id }}">
+                            
+                                <img id="favorite-icon" src="{{  $isFavorite ? asset('icons/gray/gem.svg') : asset('icons/black/gem.svg') }}" alt="icon">
+                            </div>
+
+
+                        @elseif(auth()->user()->hasRole('recruiter'))
+                            <a class="fill-btn" href="/vacancies/{{ $vacancy->id }}/edit"><img src="{{  asset('icons/light/pencil.svg') }}" alt="icon">редактировать</a>
                         @endif
                     </div>
+
                 @endauth
             </div>
 

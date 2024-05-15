@@ -32,9 +32,8 @@ class User extends Authenticatable
     {
         return $this->hasOne(Profile::class);
     }
-
-    public function vacancies()
-    {
+    
+    public function vacancies() {
         return $this->hasMany(Vacancy::class);
     }
 
@@ -43,10 +42,10 @@ class User extends Authenticatable
         return $this->hasMany(Response::class);
     }
 
-    // public function favorites()
-    // {
-    //     return $this->hasMany(Favorite::class);
-    // }
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
 
     public function responsedVacancies()
     {

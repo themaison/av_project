@@ -6,14 +6,50 @@
     <link href="{{asset('css/av-cover.css?v=').time()}}" rel="stylesheet">
     <link href="{{asset('css/vacancy_list.css?v=').time()}}" rel="stylesheet">
 
+    <script>
+        $(document).ready(function() {
+            $('.favorite-btn').click(function(event) {
+                event.preventDefault();
+        
+                var vacancyId = $(this).data('vacancy-id');
+                console.log(vacancyId);
+                var button = $(this);
+        
+                $.ajax({
+                    url: '/vacancy/' + vacancyId + '/toggle_favorite',
+                    method: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(data) {
+                        if (data.favorite) {
+                            button.removeClass('outline-btn').addClass('hint-btn');
+                        } else {
+                            button.removeClass('hint-btn').addClass('outline-btn');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
     <div class="content">
         <div class="search-box">
+            @php
+                function getVacancyWord($number) {
+                    $cases = array (2, 0, 1, 1, 1, 2);
+                    $words = array('вакансия', 'вакансии', 'вакансий');
+                    $index = ($number % 100 > 4 && $number % 100 < 20) ? 2 : $cases[min($number % 10, 5)];
+                    return $words[$index];
+                }
+            @endphp
+
             @if(isset($vacancies) && $vacancies->count() > 0)
                 <h2 style="--i: 0">«{{ $query }}»</h2>
-                <p style="--i: 1">найдено <span>{{ $vacancies->count() }} вакансий</span></p>
+                <p style="--i: 1">найдено <span>{{ $vacancies->count() }} {{ getVacancyWord($vacancies->count()) }}</span></p>
             @else
                 <h2 style="--i: 0">Пусто</h2>
-                <p style="--i: 1">по запросу ничего не найдено</span></p>
+                <p class="hint-text" style="--i: 1">по запросу ничего не найдено</span></p>
             @endif
             
             <form action="/vacancy_list" method="GET"  style="--i: 3">
@@ -141,17 +177,22 @@
                         @if(auth()->user()->hasRole('applicant'))
                         <div class="actions">
                             @if(auth()->user()->responses()->where('vacancy_id', $vacancy->id)->exists())
-                                <div class="resbled-btn">уже откликнулись</div>
+                                <div class="hint-btn">уже откликнулись</div>
                             @else
                                 <div class="fill-btn response-btn">откликнуться</div>
                             @endif
-                            {{-- <button class="fill-btn">откликнуться</button> --}}
-                            <button class="outline-btn square-btn"><img src="{{ asset('icons/black/gem.svg') }}" alt="icon"></button>
+                            
+                            @php
+                                $isFavorite = Auth::user()->favorites()->where('id', $vacancy->id)->exists();
+                            @endphp
+
+                            <a class="favorite-btn {{ $isFavorite ? 'resbled-btn square-btn' : 'outline-btn square-btn' }}" data-vacancy-id="{{ $vacancy->id }}"><img src="{{  asset('icons/black/gem.svg') }}" alt="icon"></a>
+                                                        
                         </div>
                         @else
                         <div class="actions">
-                            <div class="resbled-btn">откликнуться</div>
-                            <button class="resbled-btn square-btn"><img src="{{ asset('icons/gray/gem.svg') }}" alt="icon"></button>
+                            <div class="hint-btn">откликнуться</div>
+                            <div class="hint-btn square-btn"><img src="{{ asset('icons/gray/gem.svg') }}" alt="icon"></div>
                         </div>
                         @endif
 
@@ -159,8 +200,8 @@
 
                         @guest
                         <div class="actions">
-                            <div class="resbled-btn">откликнуться</div>
-                            <button class="resbled-btn square-btn"><img src="{{ asset('icons/gray/gem.svg') }}" alt="icon"></button>
+                            <div class="hint-btn">откликнуться</div>
+                            <div class="hint-btn square-btn"><img src="{{ asset('icons/gray/gem.svg') }}" alt="icon"></div>
                         </div>
                         @endguest
 
