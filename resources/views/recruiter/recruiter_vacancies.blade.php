@@ -177,19 +177,13 @@
                 <form class="av-form" method="POST" enctype="multipart/form-data" action="/recruiter_vacancies/{{ $vacancy->id }}/vacancy_update" style="display: none">
                     @csrf
                     @method('PUT')
-
-                    <button type="submit" class="x-btn">
+                    
+                    <div class="x-btn">
                         <img src="{{ asset('icons/black/x.svg') }}" alt="icon">
-                    </button>
-                    <div class="form-title">
-                        <h3>Редактировать вакансию</h3>
                     </div>
-            <div class="x-btn">
-                <img src="{{ asset('icons/black/x.svg') }}" alt="icon">
-            </div>
-            <div class="form-title">
-                <h3>{{ $vacancy->title }}</h3>
-            </div>
+                    <div class="form-title">
+                        <h3>{{ $vacancy->title }}</h3>
+                    </div>
 
                     <div class="av-form-module" id="module_1">
                         <div class="inputs-block">
