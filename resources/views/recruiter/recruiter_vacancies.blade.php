@@ -11,8 +11,8 @@
     <script>
         window.onload = function() {
             var modules = document.getElementsByClassName('av-form-module');
-            var nextButtons = document.getElementsByClassName('fill-btn');
-            var backButtons = document.getElementsByClassName('outline-btn');
+            var nextButtons = document.getElementsByClassName('next-btn');
+            var prevButtons = document.getElementsByClassName('prev-btn');
             var currentModule = 0;
 
             // Начальное состояние: показываем только первый модуль
@@ -34,8 +34,8 @@
             }
 
             // Обработчики событий для кнопок "Назад"
-            for (var i = 0; i < backButtons.length; i++) {
-                backButtons[i].addEventListener('click', function(e) {
+            for (var i = 0; i < prevButtons.length; i++) {
+                prevButtons[i].addEventListener('click', function(e) {
                     e.preventDefault();
                     if (currentModule > 0) {
                         modules[currentModule].style.display = 'none';
@@ -133,7 +133,7 @@
             <p style="--i: 1">редактируйте и создавайте новые вакансии<br>
             привлекайте новых соискателей и отбирайте лучших из них</p>
             
-            <a href="/recruiter_vacancies/new_vacancy/" class="fill-btn new-vacancy-btn" style="--i: 2">
+            <a href="/recruiter_vacancies/new_vacancy" class="fill-btn" style="--i: 2">
                 <img src="{{ asset('icons/light/brush.svg') }}" alt="icon">
                 создать вакансию
             </a>
@@ -154,12 +154,12 @@
 
                         <a href="/vacancy_detail/{{ $vacancy->id }}" class="elem">
                             @if($vacancy->cover)
+                            
                                 <div class="cover">
                                     <img src="{{ Storage::url($vacancy->cover) }}" alt="cover">
                                 </div>
-                                {{-- <img src="{{ Storage::url($vacancy->cover) }}" class="av-img"> --}}
+
                             @else
-                                {{-- <div class="av-img"></div> --}}
                                 <div class="cover"></div>
                             @endif
                             <p>{{ $vacancy->title }}</p>
@@ -266,7 +266,7 @@
                 </div>
     
                 <div class="form-nav">
-                    <button class="fill-btn">дальше<img src="{{ asset('icons/light/angle-right.svg') }}" alt="icon"></button>
+                    <div class="fill-btn next-btn">дальше<img src="{{ asset('icons/light/angle-right.svg') }}" alt="icon"></div>
                 </div>
             </div>
 
@@ -297,9 +297,10 @@
                 </div>
     
                 <div class="form-nav">
-                    <button class="outline-btn">назад</button>
-                    <button class="fill-btn">дальше<img src="{{ asset('icons/light/angle-right.svg') }}" alt="icon"></button>
+                    <div class="outline-btn prev-btn">назад</div>
+                    <div class="fill-btn next-btn">дальше<img src="{{ asset('icons/light/angle-right.svg') }}" alt="icon"></div>
                 </div>
+
             </div>    
 
             <div class="av-form-module" id="module_3">
@@ -323,9 +324,9 @@
                 </div>
     
                 <div class="form-nav">
-                    <button type="button" class="outline-btn">
+                    <div type="button" class="outline-btn prev-btn">
                         назад
-                    </button>
+                    </div>
                     <button type="submit" class="fill-btn" id="edit-submit">
                         сохранить
                     </button>
