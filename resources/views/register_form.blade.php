@@ -7,7 +7,7 @@
     <link href="{{asset('css/register.css?v=').time()}}" rel="stylesheet">
 
     <div class="content">
-        <form class="av-form" method="POST" action="/register_form/register" enctype="multipart/form-data"  style="--i: 0">
+        <form class="av-form" method="POST" action="/register/confirm" enctype="multipart/form-data"  style="--i: 0">
             @csrf
 
             <div class="form-title">
@@ -75,7 +75,7 @@
 
             <div class="form-nav">
                 <button type="sybmit" class="fill-btn">войти</button>
-                <p>Есть аккаунт? <a href="/login_form">Войти</a></p>
+                <p>Есть аккаунт? <a href="/login">Войти</a></p>
             </div>
 
         </form>

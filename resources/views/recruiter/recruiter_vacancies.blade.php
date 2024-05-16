@@ -82,6 +82,7 @@
         $(document).ready(function() {
             $('.edit-btn').click(function() {
                 var vacancyId = $(this).data('vacancy-id');
+                console.log(vacancyId);
                 // var vacancyTitle = $(this).data('vacancyTitle');
                 $('.av-form').attr('action', '/vacancy/' + vacancyId + '/update');
                 $('.av-form').fadeIn().css('display', 'flex');
@@ -199,7 +200,7 @@
                 </div>
 
                 <div class="form-title">
-                    <h3>{{ $vacancy->title }}</h3>
+                    <h3>title</h3>
                 </div>
 
                 <div class="av-form-module" id="module_1">

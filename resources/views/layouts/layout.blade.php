@@ -22,8 +22,8 @@
             </a>
             <div class="menu">
                 @guest
-                    <a href="/login_form" class="w-head-btn">войти</a>
-                    <a href="/register_form">зарегистрироваться</a>
+                    <a href="/login" class="w-head-btn">войти</a>
+                    <a href="/register">зарегистрироваться</a>
                 @endguest
         
                 @auth
