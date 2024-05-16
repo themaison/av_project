@@ -8,119 +8,77 @@
     <link href="{{asset('css/vacancy_detail.css?v=').time()}}" rel="stylesheet">
 
     <script>
-        window.onload = function() {
-            var modules = document.getElementsByClassName('av-form-module');
-            var nextButtons = document.getElementsByClassName('fill-btn');
-            var backButtons = document.getElementsByClassName('outline-btn');
-            var currentModule = 0;
+        // window.onload = function() {
+        //     var modules = document.getElementsByClassName('av-form-module');
+        //     var nextButtons = document.getElementsByClassName('next-btn');
+        //     var prevButtons = document.getElementsByClassName('prev-btn');
+        //     var currentModule = 0;
 
-            // Начальное состояние: показываем только первый модуль
-            for (var i = 0; i < modules.length; i++) {
-                modules[i].style.display = 'none';
-            }
-            modules[currentModule].style.display = 'flex';
+        //     // Начальное состояние: показываем только первый модуль
+        //     for (var i = 0; i < modules.length; i++) {
+        //         modules[i].style.display = 'none';
+        //     }
+        //     modules[currentModule].style.display = 'flex';
 
-            // Обработчики событий для кнопок "Дальше"
-            for (var i = 0; i < nextButtons.length - 1; i++) { // Исключаем последнюю кнопку "Дальше"
-                nextButtons[i].addEventListener('click', function(e) {
-                    e.preventDefault();
-                    if (currentModule < modules.length - 1) {
-                        modules[currentModule].style.display = 'none';
-                        currentModule++;
-                        modules[currentModule].style.display = 'flex';
-                    }
-                });
-            }
+        //     // Обработчики событий для кнопок "Дальше"
+        //     for (var i = 0; i < nextButtons.length - 1; i++) { // Исключаем последнюю кнопку "Дальше"
+        //         nextButtons[i].addEventListener('click', function(e) {
+        //             e.preventDefault();
+        //             if (currentModule < modules.length - 1) {
+        //                 modules[currentModule].style.display = 'none';
+        //                 currentModule++;
+        //                 modules[currentModule].style.display = 'flex';
+        //             }
+        //         });
+        //     }
 
-            // Обработчики событий для кнопок "Назад"
-            for (var i = 0; i < backButtons.length; i++) {
-                backButtons[i].addEventListener('click', function(e) {
-                    e.preventDefault();
-                    if (currentModule > 0) {
-                        modules[currentModule].style.display = 'none';
-                        currentModule--;
-                        modules[currentModule].style.display = 'flex';
-                    }
-                });
-            }
+        //     // Обработчики событий для кнопок "Назад"
+        //     for (var i = 0; i < prevButtons.length; i++) {
+        //         prevButtons[i].addEventListener('click', function(e) {
+        //             e.preventDefault();
+        //             if (currentModule > 0) {
+        //                 modules[currentModule].style.display = 'none';
+        //                 currentModule--;
+        //                 modules[currentModule].style.display = 'flex';
+        //             }
+        //         });
+        //     }
 
-            var cover_input = document.querySelector('.file-cover');
+        //     var cover_input = document.querySelector('.file-cover');
 
-            // Обработчик события изменения input
-            cover_input.addEventListener('change', function(e) {
-                var file = e.target.files[0];
-                var reader = new FileReader();
+        //     // Обработчик события изменения input
+        //     cover_input.addEventListener('change', function(e) {
+        //         var file = e.target.files[0];
+        //         var reader = new FileReader();
 
-                reader.onloadend = function() {
-                    // Удаляем старый элемент .cover, если он существует
-                    var old_cover = document.querySelector('.cover');
-                    if (old_cover) {
-                        old_cover.remove();
-                    }
+        //         reader.onloadend = function() {
+        //             // Удаляем старый элемент .cover, если он существует
+        //             var old_cover = document.querySelector('.cover');
+        //             if (old_cover) {
+        //                 old_cover.remove();
+        //             }
 
-                    // Создаем новый элемент div и img
-                    var cover_div = document.createElement('div');
-                    cover_div.className = 'cover';
-                    var cover_img = document.createElement('img');
-                    cover_img.src = reader.result;
+        //             // Создаем новый элемент div и img
+        //             var cover_div = document.createElement('div');
+        //             cover_div.className = 'cover';
+        //             var cover_img = document.createElement('img');
+        //             cover_img.src = reader.result;
 
-                    // Добавляем img в div
-                    cover_div.appendChild(cover_img);
+        //             // Добавляем img в div
+        //             cover_div.appendChild(cover_img);
 
-                    // Добавляем div в DOM после .hint-text
-                    var anchor = document.querySelector('#file_cover-text');
-                    anchor.insertAdjacentElement('afterend', cover_div);
-                }
+        //             // Добавляем div в DOM после .hint-text
+        //             var anchor = document.querySelector('#file_cover-text');
+        //             anchor.insertAdjacentElement('afterend', cover_div);
+        //         }
 
-                if (file) {
-                    reader.readAsDataURL(file);
-                }
-            });
-        }
+        //         if (file) {
+        //             reader.readAsDataURL(file);
+        //         }
+        //     });
+        // }
         
         $(document).ready(function() {
-            $('.edit-btn').click(function() {
-                $('#edit-form').fadeIn().css('display', 'flex');
-                $('.blur-bg').fadeIn();
-                $('body').addClass('no-scroll'); // Добавить класс к body
-            });
-
-            $('.x-btn').click(function() {
-                $('#edit-form').fadeOut();
-                $('.blur-bg').fadeOut();
-                $('body').removeClass('no-scroll'); // Удалить класс из body
-            });
-
-            $(document).mouseup(function (e) {
-                var container = $("#edit-form");
-                if (container.has(e.target).length === 0){
-                    container.fadeOut();
-                    $('.blur-bg').fadeOut();
-                    $('body').removeClass('no-scroll'); // Удалить класс из body
-                }
-            });
-        
-            $('#edit-form').on('submit', function(e) {
-                e.preventDefault();
-
-                $.ajax({
-                    url: $(this).attr('action'),
-                    method: 'PUT',
-                    data: $(this).serialize(),
-                    success: function(response) {
-                        if (response.success) {
-                            $('#edit-form').fadeOut();
-                            $('.blur-bg').fadeOut();
-                        } else {
-                            // Обработка ошибок
-                        }
-                    }
-                });
-            });
-        });
-
-        $(document).ready(function() {
-
             var previousUrl = document.referrer;
             var linkText;
 
@@ -138,24 +96,24 @@
 
             $('.previous-page').text(linkText);
 
-            $('.response-btn').click(function() {
+            $('#response-btn').click(function() {
+                $('#response-form').attr('action', '/vacancy/' + {{ $vacancy->id }} + '/create_response');
                 $('#response-form').fadeIn().css('display', 'flex');
                 $('.blur-bg').fadeIn();
             });
-        
+
             $('.cancel-btn, .x-btn').click(function() {
-                $('#response-form').fadeOut();
+                $('.av-form').fadeOut();
                 $('.blur-bg').fadeOut();
-                $('#response-form textarea[name="cover_letter"]').val('');
             });
         
-            $(document).mouseup(function (e) {
-                var container = $(".av-form");
-                if (container.has(e.target).length === 0){
-                    container.fadeOut();
-                    $('.blur-bg').fadeOut();
-                }
-            });
+            // $(document).mouseup(function (e) {
+            //     var container = $(".av-form");
+            //     if (container.has(e.target).length === 0){
+            //         container.fadeOut();
+            //         $('.blur-bg').fadeOut();
+            //     }
+            // });
         
             $('#response-form').on('submit', function(e) {
                 e.preventDefault();
@@ -167,8 +125,8 @@
                     success: function(response) {
                         if (response.success) {
                             $('#response-form').fadeOut();
+                            $('#response-btn').replaceWith('<div class="hint-btn">уже откликнулись</div>');
                             $('.blur-bg').fadeOut();
-                            $('.response-btn').replaceWith('<div class="hint-btn">уже откликнулись</div>');
                         } else {
                             // Обработка ошибок
                         }
@@ -176,7 +134,7 @@
                 });
             });
 
-            $('.favorite-btn').click(function(event) {
+            $('#favorite-btn').click(function(event) {
                 event.preventDefault();
 
                 var vacancyId = $(this).data('vacancy-id');
@@ -189,7 +147,7 @@
                     },
                     success: function(data) {
                         if (data.favorite) {
-                            $('#favorite-btn').removeClass('outline-btn').addClass('resbled-btn');
+                            $('#favorite-btn').removeClass('outline-btn').addClass('hint-btn');
                             $('#favorite-icon').attr('src', '{{ asset('icons/gray/gem.svg') }}');
                         } else {
                             $('#favorite-btn').removeClass('resbled-btn').addClass('outline-btn');
@@ -198,14 +156,47 @@
                     }
                 });
             });
+
+            // $('.edit-btn').click(function() {
+            //     $('#edit-form').fadeIn().css('display', 'flex');
+            //     $('.blur-bg').fadeIn();
+            //     $('body').addClass('no-scroll'); // Добавить класс к body
+            // });
+
+            // $('.x-btn').click(function() {
+            //     $('#response-form').fadeOut();
+            //     $('#edit-form').fadeOut();
+            //     $('.blur-bg').fadeOut();
+            //     $('body').removeClass('no-scroll'); // Удалить класс из body
+            // });
+        
+            // $('#edit-form').on('submit', function(e) {
+            //     e.preventDefault();
+
+            //     $.ajax({
+            //         url: $(this).attr('action'),
+            //         method: 'PUT',
+            //         data: $(this).serialize(),
+            //         success: function(response) {
+            //             if (response.success) {
+            //                 $('#edit-form').fadeOut();
+            //                 $('.blur-bg').fadeOut();
+            //             } else {
+            //                 // Обработка ошибок
+            //             }
+            //         }
+            //     });
+            // });
         });
     </script>
         
+    
+
     <div class="content">
 
         <div class="blur-bg"></div>
 
-        <form class="av-form" id="edit-form" method="POST" enctype="multipart/form-data" action="/vacancy_detail/{{ $vacancy->id }}/" style="display: none">
+        {{-- <form class="av-form" id="edit-form" method="POST" enctype="multipart/form-data" action="/vacancy_detail/{{ $vacancy->id }}/" style="display: none">
             @csrf
             @method('PUT')
 
@@ -274,7 +265,10 @@
                 </div>
     
                 <div class="form-nav">
-                    <button class="fill-btn">дальше<img src="{{ asset('icons/light/angle-right.svg') }}" alt="icon"></button>
+                    <button class="fill-btn next-btn">
+                        далее
+                        <img src="{{ asset('icons/light/angle-right.svg') }}" alt="icon">
+                    </button>
                 </div>
             </div>
 
@@ -283,7 +277,8 @@
     
                     <div class="input-block">
                         <label for="responsibilities">обязанности</label>
-                        <textarea name="responsibilities" placeholder="введите текст...">{{ $vacancy->responsibilities }}</textarea>
+                        <textarea 
+                        name="responsibilities" placeholder="введите текст...">{{ $vacancy->responsibilities }}</textarea>
                     </div>
 
                     <div class="input-block">
@@ -305,8 +300,13 @@
                 </div>
     
                 <div class="form-nav">
-                    <button class="outline-btn">назад</button>
-                    <button class="fill-btn">дальше<img src="{{ asset('icons/light/angle-right.svg') }}" alt="icon"></button>
+                    <button class="outline-btn prev-btn">
+                        назад
+                    </button>
+                    <button class="fill-btn next-btn">
+                        далее
+                        <img src="{{ asset('icons/light/angle-right.svg') }}" alt="icon">
+                    </button>
                 </div>
             </div>    
 
@@ -331,7 +331,7 @@
                 </div>
     
                 <div class="form-nav">
-                    <button type="button" class="outline-btn">
+                    <button class="outline-btn prev-btn">
                         назад
                     </button>
                     <button type="submit" class="fill-btn" id="edit-submit">
@@ -341,11 +341,9 @@
 
             </div>
 
-        </form>
+        </form> --}}
 
-        <div class="blur-bg"></div>
-
-        <form class="av-form" id="response-form" method="POST" action="/vacancy_detail/{{ $vacancy->id }}/create_response" enctype="multipart/form-data"  style="display: none">
+        <form class="av-form" id="response-form" method="POST" action="/vacancy/{{ $vacancy->id }}/create_response" enctype="multipart/form-data"  style="display: none">
             @csrf
 
             <div class="x-btn">
@@ -407,7 +405,7 @@
                             @if(auth()->user()->responses()->where('vacancy_id', $vacancy->id)->exists())
                                 <div class="hint-btn">уже откликнулись</div>
                             @else
-                                <div class="fill-btn response-btn">откликнуться</div>
+                                <div class="fill-btn" id="response-btn">откликнуться</div>
                             @endif
                             
                             @php

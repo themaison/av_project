@@ -53,11 +53,11 @@
             </div>
 
             <div class="form-title">
-                <h3 style="--i: 0">сопроводительное письмо</h3>
+                <h3 style="--i: 0">Сопр. письмо</h3>
 
-                {{-- <div class="av-icon">
-                    <img src="{{  asset('icons/black/hand-tap.svg') }}" alt="icon">
-                </div> --}}
+                <div class="av-icon">
+                    <img src="{{ asset('icons/black/newspaper.svg') }}" alt="icon">
+                </div>
 
             </div>
 

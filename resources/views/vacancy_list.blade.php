@@ -14,7 +14,6 @@
                 var vacancyTitle = $(this).data('vacancyTitle');
 
                 $('.av-form').attr('action', '/vacancy/' + vacancyId + '/create_response');
-                // $('.av-form h3[name="form-title"]').text("Отклик · " + vacancyTitle);
                 $('.av-form').fadeIn().css('display', 'flex');
                 $('.blur-bg').fadeIn();
             });

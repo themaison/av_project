@@ -75,11 +75,11 @@
             </div>
 
             <div class="form-title">
-                <h3>сопроводительное письмо</h3>
+                <h3>Сопр. письмо</h3>
 
-                {{-- <div class="av-icon">
-                    <img src="{{  asset('icons/black/hand-tap.svg') }}" alt="icon">
-                </div> --}}
+                <div class="av-icon">
+                    <img src="{{ asset('icons/black/newspaper.svg') }}" alt="icon">
+                </div>
 
             </div>
 
@@ -120,27 +120,6 @@
                             </div>
 
                         </a>
-        
-                        {{-- <a href="/vacancy_detail/{{ $response->vacancy->id }}" class="group-elem">
-                            
-                            <div class="elem">
-                                @if($response->vacancy->cover)
-                                    <div class="cover">
-                                        <img src="{{ Storage::url($response->vacancy->cover) }}" alt="cover">
-                                    </div>
-                                @else
-                                    <div class="cover"></div>
-                                @endif
-                                <p>{{ $response->vacancy->title }}</p>
-                                
-                                <div class="icon-block">
-                                    <img src="{{ asset('icons/blue/castle.svg') }}" alt="icon">
-                                    <p>{{ $response->vacancy->company }}</p>
-                                </div>
-
-                            </div>
-
-                        </a> --}}
 
                         @isset($response->cover_letter)
                             <div class="hint-btn square-btn cover-letter-btn" data-letter="{{ $response->cover_letter }}">
