@@ -164,7 +164,7 @@
                             <img src="{{ asset('icons/gray/x.svg') }}" alt="icon">
                         </div>
                         <div class="fill-btn square-btn accept-btn" data-response-id="{{ $response->id }}">
-                            <img src="{{ asset('icons/special/checkmark.svg') }}" alt="icon">
+                            <img src="{{ asset('icons/blue/checkmark.svg') }}" alt="icon">
                         </div>
                     </div>
                 </div>
