@@ -33,7 +33,7 @@ Route::put('/recruiter_vacancies/{id}/vacancy_update', [VacancyController::class
 Route::delete('/recruiter_vacancies/vacancy_delete/{id}', [VacancyController::class, 'vacancy_delete']);
 
 Route::get('/vacancy_detail/{id}', [VacancyController::class, 'vacancy_detail_index']);
-Route::put('/vacancy_detail/{id}/vacancy_update', [VacancyController::class,'vacancy_update']);
+Route::put('/vacancy_detail/{id}', [VacancyController::class,'vacancy_detail_update']);
 
 Route::get('/vacancy_search', [VacancyController::class, 'vacancy_search_index']);
 Route::get('/vacancy_list', [VacancyController::class, 'search']);

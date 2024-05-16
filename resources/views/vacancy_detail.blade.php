@@ -100,23 +100,23 @@
                 }
             });
         
-            // $('#edit-form').on('submit', function(e) {
-            //     e.preventDefault();
+            $('#edit-form').on('submit', function(e) {
+                e.preventDefault();
 
-            //     $.ajax({
-            //         url: $(this).attr('action'),
-            //         method: 'PUT',
-            //         data: $(this).serialize(),
-            //         success: function(response) {
-            //             if (response.success) {
-            //                 $('#edit-form').fadeOut();
-            //                 $('.blur-bg').fadeOut();
-            //             } else {
-            //                 // Обработка ошибок
-            //             }
-            //         }
-            //     });
-            // });
+                $.ajax({
+                    url: $(this).attr('action'),
+                    method: 'PUT',
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        if (response.success) {
+                            $('#edit-form').fadeOut();
+                            $('.blur-bg').fadeOut();
+                        } else {
+                            // Обработка ошибок
+                        }
+                    }
+                });
+            });
         });
 
         $(document).ready(function() {
@@ -205,11 +205,11 @@
 
         <div class="blur-bg"></div>
 
-        <form class="av-form" id="edit-form" method="POST" enctype="multipart/form-data" action="/vacancy_detail/{{ $vacancy->id }}/vacancy_update" style="display: none">
+        <form class="av-form" id="edit-form" method="POST" enctype="multipart/form-data" action="/vacancy_detail/{{ $vacancy->id }}/" style="display: none">
             @csrf
             @method('PUT')
 
-            <button type="submit" class="x-btn">
+            <button class="x-btn">
                 <img src="{{ asset('icons/black/x.svg') }}" alt="icon">
             </button>
             <div class="form-title">
@@ -415,17 +415,21 @@
                             @endphp
 
                             <div 
-                            id="favorite-btn" 
-                            href="/vacancy/{{ $vacancy->id }}/toggle_favorite" 
-                            class="{{ $isFavorite ? 'hint-btn square-btn' : 'outline-btn square-btn' }}" 
-                            data-vacancy-id="{{ $vacancy->id }}">
+                                id="favorite-btn" 
+                                href="/vacancy/{{ $vacancy->id }}/toggle_favorite" 
+                                class="{{ $isFavorite ? 'hint-btn square-btn' : 'outline-btn square-btn' }}" 
+                                data-vacancy-id="{{ $vacancy->id }}">
                             
                                 <img id="favorite-icon" src="{{  $isFavorite ? asset('icons/gray/gem.svg') : asset('icons/black/gem.svg') }}" alt="icon">
                             </div>
 
 
                         @elseif(auth()->user()->hasRole('recruiter'))
-                            <a class="fill-btn" href="/vacancies/{{ $vacancy->id }}/edit"><img src="{{  asset('icons/light/pencil.svg') }}" alt="icon">редактировать</a>
+                            <button type="button" class="fill-btn edit-btn" data-toggle="modal" data-target="#edit-modal">
+                                <img src="{{ asset('icons/light/pencil.svg') }}" alt="icon">
+                                редактировать
+                            </button>
+                            {{-- <a class="fill-btn" href="/vacancies/{{ $vacancy->id }}/edit"><img src="{{  asset('icons/light/pencil.svg') }}" alt="icon">редактировать</a> --}}
                         @endif
                     </div>
 

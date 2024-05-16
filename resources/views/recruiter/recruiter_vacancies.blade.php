@@ -177,7 +177,7 @@
                 <form class="av-form" method="POST" enctype="multipart/form-data" action="/recruiter_vacancies/{{ $vacancy->id }}/vacancy_update" style="display: none">
                     @csrf
                     @method('PUT')
-                    
+
                     <div class="x-btn">
                         <img src="{{ asset('icons/black/x.svg') }}" alt="icon">
                     </div>
@@ -243,7 +243,7 @@
                         </div>
             
                         <div class="form-nav">
-                            <button class="fill-btn">дальше<img src="{{ asset('icons/light/angle-right.svg') }}" alt="icon"></button>
+                            <button class="fill-btn ">дальше<img src="{{ asset('icons/light/angle-right.svg') }}" alt="icon"></button>
                         </div>
                     </div>
 

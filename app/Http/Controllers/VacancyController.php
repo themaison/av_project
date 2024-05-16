@@ -119,18 +119,37 @@ class VacancyController extends Controller
         $vacancy->requirements = $request->requirements;
         $vacancy->conditions = $request->conditions;
         $vacancy->skills = $request->skills;
-        // $vacancy->title = $request->input('title');
-        // $vacancy->company = $request->input('company');
-        // $vacancy->city = $request->input('city');
-        // $vacancy->salary_from = $request->input('salary-from');
-        // $vacancy->salary_to = $request->input('salary-to');
-        // $vacancy->experience = $request->input('experience');
-        // $vacancy->responsibilities = $request->input('responsibilities');
-        // $vacancy->requirements = $request->input('requirements');
-        // $vacancy->conditions = $request->input('conditions');
-        // $vacancy->skills = $request->input('skills');
 
         $vacancy->save();
         return redirect('/recruiter_vacancies');
+    }
+
+    public function vacancy_detail_update(Request $request, $id)
+    {
+        // Проверка входных данных
+        $request->validate([
+            'title' => 'required',
+            'company' => 'required',
+            'city' => 'required',
+        ]);
+
+        $vacancy = Vacancy::find($id);
+        if ($request->hasFile('cover')) {
+            $path = $request->file('cover')->store('public/images/covers');
+            $vacancy->cover = $path;
+        }
+        $vacancy->title = $request->title;
+        $vacancy->company = $request->company;
+        $vacancy->city = $request->city;
+        $vacancy->salary_from = $request->input('salary-from');
+        $vacancy->salary_to = $request->input('salary-to');
+        $vacancy->experience = $request->experience;
+        $vacancy->responsibilities = $request->responsibilities;
+        $vacancy->requirements = $request->requirements;
+        $vacancy->conditions = $request->conditions;
+        $vacancy->skills = $request->skills;
+
+        $vacancy->save();
+        // return redirect('/vacancy_detail/{id}');
     }
 }

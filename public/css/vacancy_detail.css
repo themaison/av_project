@@ -131,11 +131,8 @@ body {
     font-weight: 700;
 }
 
-.av-form {
-    display: flex;
-    position: fixed;
+#response-form {
     top: 25%;
-    z-index: 2;
 }
 
 .av-form .x-btn {
