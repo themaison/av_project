@@ -94,7 +94,7 @@ body {
     background-color: transparent;
 }
 
-.reject-btn::after {
+.double-button>*:not(:last-child) {
     content: "";
     position: absolute;
 

@@ -238,6 +238,10 @@
                     <p>У вас пока нет вакансий.</p>
                 @endforelse
             </div>
+
+            <div class="pagination" style="--i: 3">
+                {{ $vacancies->links() }}
+            </div>
       
             <form class="av-form" method="POST" enctype="multipart/form-data" action="" style="{{ $errors->any() ? 'display: flex' : 'display: none' }}">
                 @csrf

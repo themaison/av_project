@@ -27,16 +27,13 @@
             var acceptButton = $('.accept-btn');
             var rejectButton = $('.reject-btn');
 
-            console.log(acceptButton);
-
-            // Обработчики событий для кнопок "Принять" и "Отказать"
-            acceptButton.on('click', function(e) {
+            $(document).on('click', '.accept-btn', function(e) {
                 e.preventDefault();
                 var responseId = $(this).data('response-id'); // Получаем id отклика
                 setStatus(responseId, 'принят');
             });
 
-            rejectButton.on('click', function(e) {
+            $(document).on('click', '.reject-btn', function(e) {
                 e.preventDefault();
                 var responseId = $(this).data('response-id'); // Получаем id отклика
                 setStatus(responseId, 'отказ');
@@ -68,6 +65,19 @@
                             } else if (status == 'отказ') {
                                 statusElement.addClass('stat2');
                             }
+
+                            // Обновляем состояние кнопок
+                            var acceptButton = $('.accept-btn[data-response-id="' + responseId + '"]');
+                            var rejectButton = $('.reject-btn[data-response-id="' + responseId + '"]');
+                            
+                            if (status == 'принят') {
+                                rejectButton.show();
+                                acceptButton.hide();
+                            } else if (status == 'отказ') {
+                                acceptButton.show();
+                                rejectButton.hide();
+                            }
+
                         } else {
                             // Обработка ошибок
                         }
@@ -113,6 +123,7 @@
             @foreach($responses as $index => $response)
                 <div class="l-row" style="--i: {{ $index + 3}}">
                     <div class="set">
+
                         <div class="elem">
                             <p class="hint-text">{{ $response->created_at }}</p>
                         </div>
@@ -160,20 +171,23 @@
                     </div>
 
                     <div class="double-btn">
+                        @if ($response->status !== 'отказ')
                         <div class="fill-btn square-btn reject-btn" data-response-id="{{ $response->id }}">
                             <img src="{{ asset('icons/gray/x.svg') }}" alt="icon">
                         </div>
+                        @elseif ($response->status !== 'принят')
                         <div class="fill-btn square-btn accept-btn" data-response-id="{{ $response->id }}">
                             <img src="{{ asset('icons/blue/checkmark.svg') }}" alt="icon">
                         </div>
+                        @endif
                     </div>
                 </div>
             @endforeach
         </div>
-        @endif
-    
+
         <div class="pagination" style="--i: 3">
             {{ $responses->links() }}
         </div>
+        @endif
     </div>
 @endsection

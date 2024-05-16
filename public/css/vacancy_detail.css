@@ -213,9 +213,9 @@ body {
 .cover,
 .vacancy-content-block {
     opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 0.5s ease-out forwards;
-    animation-delay: calc(var(--i) * 0.07s);
+    transform: translateY(10px);
+    animation: fadeInUp 0.2s ease-out forwards;
+    animation-delay: calc(var(--i) * 0.05s);
 }
 
 @keyframes fadeInUp {
@@ -237,11 +237,13 @@ body.no-scroll {
     /* overflow: scroll; Добавить прокрутку */
     overflow-x: hidden;
     overflow-y: auto;
-    max-height: 90%; /* Ограничить максимальную высоту */
+    max-height: 90%;
+    /* Ограничить максимальную высоту */
     justify-content: start;
     /* -ms-overflow-style: none;
     scrollbar-width: none; */
 }
+
 /* .modal::-webkit-scrollbar {
     display: none;
 } */
