@@ -38,7 +38,15 @@ class ResponseController extends Controller
 
         return response()->json(['success' => true]);
     }
+    
+    public function delete_response($id)
+    {
+        $vacancy = Response::find($id);
+        $vacancy->delete();
 
+        return redirect('/applicant_responses');
+    }
+    
     public function set_status(Request $request, $id)
     {
         $response = Response::find($id);
@@ -50,13 +58,5 @@ class ResponseController extends Controller
         }
 
         return response()->json(['success' => false]);
-    }
-
-    public function delete_response($id)
-    {
-        $vacancy = Response::find($id);
-        $vacancy->delete();
-
-        return redirect('/applicant_responses');
     }
 }

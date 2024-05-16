@@ -17,44 +17,19 @@
                 $('.blur-bg').fadeIn();
             });
         
-            // $('.delete-btn').click(function() {
-            //     var responseId = $(this).data('response-id');
-            //     var row = $(this).closest('.l-row');
-            //     var avList = $('.av-list');
-
-            //     $.ajax({
-            //         url: '/responses/delete_response/' + responseId,
-            //         method: 'DELETE',
-            //         data: {
-            //             _token: '{{ csrf_token() }}'
-            //         },
-            //         success: function(response) {
-            //             if (response.success) {
-            //                 row.remove();
-            //                 if (!avList.children('.l-row')) {
-            //                     $('<p class="hint-text">откликов нет</p>').insertBefore('.av-list');
-            //                     avList.remove();
-            //                 }
-            //             } else {
-            //                 // Обработка ошибок
-            //             }
-            //         }
-            //     });
-            // });
-        
             $('.cancel-btn, .x-btn').click(function() {
                 $('.av-form').fadeOut();
                 $('.letter-form').fadeOut();
                 $('.blur-bg').fadeOut();
             });
         
-            $(document).mouseup(function (e) {
-                var container = $(".av-form, .letter-form");
-                if (container.has(e.target).length === 0){
-                    container.fadeOut();
-                    $('.blur-bg').fadeOut();
-                }
-            });
+            // $(document).mouseup(function (e) {
+            //     var container = $(".av-form, .letter-form");
+            //     if (container.has(e.target).length === 0){
+            //         container.fadeOut();
+            //         $('.blur-bg').fadeOut();
+            //     }
+            // });
         });
     </script>     
 
