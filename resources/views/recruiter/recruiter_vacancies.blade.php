@@ -22,7 +22,7 @@
             modules[currentModule].style.display = 'flex';
 
             // Обработчики событий для кнопок "Дальше"
-            for (var i = 0; i < nextButtons.length - 1; i++) { // Исключаем последнюю кнопку "Дальше"
+            for (var i = 0; i < nextButtons.length; i++) { // Исключаем последнюю кнопку "Дальше"
                 nextButtons[i].addEventListener('click', function(e) {
                     e.preventDefault();
                     if (currentModule < modules.length - 1) {
@@ -78,9 +78,80 @@
                 }
             });
         }
+
+        // $(document).ready(function() {
+        //     // function updateVacanciesList() {
+        //     //     $.ajax({
+        //     //         url: '/recruiter_vacancies', // URL вашего API для получения списка вакансий
+        //     //         method: 'GET',
+        //     //         success: function(response) {
+        //     //             // Предполагается, что сервер возвращает HTML-разметку списка вакансий
+        //     //             // Заменить текущий список новым
+        //     //             // $('.av-list').empty.append(response);
+                        
+        //     //         },
+        //     //         error: function(jqXHR, textStatus, errorThrown) {
+        //     //             // Обработать ошибки
+        //     //             alert('Произошла ошибка при обновлении списка вакансий: ' + errorThrown);
+        //     //         }
+        //     //     });
+        //     // }
+
+        //     $('.av-form').on('submit', function(e) {
+        //         e.preventDefault();
+
+        //         var formData = new FormData(this);
+
+        //         $.ajax({
+        //             url: $(this).attr('action'),
+        //             method: 'POST',
+        //             data: formData,
+        //             processData: false,
+        //             contentType: false,
+        //             success: function(response) {
+        //                 // Закрыть форму и обновить список вакансий
+        //                 $('.av-form').fadeOut();
+        //                 $('.blur-bg').fadeOut();
+        //                 $('body').removeClass('no-scroll');
+        //                 // return redirect('/recruiter_vacancies');
+        //                 // updateVacanciesList(); // Обновить список вакансий
+        //             },
+        //             error: function(jqXHR, textStatus, errorThrown) {
+        //                 alert('Произошла ошибка при обновлении вакансии: ' + errorThrown);
+        //             }
+        //         });
+        //     });
+
+        //     $('.edit-btn').click(function() {
+        //         var vacancyId = $(this).data('vacancy-id');
+        //         $('.av-form').attr('action', '/vacancy/' + vacancyId + '/update');
+        //         $('.av-form').fadeIn().css('display', 'flex');
+        //         $('.blur-bg').fadeIn();
+        //         $('body').addClass('no-scroll');
+        //     });
+
+        //     $('.cancel-btn, .x-btn').click(function() {
+        //         $('.av-form').fadeOut();
+        //         $('.blur-bg').fadeOut();
+        //         $('body').removeClass('no-scroll');
+        //     });
+
+        //     $(document).mouseup(function (e) {
+        //         var container = $(".av-form");
+        //         if (container.has(e.target).length === 0){
+        //             container.fadeOut();
+        //             $('.blur-bg').fadeOut();
+        //             $('body').removeClass('no-scroll'); // Удалить класс из body
+        //         }
+        //     });
+        // });
+
         
         $(document).ready(function() {
             $('.edit-btn').click(function() {
+                var vacancyId = $(this).data('vacancy-id');
+                // var vacancyTitle = $(this).data('vacancyTitle');
+                $('.av-form').attr('action', '/vacancy/' + vacancyId + '/update');
                 $('.av-form').fadeIn().css('display', 'flex');
                 $('.blur-bg').fadeIn();
                 $('body').addClass('no-scroll'); // Добавить класс к body
@@ -92,14 +163,34 @@
                 $('body').removeClass('no-scroll'); // Удалить класс из body
             });
 
-            // $(document).mouseup(function (e) {
-            //     var container = $(".av-form");
-            //     if (container.has(e.target).length === 0){
-            //         container.fadeOut();
-            //         $('.blur-bg').fadeOut();
-            //         $('body').removeClass('no-scroll'); // Удалить класс из body
-            //     }
-            // });
+            $(document).mouseup(function (e) {
+                var container = $(".av-form");
+                if (container.has(e.target).length === 0){
+                    container.fadeOut();
+                    $('.blur-bg').fadeOut();
+                    $('body').removeClass('no-scroll'); // Удалить класс из body
+                }
+            });
+        
+            $('.av-form').on('edit-submit', function(e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: $(this).attr('action'),
+                    method: 'PUT',
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        if (response.success) {
+                            $('.av-form').fadeOut();
+                            $('.blur-bg').fadeOut();
+                            $('body').removeClass('no-scroll');
+                            // return redirect('/recruiter_vacancies');
+                        } else {
+                            // Обработка ошибок
+                        }
+                    }
+                });
+            });
         });
     </script>
 
@@ -131,26 +222,26 @@
                                 <p class="hint-text">{{ $vacancy->created_at }}</p>
                             </div>
 
-                        <a href="/vacancy_detail/{{ $vacancy->id }}" class="elem">
-                            @if($vacancy->cover)
-                            
-                                <div class="cover">
-                                    <img src="{{ Storage::url($vacancy->cover) }}" alt="cover">
-                                </div>
+                            <a href="/vacancy_detail/{{ $vacancy->id }}" class="elem">
+                                @if($vacancy->cover)
+                                
+                                    <div class="cover">
+                                        <img src="{{ Storage::url($vacancy->cover) }}" alt="cover">
+                                    </div>
 
-                            @else
-                                <div class="cover"></div>
-                            @endif
-                            <p>{{ $vacancy->title }}</p>
-                        </a>
+                                @else
+                                    <div class="cover"></div>
+                                @endif
+                                <p>{{ $vacancy->title }}</p>
+                            </a>
 
                         </div>
 
                         <div class="double-btn">
-                            <button type="button" class="outline-btn edit-btn" id="edit-btn" data-toggle="modal" data-target="#edit-modal">
+                            <div class="outline-btn edit-btn" data-vacancy-id="{{ $vacancy->id }}">
                                 <img src="{{ asset('icons/black/pencil.svg') }}" alt="icon">
                                 изменить
-                            </button>
+                            </div>
 
                             <form action="/recruiter_vacancies/vacancy_delete/{{ $vacancy->id }}" method="POST">
                                 @csrf
@@ -167,7 +258,7 @@
                 @endforelse
             </div>
       
-            <form class="av-form" method="POST" enctype="multipart/form-data" action="/recruiter_vacancies/{{ $vacancy->id }}/vacancy_update" style="display: none">
+            <form class="av-form" method="POST" enctype="multipart/form-data" action="" style="display: none">
                 @csrf
                 @method('PUT')
 
@@ -230,12 +321,11 @@
                             <label for="experience">опыт работы (год)</label>
                             <input type="number" name="experience" value="{{ $vacancy->experience }}" placeholder="введите число">
                         </div>
-
                     </div>
 
                     <div class="form-nav">
                         <button class="fill-btn next-btn">
-                            дальше
+                            далее
                             <img src="{{ asset('icons/light/angle-right.svg') }}" alt="icon">
                         </button>
                     </div>
@@ -270,12 +360,11 @@
                             назад
                         </button>
                         <button class="fill-btn next-btn">
-                            дальше
+                            далее
                             <img src="{{ asset('icons/light/angle-right.svg') }}" alt="icon">
                         </button>
                     </div>
-
-                </div>    
+                </div>
 
                 <div class="av-form-module" id="module_3">
                     <div class="inputs-block">

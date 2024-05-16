@@ -8,75 +8,75 @@
     <link href="{{asset('css/vacancy_detail.css?v=').time()}}" rel="stylesheet">
 
     <script>
-        // window.onload = function() {
-        //     var modules = document.getElementsByClassName('av-form-module');
-        //     var nextButtons = document.getElementsByClassName('next-btn');
-        //     var prevButtons = document.getElementsByClassName('prev-btn');
-        //     var currentModule = 0;
+        window.onload = function() {
+            var modules = document.getElementsByClassName('av-form-module');
+            var nextButtons = document.getElementsByClassName('next-btn');
+            var prevButtons = document.getElementsByClassName('prev-btn');
+            var currentModule = 0;
 
-        //     // Начальное состояние: показываем только первый модуль
-        //     for (var i = 0; i < modules.length; i++) {
-        //         modules[i].style.display = 'none';
-        //     }
-        //     modules[currentModule].style.display = 'flex';
+            // Начальное состояние: показываем только первый модуль
+            for (var i = 0; i < modules.length; i++) {
+                modules[i].style.display = 'none';
+            }
+            modules[currentModule].style.display = 'flex';
 
-        //     // Обработчики событий для кнопок "Дальше"
-        //     for (var i = 0; i < nextButtons.length - 1; i++) { // Исключаем последнюю кнопку "Дальше"
-        //         nextButtons[i].addEventListener('click', function(e) {
-        //             e.preventDefault();
-        //             if (currentModule < modules.length - 1) {
-        //                 modules[currentModule].style.display = 'none';
-        //                 currentModule++;
-        //                 modules[currentModule].style.display = 'flex';
-        //             }
-        //         });
-        //     }
+            // Обработчики событий для кнопок "Дальше"
+            for (var i = 0; i < nextButtons.length; i++) { // Исключаем последнюю кнопку "Дальше"
+                nextButtons[i].addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (currentModule < modules.length - 1) {
+                        modules[currentModule].style.display = 'none';
+                        currentModule++;
+                        modules[currentModule].style.display = 'flex';
+                    }
+                });
+            }
 
-        //     // Обработчики событий для кнопок "Назад"
-        //     for (var i = 0; i < prevButtons.length; i++) {
-        //         prevButtons[i].addEventListener('click', function(e) {
-        //             e.preventDefault();
-        //             if (currentModule > 0) {
-        //                 modules[currentModule].style.display = 'none';
-        //                 currentModule--;
-        //                 modules[currentModule].style.display = 'flex';
-        //             }
-        //         });
-        //     }
+            // Обработчики событий для кнопок "Назад"
+            for (var i = 0; i < prevButtons.length; i++) {
+                prevButtons[i].addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (currentModule > 0) {
+                        modules[currentModule].style.display = 'none';
+                        currentModule--;
+                        modules[currentModule].style.display = 'flex';
+                    }
+                });
+            }
 
-        //     var cover_input = document.querySelector('.file-cover');
+            var cover_input = document.querySelector('.file-cover');
 
-        //     // Обработчик события изменения input
-        //     cover_input.addEventListener('change', function(e) {
-        //         var file = e.target.files[0];
-        //         var reader = new FileReader();
+            // Обработчик события изменения input
+            cover_input.addEventListener('change', function(e) {
+                var file = e.target.files[0];
+                var reader = new FileReader();
 
-        //         reader.onloadend = function() {
-        //             // Удаляем старый элемент .cover, если он существует
-        //             var old_cover = document.querySelector('.cover');
-        //             if (old_cover) {
-        //                 old_cover.remove();
-        //             }
+                reader.onloadend = function() {
+                    // Удаляем старый элемент .cover, если он существует
+                    var old_cover = document.querySelector('.cover');
+                    if (old_cover) {
+                        old_cover.remove();
+                    }
 
-        //             // Создаем новый элемент div и img
-        //             var cover_div = document.createElement('div');
-        //             cover_div.className = 'cover';
-        //             var cover_img = document.createElement('img');
-        //             cover_img.src = reader.result;
+                    // Создаем новый элемент div и img
+                    var cover_div = document.createElement('div');
+                    cover_div.className = 'cover';
+                    var cover_img = document.createElement('img');
+                    cover_img.src = reader.result;
 
-        //             // Добавляем img в div
-        //             cover_div.appendChild(cover_img);
+                    // Добавляем img в div
+                    cover_div.appendChild(cover_img);
 
-        //             // Добавляем div в DOM после .hint-text
-        //             var anchor = document.querySelector('#file_cover-text');
-        //             anchor.insertAdjacentElement('afterend', cover_div);
-        //         }
+                    // Добавляем div в DOM после .hint-text
+                    var anchor = document.querySelector('#file_cover-text');
+                    anchor.insertAdjacentElement('afterend', cover_div);
+                }
 
-        //         if (file) {
-        //             reader.readAsDataURL(file);
-        //         }
-        //     });
-        // }
+                if (file) {
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
         
         $(document).ready(function() {
             var previousUrl = document.referrer;
@@ -96,6 +96,15 @@
 
             $('.previous-page').text(linkText);
 
+            $('.edit-btn').click(function() {
+                var vacancyId = $(this).data('vacancy-id');
+                // var vacancyTitle = $(this).data('vacancyTitle');
+                $('#edit-form').attr('action', '/vacancy/' + vacancyId + '/update');
+                $('#edit-form').fadeIn().css('display', 'flex');
+                $('.blur-bg').fadeIn();
+                $('body').addClass('no-scroll'); // Добавить класс к body
+            });
+
             $('#response-btn').click(function() {
                 $('#response-form').attr('action', '/vacancy/' + {{ $vacancy->id }} + '/create_response');
                 $('#response-form').fadeIn().css('display', 'flex');
@@ -105,15 +114,17 @@
             $('.cancel-btn, .x-btn').click(function() {
                 $('.av-form').fadeOut();
                 $('.blur-bg').fadeOut();
+                $('body').removeClass('no-scroll');
             });
         
-            // $(document).mouseup(function (e) {
-            //     var container = $(".av-form");
-            //     if (container.has(e.target).length === 0){
-            //         container.fadeOut();
-            //         $('.blur-bg').fadeOut();
-            //     }
-            // });
+            $(document).mouseup(function (e) {
+                var container = $(".av-form");
+                if (container.has(e.target).length === 0){
+                    container.fadeOut();
+                    $('.blur-bg').fadeOut();
+                    $('body').removeClass('no-scroll');
+                }
+            });
         
             $('#response-form').on('submit', function(e) {
                 e.preventDefault();
@@ -127,6 +138,7 @@
                             $('#response-form').fadeOut();
                             $('#response-btn').replaceWith('<div class="hint-btn">уже откликнулись</div>');
                             $('.blur-bg').fadeOut();
+                            $('body').removeClass('no-scroll');
                         } else {
                             // Обработка ошибок
                         }
@@ -152,6 +164,25 @@
                         } else {
                             $('#favorite-btn').removeClass('resbled-btn').addClass('outline-btn');
                             $('#favorite-icon').attr('src', '{{ asset('icons/black/gem.svg') }}');
+                        }
+                    }
+                });
+            });
+
+            $('#edit-form').on('edit-submit', function(e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: $(this).attr('action'),
+                    method: 'PUT',
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        if (response.success) {
+                            $('#edit-form').fadeOut();
+                            $('.blur-bg').fadeOut();
+                            // return redirect('/recruiter_vacancies');
+                        } else {
+                            // Обработка ошибок
                         }
                     }
                 });
@@ -196,7 +227,7 @@
 
         <div class="blur-bg"></div>
 
-        {{-- <form class="av-form" id="edit-form" method="POST" enctype="multipart/form-data" action="/vacancy_detail/{{ $vacancy->id }}/" style="display: none">
+        <form class="av-form" id="edit-form" method="POST" enctype="multipart/form-data" action="" style="display: none">
             @csrf
             @method('PUT')
 
@@ -204,7 +235,7 @@
                 <img src="{{ asset('icons/black/x.svg') }}" alt="icon">
             </button>
             <div class="form-title">
-                <h3>Редактировать вакансию</h3>
+                <h3>{{ $vacancy->title }}</h3>
             </div>
 
             <div class="av-form-module" id="module_1">
@@ -327,7 +358,6 @@
                         <p class="error-text cover-error"></p>
 
                     </div>
-
                 </div>
     
                 <div class="form-nav">
@@ -338,10 +368,8 @@
                         сохранить
                     </button>
                 </div>
-
             </div>
-
-        </form> --}}
+        </form>
 
         <form class="av-form" id="response-form" method="POST" action="/vacancy/{{ $vacancy->id }}/create_response" enctype="multipart/form-data"  style="display: none">
             @csrf
@@ -423,11 +451,10 @@
 
 
                         @elseif(auth()->user()->hasRole('recruiter'))
-                            <button type="button" class="fill-btn edit-btn" data-toggle="modal" data-target="#edit-modal">
+                            <div class="fill-btn edit-btn" data-vacancy-id="{{ $vacancy->id }}">
                                 <img src="{{ asset('icons/light/pencil.svg') }}" alt="icon">
-                                редактировать
-                            </button>
-                            {{-- <a class="fill-btn" href="/vacancies/{{ $vacancy->id }}/edit"><img src="{{  asset('icons/light/pencil.svg') }}" alt="icon">редактировать</a> --}}
+                                изменить
+                            </div>
                         @endif
                     </div>
 
