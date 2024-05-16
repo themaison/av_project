@@ -41,7 +41,7 @@ Route::get('/vacancy_list', [VacancyController::class, 'search']);
 Route::get('/profile/{id}', [ProfileController::class, 'index']);
 Route::post('/profile/{id}/update-profile', [ProfileController::class, 'update_profile']);
 
-Route::post('/vacancy_detail/{id}/create_response', [ResponseController::class, 'create_response']);
+Route::post('/vacancy/{id}/create_response', [ResponseController::class, 'create_response']);
 
 
 Route::get('/applicant_responses', [ResponseController::class, 'applicant_responses_index']);

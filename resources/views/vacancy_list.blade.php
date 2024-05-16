@@ -4,16 +4,61 @@
 
 @section('content')
     <link href="{{asset('css/av-cover.css?v=').time()}}" rel="stylesheet">
+    <link href="{{asset('css/av-form.css?v=').time()}}" rel="stylesheet">
     <link href="{{asset('css/vacancy_list.css?v=').time()}}" rel="stylesheet">
 
     <script>
         $(document).ready(function() {
+            $('.response-btn').click(function() {
+                var vacancyId = $(this).data('vacancy-id');
+                var vacancyTitle = $(this).data('vacancyTitle');
+
+                $('.av-form').attr('action', '/vacancy/' + vacancyId + '/create_response');
+                // $('.av-form h3[name="form-title"]').text("Отклик · " + vacancyTitle);
+                $('.av-form').fadeIn().css('display', 'flex');
+                $('.blur-bg').fadeIn();
+            });
+
+            $('.cancel-btn, .x-btn').click(function() {
+                $('.av-form').fadeOut();
+                $('.blur-bg').fadeOut();
+                $('.av-form textarea[name="cover_letter"]').val('');
+            });
+        
+            $(document).mouseup(function (e) {
+                var container = $(".av-form");
+                if (container.has(e.target).length === 0){
+                    container.fadeOut();
+                    $('.blur-bg').fadeOut();
+                }
+            });
+        
+            $('.av-form').on('submit', function(e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: $(this).attr('action'),
+                    method: 'POST',
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        if (response.success) {
+                            $('.av-form').fadeOut();
+                            $('.blur-bg').fadeOut();
+                            $('.response-btn').replaceWith('<div class="hint-btn">уже откликнулись</div>');
+                        } else {
+                            // Обработка ошибок
+                        }
+                    }
+                });
+            });
+
             $('.favorite-btn').click(function(event) {
                 event.preventDefault();
         
                 var vacancyId = $(this).data('vacancy-id');
-                console.log(vacancyId);
-                var button = $(this);
+                // console.log(vacancyId);
+                var toggleFavoriteBtn = $(this);
+                var favoriteIcon = toggleFavoriteBtn.find('#favorite-icon');
         
                 $.ajax({
                     url: '/vacancy/' + vacancyId + '/toggle_favorite',
@@ -23,9 +68,11 @@
                     },
                     success: function(data) {
                         if (data.favorite) {
-                            button.removeClass('outline-btn').addClass('hint-btn');
+                            toggleFavoriteBtn.removeClass('outline-btn').addClass('hint-btn');
+                            favoriteIcon.attr('src', '{{ asset('icons/gray/gem.svg') }}');
                         } else {
-                            button.removeClass('hint-btn').addClass('outline-btn');
+                            toggleFavoriteBtn.removeClass('hint-btn').addClass('outline-btn');
+                            favoriteIcon.attr('src', '{{ asset('icons/black/gem.svg') }}');
                         }
                     }
                 });
@@ -63,6 +110,45 @@
                 </div>
             </form>
         </div>
+
+        <div class="blur-bg"></div>
+
+        <form class="av-form" method="POST" action="" enctype="multipart/form-data"  style="display: none">
+            @csrf
+
+            <div class="x-btn">
+                <img src="{{ asset('icons/black/x.svg') }}" alt="icon">
+            </div>
+
+            <div class="form-title">
+                <h3>Отклик</h3>
+
+                <div class="av-icon">
+                    <img src="{{  asset('icons/black/hand-tap.svg') }}" alt="icon">
+                </div>
+
+            </div>
+
+            <div class="inputs-block">
+
+                <div class="input-block">
+                    <label for="cover_letter">сопроводительное письмо</label>
+                    <textarea name="cover_letter" placeholder="введите текст...">{{ old('cover_letter') }}</textarea>
+                    
+                    @error('cover_letter')
+                        <p class="error-text">{{ $message }}</p>
+                    @enderror
+
+                </div>
+
+            </div>
+
+            <div class="form-nav">
+                <div class="outline-btn cancel-btn">отменить</div>
+                <button type="sybmit" class="fill-btn">откликнуться</button>
+            </div>
+
+        </form>
 
         @if(isset($vacancies))
         <div class="vacancies" id="vacancies">
@@ -179,14 +265,18 @@
                             @if(auth()->user()->responses()->where('vacancy_id', $vacancy->id)->exists())
                                 <div class="hint-btn">уже откликнулись</div>
                             @else
-                                <div class="fill-btn response-btn">откликнуться</div>
+                                <div class="fill-btn response-btn" data-vacancy-id="{{ $vacancy->id }}">откликнуться</div>
                             @endif
                             
                             @php
-                                $isFavorite = Auth::user()->favorites()->where('id', $vacancy->id)->exists();
+                                $isFavorite = Auth::user()->favorites()->where('vacancy_id', $vacancy->id)->exists();
                             @endphp
 
-                            <a class="favorite-btn {{ $isFavorite ? 'resbled-btn square-btn' : 'outline-btn square-btn' }}" data-vacancy-id="{{ $vacancy->id }}"><img src="{{  asset('icons/black/gem.svg') }}" alt="icon"></a>
+                            <div 
+                            class="favorite-btn {{ $isFavorite ? 'hint-btn square-btn' : 'outline-btn square-btn' }}" 
+                            data-vacancy-id="{{ $vacancy->id }}">
+                                <img id="favorite-icon" src="{{  $isFavorite ? asset('icons/gray/gem.svg') : asset('icons/black/gem.svg') }}" alt="icon">
+                            </div>
                                                         
                         </div>
                         @else

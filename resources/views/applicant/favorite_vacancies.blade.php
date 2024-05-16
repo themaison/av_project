@@ -7,6 +7,36 @@
     <link href="{{asset('css/vacancy_list.css?v=').time()}}" rel="stylesheet">
     {{-- <link href="{{asset('css/favorite_vacancies.css?v=').time()}}" rel="stylesheet"> --}}
 
+    <script>
+        $(document).ready(function() {
+            $('.favorite-btn').click(function(event) {
+                event.preventDefault();
+        
+                var vacancyId = $(this).data('vacancy-id');
+                // console.log(vacancyId);
+                var toggleFavoriteBtn = $(this);
+                var favoriteIcon = toggleFavoriteBtn.find('#favorite-icon');
+        
+                $.ajax({
+                    url: '/vacancy/' + vacancyId + '/toggle_favorite',
+                    method: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(data) {
+                        if (data.favorite) {
+                            toggleFavoriteBtn.removeClass('outline-btn').addClass('hint-btn');
+                            favoriteIcon.attr('src', '{{ asset('icons/gray/gem.svg') }}');
+                        } else {
+                            toggleFavoriteBtn.removeClass('hint-btn').addClass('outline-btn');
+                            favoriteIcon.attr('src', '{{ asset('icons/black/gem.svg') }}');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
     <div class="content">
         @php
             function getWordForm($number, $words) {
@@ -24,6 +54,45 @@
             <p class="hint-text" style="--i: 1">вы еще не добавили ни одной вакансии</span></p>
             @endif
         </div>
+
+        <div class="blur-bg"></div>
+
+        <form class="av-form" method="POST" action="/vacancy/vacancy->id/create_response" enctype="multipart/form-data"  style="display: none">
+            @csrf
+
+            <div class="x-btn">
+                <img src="{{ asset('icons/black/x.svg') }}" alt="icon">
+            </div>
+
+            <div class="form-title">
+                <h3>Отклик</h3>
+
+                <div class="av-icon">
+                    <img src="{{  asset('icons/black/hand-tap.svg') }}" alt="icon">
+                </div>
+
+            </div>
+
+            <div class="inputs-block">
+
+                <div class="input-block">
+                    <label for="cover_letter">сопроводительное письмо</label>
+                    <textarea name="cover_letter" placeholder="введите текст...">{{ old('cover_letter') }}</textarea>
+                    
+                    @error('cover_letter')
+                        <p class="error-text">{{ $message }}</p>
+                    @enderror
+
+                </div>
+
+            </div>
+
+            <div class="form-nav">
+                <div class="outline-btn cancel-btn">отменить</div>
+                <button type="sybmit" class="fill-btn">откликнуться</button>
+            </div>
+
+        </form>
 
         @if(isset($vacancies))
         <div class="vacancies" id="vacancies">
@@ -142,8 +211,17 @@
                             @else
                                 <div class="fill-btn response-btn">откликнуться</div>
                             @endif
-                            {{-- <button class="fill-btn">откликнуться</button> --}}
-                            <button class="outline-btn square-btn"><img src="{{ asset('icons/black/gem.svg') }}" alt="icon"></button>
+
+                            @php
+                                $isFavorite = Auth::user()->favorites()->where('vacancy_id', $vacancy->id)->exists();
+                            @endphp
+
+                            <div 
+                            class="favorite-btn {{ $isFavorite ? 'hint-btn square-btn' : 'outline-btn square-btn' }}" 
+                            data-vacancy-id="{{ $vacancy->id }}">
+                                <img id="favorite-icon" src="{{  $isFavorite ? asset('icons/gray/gem.svg') : asset('icons/black/gem.svg') }}" alt="icon">
+                            </div>
+
                         </div>
                         @else
                         <div class="actions">

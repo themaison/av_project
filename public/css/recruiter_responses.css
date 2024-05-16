@@ -82,3 +82,18 @@ body {
 
     gap: 15px;
 }
+
+.stat0 {
+    color: #979797;
+    width: 120px;
+}
+
+.stat1 {
+    color: #3FA3FF;
+    width: 120px;
+}
+
+.stat2 {
+    color: #FF2E00;
+    width: 120px;
+}

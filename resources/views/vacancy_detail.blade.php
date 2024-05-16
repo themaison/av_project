@@ -136,7 +136,7 @@
                 linkText = 'вакансии';
             }
 
-            $('#previous-page').text(linkText);
+            $('.previous-page').text(linkText);
 
             $('.response-btn').click(function() {
                 $('#response-form').fadeIn().css('display', 'flex');
@@ -168,7 +168,7 @@
                         if (response.success) {
                             $('#response-form').fadeOut();
                             $('.blur-bg').fadeOut();
-                            $('.response-btn').replaceWith('<div class="resbled-btn">уже откликнулись</div>');
+                            $('.response-btn').replaceWith('<div class="hint-btn">уже откликнулись</div>');
                         } else {
                             // Обработка ошибок
                         }
@@ -176,7 +176,7 @@
                 });
             });
 
-            $('#favorite-btn').click(function(event) {
+            $('.favorite-btn').click(function(event) {
                 event.preventDefault();
 
                 var vacancyId = $(this).data('vacancy-id');
@@ -383,7 +383,7 @@
         </form>
 
         <div class="breakpoints" style="--i: 0">
-            <a href="{{ url()->previous() }}" id="previous-page"></a>
+            <a href="{{ url()->previous() }}" class="previous-page"></a>
             <p>/</p>
             <a href="/vacancy_detail/{{  $vacancy->id }}" id="current-page">{{ $vacancy->title }}</a>
         </div>
