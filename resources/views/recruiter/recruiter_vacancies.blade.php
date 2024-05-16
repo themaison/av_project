@@ -148,9 +148,42 @@
 
         
         $(document).ready(function() {
+            if ('{{ $errors->any() }}') {
+                // Показать форму и затемнение
+                $('#edit-form').css('display', 'flex');
+                $('.blur-bg').fadeIn();
+                $('body').addClass('no-scroll');
+            }
+
             $('.edit-btn').click(function() {
+                // Получить данные вакансии из атрибутов data-*
                 var vacancyId = $(this).data('vacancy-id');
-                // var vacancyTitle = $(this).data('vacancyTitle');
+                var title = $(this).data('title');
+                var company = $(this).data('company');
+                var city = $(this).data('city');
+                var experience = $(this).data('experience');
+                var salary_from = $(this).data('salary_from');
+                var salary_to = $(this).data('salary_to');
+                var responsibilities = $(this).data('responsibilities');
+                var requirements = $(this).data('requirements');
+                var conditions = $(this).data('conditions');
+                var skills = $(this).data('skills');
+                var cover = $(this).data('cover');
+
+                // Обновить данные формы
+                $('.av-form h3').text(title);
+                $('input[name="title"]').val(title);
+                $('input[name="company"]').val(company);
+                $('input[name="city"]').val(city);
+                $('input[name="experience"]').val(experience);
+                $('input[name="salary-from"]').val(salary_from);
+                $('input[name="salary-to"]').val(salary_to);
+                $('textarea[name="responsibilities"]').val(responsibilities);
+                $('textarea[name="requirements"]').val(requirements);
+                $('textarea[name="conditions"]').val(conditions);
+                $('textarea[name="skills"]').val(skills);
+                $('#edit-form img').attr('src', cover);
+
                 $('.av-form').attr('action', '/vacancy/' + vacancyId + '/update');
                 $('.av-form').fadeIn().css('display', 'flex');
                 $('.blur-bg').fadeIn();
@@ -238,10 +271,27 @@
                         </div>
 
                         <div class="double-btn">
-                            <div class="outline-btn edit-btn" data-vacancy-id="{{ $vacancy->id }}">
+                            <div class="outline-btn edit-btn" 
+                                data-vacancy-id="{{ $vacancy->id }}"
+                                data-title="{{ $vacancy->title }}"
+                                data-company="{{ $vacancy->company }}"
+                                data-city="{{ $vacancy->city }}"
+                                data-experience="{{ $vacancy->experience }}"
+                                data-salary_from="{{ $vacancy->salary_from }}"
+                                data-salary_to="{{ $vacancy->salary_to }}"
+                                data-responsibilities="{{ $vacancy->responsibilities }}"
+                                data-requirements="{{ $vacancy->requirements }}"
+                                data-conditions="{{ $vacancy->conditions }}"
+                                data-skills="{{ $vacancy->skills }}"
+                                data-cover="{{ Storage::url($vacancy->cover) }}">
                                 <img src="{{ asset('icons/black/pencil.svg') }}" alt="icon">
                                 изменить
                             </div>
+
+                            {{-- <div class="outline-btn edit-btn" data-vacancy-id="{{ $vacancy->id }}">
+                                <img src="{{ asset('icons/black/pencil.svg') }}" alt="icon">
+                                изменить
+                            </div> --}}
 
                             <form action="/recruiter_vacancies/vacancy_delete/{{ $vacancy->id }}" method="POST">
                                 @csrf
@@ -258,7 +308,7 @@
                 @endforelse
             </div>
       
-            <form class="av-form" method="POST" enctype="multipart/form-data" action="" style="display: none">
+            <form class="av-form" method="POST" enctype="multipart/form-data" action="" style="{{ $errors->any() ? 'display: flex' : 'display: none' }}">
                 @csrf
                 @method('PUT')
 
@@ -267,7 +317,7 @@
                 </div>
 
                 <div class="form-title">
-                    <h3>{{ $vacancy->title }}</h3>
+                    <h3></h3>
                 </div>
 
                 <div class="av-form-module" id="module_1">
@@ -275,7 +325,7 @@
 
                         <div class="input-block">
                             <label for="title">название вакансии</label>
-                            <input type="text" name="title" value="{{ $vacancy->title }}" placeholder="введите текст...">
+                            <input type="text" name="title" value="" placeholder="введите текст...">
                                 
                             @error('title')
                                 <p class="error-text">{{ $message }}</p>
@@ -285,7 +335,7 @@
             
                         <div class="input-block">
                             <label for="company">компания (ИП)</label>
-                            <input type="text" name="company"  value="{{ $vacancy->company }}" placeholder="введите текст...">
+                            <input type="text" name="company"  value="" placeholder="введите текст...">
                                 
                             @error('company')
                                 <p class="error-text">{{ $message }}</p>
@@ -294,7 +344,7 @@
             
                         <div class="input-block">
                             <label for="city">город</label>
-                            <input type="text" name="city"  value="{{ $vacancy->city }}" placeholder="введите текст...">
+                            <input type="text" name="city"  value="" placeholder="введите текст...">
                                 
                             @error('city')
                                 <p class="error-text">{{ $message }}</p>
@@ -306,20 +356,20 @@
         
                             <div class="double-block">
                                 <div class="input-block">
-                                    <input type="text" name ="salary-from"  value="{{ $vacancy->salary_from }}" placeholder="от 10 000">
+                                    <input type="text" name ="salary-from"  value="" placeholder="от 10 000">
                                 </div>
         
                                 <div>—</div>
         
                                 <div class="input-block">
-                                    <input type="text" name ="salary-to"  value="{{ $vacancy->salary_to }}" placeholder="до 100 000">
+                                    <input type="text" name ="salary-to"  value="" placeholder="до 100 000">
                                 </div>
                             </div>
                         </div>
             
                         <div class="input-block">
                             <label for="experience">опыт работы (год)</label>
-                            <input type="number" name="experience" value="{{ $vacancy->experience }}" placeholder="введите число">
+                            <input type="number" name="experience" value="" placeholder="введите число">
                         </div>
                     </div>
 
@@ -335,23 +385,23 @@
                     <div class="inputs-block">
                         <div class="input-block">
                             <label for="responsibilities">обязанности</label>
-                            <textarea name="responsibilities" placeholder="введите текст...">{{ $vacancy->responsibilities }}</textarea>
+                            <textarea name="responsibilities" placeholder="введите текст..."></textarea>
                         </div>
 
                         <div class="input-block">
                             <label for="requirements">требования</label>
-                            <textarea name="requirements" placeholder="введите текст...">{{ $vacancy->requirements }}</textarea>
+                            <textarea name="requirements" placeholder="введите текст..."></textarea>
                         </div>
 
                         <div class="input-block">
                             <label for="conditions">условия</label>
-                            <textarea name="conditions" placeholder="введите текст...">{{ $vacancy->conditions }}</textarea>
+                            <textarea name="conditions" placeholder="введите текст..."></textarea>
                         </div>
 
                         <div class="input-block">
                             <label for="skills">навыки</label>
                             <p class="hint-text">введите навыки через запятую</p>
-                            <textarea name="skills" placeholder="введите текст...">{{ $vacancy->skills }}</textarea>
+                            <textarea name="skills" placeholder="введите текст..."></textarea>
                         </div>      
                     </div>
 
@@ -374,7 +424,7 @@
                             <p class="hint-text" id="file_cover-text">желательный формат .png или .jpg</p>
                             
                             <div class="cover">
-                                <img src="{{ Storage::url($vacancy->cover) }}" alt="">
+                                <img src="" alt="">
                             </div>
 
                             <input type="file" class="file-cover" name="cover" accept=".png, .jpg, .jpeg"/>

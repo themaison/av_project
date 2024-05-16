@@ -94,6 +94,13 @@
                 linkText = 'вакансии';
             }
 
+            if ('{{ $errors->any() }}') {
+                // Показать форму и затемнение
+                $('#edit-form').css('display', 'flex');
+                $('.blur-bg').fadeIn();
+                $('body').addClass('no-scroll');
+            }
+
             $('.previous-page').text(linkText);
 
             $('.edit-btn').click(function() {
@@ -227,7 +234,7 @@
 
         <div class="blur-bg"></div>
 
-        <form class="av-form" id="edit-form" method="POST" enctype="multipart/form-data" action="" style="display: none">
+        <form class="av-form" id="edit-form" method="POST" enctype="multipart/form-data" action="" style="{{ $errors->any() ? 'display: flex' : 'display: none' }}">
             @csrf
             @method('PUT')
 
@@ -371,7 +378,7 @@
             </div>
         </form>
 
-        <form class="av-form" id="response-form" method="POST" action="/vacancy/{{ $vacancy->id }}/create_response" enctype="multipart/form-data"  style="display: none">
+        <form class="av-form" id="response-form" method="POST" action="/vacancy/{{ $vacancy->id }}/create_response" enctype="multipart/form-data" style="display: none">
             @csrf
 
             <div class="x-btn">
