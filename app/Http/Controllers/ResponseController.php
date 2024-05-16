@@ -39,6 +39,19 @@ class ResponseController extends Controller
         return response()->json(['success' => true]);
     }
 
+    public function set_status(Request $request, $id)
+    {
+        $response = Response::find($id);
+
+        if ($response) {
+            $response->status = $request->status;
+            $response->save();
+            return response()->json(['success' => true]);
+        }
+
+        return response()->json(['success' => false]);
+    }
+
     public function delete_response($id)
     {
         $response = Response::find($id);

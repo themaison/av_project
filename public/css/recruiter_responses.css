@@ -84,6 +84,19 @@ body {
     gap: 15px;
 }
 
+.accept-btn,
+.reject-btn {
+    background-color: #F3F6F6;
+}
+
+/* .accept-btn:hover {
+    background-color: #F4FFEF;
+}
+
+.reject-btn:hover {
+    background-color: #FFF9FA;
+} */
+
 .stat0 {
     color: #979797;
     width: 120px;

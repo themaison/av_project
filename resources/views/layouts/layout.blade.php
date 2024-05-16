@@ -43,8 +43,8 @@
                             {{ auth()->user()->name }}
                         </a>
                         <div class="dropdown-menu">
-                            <a href="/profile/{{ auth()->user()->id }}" class="drop-box">Профиль</a>
-                            <a href="/logout"  class="drop-box">Выйти</a>
+                            <a href="/profile/{{ auth()->user()->id }}" class="drop-box">профиль</a>
+                            <a href="/logout"  class="drop-box">выйти</a>
                         </div>
                     </div>
                 @endauth

@@ -29,6 +29,16 @@ body {
     border-radius: 999px;
 }
 
+.dropdown-menu {
+    visibility: hidden;
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    opacity: 0;
+}
+
 /* Отключить прокрутку для body, когда открыто модальное окно */
 body.no-scroll {
     overflow: hidden;
@@ -42,7 +52,8 @@ body.no-scroll {
     /* overflow: scroll; Добавить прокрутку */
     overflow-x: hidden;
     overflow-y: auto;
-    max-height: 90%; /* Ограничить максимальную высоту */
+    max-height: 90%;
+    /* Ограничить максимальную высоту */
     justify-content: start;
     /* -ms-overflow-style: none;
     scrollbar-width: none; */

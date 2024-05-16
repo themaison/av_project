@@ -82,9 +82,8 @@
     <div class="content">
         <div class="search-box">
             @php
-                function getVacancyWord($number) {
+                function getWordForm($number, $words) {
                     $cases = array (2, 0, 1, 1, 1, 2);
-                    $words = array('вакансия', 'вакансии', 'вакансий');
                     $index = ($number % 100 > 4 && $number % 100 < 20) ? 2 : $cases[min($number % 10, 5)];
                     return $words[$index];
                 }
@@ -92,7 +91,7 @@
 
             @if(isset($vacancies) && $vacancies->count() > 0)
                 <h2 style="--i: 0">«{{ $query }}»</h2>
-                <p style="--i: 1">найдено <span>{{ $vacancies->count() }} {{ getVacancyWord($vacancies->count()) }}</span></p>
+                <p style="--i: 1">{{ getWordForm($vacancies->count(), ['найдена', 'найдены', 'найдено']) }} <span>{{ $vacancies->count() }} {{ getWordForm($vacancies->count(), ['вакансия', 'вакансии', 'вакансий']) }}</span></p>
             @else
                 <h2 style="--i: 0">Пусто</h2>
                 <p class="hint-text" style="--i: 1">по запросу ничего не найдено</span></p>
@@ -217,9 +216,14 @@
                 <div class="v-card" style="--i: {{ $index + 4 }}">
                     <a href="/vacancy_detail/{{ $vacancy->id }}" class="l1-data">
                         
-                        <div class="cover">
-                            <img src="{{ Storage::url($vacancy->cover) }}" alt="cover">
-                        </div>
+                        @if ($vacancy->cover)
+                            <div class="cover">
+                                <img src="{{ Storage::url($vacancy->cover) }}" alt="cover">
+                            </div> 
+                        @else
+                            <div class="cover"></div>
+                        @endif
+                        
 
                         <div class="text-content">
                             <h3>{{ $vacancy->title }}</h3>

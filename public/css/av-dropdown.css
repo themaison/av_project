@@ -39,10 +39,12 @@
     padding-inline: 20px;
     height: 32px;
     border-radius: 8px;
+    color: #979797;
 
     transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
 }
 
 .dropdown .drop-box:hover {
     background-color: #323232;
+    color: #EFFBFF;
 }

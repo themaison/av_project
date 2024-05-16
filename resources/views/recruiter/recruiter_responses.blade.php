@@ -7,6 +7,7 @@
     <link href="{{asset('css/av-list.css?v=').time()}}" rel="stylesheet">
     <link href="{{asset('css/av-form.css?v=').time()}}" rel="stylesheet">
     <link href="{{asset('css/recruiter_responses.css?v=').time()}}" rel="stylesheet">
+    {{-- <link href="{{asset('css/av-dropdown.css?v=').time()}}" rel="stylesheet"> --}}
 
     <script>
         $(document).ready(function() {
@@ -16,25 +17,75 @@
                 $('.av-form').fadeIn().css('display', 'flex');
                 $('.blur-bg').fadeIn();
             });
-        
-            $('.set-status-btn').click(function() {
-                
-            });
-        
+
             $('.cancel-btn, .x-btn').click(function() {
                 $('.av-form').fadeOut();
                 $('.letter-form').fadeOut();
                 $('.blur-bg').fadeOut();
             });
-        
-            $(document).mouseup(function (e) {
-                var container = $(".av-form, .letter-form");
-                if (container.has(e.target).length === 0){
-                    container.fadeOut();
-                    $('.blur-bg').fadeOut();
-                }
+
+            var acceptButton = $('.accept-btn');
+            var rejectButton = $('.reject-btn');
+
+            console.log(acceptButton);
+
+            // Обработчики событий для кнопок "Принять" и "Отказать"
+            acceptButton.on('click', function(e) {
+                e.preventDefault();
+                var responseId = $(this).data('response-id'); // Получаем id отклика
+                setStatus(responseId, 'принят');
             });
+
+            rejectButton.on('click', function(e) {
+                e.preventDefault();
+                var responseId = $(this).data('response-id'); // Получаем id отклика
+                setStatus(responseId, 'отказ');
+            });
+
+
+            // Функция для отправки AJAX-запроса на сервер
+            function setStatus(responseId, status) {
+                console.log(status, responseId);
+                // var statusElement = $('.set-status-btn[data-response-id="' + responseId + '"]').siblings('.elem').find('.status-text');
+                var statusElement = $('#status-text-' + responseId);
+
+                if (statusElement.length > 0) {
+                    console.log('Элемент найден');
+                } else {
+                    console.log('Элемент не найден');
+                }
+                
+                $.ajax({
+                    url: '/response/' + responseId + '/set_status',
+                    method: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        status: status
+                    },
+                    success: function(data) {
+                        if (data.success) {
+                            // Обновляем статус отклика на странице
+                            // var statusElement = $('.set-status-btn[data-response-id="' + responseId + '"]').siblings('.elem').find('.status-text');
+                            var statusElement = $('#status-text-' + responseId);
+                            statusElement.text(status);
+
+                            // Обновляем класс статуса
+                            statusElement.removeClass('stat0 stat1 stat2');
+                            if (status == 'не рассмотрено') {
+                                statusElement.addClass('stat0');
+                            } else if (status == 'принят') {
+                                statusElement.addClass('stat1');
+                            } else if (status == 'отказ') {
+                                statusElement.addClass('stat2');
+                            }
+                        } else {
+                            // Обработка ошибок
+                        }
+                    }
+                });
+            }
         });
+
     </script>   
 
     <div class="content">
@@ -77,7 +128,7 @@
                         </div>
         
                         <div class="elem">
-                            <p class="{{ $response->status == 'не рассмотрено' ? 'stat0' : ($response->status == 'принят' ? 'stat1' : 'stat2') }}">
+                            <p id="status-text-{{ $response->id }}" class="{{ $response->status == 'не рассмотрено' ? 'stat0' : ($response->status == 'принят' ? 'stat1' : 'stat2') }}">
                                 {{ $response->status }}
                             </p>
                         </div>
@@ -117,10 +168,14 @@
                         @endisset
                         
                     </div>
-        
-                    <div class="outline-btn square-btn set-status-btn" data-response-id="{{ $response->id }}">
-                        {{-- this button for set status from dropdown menu --}}
-                        <img src="{{ asset('icons/black/3-dots-vertical.svg') }}" alt="icon">
+
+                    <div class="double-btn">
+                        <div class="fill-btn square-btn reject-btn" data-response-id="{{ $response->id }}">
+                            <img src="{{ asset('icons/special/x.svg') }}" alt="icon">
+                        </div>
+                        <div class="fill-btn square-btn accept-btn" data-response-id="{{ $response->id }}">
+                            <img src="{{ asset('icons/special/checkmark.svg') }}" alt="icon">
+                        </div>
                     </div>
                 </div>
             @endforeach
