@@ -42,7 +42,7 @@ class VacancyController extends Controller
 
     public function recruiter_vacancies_index()
     {
-        $vacancies = Vacancy::where('user_id', auth()->user()->id)->get();
+        $vacancies = Vacancy::where('user_id', auth()->user()->id)->paginate(5);
         return view('recruiter/recruiter_vacancies', compact('vacancies'));
     }
 

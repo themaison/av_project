@@ -79,9 +79,9 @@ h1 {
 
 .search-box>* {
     opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 0.5s ease-out forwards;
-    animation-delay: calc(var(--i) * 0.07s);
+    transform: translateY(10px);
+    animation: fadeInUp 0.2s ease-out forwards;
+    animation-delay: calc(var(--i) * 0.05s);
 }
 
 @keyframes fadeInUp {

@@ -321,7 +321,7 @@
             </div>       
         </div>  
 
-        <div class="pagination">
+        <div class="pagination"  style="--i: 3">
             {{ $vacancies->links() }}
             {{-- <a href="" class="arrow-btn">
                 <img src="{{ asset('icons/black/angle-left.svg') }}" alt="icon">

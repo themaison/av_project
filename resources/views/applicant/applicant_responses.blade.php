@@ -120,12 +120,12 @@
                 </div>
             @endforeach
         </div>
+
+        <div class="pagination" style="--i: 3">
+            {{ $responses->links() }}
+        </div>
         @endif
         
-    </div>
-
-    <div class="pagination">
-        {{ $responses->links() }}
     </div>
 
 @endsection

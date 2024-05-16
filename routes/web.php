@@ -22,7 +22,6 @@ Route::fallback(function () {
     return redirect()->route('vacancy_search');
 });
 
-
 Route::get('/logout', [UserController::class, 'logout']);
 
 Route::get('/login', [UserController::class, 'login'])->name('login');
