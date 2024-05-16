@@ -78,74 +78,6 @@
                 }
             });
         }
-
-        // $(document).ready(function() {
-        //     // function updateVacanciesList() {
-        //     //     $.ajax({
-        //     //         url: '/recruiter_vacancies', // URL вашего API для получения списка вакансий
-        //     //         method: 'GET',
-        //     //         success: function(response) {
-        //     //             // Предполагается, что сервер возвращает HTML-разметку списка вакансий
-        //     //             // Заменить текущий список новым
-        //     //             // $('.av-list').empty.append(response);
-                        
-        //     //         },
-        //     //         error: function(jqXHR, textStatus, errorThrown) {
-        //     //             // Обработать ошибки
-        //     //             alert('Произошла ошибка при обновлении списка вакансий: ' + errorThrown);
-        //     //         }
-        //     //     });
-        //     // }
-
-        //     $('.av-form').on('submit', function(e) {
-        //         e.preventDefault();
-
-        //         var formData = new FormData(this);
-
-        //         $.ajax({
-        //             url: $(this).attr('action'),
-        //             method: 'POST',
-        //             data: formData,
-        //             processData: false,
-        //             contentType: false,
-        //             success: function(response) {
-        //                 // Закрыть форму и обновить список вакансий
-        //                 $('.av-form').fadeOut();
-        //                 $('.blur-bg').fadeOut();
-        //                 $('body').removeClass('no-scroll');
-        //                 // return redirect('/recruiter_vacancies');
-        //                 // updateVacanciesList(); // Обновить список вакансий
-        //             },
-        //             error: function(jqXHR, textStatus, errorThrown) {
-        //                 alert('Произошла ошибка при обновлении вакансии: ' + errorThrown);
-        //             }
-        //         });
-        //     });
-
-        //     $('.edit-btn').click(function() {
-        //         var vacancyId = $(this).data('vacancy-id');
-        //         $('.av-form').attr('action', '/vacancy/' + vacancyId + '/update');
-        //         $('.av-form').fadeIn().css('display', 'flex');
-        //         $('.blur-bg').fadeIn();
-        //         $('body').addClass('no-scroll');
-        //     });
-
-        //     $('.cancel-btn, .x-btn').click(function() {
-        //         $('.av-form').fadeOut();
-        //         $('.blur-bg').fadeOut();
-        //         $('body').removeClass('no-scroll');
-        //     });
-
-        //     $(document).mouseup(function (e) {
-        //         var container = $(".av-form");
-        //         if (container.has(e.target).length === 0){
-        //             container.fadeOut();
-        //             $('.blur-bg').fadeOut();
-        //             $('body').removeClass('no-scroll'); // Удалить класс из body
-        //         }
-        //     });
-        // });
-
         
         $(document).ready(function() {
             if ('{{ $errors->any() }}') {
@@ -196,14 +128,14 @@
                 $('body').removeClass('no-scroll'); // Удалить класс из body
             });
 
-            $(document).mouseup(function (e) {
-                var container = $(".av-form");
-                if (container.has(e.target).length === 0){
-                    container.fadeOut();
-                    $('.blur-bg').fadeOut();
-                    $('body').removeClass('no-scroll'); // Удалить класс из body
-                }
-            });
+            // $(document).mouseup(function (e) {
+            //     var container = $(".av-form");
+            //     if (container.has(e.target).length === 0){
+            //         container.fadeOut();
+            //         $('.blur-bg').fadeOut();
+            //         $('body').removeClass('no-scroll'); // Удалить класс из body
+            //     }
+            // });
         
             $('.av-form').on('edit-submit', function(e) {
                 e.preventDefault();
@@ -293,7 +225,7 @@
                                 изменить
                             </div> --}}
 
-                            <form action="/recruiter_vacancies/vacancy_delete/{{ $vacancy->id }}" method="POST">
+                            <form action="/vacancy/{{ $vacancy->id }}/delete" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="delete-btn square-btn">

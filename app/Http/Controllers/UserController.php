@@ -12,15 +12,15 @@ use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
-    public function login_form(){
+    public function login(){
         return view('login_form');
     }
 
-    public function register_form(){
+    public function register(){
         return view('register_form');
     }
 
-    public function login(Request $request)
+    public function login_confirm(Request $request)
     {
         // Валидация входных данных
         $request->validate([
@@ -43,7 +43,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function register(Request $request)
+    public function register_confirm(Request $request)
     {
         $request->validate([
             'role' => 'required|string',
@@ -68,12 +68,12 @@ class UserController extends Controller
         $user->assignRole($role);
 
         // Перенаправление пользователя на страницу входа с сообщением об успешной регистрации
-        return redirect('/login_form')->with('status', 'Регистрация прошла успешно! Теперь вы можете войти в систему.');
+        return redirect('/login')->with('status', 'Регистрация прошла успешно! Теперь вы можете войти в систему.');
     }
 
     public function logout()
     {
         Auth::logout();
-        return redirect('/login_form');
+        return redirect('/login');
     }
 }

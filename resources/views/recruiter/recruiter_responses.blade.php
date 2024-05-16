@@ -45,16 +45,6 @@
 
             // Функция для отправки AJAX-запроса на сервер
             function setStatus(responseId, status) {
-                console.log(status, responseId);
-                // var statusElement = $('.set-status-btn[data-response-id="' + responseId + '"]').siblings('.elem').find('.status-text');
-                var statusElement = $('#status-text-' + responseId);
-
-                if (statusElement.length > 0) {
-                    console.log('Элемент найден');
-                } else {
-                    console.log('Элемент не найден');
-                }
-                
                 $.ajax({
                     url: '/response/' + responseId + '/set_status',
                     method: 'POST',
@@ -171,10 +161,10 @@
 
                     <div class="double-btn">
                         <div class="fill-btn square-btn reject-btn" data-response-id="{{ $response->id }}">
-                            <img src="{{ asset('icons/special/x.svg') }}" alt="icon">
+                            <img src="{{ asset('icons/gray/x.svg') }}" alt="icon">
                         </div>
                         <div class="fill-btn square-btn accept-btn" data-response-id="{{ $response->id }}">
-                            <img src="{{ asset('icons/special/checkmark.svg') }}" alt="icon">
+                            <img src="{{ asset('icons/blue/checkmark.svg') }}" alt="icon">
                         </div>
                     </div>
                 </div>
