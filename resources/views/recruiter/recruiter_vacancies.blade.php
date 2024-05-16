@@ -80,7 +80,7 @@
         }
         
         $(document).ready(function() {
-            if ('{{ $errors->any() }}') {
+            if ('{{ $errors->any() }}') { 
                 // Показать форму и затемнение
                 $('#edit-form').css('display', 'flex');
                 $('.blur-bg').fadeIn();
@@ -103,7 +103,6 @@
                 var cover = $(this).data('cover');
 
                 // Обновить данные формы
-                $('.av-form h3').text(title);
                 $('input[name="title"]').val(title);
                 $('input[name="company"]').val(company);
                 $('input[name="city"]').val(city);
@@ -249,7 +248,8 @@
                 </div>
 
                 <div class="form-title">
-                    <h3></h3>
+                    <h3>Редактирование</h3>
+                    <img src="{{ asset('icons/black/brush.svg') }}" alt="icon">
                 </div>
 
                 <div class="av-form-module" id="module_1">
@@ -355,9 +355,13 @@
                             <label for="cover">обложка вакансии</label>
                             <p class="hint-text" id="file_cover-text">желательный формат .png или .jpg</p>
                             
-                            <div class="cover">
-                                <img src="" alt="">
-                            </div>
+                            @if ($vacancy->cover)
+                                <div class="cover">
+                                    <img src="" alt="">
+                                </div>
+                            @else
+                                <div class="cover"></div>
+                            @endif
 
                             <input type="file" class="file-cover" name="cover" accept=".png, .jpg, .jpeg"/>
 
