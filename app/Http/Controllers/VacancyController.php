@@ -97,7 +97,18 @@ class VacancyController extends Controller
 
     public function vacancy_update(Request $request, $id)
     {
+        // Проверка входных данных
+        $request->validate([
+            'title' => 'required',
+            'company' => 'required',
+            'city' => 'required',
+        ]);
+
         $vacancy = Vacancy::find($id);
+        if ($request->hasFile('cover')) {
+            $path = $request->file('cover')->store('public/images/covers');
+            $vacancy->cover = $path;
+        }
         $vacancy->title = $request->title;
         $vacancy->company = $request->company;
         $vacancy->city = $request->city;
@@ -111,5 +122,34 @@ class VacancyController extends Controller
 
         $vacancy->save();
         return redirect('/recruiter_vacancies');
+    }
+
+    public function vacancy_detail_update(Request $request, $id)
+    {
+        // Проверка входных данных
+        $request->validate([
+            'title' => 'required',
+            'company' => 'required',
+            'city' => 'required',
+        ]);
+
+        $vacancy = Vacancy::find($id);
+        if ($request->hasFile('cover')) {
+            $path = $request->file('cover')->store('public/images/covers');
+            $vacancy->cover = $path;
+        }
+        $vacancy->title = $request->title;
+        $vacancy->company = $request->company;
+        $vacancy->city = $request->city;
+        $vacancy->salary_from = $request->input('salary-from');
+        $vacancy->salary_to = $request->input('salary-to');
+        $vacancy->experience = $request->experience;
+        $vacancy->responsibilities = $request->responsibilities;
+        $vacancy->requirements = $request->requirements;
+        $vacancy->conditions = $request->conditions;
+        $vacancy->skills = $request->skills;
+
+        $vacancy->save();
+        // return redirect('/vacancy_detail/{id}');
     }
 }
