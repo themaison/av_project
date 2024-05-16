@@ -17,30 +17,30 @@
                 $('.blur-bg').fadeIn();
             });
         
-            $('.delete-btn').click(function() {
-                var responseId = $(this).data('response-id');
-                var row = $(this).closest('.l-row');
-                var avList = $('.av-list');
+            // $('.delete-btn').click(function() {
+            //     var responseId = $(this).data('response-id');
+            //     var row = $(this).closest('.l-row');
+            //     var avList = $('.av-list');
 
-                $.ajax({
-                    url: '/responses/delete_response/' + responseId,
-                    method: 'DELETE',
-                    data: {
-                        _token: '{{ csrf_token() }}'
-                    },
-                    success: function(response) {
-                        if (response.success) {
-                            row.remove();
-                            if (!avList.children('.l-row')) {
-                                $('<p class="hint-text">откликов нет</p>').insertBefore('.av-list');
-                                avList.remove();
-                            }
-                        } else {
-                            // Обработка ошибок
-                        }
-                    }
-                });
-            });
+            //     $.ajax({
+            //         url: '/responses/delete_response/' + responseId,
+            //         method: 'DELETE',
+            //         data: {
+            //             _token: '{{ csrf_token() }}'
+            //         },
+            //         success: function(response) {
+            //             if (response.success) {
+            //                 row.remove();
+            //                 if (!avList.children('.l-row')) {
+            //                     $('<p class="hint-text">откликов нет</p>').insertBefore('.av-list');
+            //                     avList.remove();
+            //                 }
+            //             } else {
+            //                 // Обработка ошибок
+            //             }
+            //         }
+            //     });
+            // });
         
             $('.cancel-btn, .x-btn').click(function() {
                 $('.av-form').fadeOut();
@@ -130,9 +130,17 @@
                     </div>
         
                     @if($response->status == 'не рассмотрено')
-                        <button class="outline-btn square-btn delete-btn" data-response-id="{{ $response->id }}">
+                        <form action="/responses/delete_response/{{ $response->id }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class=" outline-btn delete-btn square-btn">
+                                <img src="{{ asset('icons/black/trash.svg') }}" alt="icon">
+                            </button>
+                        </form>
+
+                        {{-- <button class="outline-btn square-btn delete-btn" data-response-id="{{ $response->id }}">
                             <img src="{{ asset('icons/black/trash.svg') }}" alt="icon">
-                        </button>
+                        </button> --}}
                     @endif
                 </div>
             @endforeach

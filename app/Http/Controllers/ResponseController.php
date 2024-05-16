@@ -39,16 +39,23 @@ class ResponseController extends Controller
         return response()->json(['success' => true]);
     }
 
+    // public function delete_response($id)
+    // {
+    //     $response = Response::find($id);
+
+    //     if ($response && $response->user_id == Auth::id()) {
+    //         $response->delete();
+    //         return response()->json(['success' => true]);
+    //     }
+
+    //     return response()->json(['success' => false]);
+    // }
     public function delete_response($id)
     {
-        $response = Response::find($id);
+        $vacancy = Response::find($id);
+        $vacancy->delete();
 
-        if ($response && $response->user_id == Auth::id()) {
-            $response->delete();
-            return response()->json(['success' => true]);
-        }
-
-        return response()->json(['success' => false]);
+        return redirect('/applicant_responses');
     }
 
 }
