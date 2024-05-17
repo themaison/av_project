@@ -6,8 +6,9 @@
     <link href="{{asset('css/av-list.css?v=').time()}}" rel="stylesheet">
     <link href="{{asset('css/av-cover.css?v=').time()}}" rel="stylesheet">
     <link href="{{asset('css/av-form.css?v=').time()}}" rel="stylesheet">
+    <link href="{{asset('css/av-pagination.css?v=').time()}}" rel="stylesheet">
     <link href="{{ asset('css/recruiter_vacancies.css?v=').time() }}" rel="stylesheet">
-
+    
     <script>
         window.onload = function() {
             var modules = document.getElementsByClassName('av-form-module');
@@ -102,6 +103,10 @@
                 var skills = $(this).data('skills');
                 var cover = $(this).data('cover');
 
+                // console.log(cover);
+
+                // console.log(vacancyId, title, company, city);
+
                 // Обновить данные формы
                 $('input[name="title"]').val(title);
                 $('input[name="company"]').val(company);
@@ -113,7 +118,20 @@
                 $('textarea[name="requirements"]').val(requirements);
                 $('textarea[name="conditions"]').val(conditions);
                 $('textarea[name="skills"]').val(skills);
-                $('#edit-form img').attr('src', cover);
+
+                // Проверяем, есть ли уже элемент img внутри .cover
+                var cover_img = $('#edit-form .cover img');
+                if (cover_img.length == 0) {
+                    // Если нет, создаем его
+                    cover_img = $('<img>').appendTo('#edit-form .cover');
+                }
+
+                // Устанавливаем или скрываем изображение обложки
+                if (cover) {
+                    cover_img.attr('src', cover).show();
+                } else {
+                    cover_img.hide();
+                }
 
                 $('.av-form').attr('action', '/vacancy/' + vacancyId + '/update');
                 $('.av-form').fadeIn().css('display', 'flex');
@@ -240,10 +258,10 @@
             </div>
 
             <div class="pagination" style="--i: 3">
-                {{ $vacancies->links() }}
+                {{ $vacancies->links('vendor.pagination.custom_pagination') }}
             </div>
       
-            <form class="av-form" method="POST" enctype="multipart/form-data" action="" style="{{ $errors->any() ? 'display: flex' : 'display: none' }}">
+            <form id="edit-form" class="av-form" method="POST" enctype="multipart/form-data" action="" style="{{ $errors->any() ? 'display: flex' : 'display: none' }}">
                 @csrf
                 @method('PUT')
 
@@ -253,7 +271,9 @@
 
                 <div class="form-title">
                     <h3>Редактирование</h3>
-                    <img src="{{ asset('icons/black/brush.svg') }}" alt="icon">
+                    <div class="av-icon">
+                        <img src="{{ asset('icons/black/pencil.svg') }}" alt="icon">
+                    </div>
                 </div>
 
                 <div class="av-form-module" id="module_1">
@@ -261,7 +281,7 @@
 
                         <div class="input-block">
                             <label for="title">название вакансии</label>
-                            <input type="text" name="title" value="" placeholder="введите текст...">
+                            <input type="text" name="title" value="{{ old('title') }}" placeholder="введите текст...">
                                 
                             @error('title')
                                 <p class="error-text">{{ $message }}</p>
@@ -271,7 +291,7 @@
             
                         <div class="input-block">
                             <label for="company">компания (ИП)</label>
-                            <input type="text" name="company"  value="" placeholder="введите текст...">
+                            <input type="text" name="company"  value="{{ old('company') }}" placeholder="введите текст...">
                                 
                             @error('company')
                                 <p class="error-text">{{ $message }}</p>
@@ -280,7 +300,7 @@
             
                         <div class="input-block">
                             <label for="city">город</label>
-                            <input type="text" name="city"  value="" placeholder="введите текст...">
+                            <input type="text" name="city"  value="{{ old('city') }}" placeholder="введите текст...">
                                 
                             @error('city')
                                 <p class="error-text">{{ $message }}</p>
@@ -292,20 +312,20 @@
         
                             <div class="double-block">
                                 <div class="input-block">
-                                    <input type="text" name ="salary-from"  value="" placeholder="от 10 000">
+                                    <input type="text" name ="salary-from"  value="{{ old('salary-from') }}" placeholder="от 10 000">
                                 </div>
         
                                 <div>—</div>
         
                                 <div class="input-block">
-                                    <input type="text" name ="salary-to"  value="" placeholder="до 100 000">
+                                    <input type="text" name ="salary-to" value="{{ old('salary-to') }}" placeholder="до 100 000">
                                 </div>
                             </div>
                         </div>
             
                         <div class="input-block">
                             <label for="experience">опыт работы (год)</label>
-                            <input type="number" name="experience" value="" placeholder="введите число">
+                            <input type="number" name="experience" value="{{ old('experience') }}" placeholder="введите число">
                         </div>
                     </div>
 
@@ -321,23 +341,23 @@
                     <div class="inputs-block">
                         <div class="input-block">
                             <label for="responsibilities">обязанности</label>
-                            <textarea name="responsibilities" placeholder="введите текст..."></textarea>
+                            <textarea name="responsibilities" placeholder="введите текст...">{{ old('responsibilities') }}</textarea>
                         </div>
 
                         <div class="input-block">
                             <label for="requirements">требования</label>
-                            <textarea name="requirements" placeholder="введите текст..."></textarea>
+                            <textarea name="requirements" placeholder="введите текст...">{{ old('requirements') }}</textarea>
                         </div>
 
                         <div class="input-block">
                             <label for="conditions">условия</label>
-                            <textarea name="conditions" placeholder="введите текст..."></textarea>
+                            <textarea name="conditions" placeholder="введите текст...">{{ old('conditions') }}</textarea>
                         </div>
 
                         <div class="input-block">
                             <label for="skills">навыки</label>
                             <p class="hint-text">введите навыки через запятую</p>
-                            <textarea name="skills" placeholder="введите текст..."></textarea>
+                            <textarea name="skills" placeholder="введите текст...">{{ old('skills') }}</textarea>
                         </div>      
                     </div>
 
@@ -359,13 +379,11 @@
                             <label for="cover">обложка вакансии</label>
                             <p class="hint-text" id="file_cover-text">желательный формат .png или .jpg</p>
                             
-                            @if ($vacancy->cover)
-                                <div class="cover">
-                                    <img src="" alt="">
-                                </div>
-                            @else
-                                <div class="cover"></div>
-                            @endif
+                            <div class="cover">
+                                <img src="" alt="cover">
+                            </div> 
+                            
+                            {{-- <div class="cover"></div> --}}
 
                             <input type="file" class="file-cover" name="cover" accept=".png, .jpg, .jpeg"/>
 

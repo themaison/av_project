@@ -6,6 +6,7 @@
     <link href="{{asset('css/av-cover.css?v=').time()}}" rel="stylesheet">
     <link href="{{asset('css/av-form.css?v=').time()}}" rel="stylesheet">
     <link href="{{asset('css/vacancy_list.css?v=').time()}}" rel="stylesheet">
+    <link href="{{asset('css/av-pagination.css?v=').time()}}" rel="stylesheet">
 
     <script>
         $(document).ready(function() {
@@ -322,20 +323,7 @@
         </div>  
 
         <div class="pagination"  style="--i: 3">
-            {{ $vacancies->links() }}
-            {{-- <a href="" class="arrow-btn">
-                <img src="{{ asset('icons/black/angle-left.svg') }}" alt="icon">
-            </a>
-
-            <a href="" class="page">1</a>
-            <a href="" class="page">2</a>
-            <a href="" class="page">3</a>
-            <a href="" class="page">...</a>
-            <a href="" class="page">5</a>
-
-            <a href="" class="arrow-btn">
-                <img src="{{ asset('icons/black/angle-right.svg') }}" alt="icon">
-            </a> --}}
+            {{ $vacancies->links('vendor.pagination.custom_pagination') }}
         </div>
         @endif
     </div>

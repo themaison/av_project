@@ -6,6 +6,7 @@
     <link href="{{asset('css/av-cover.css?v=').time()}}" rel="stylesheet">
     <link href="{{asset('css/av-list.css?v=').time()}}" rel="stylesheet">
     <link href="{{asset('css/av-form.css?v=').time()}}" rel="stylesheet">
+    <link href="{{asset('css/av-pagination.css?v=').time()}}" rel="stylesheet">
     <link href="{{asset('css/recruiter_responses.css?v=').time()}}" rel="stylesheet">
     {{-- <link href="{{asset('css/av-dropdown.css?v=').time()}}" rel="stylesheet"> --}}
 
@@ -186,7 +187,7 @@
         </div>
 
         <div class="pagination" style="--i: 3">
-            {{ $responses->links() }}
+            {{ $vacancies->links('vendor.pagination.custom_pagination') }}
         </div>
         @endif
     </div>

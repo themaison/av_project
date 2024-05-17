@@ -5,6 +5,7 @@
 @section('content')
     <link href="{{asset('css/av-cover.css?v=').time()}}" rel="stylesheet">
     <link href="{{asset('css/vacancy_list.css?v=').time()}}" rel="stylesheet">
+    <link href="{{asset('css/av-pagination.css?v=').time()}}" rel="stylesheet">
     {{-- <link href="{{asset('css/favorite_vacancies.css?v=').time()}}" rel="stylesheet"> --}}
 
     <script>
@@ -262,8 +263,8 @@
             </div>       
         </div>  
 
-        <div class="pagination">
-            {{ $vacancies->links() }}
+        <div class="pagination" style="--i: 3">
+            {{ $vacancies->links('vendor.pagination.custom_pagination') }}
         </div>
         @endif
     </div>
