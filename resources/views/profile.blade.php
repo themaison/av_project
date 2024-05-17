@@ -25,7 +25,7 @@
                 $('#' + field + '-input').hide();
 
                 $('.double-btn[data-field="' + field + '"]').hide();
-                if ($('#' + field + '-text').text() === '') {
+                if ($('#' + field + '-text').text().trim() === '') {
                     $('.add-btn[data-field="' + field + '"]').fadeIn();
                 } else {
                     $('.edit-btn[data-field="' + field + '"]').fadeIn();
@@ -34,7 +34,7 @@
 
             $('.save-btn').click(function() {      
                 var field = $(this).parent().data('field');
-                var newValue = $('#' + field + '-input').val();
+                var newValue = $('#' + field + '-input').val().trim();
                 var currentValue = $('#' + field + '-text').text().trim();
 
                 // Если новое значение совпадает с текущим, скрываем поле ввода и показываем текстовый блок
@@ -106,7 +106,7 @@
 
                         <div class="double-btn" data-field="{{ $key }}" style="display: none;">
                             <button class="fill-btn save-btn">сохранить</button>
-                            <button class="outline-btn cancel-btn">Отмена</button>
+                            <button class="outline-btn cancel-btn">отмена</button>
                         </div>
                     @endif
         

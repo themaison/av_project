@@ -472,7 +472,7 @@
 
                 <div class="double-block">
                     <div class="inline-block" id="salary-block" style="--i: 4">
-                        <h3>Вакансия</h3>
+                        <h3>Заработная плата</h3>
     
                         <div class="v-block-detail">
                             @if($vacancy->experience <= 0)
@@ -497,8 +497,8 @@
                         <h3>Компания</h3>
     
                         <div class="v-block-detail">
-                            <p>{{ $vacancy->company }}</p>
-                            <p class="tag"><img src="{{  asset('icons/black/map-pin.svg') }}" alt="map-pin">{{ $vacancy->city }}</p>
+                            <p class="line-limit">{{ $vacancy->company }}</p>
+                            <p class="tag line-limit"><img src="{{ asset('icons/black/map-pin.svg') }}" alt="map-pin">{{ $vacancy->city }}</p>
                         </div>
                     </div>
     

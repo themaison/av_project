@@ -130,6 +130,13 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* .v-card .l1-data .text-content h3 {
+    max-width: 250px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+} */
+
 .job-card .l1-data:hover {
     color: #3FA3FF;
     background-color: #EFFBFF;
@@ -176,6 +183,13 @@ body {
     display: flex;
     column-gap: 15px;
 }
+
+/* .v-card .l2-data p {
+    max-width: 110px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+} */
 
 .job-card .l3-data {
     display: flex;

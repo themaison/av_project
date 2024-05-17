@@ -245,11 +245,11 @@
                     <div class="l2-data">
                         <div class="icon-block">
                             <img src="{{ asset('icons/blue/castle.svg') }}" alt="icon">
-                            {{ $vacancy->company }}
+                            <p>{{ $vacancy->company }}</p>
                         </div>
                         <div class="icon-block">
                             <img src="{{ asset('icons/blue/map-pin.svg') }}" alt="icon">
-                            {{ $vacancy->city }}
+                            <p>{{ $vacancy->city }}</p>
                         </div>
                         <div class="icon-block">
                             <img src="{{ asset('icons/blue/toolbox.svg') }}" alt="icon">
