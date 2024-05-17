@@ -39,6 +39,13 @@ body {
     opacity: 0;
 }
 
+.vacancy-title {
+    max-width: 250px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 /* Отключить прокрутку для body, когда открыто модальное окно */
 body.no-scroll {
     overflow: hidden;

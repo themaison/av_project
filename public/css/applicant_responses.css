@@ -2,6 +2,13 @@ body {
     position: relative;
 }
 
+.vacancy-data {
+    max-width: 100px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 .blur-bg {
     display: none;
     position: fixed;

@@ -162,10 +162,15 @@
 
                 <div class="v-card" style="--i: {{ $index + 2 }}">
                     <a href="/vacancy_detail/{{ $vacancy->id }}" class="l1-data">
-                        
-                        <div class="cover">
-                            <img src="{{ Storage::url($vacancy->cover) }}" alt="cover">
-                        </div>
+                        @if($vacancy->cover)
+                                
+                            <div class="cover">
+                                <img src="{{ Storage::url($vacancy->cover) }}" alt="cover">
+                            </div>
+
+                        @else
+                            <div class="cover"></div>
+                        @endif
 
                         <div class="text-content">
                             <h3>{{ $vacancy->title }}</h3>
@@ -186,11 +191,11 @@
                     <div class="l2-data">
                         <div class="icon-block">
                             <img src="{{ asset('icons/blue/castle.svg') }}" alt="icon">
-                            {{ $vacancy->company }}
+                            <p>{{ $vacancy->company }}</p>
                         </div>
                         <div class="icon-block">
                             <img src="{{ asset('icons/blue/map-pin.svg') }}" alt="icon">
-                            {{ $vacancy->city }}
+                            <p>{{ $vacancy->city }}</p>
                         </div>
                         <div class="icon-block">
                             <img src="{{ asset('icons/blue/toolbox.svg') }}" alt="icon">

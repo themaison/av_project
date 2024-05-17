@@ -88,11 +88,11 @@
                             @else
                                 <div class="cover"></div>
                             @endif
-                            <p>{{ $response->vacancy->title }}</p>
+                            <p class="vacancy-data">{{ $response->vacancy->title }}</p>
                             
                             <div class="icon-block">
                                 <img src="{{ asset('icons/blue/castle.svg') }}" alt="icon">
-                                <p>{{ $response->vacancy->company }}</p>
+                                <p class="vacancy-data">{{ $response->vacancy->company }}</p>
                             </div>
 
                         </a>
@@ -123,7 +123,7 @@
         </div>
 
         <div class="pagination" style="--i: 3">
-            {{ $vacancies->links('vendor.pagination.custom_pagination') }}
+            {{ $responses->links('vendor.pagination.custom_pagination') }}
         </div>
         @endif
         

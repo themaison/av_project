@@ -214,7 +214,7 @@
                                 @else
                                     <div class="cover"></div>
                                 @endif
-                                <p>{{ $vacancy->title }}</p>
+                                <p class="vacancy-title">{{ $vacancy->title }}</p>
                             </a>
 
                         </div>
