@@ -150,6 +150,13 @@ body {
     gap: 15px;
 }
 
+.v-block-detail .line-limit {
+    max-width: 250px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 .tags {
     display: flex;
     align-items: center;
@@ -157,8 +164,8 @@ body {
 }
 
 .tag {
-    display: flex;
-    width: fit-content;
+    /* display: flex; 
+    width: fit-content; */
 
     gap: 5px;
     align-items: center;
@@ -168,6 +175,10 @@ body {
     border-radius: 999px;
     color: #242424;
     font-weight: 700;
+}
+
+.tag img {
+    padding: 5px 5px 5px 0px;
 }
 
 #response-form {
