@@ -84,6 +84,22 @@
     resize: none;
 }
 
+.av-form .cover {
+    width: 100%;
+    height: 96px;
+    border-radius: 8px;
+}
+
+
+input[type="file"] {
+    cursor: pointer;
+    transition: border 300ms ease, background-color 300ms ease;
+}
+
+input[type="file"]:hover {
+    background-color: #eaeeee;
+}
+
 .av-form label {
     font-weight: 700;
 }
