@@ -7,7 +7,6 @@
 
     <script>
         $(document).ready(function() {
-
             $('.add-btn, .edit-btn').click(function() {
                 var field = $(this).data('field');
 
@@ -59,17 +58,15 @@
                         _token: '{{ csrf_token() }}'
                     },
                     success: function() {
-                        if (newValue.trim() === '') {
-                            $('#' + field + '-text').text(' ').fadeIn();
-                            $('.edit-btn[data-field="' + field + '"]').hide();
-                            $('.add-btn[data-field="' + field + '"]').fadeIn();
-                        } else {
-                            $('#' + field + '-text').text(newValue).fadeIn();
-                            $('.edit-btn[data-field="' + field + '"]').fadeIn();
-                            $('.add-btn[data-field="' + field + '"]').hide();
-                        }
                         $('#' + field + '-input').hide();
+                        $('#' + field + '-text').text(newValue).fadeIn();
                         $('.double-btn[data-field="' + field + '"]').hide();
+
+                        if (newValue === '') {
+                            $('.edit-btn[data-field="' + field + '"]').fadeIn();
+                        } else {
+                            $('.edit-btn[data-field="' + field + '"]').fadeIn();
+                        }
                     }
                 });
             });
