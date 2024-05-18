@@ -233,25 +233,6 @@ body {
     gap: 10px;
 }
 
-.pagination {
-    display: flex;
-    gap: 15px;
-}
-
-.pagination .page,
-.pagination .arrow-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    width: 48px;
-    height: 48px;
-
-    border-radius: 100%;
-
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
 .search-box>* {
     opacity: 0;
     transform: translateY(10px);

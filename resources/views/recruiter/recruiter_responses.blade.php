@@ -8,7 +8,6 @@
     <link href="{{asset('css/av-form.css?v=').time()}}" rel="stylesheet">
     <link href="{{asset('css/av-pagination.css?v=').time()}}" rel="stylesheet">
     <link href="{{asset('css/recruiter_responses.css?v=').time()}}" rel="stylesheet">
-    {{-- <link href="{{asset('css/av-dropdown.css?v=').time()}}" rel="stylesheet"> --}}
 
     <script>
         $(document).ready(function() {
@@ -25,60 +24,61 @@
                 $('.blur-bg').fadeOut();
             });
 
-            var acceptButton = $('.accept-btn');
-            var rejectButton = $('.reject-btn');
-
-            $(document).on('click', '.accept-btn', function(e) {
+            $(document).on('click', '.act-btn-1', function(e) {
                 e.preventDefault();
-                var responseId = $(this).data('response-id'); // Получаем id отклика
-                setStatus(responseId, 'принят');
+                var responseId = $(this).data('response-id');
+                setStatus(responseId, 2);
             });
 
-            $(document).on('click', '.reject-btn', function(e) {
+            $(document).on('click', '.act-btn-2', function(e) {
                 e.preventDefault();
-                var responseId = $(this).data('response-id'); // Получаем id отклика
-                setStatus(responseId, 'отказ');
+                var responseId = $(this).data('response-id');
+                setStatus(responseId, 3);
             });
 
+            $(document).on('click', '.act-btn-3', function(e) {
+                e.preventDefault();
+                var responseId = $(this).data('response-id');
+                setStatus(responseId, 1);
+            });
 
-            // Функция для отправки AJAX-запроса на сервер
-            function setStatus(responseId, status) {
+            function setStatus(responseId, status_id) {
+                // console.log(responseId, status_id);
+
                 $.ajax({
                     url: '/response/' + responseId + '/set_status',
                     method: 'POST',
                     data: {
                         _token: '{{ csrf_token() }}',
-                        status: status
+                        status_id: status_id
                     },
                     success: function(data) {
+                        console.log(data);
                         if (data.success) {
-                            // Обновляем статус отклика на странице
-                            // var statusElement = $('.set-status-btn[data-response-id="' + responseId + '"]').siblings('.elem').find('.status-text');
                             var statusElement = $('#status-text-' + responseId);
-                            statusElement.text(status);
+                            var statusText;
 
-                            // Обновляем класс статуса
-                            statusElement.removeClass('stat0 stat1 stat2');
-                            if (status == 'не рассмотрено') {
-                                statusElement.addClass('stat0');
-                            } else if (status == 'принят') {
-                                statusElement.addClass('stat1');
-                            } else if (status == 'отказ') {
-                                statusElement.addClass('stat2');
+                            switch (status_id) {
+                                case 1:
+                                    statusText = "приглашение";
+                                    break;
+                                case 2:
+                                    statusText = "отказ";
+                                    break;
+                                case 3:
+                                    statusText = "на рассмотрении";
+                                    break;
+                                case 4:
+                                    statusText = "не рассмотрено";
+                                    break;
+                                default:
+                                    statusText = 'неизвестно';
                             }
 
-                            // Обновляем состояние кнопок
-                            var acceptButton = $('.accept-btn[data-response-id="' + responseId + '"]');
-                            var rejectButton = $('.reject-btn[data-response-id="' + responseId + '"]');
-                            
-                            if (status == 'принят') {
-                                rejectButton.show();
-                                acceptButton.hide();
-                            } else if (status == 'отказ') {
-                                acceptButton.show();
-                                rejectButton.hide();
-                            }
+                            statusElement.text(statusText);
 
+                            statusElement.removeClass('r-stat-1 r-stat-2 r-stat-3 r-stat-4');
+                            statusElement.addClass('r-stat-' + status_id);
                         } else {
                             // Обработка ошибок
                         }
@@ -86,7 +86,6 @@
                 });
             }
         });
-
     </script>   
 
     <div class="content">
@@ -128,10 +127,10 @@
                         <div class="elem">
                             <p class="hint-text">{{ $response->created_at }}</p>
                         </div>
-        
+
                         <div class="elem">
-                            <p id="status-text-{{ $response->id }}" class="{{ $response->status == 'не рассмотрено' ? 'stat0' : ($response->status == 'принят' ? 'stat1' : 'stat2') }}">
-                                {{ $response->status }}
+                            <p id="status-text-{{ $response->id }}" class="status-text {{ $response->status_id == 1 ? 'r-stat-1' : ($response->status_id == 2 ? 'r-stat-2' : ($response->status_id == 3 ? 'r-stat-3' : 'r-stat-4')) }}">
+                                {{ $response->status->status }}
                             </p>
                         </div>
 
@@ -171,16 +170,16 @@
                         
                     </div>
 
-                    <div class="double-btn">
-                        @if ($response->status !== 'отказ')
-                        <div class="fill-btn square-btn reject-btn" data-response-id="{{ $response->id }}">
-                            <img src="{{ asset('icons/gray/x.svg') }}" alt="icon">
+                    <div class="double-btn action-btn">
+                        <div class="fill-btn square-btn act-btn-1" data-response-id="{{ $response->id }}">
+                            <img src="{{ asset('icons/special/x.svg') }}" alt="icon">
                         </div>
-                        @elseif ($response->status !== 'принят')
-                        <div class="fill-btn square-btn accept-btn" data-response-id="{{ $response->id }}">
-                            <img src="{{ asset('icons/blue/checkmark.svg') }}" alt="icon">
+                        <div class="fill-btn square-btn act-btn-2" data-response-id="{{ $response->id }}">
+                            <img src="{{ asset('icons/black/clock.svg') }}" alt="icon">
                         </div>
-                        @endif
+                        <div class="fill-btn square-btn act-btn-3" data-response-id="{{ $response->id }}">
+                            <img src="{{ asset('icons/special/checkmark.svg') }}" alt="icon">
+                        </div>
                     </div>
                 </div>
             @endforeach

@@ -165,10 +165,10 @@
                     },
                     success: function(data) {
                         if (data.favorite) {
-                            $('#favorite-btn').removeClass('outline-btn').addClass('hint-btn');
-                            $('#favorite-icon').attr('src', '{{ asset('icons/gray/gem.svg') }}');
+                            $('#favorite-btn').removeClass('outline-btn').addClass('fill-btn');
+                            $('#favorite-icon').attr('src', '{{ asset('icons/light/gem.svg') }}');
                         } else {
-                            $('#favorite-btn').removeClass('resbled-btn').addClass('outline-btn');
+                            $('#favorite-btn').removeClass('fill-btn').addClass('outline-btn');
                             $('#favorite-icon').attr('src', '{{ asset('icons/black/gem.svg') }}');
                         }
                     }
@@ -421,10 +421,10 @@
                             <div 
                                 id="favorite-btn" 
                                 href="/vacancy/{{ $vacancy->id }}/toggle_favorite" 
-                                class="{{ $isFavorite ? 'hint-btn square-btn' : 'outline-btn square-btn' }}" 
+                                class="{{ $isFavorite ? 'fill-btn square-btn' : 'outline-btn square-btn' }}" 
                                 data-vacancy-id="{{ $vacancy->id }}">
                             
-                                <img id="favorite-icon" src="{{  $isFavorite ? asset('icons/gray/gem.svg') : asset('icons/black/gem.svg') }}" alt="icon">
+                                <img id="favorite-icon" src="{{  $isFavorite ? asset('icons/light/gem.svg') : asset('icons/black/gem.svg') }}" alt="icon">
                             </div>
 
 

@@ -88,7 +88,7 @@ body {
 }
 
 .r-stat-2 {
-    color: #FF2E00;
+    color: #FF6565;
     width: 120px;
 }
 
@@ -101,3 +101,8 @@ body {
     color: #979797;
     width: 120px;
 }
+
+/* .current-action {
+    background-color: #EBEBEB;
+
+} */

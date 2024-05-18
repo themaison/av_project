@@ -15,6 +15,7 @@
                 var vacancyTitle = $(this).data('vacancyTitle');
 
                 $('.av-form').attr('action', '/vacancy/' + vacancyId + '/create_response');
+
                 $('.av-form').fadeIn().css('display', 'flex');
                 $('.blur-bg').fadeIn();
             });
@@ -25,17 +26,8 @@
                 $('.av-form textarea[name="cover_letter"]').val('');
             });
         
-            // $(document).mouseup(function (e) {
-            //     var container = $(".av-form");
-            //     if (container.has(e.target).length === 0){
-            //         container.fadeOut();
-            //         $('.blur-bg').fadeOut();
-            //     }
-            // });
-        
             $('.av-form').on('submit', function(e) {
                 e.preventDefault();
-
                 $.ajax({
                     url: $(this).attr('action'),
                     method: 'POST',
@@ -56,7 +48,6 @@
                 event.preventDefault();
         
                 var vacancyId = $(this).data('vacancy-id');
-                // console.log(vacancyId);
                 var toggleFavoriteBtn = $(this);
                 var favoriteIcon = toggleFavoriteBtn.find('#favorite-icon');
         
@@ -68,11 +59,13 @@
                     },
                     success: function(data) {
                         if (data.favorite) {
-                            toggleFavoriteBtn.removeClass('outline-btn').addClass('hint-btn');
-                            favoriteIcon.attr('src', '{{ asset('icons/gray/gem.svg') }}');
+                            toggleFavoriteBtn.removeClass('outline-btn').addClass('fill-btn');
+                            favoriteIcon.attr('src', '{{ asset('icons/light/gem.svg') }}');
+                            // toggleFavoriteBtn.html('<img id="favorite-icon" src="{{ asset('icons/gray/gem.svg') }}" alt="icon"> в избранном');
                         } else {
-                            toggleFavoriteBtn.removeClass('hint-btn').addClass('outline-btn');
+                            toggleFavoriteBtn.removeClass('fill-btn').addClass('outline-btn');
                             favoriteIcon.attr('src', '{{ asset('icons/black/gem.svg') }}');
+                            // toggleFavoriteBtn.html('<img id="favorite-icon" src="{{ asset('icons/black/gem.svg') }}" alt="icon">');
                         }
                     }
                 });
@@ -277,17 +270,20 @@
                             @endphp
 
                             <div 
-                            class="favorite-btn {{ $isFavorite ? 'hint-btn square-btn' : 'outline-btn square-btn' }}" 
+                            class="favorite-btn {{ $isFavorite ? 'fill-btn square-btn' : 'outline-btn square-btn' }}" 
                             data-vacancy-id="{{ $vacancy->id }}">
-                                <img id="favorite-icon" src="{{  $isFavorite ? asset('icons/gray/gem.svg') : asset('icons/black/gem.svg') }}" alt="icon">
+                                <img id="favorite-icon" src="{{  $isFavorite ? asset('icons/light/gem.svg') : asset('icons/black/gem.svg') }}" alt="icon">
+                                {{-- @if ($isFavorite)
+                                    в избранном
+                                @endif --}}
                             </div>
                                                         
                         </div>
-                        @else
+                        {{-- @else
                         <div class="actions">
                             <div class="hint-btn">откликнуться</div>
                             <div class="hint-btn square-btn"><img src="{{ asset('icons/gray/gem.svg') }}" alt="icon"></div>
-                        </div>
+                        </div> --}}
                         @endif
 
                         @endauth
