@@ -25,13 +25,13 @@
                 $('.av-form textarea[name="cover_letter"]').val('');
             });
         
-            $(document).mouseup(function (e) {
-                var container = $(".av-form");
-                if (container.has(e.target).length === 0){
-                    container.fadeOut();
-                    $('.blur-bg').fadeOut();
-                }
-            });
+            // $(document).mouseup(function (e) {
+            //     var container = $(".av-form");
+            //     if (container.has(e.target).length === 0){
+            //         container.fadeOut();
+            //         $('.blur-bg').fadeOut();
+            //     }
+            // });
         
             $('.av-form').on('submit', function(e) {
                 e.preventDefault();
@@ -317,7 +317,7 @@
                         </div>
                     </div>
                 @empty
-\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\                    {{-- <p>Ничего не найдено</p> --}}
+                    {{-- <p>Ничего не найдено</p> --}}
                 @endforelse
             </div>       
         </div>  
