@@ -58,12 +58,8 @@ class VacancyController extends Controller
             'title' => 'required',
             'company' => 'required',
             'city' => 'required',
-            'salary_from' => 'required|numeric|min:0',
-            'salary_to' => ['required', 'numeric', 'min:0', function ($attribute, $value, $fail) use ($request) {
-                if ($value < $request->input('salary_from')) {
-                    $fail($attribute.' должно быть больше или равно salary_from.');
-                }
-            }],
+            'salary_from' => 'numeric|min:0',
+            'salary_to' => 'numeric|min:0',
         ]);
 
         // Создание новой вакансии

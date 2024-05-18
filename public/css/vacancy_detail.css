@@ -159,27 +159,28 @@ body {
 
 .tags {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 15px;
 }
 
 .tag {
-    /* display: flex; 
-    width: fit-content; */
+    display: flex;
+    justify-content: center;
 
     gap: 5px;
     align-items: center;
     padding: 5px 15px;
+    font-weight: 700;
 
-    background-color: #EFFBFF;
     border-radius: 999px;
     color: #242424;
-    font-weight: 700;
+    background-color: #EFFBFF;
 }
 
-.tag img {
+/* .tag img {
     padding: 5px 5px 5px 0px;
-}
+} */
 
 #response-form {
     top: 25%;
@@ -221,7 +222,7 @@ body {
 .double-btn,
 .vacancy-title,
 .inline-block,
-.cover,
+.vacancy-column-content .cover,
 .vacancy-content-block {
     opacity: 0;
     transform: translateY(10px);

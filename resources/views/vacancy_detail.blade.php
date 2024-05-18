@@ -95,15 +95,20 @@
             }
 
             if ('{{ $errors->any() }}') {
-                // Показать форму и затемнение
                 $('#edit-form').css('display', 'flex');
                 $('.blur-bg').fadeIn();
                 $('body').addClass('no-scroll');
             }
 
-            $('.previous-page').text(linkText);
+            $('#previous-page').text(linkText);
 
-            $('.edit-btn').click(function() {
+            $('.cancel-btn, .x-btn').click(function() {
+                $('.av-form').fadeOut();
+                $('.blur-bg').fadeOut();
+                $('body').removeClass('no-scroll');
+            });
+
+            $('#edit-btn').click(function() {
                 var vacancyId = $(this).data('vacancy-id');
                 // var vacancyTitle = $(this).data('vacancyTitle');
                 $('#edit-form').attr('action', '/vacancy/' + vacancyId + '/update');
@@ -116,12 +121,6 @@
                 $('#response-form').attr('action', '/vacancy/' + {{ $vacancy->id }} + '/create_response');
                 $('#response-form').fadeIn().css('display', 'flex');
                 $('.blur-bg').fadeIn();
-            });
-
-            $('.cancel-btn, .x-btn').click(function() {
-                $('.av-form').fadeOut();
-                $('.blur-bg').fadeOut();
-                $('body').removeClass('no-scroll');
             });
         
             // $(document).mouseup(function (e) {
@@ -142,9 +141,9 @@
                     data: $(this).serialize(),
                     success: function(response) {
                         if (response.success) {
-                            $('#response-form').fadeOut();
+                            $('#response-form').hide();
                             $('#response-btn').replaceWith('<div class="hint-btn">уже откликнулись</div>');
-                            $('.blur-bg').fadeOut();
+                            $('.blur-bg').hide();
                             $('body').removeClass('no-scroll');
                         } else {
                             // Обработка ошибок
@@ -176,7 +175,7 @@
                 });
             });
 
-            $('#edit-form').on('edit-submit', function(e) {
+            $('#edit-form').on('submit', function(e) {
                 e.preventDefault();
 
                 $.ajax({
@@ -194,37 +193,6 @@
                     }
                 });
             });
-
-            // $('.edit-btn').click(function() {
-            //     $('#edit-form').fadeIn().css('display', 'flex');
-            //     $('.blur-bg').fadeIn();
-            //     $('body').addClass('no-scroll'); // Добавить класс к body
-            // });
-
-            // $('.x-btn').click(function() {
-            //     $('#response-form').fadeOut();
-            //     $('#edit-form').fadeOut();
-            //     $('.blur-bg').fadeOut();
-            //     $('body').removeClass('no-scroll'); // Удалить класс из body
-            // });
-        
-            // $('#edit-form').on('submit', function(e) {
-            //     e.preventDefault();
-
-            //     $.ajax({
-            //         url: $(this).attr('action'),
-            //         method: 'PUT',
-            //         data: $(this).serialize(),
-            //         success: function(response) {
-            //             if (response.success) {
-            //                 $('#edit-form').fadeOut();
-            //                 $('.blur-bg').fadeOut();
-            //             } else {
-            //                 // Обработка ошибок
-            //             }
-            //         }
-            //     });
-            // });
         });
     </script>
         
@@ -234,7 +202,12 @@
 
         <div class="blur-bg"></div>
 
-        <form class="av-form" id="edit-form" method="POST" enctype="multipart/form-data" action="" style="{{ $errors->any() ? 'display: flex' : 'display: none' }}">
+        <form class="av-form" 
+        id="edit-form" 
+        method="POST" 
+        enctype="multipart/form-data" 
+        action="" 
+        style="{{ $errors->any() ? 'display: flex' : 'display: none' }}">
             @csrf
             @method('PUT')
 
@@ -378,7 +351,7 @@
             </div>
         </form>
 
-        <form class="av-form" id="response-form" method="POST" action="/vacancy/{{ $vacancy->id }}/create_response" enctype="multipart/form-data" style="display: none">
+        <form id="response-form" class="av-form" method="POST" action="/vacancy/{{ $vacancy->id }}/create_response" enctype="multipart/form-data" style="display: none">
             @csrf
 
             <div class="x-btn">
@@ -387,11 +360,9 @@
 
             <div class="form-title">
                 <h3>Отклик</h3>
-
                 <div class="av-icon">
                     <img src="{{  asset('icons/black/hand-tap.svg') }}" alt="icon">
                 </div>
-
             </div>
 
             <div class="inputs-block">
@@ -416,7 +387,7 @@
         </form>
 
         <div class="breakpoints" style="--i: 0">
-            <a href="{{ url()->previous() }}" class="previous-page"></a>
+            <a href="{{ url()->previous() }}" id="previous-page"></a>
             <p>/</p>
             <a href="/vacancy_detail/{{  $vacancy->id }}" id="current-page">{{ $vacancy->title }}</a>
         </div>
@@ -458,7 +429,7 @@
 
 
                         @elseif(auth()->user()->hasRole('recruiter'))
-                            <div class="fill-btn edit-btn" data-vacancy-id="{{ $vacancy->id }}">
+                            <div id="edit-btn" class="fill-btn" data-vacancy-id="{{ $vacancy->id }}">
                                 <img src="{{ asset('icons/light/pencil.svg') }}" alt="icon">
                                 изменить
                             </div>
@@ -498,7 +469,7 @@
     
                         <div class="v-block-detail">
                             <p class="line-limit">{{ $vacancy->company }}</p>
-                            <p class="tag line-limit"><img src="{{ asset('icons/black/map-pin.svg') }}" alt="map-pin">{{ $vacancy->city }}</p>
+                            <p class="tag"><img src="{{ asset('icons/black/map-pin.svg') }}" alt="map-pin">{{ $vacancy->city }}</p>
                         </div>
                     </div>
     

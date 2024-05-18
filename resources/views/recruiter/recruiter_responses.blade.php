@@ -122,7 +122,7 @@
         @else
         <div class="av-list" style="--i: 3">
             @foreach($responses as $index => $response)
-                <div class="l-row" style="--i: {{ $index + 3}}">
+                <div class="l-row" style="--i: {{ $index}}">
                     <div class="set">
 
                         <div class="elem">
@@ -187,7 +187,7 @@
         </div>
 
         <div class="pagination" style="--i: 3">
-            {{ $vacancies->links('vendor.pagination.custom_pagination') }}
+            {{ $responses->links('vendor.pagination.custom_pagination') }}
         </div>
         @endif
     </div>
