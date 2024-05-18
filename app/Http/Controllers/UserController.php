@@ -76,4 +76,24 @@ class UserController extends Controller
         Auth::logout();
         return redirect('/login');
     }
+
+    public function searchApplicants(Request $request)
+    {
+        // Получение запроса поиска из GET-параметров
+        $query = $request->input('query');
+
+        // Проверка, что поле поиска не пустое
+        if($query == null || trim($query) === "") {
+            return view('applicant_list');
+        }
+
+        // Ищем совпадения в резюме и навыках
+        $applicants = Profile::where('resume', 'like', "%{$query}%")
+                            ->orWhere('skills', 'like', "%{$query}%")
+                            ->orderBy('created_at', 'desc')
+                            ->paginate(5);
+
+        return view('applicant_list', compact('applicants', 'query'));
+    }
+
 }
