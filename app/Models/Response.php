@@ -25,4 +25,9 @@ class Response extends Model
     {
         return $this->belongsTo(Vacancy::class);
     }
+
+    public function status()
+    {
+        return $this->belongsTo(ResponseStatus::class);
+    }
 }

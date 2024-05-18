@@ -15,8 +15,17 @@ return new class extends Migration
     {
         Schema::create('response_statuses', function (Blueprint $table) {
             $table->id();
+            $table->string('status');
             $table->timestamps();
         });
+
+        // Здесь мы добавляем статусы в таблицу
+        DB::table('response_statuses')->insert([
+            ['status' => 'приглашение'],
+            ['status' => 'отказ'],
+            ['status' => 'на рассмотрении'],
+            ['status' => 'не рассмотрено'],
+        ]);
     }
 
     /**

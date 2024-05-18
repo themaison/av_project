@@ -33,7 +33,7 @@ class ResponseController extends Controller
         $response->user_id = Auth::id();
         $response->vacancy_id = $id;
         $response->cover_letter = $request->cover_letter;
-        $response->status = 'не рассмотрено';
+        $response->status_id = 4; // ID для 'не рассмотрено'
         $response->save();
 
         return response()->json(['success' => true]);

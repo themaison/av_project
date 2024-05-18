@@ -160,7 +160,7 @@
                 $diffInMonths = $created->diffInMonths($now);
                 @endphp
 
-                <div class="v-card" style="--i: {{ $index + 2 }}">
+                <div class="v-card" style="--i: {{ $index }}">
                     <a href="/vacancy_detail/{{ $vacancy->id }}" class="l1-data">
                         @if($vacancy->cover)
                                 

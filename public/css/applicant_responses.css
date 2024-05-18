@@ -82,17 +82,22 @@ body {
     border-radius: 999px;
 }
 
-.stat0 {
-    color: #979797;
+.r-stat-1 {
+    color: #75BB63;
     width: 120px;
 }
 
-.stat1 {
+.r-stat-2 {
+    color: #FF2E00;
+    width: 120px;
+}
+
+.r-stat-3 {
     color: #3FA3FF;
     width: 120px;
 }
 
-.stat2 {
-    color: #FF2E00;
+.r-stat-4 {
+    color: #979797;
     width: 120px;
 }

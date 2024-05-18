@@ -68,17 +68,18 @@
         @else
         <div class="av-list" style="--i: 3">
             @foreach($responses as $index => $response)
-                <div class="l-row" style="--i: {{ $index + 3 }}">
+                <div class="l-row" style="--i: {{ $index }}">
                     <div class="set">
                         <div class="elem">
                             <p class="hint-text">{{ $response->created_at }}</p>
                         </div>
-        
+
                         <div class="elem">
-                            <p class="{{ $response->status == 'не рассмотрено' ? 'stat0' : ($response->status == 'принят' ? 'stat1' : 'stat2') }}">
-                                {{ $response->status }}
+                            <p class="{{ $response->status_id == 1 ? 'r-stat-1' : ($response->status_id == 2 ? 'r-stat-2' : ($response->status_id == 3 ? 'r-stat-3' : 'r-stat-4')) }}">
+                                {{ $response->status->status }}
                             </p>
                         </div>
+                        
 
                         <a href="/vacancy_detail/{{ $response->vacancy->id }}" class="elem">
                             @if($response->vacancy->cover)
@@ -105,7 +106,7 @@
                         
                     </div>
         
-                    @if($response->status == 'не рассмотрено')
+                    @if($response->status_id == 4)
                         <form action="/responses/delete_response/{{ $response->id }}" method="POST">
                             @csrf
                             @method('DELETE')
@@ -113,11 +114,8 @@
                                 <img src="{{ asset('icons/black/trash.svg') }}" alt="icon">
                             </button>
                         </form>
-
-                        {{-- <button class="outline-btn square-btn delete-btn" data-response-id="{{ $response->id }}">
-                            <img src="{{ asset('icons/black/trash.svg') }}" alt="icon">
-                        </button> --}}
                     @endif
+
                 </div>
             @endforeach
         </div>
