@@ -19,7 +19,7 @@
             });
         
             $('.cancel-btn, .x-btn').click(function() {
-                $('.av-form').fadeOut();
+                $('.av-form').hide();
                 $('.letter-form').fadeOut();
                 $('.blur-bg').fadeOut();
             });

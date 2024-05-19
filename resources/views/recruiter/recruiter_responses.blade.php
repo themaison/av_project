@@ -19,7 +19,7 @@
             });
 
             $('.cancel-btn, .x-btn').click(function() {
-                $('.av-form').fadeOut();
+                $('.av-form').hide();
                 $('.letter-form').fadeOut();
                 $('.blur-bg').fadeOut();
             });
@@ -27,24 +27,22 @@
             $(document).on('click', '.act-btn-1', function(e) {
                 e.preventDefault();
                 var responseId = $(this).data('response-id');
-                setStatus(responseId, 2);
+                setStatus(responseId, 2, $(this));
             });
 
             $(document).on('click', '.act-btn-2', function(e) {
                 e.preventDefault();
                 var responseId = $(this).data('response-id');
-                setStatus(responseId, 3);
+                setStatus(responseId, 3, $(this));
             });
 
             $(document).on('click', '.act-btn-3', function(e) {
                 e.preventDefault();
                 var responseId = $(this).data('response-id');
-                setStatus(responseId, 1);
+                setStatus(responseId, 1, $(this));
             });
 
-            function setStatus(responseId, status_id) {
-                // console.log(responseId, status_id);
-
+            function setStatus(responseId, status_id, clickedButton) {
                 $.ajax({
                     url: '/response/' + responseId + '/set_status',
                     method: 'POST',
@@ -79,6 +77,13 @@
 
                             statusElement.removeClass('r-stat-1 r-stat-2 r-stat-3 r-stat-4');
                             statusElement.addClass('r-stat-' + status_id);
+
+                            // Находим родительский элемент текущей кнопки
+                            var parentElement = clickedButton.closest('.double-btn');
+                            // Удаляем класс 'selected' только у кнопок внутри этого элемента
+                            parentElement.find('.act-btn-1, .act-btn-2, .act-btn-3').removeClass('selected');
+                            // Добавляем класс 'selected' к нажатой кнопке
+                            clickedButton.addClass('selected');
                         } else {
                             // Обработка ошибок
                         }
@@ -171,13 +176,13 @@
                     </div>
 
                     <div class="double-btn action-btn">
-                        <div class="fill-btn square-btn act-btn-1" data-response-id="{{ $response->id }}">
+                        <div class="fill-btn square-btn act-btn-1 {{ $response->status_id == 2 ? 'selected' : '' }}" data-response-id="{{ $response->id }}">
                             <img src="{{ asset('icons/special/x.svg') }}" alt="icon">
                         </div>
-                        <div class="fill-btn square-btn act-btn-2" data-response-id="{{ $response->id }}">
+                        <div class="fill-btn square-btn act-btn-2 {{ $response->status_id == 3 ? 'selected' : '' }}" data-response-id="{{ $response->id }}">
                             <img src="{{ asset('icons/black/clock.svg') }}" alt="icon">
                         </div>
-                        <div class="fill-btn square-btn act-btn-3" data-response-id="{{ $response->id }}">
+                        <div class="fill-btn square-btn act-btn-3 {{ $response->status_id == 1 ? 'selected' : '' }}" data-response-id="{{ $response->id }}">
                             <img src="{{ asset('icons/special/checkmark.svg') }}" alt="icon">
                         </div>
                     </div>
