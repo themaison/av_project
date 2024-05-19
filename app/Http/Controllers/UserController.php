@@ -77,7 +77,7 @@ class UserController extends Controller
         return redirect('/login');
     }
 
-    public function searchApplicants(Request $request)
+    public function search(Request $request)
     {
         // Получение запроса поиска из GET-параметров
         $query = $request->input('query');
@@ -87,13 +87,18 @@ class UserController extends Controller
             return view('applicant_list');
         }
 
-        // Ищем совпадения в резюме и навыках
-        $applicants = Profile::where('resume', 'like', "%{$query}%")
-                            ->orWhere('skills', 'like', "%{$query}%")
-                            ->orderBy('created_at', 'desc')
-                            ->paginate(5);
+        // Ищем совпадения в резюме, навыках и имени пользователя
+        $users = User::whereHas('profile', function ($q) use ($query) {
+                        $q->where('resume', 'like', "%{$query}%")
+                        ->orWhere('description', 'like', "%{$query}%");
+                    })
+                    ->orWhere('name', 'like', "%{$query}%")
+                    ->whereHas('roles', function ($q) {
+                        $q->where('name', 'applicant');
+                    })
+                    ->orderBy('created_at', 'desc')
+                    ->paginate(5);
 
-        return view('applicant_list', compact('applicants', 'query'));
+        return view('applicant_list', compact('users', 'query'));
     }
-
 }

@@ -63,6 +63,10 @@ header {
     transition: color 0.3s ease;
 }
 
+.menu .active-link a {
+    color: #EFFBFF;
+}
+
 .menu a:hover {
     text-decoration: none;
     color: #EFFBFF;

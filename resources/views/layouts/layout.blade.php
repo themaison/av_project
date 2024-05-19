@@ -30,11 +30,23 @@
                     {{-- <a href="/logout" class="w-head-btn">выйти</a> --}}
         
                     @if(auth()->user()->hasRole('applicant'))
-                        <a href="/favorite_vacancies">избранное</a>
-                        <a href="/applicant_responses">отклики</a>
+                        <a href="/favorite_vacancies" class="icon-block ">
+                            <img src="{{ asset('icons/gray/bookmark.svg') }}" alt="icon">
+                            избранное
+                        </a>
+                        <a href="/applicant_responses" class="icon-block">
+                            <img src="{{ asset('icons/gray/hand-tap.svg') }}" alt="icon">
+                            отклики
+                        </a>
                     @elseif(auth()->user()->hasRole('recruiter'))
-                        <a href="/recruiter_responses">отклики</a>
-                        <a href="/recruiter_vacancies">мои вакансии</a>
+                        <a href="/recruiter_responses" class="icon-block">
+                            <img src="{{ asset('icons/gray/hand-tap.svg') }}" alt="icon">
+                            отклики
+                        </a>
+                        <a href="/recruiter_vacancies" class="icon-block">
+                            <img src="{{ asset('icons/gray/brush.svg') }}" alt="icon">
+                            мои вакансии
+                        </a>
                     @endif
 
                     <div class="dropdown">

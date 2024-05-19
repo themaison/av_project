@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', 'запрос')
+@section('title', $query)
 
 @section('content')
     <link href="{{asset('css/av-cover.css?v=').time()}}" rel="stylesheet">
@@ -60,11 +60,11 @@
                     success: function(data) {
                         if (data.favorite) {
                             toggleFavoriteBtn.removeClass('outline-btn').addClass('fill-btn');
-                            favoriteIcon.attr('src', '{{ asset('icons/light/gem.svg') }}');
+                            favoriteIcon.attr('src', '{{ asset('icons/light/bookmark.svg') }}');
                             // toggleFavoriteBtn.html('<img id="favorite-icon" src="{{ asset('icons/gray/gem.svg') }}" alt="icon"> в избранном');
                         } else {
                             toggleFavoriteBtn.removeClass('fill-btn').addClass('outline-btn');
-                            favoriteIcon.attr('src', '{{ asset('icons/black/gem.svg') }}');
+                            favoriteIcon.attr('src', '{{ asset('icons/black/bookmark.svg') }}');
                             // toggleFavoriteBtn.html('<img id="favorite-icon" src="{{ asset('icons/black/gem.svg') }}" alt="icon">');
                         }
                     }
@@ -272,7 +272,7 @@
                             <div 
                             class="favorite-btn {{ $isFavorite ? 'fill-btn square-btn' : 'outline-btn square-btn' }}" 
                             data-vacancy-id="{{ $vacancy->id }}">
-                                <img id="favorite-icon" src="{{  $isFavorite ? asset('icons/light/gem.svg') : asset('icons/black/gem.svg') }}" alt="icon">
+                                <img id="favorite-icon" src="{{  $isFavorite ? asset('icons/light/bookmark.svg') : asset('icons/black/bookmark.svg') }}" alt="icon">
                                 {{-- @if ($isFavorite)
                                     в избранном
                                 @endif --}}
@@ -291,7 +291,7 @@
                         @guest
                         <div class="actions">
                             <div class="hint-btn">откликнуться</div>
-                            <div class="hint-btn square-btn"><img src="{{ asset('icons/gray/gem.svg') }}" alt="icon"></div>
+                            <div class="hint-btn square-btn"><img src="{{ asset('icons/gray/bookmark.svg') }}" alt="icon"></div>
                         </div>
                         @endguest
 

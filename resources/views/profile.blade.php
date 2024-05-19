@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', 'имя фамилия отчество')
+@section('title', $user->name)
 
 @section('content')
     <link href="{{asset('css/profile.css?v=').time()}}" rel="stylesheet">
