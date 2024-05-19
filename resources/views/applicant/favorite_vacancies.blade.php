@@ -4,17 +4,46 @@
 
 @section('content')
     <link href="{{asset('css/av-cover.css?v=').time()}}" rel="stylesheet">
+    <link href="{{asset('css/av-form.css?v=').time()}}" rel="stylesheet">
     <link href="{{asset('css/vacancy_list.css?v=').time()}}" rel="stylesheet">
     <link href="{{asset('css/av-pagination.css?v=').time()}}" rel="stylesheet">
     {{-- <link href="{{asset('css/favorite_vacancies.css?v=').time()}}" rel="stylesheet"> --}}
 
     <script>
         $(document).ready(function() {
+            $('.response-btn').click(function() {
+                var vacancyId = $(this).data('vacancy-id');
+                var vacancyTitle = $(this).data('vacancyTitle');
+                var clickedButton = $(this); // Сохраняем ссылку на нажатую кнопку
+
+                $('.av-form').attr('action', '/vacancy/' + vacancyId + '/create_response');
+
+                $('.av-form').fadeIn().css('display', 'flex');
+                $('.blur-bg').fadeIn();
+
+                $('.av-form').on('submit', function(e) {
+                    e.preventDefault();
+                    $.ajax({
+                        url: $(this).attr('action'),
+                        method: 'POST',
+                        data: $(this).serialize(),
+                        success: function(response) {
+                            if (response.success) {
+                                $('.av-form').hide();
+                                $('.blur-bg').fadeOut();
+                                clickedButton.replaceWith('<div class="hint-btn">уже откликнулись</div>'); // Заменяем только нажатую кнопку
+                            } else {
+                                // Обработка ошибок
+                            }
+                        }
+                    });
+                });
+            });
+
             $('.favorite-btn').click(function(event) {
                 event.preventDefault();
         
                 var vacancyId = $(this).data('vacancy-id');
-                // console.log(vacancyId);
                 var toggleFavoriteBtn = $(this);
                 var favoriteIcon = toggleFavoriteBtn.find('#favorite-icon');
         
@@ -26,14 +55,22 @@
                     },
                     success: function(data) {
                         if (data.favorite) {
-                            toggleFavoriteBtn.removeClass('outline-btn').addClass('hint-btn');
-                            favoriteIcon.attr('src', '{{ asset('icons/gray/gem.svg') }}');
+                            toggleFavoriteBtn.removeClass('outline-btn').addClass('fill-btn');
+                            favoriteIcon.attr('src', '{{ asset('icons/light/bookmark.svg') }}');
+                            // toggleFavoriteBtn.html('<img id="favorite-icon" src="{{ asset('icons/gray/gem.svg') }}" alt="icon"> в избранном');
                         } else {
-                            toggleFavoriteBtn.removeClass('hint-btn').addClass('outline-btn');
-                            favoriteIcon.attr('src', '{{ asset('icons/black/gem.svg') }}');
+                            toggleFavoriteBtn.removeClass('fill-btn').addClass('outline-btn');
+                            favoriteIcon.attr('src', '{{ asset('icons/black/bookmark.svg') }}');
+                            // toggleFavoriteBtn.html('<img id="favorite-icon" src="{{ asset('icons/black/gem.svg') }}" alt="icon">');
                         }
                     }
                 });
+            });
+
+            $('.cancel-btn, .x-btn').click(function() {
+                $('.av-form').hide();
+                $('.blur-bg').fadeOut();
+                $('.av-form textarea[name="cover_letter"]').val('');
             });
         });
     </script>
@@ -215,7 +252,7 @@
                             @if(auth()->user()->responses()->where('vacancy_id', $vacancy->id)->exists())
                                 <div class="hint-btn">уже откликнулись</div>
                             @else
-                                <div class="fill-btn response-btn">откликнуться</div>
+                                <div class="fill-btn response-btn" data-vacancy-id="{{ $vacancy->id }}">откликнуться</div>
                             @endif
 
                             @php
@@ -223,27 +260,18 @@
                             @endphp
 
                             <div 
-                            class="favorite-btn {{ $isFavorite ? 'hint-btn square-btn' : 'outline-btn square-btn' }}" 
+                            class="favorite-btn {{ $isFavorite ? 'fill-btn square-btn' : 'outline-btn square-btn' }}" 
                             data-vacancy-id="{{ $vacancy->id }}">
-                                <img id="favorite-icon" src="{{  $isFavorite ? asset('icons/gray/gem.svg') : asset('icons/black/gem.svg') }}" alt="icon">
+                                <img id="favorite-icon" src="{{  $isFavorite ? asset('icons/light/bookmark.svg') : asset('icons/black/bookmark.svg') }}" alt="icon">
+                                {{-- @if ($isFavorite)
+                                    в избранном
+                                @endif --}}
                             </div>
 
-                        </div>
-                        @else
-                        <div class="actions">
-                            <div class="hint-btn">откликнуться</div>
-                            <button class="hint-btn square-btn"><img src="{{ asset('icons/gray/gem.svg') }}" alt="icon"></button>
                         </div>
                         @endif
 
                         @endauth
-
-                        @guest
-                        <div class="actions">
-                            <div class="hint-btn">откликнуться</div>
-                            <button class="hint-btn square-btn"><img src="{{ asset('icons/gray/gem.svg') }}" alt="icon"></button>
-                        </div>
-                        @endguest
 
                         @if ($diffInSeconds < 60)
                             <p>{{ $diffInSeconds }} {{ getWord($diffInSeconds, ['секунда', 'секунды', 'секунд']) }} назад</p>

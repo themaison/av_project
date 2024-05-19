@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', $query)
+@section('title', 'список вакансий')
 
 @section('content')
     <link href="{{asset('css/av-cover.css?v=').time()}}" rel="stylesheet">
@@ -13,34 +13,29 @@
             $('.response-btn').click(function() {
                 var vacancyId = $(this).data('vacancy-id');
                 var vacancyTitle = $(this).data('vacancyTitle');
+                var clickedButton = $(this); // Сохраняем ссылку на нажатую кнопку
 
                 $('.av-form').attr('action', '/vacancy/' + vacancyId + '/create_response');
 
                 $('.av-form').fadeIn().css('display', 'flex');
                 $('.blur-bg').fadeIn();
-            });
 
-            $('.cancel-btn, .x-btn').click(function() {
-                $('.av-form').fadeOut();
-                $('.blur-bg').fadeOut();
-                $('.av-form textarea[name="cover_letter"]').val('');
-            });
-        
-            $('.av-form').on('submit', function(e) {
-                e.preventDefault();
-                $.ajax({
-                    url: $(this).attr('action'),
-                    method: 'POST',
-                    data: $(this).serialize(),
-                    success: function(response) {
-                        if (response.success) {
-                            $('.av-form').fadeOut();
-                            $('.blur-bg').fadeOut();
-                            $('.response-btn').replaceWith('<div class="hint-btn">уже откликнулись</div>');
-                        } else {
-                            // Обработка ошибок
+                $('.av-form').on('submit', function(e) {
+                    e.preventDefault();
+                    $.ajax({
+                        url: $(this).attr('action'),
+                        method: 'POST',
+                        data: $(this).serialize(),
+                        success: function(response) {
+                            if (response.success) {
+                                $('.av-form').hide();
+                                $('.blur-bg').fadeOut();
+                                clickedButton.replaceWith('<div class="hint-btn">уже откликнулись</div>'); // Заменяем только нажатую кнопку
+                            } else {
+                                // Обработка ошибок
+                            }
                         }
-                    }
+                    });
                 });
             });
 
@@ -69,6 +64,12 @@
                         }
                     }
                 });
+            });
+
+            $('.cancel-btn, .x-btn').click(function() {
+                $('.av-form').hide();
+                $('.blur-bg').fadeOut();
+                $('.av-form textarea[name="cover_letter"]').val('');
             });
         });
     </script>
@@ -105,7 +106,7 @@
 
         <div class="blur-bg"></div>
 
-        <form class="av-form" method="POST" action="" enctype="multipart/form-data"  style="display: none">
+        <form class="av-form" method="POST" action="/vacancy/vacancy->id/create_response" enctype="multipart/form-data"  style="display: none">
             @csrf
 
             <div class="x-btn">

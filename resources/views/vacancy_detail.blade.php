@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', $vacancy->title)
+@section('title', 'вакансия')
 
 @section('content')
     <link href="{{asset('css/av-form.css?v=').time()}}" rel="stylesheet">
@@ -103,7 +103,7 @@
             $('#previous-page').text(linkText);
 
             $('.cancel-btn, .x-btn').click(function() {
-                $('.av-form').fadeOut();
+                $('.av-form').hide();
                 $('.blur-bg').fadeOut();
                 $('body').removeClass('no-scroll');
             });
@@ -123,14 +123,6 @@
                 $('.blur-bg').fadeIn();
             });
         
-            // $(document).mouseup(function (e) {
-            //     var container = $(".av-form");
-            //     if (container.has(e.target).length === 0){
-            //         container.fadeOut();
-            //         $('.blur-bg').fadeOut();
-            //         $('body').removeClass('no-scroll');
-            //     }
-            // });
         
             $('#response-form').on('submit', function(e) {
                 e.preventDefault();
@@ -143,7 +135,7 @@
                         if (response.success) {
                             $('#response-form').hide();
                             $('#response-btn').replaceWith('<div class="hint-btn">уже откликнулись</div>');
-                            $('.blur-bg').hide();
+                            $('.blur-bg').fadeOut();
                             $('body').removeClass('no-scroll');
                         } else {
                             // Обработка ошибок
@@ -393,13 +385,22 @@
         </div>
 
         <div class="vacancy-column-content">
-            @if($vacancy->cover)
+
+            <div class="cover" style="--i: 1">
+                @if ($vacancy->cover)
+                <img src="{{ Storage::url($vacancy->cover) }}" alt="cover">
+                @else
+                <img src="{{  asset('images/vacancy_cover.jpg') }}" alt="v-cover">
+                @endif
+            </div>
+
+            {{-- @if($vacancy->cover)
                 <div class="cover" style="--i: 1">
                     <img src="{{ Storage::url($vacancy->cover) }}" alt="cover">
                 </div>
             @else
                 <div class="cover" style="--i: 1"></div>
-            @endif
+            @endif --}}
 
             <div class="vacancy-actions">
                 <h2 class="vacancy-title" style="--i: 2">{{ $vacancy->title }}</h2>

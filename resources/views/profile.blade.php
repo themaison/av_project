@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', $user->name)
+@section('title', 'профиль')
 
 @section('content')
     <link href="{{asset('css/profile.css?v=').time()}}" rel="stylesheet">
@@ -34,20 +34,9 @@
             $('.save-btn').click(function() {      
                 var field = $(this).parent().data('field');
                 var newValue = $('#' + field + '-input').val().trim();
-                var currentValue = $('#' + field + '-text').text().trim();
 
-                // Если новое значение совпадает с текущим, скрываем поле ввода и показываем текстовый блок
-                if (newValue === currentValue) {
-                    $('#' + field + '-input').hide();
-                    $('#' + field + '-text').fadeIn();
-                    $('.double-btn[data-field="' + field + '"]').hide();
-                    if (newValue === '') {
-                        $('.add-btn[data-field="' + field + '"]').fadeIn();
-                    } else {
-                        $('.edit-btn[data-field="' + field + '"]').fadeIn();
-                    }
-                    return;
-                }
+                // Обновляем текстовый блок сразу после нажатия кнопки "сохранить"
+                $('#' + field + '-text').text(newValue);
 
                 $.ajax({
                     url: '/profile/' + {{ $user->id }} + '/update-profile',
@@ -59,11 +48,11 @@
                     },
                     success: function() {
                         $('#' + field + '-input').hide();
-                        $('#' + field + '-text').text(newValue).fadeIn();
+                        $('#' + field + '-text').fadeIn();
                         $('.double-btn[data-field="' + field + '"]').hide();
 
                         if (newValue === '') {
-                            $('.edit-btn[data-field="' + field + '"]').fadeIn();
+                            $('.add-btn[data-field="' + field + '"]').fadeIn();
                         } else {
                             $('.edit-btn[data-field="' + field + '"]').fadeIn();
                         }
@@ -96,14 +85,24 @@
 
                     @if ($user->id === auth()->user()->id)
                         @if(!empty($user->profile->$key))
-                        <button class="outline-btn edit-btn" data-field="{{ $key }}"><img src="{{  asset('icons/black/brush.svg') }}" alt="icon">изменить</button>
+                        <button class="outline-btn edit-btn" data-field="{{ $key }}">
+                            <img src="{{  asset('icons/black/brush.svg') }}" alt="icon">
+                            изменить
+                        </button>
                         @else
-                            <button class="fill-btn add-btn" data-field="{{ $key }}"><img src="{{  asset('icons/light/brush.svg') }}" alt="icon">добавить</button>
+                        <button class="fill-btn add-btn" data-field="{{ $key }}">
+                            <img src="{{  asset('icons/light/brush.svg') }}" alt="icon">
+                            добавить
+                        </button>
                         @endif
 
                         <div class="double-btn" data-field="{{ $key }}" style="display: none;">
-                            <button class="fill-btn save-btn">сохранить</button>
-                            <button class="outline-btn cancel-btn">отмена</button>
+                            <button class="fill-btn save-btn">
+                                сохранить
+                            </button>
+                            <button class="outline-btn cancel-btn">
+                                отмена
+                            </button>
                         </div>
                     @endif
         
@@ -111,7 +110,10 @@
         
                 <div class="p-block-data">
                     <p id="{{ $key }}-text">{{ $user->profile->$key }}</p>
-                    <textarea id="{{ $key }}-input" style="display: none;" placeholder="Введите текст..."></textarea>
+                    <textarea 
+                    id="{{ $key }}-input" 
+                    style="display: none;" 
+                    placeholder="Введите текст..."></textarea>
                 </div>
         
             </div>

@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', $query)
+@section('title', 'список резюме')
 
 @section('content')
     <link href="{{asset('css/av-cover.css?v=').time()}}" rel="stylesheet">
@@ -57,7 +57,7 @@
                             <div class="cover"></div>
                         @endif      
 
-                        <div class="text-content">
+                        <div class="profile-head">
                             <h3>{{ $user->name }}</h3>
                             @if ($user->profile->contacts)
                             <div class="icon-block">
@@ -66,6 +66,10 @@
                             </div>
                             @endif
                         </div>
+
+                        {{-- <a class="fill-btn" href="/profile/{{ $user->id }}">
+                            в профиль
+                        </a> --}}
 
                     </a>
                     
@@ -89,11 +93,11 @@
                     </div>
                     @endif
             
-                    <div class="l3-data">
+                    {{-- <div class="l3-data">
                         <a class="fill-btn" href="/profile/{{ $user->id }}">
                             в профиль
                         </a>
-                    </div>
+                    </div> --}}
                 </div>
                 @empty
                     {{-- <p>Ничего не найдено</p> --}}
