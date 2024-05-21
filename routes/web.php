@@ -42,6 +42,8 @@ Route::get('/vacancy_detail/{id}', [VacancyController::class, 'vacancy_detail_in
 Route::get('/vacancy_search', [VacancyController::class, 'vacancy_search_index'])->name('vacancy_search');;
 Route::get('/vacancy_list', [VacancyController::class, 'search']);
 
+Route::get('/applicant_list', [UserController::class, 'search']);
+
 Route::get('/profile/{id}', [ProfileController::class, 'index']);
 Route::post('/profile/{id}/update-profile', [ProfileController::class, 'update_profile']);
 

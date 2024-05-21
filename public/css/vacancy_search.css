@@ -2,7 +2,7 @@ h1 {
     line-height: 1.1;
 }
 
-.user-role {
+.toggle-type {
     display: flex;
     margin-left: auto;
     margin-right: auto;
@@ -11,8 +11,8 @@ h1 {
     gap: 10px;
 }
 
-.role-btn {
-    padding: 5px 10px;
+.toggle-btn {
+    padding: 5px 15px;
     border-radius: 999px;
 
     border: 2px solid #3FA3FF;
@@ -20,18 +20,23 @@ h1 {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-#active-role {
+.toggle-btn:hover {
+    cursor: pointer;
+    background-color: #3FA3FF;
+    border-color: #3FA3FF;
+    color: #EFFBFF;
+}
+
+.active-toggle {
     background-color: #242424;
     border-color: #242424;
     color: #EFFBFF;
     cursor: pointer;
 }
 
-.role-btn:hover {
-    cursor: pointer;
-    background-color: #3FA3FF;
-    border-color: #3FA3FF;
-    color: #EFFBFF;
+.active-toggle:hover {
+    background-color: #323232;
+    border: 2px solid #323232;
 }
 
 

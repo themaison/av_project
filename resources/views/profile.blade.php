@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', 'имя фамилия отчество')
+@section('title', 'профиль')
 
 @section('content')
     <link href="{{asset('css/profile.css?v=').time()}}" rel="stylesheet">
@@ -178,14 +178,24 @@
 
                     @if ($user->id === auth()->user()->id)
                         @if(!empty($user->profile->$key))
-                        <button class="outline-btn edit-btn" data-field="{{ $key }}"><img src="{{  asset('icons/black/brush.svg') }}" alt="icon">изменить</button>
+                        <button class="outline-btn edit-btn" data-field="{{ $key }}">
+                            <img src="{{  asset('icons/black/brush.svg') }}" alt="icon">
+                            изменить
+                        </button>
                         @else
-                            <button class="fill-btn add-btn" data-field="{{ $key }}"><img src="{{  asset('icons/light/brush.svg') }}" alt="icon">добавить</button>
+                        <button class="fill-btn add-btn" data-field="{{ $key }}">
+                            <img src="{{  asset('icons/light/brush.svg') }}" alt="icon">
+                            добавить
+                        </button>
                         @endif
 
                         <div class="double-btn" data-field="{{ $key }}" style="display: none;">
-                            <button class="fill-btn save-btn">сохранить</button>
-                            <button class="outline-btn cancel-btn">отмена</button>
+                            <button class="fill-btn save-btn">
+                                сохранить
+                            </button>
+                            <button class="outline-btn cancel-btn">
+                                отмена
+                            </button>
                         </div>
                     @endif
         
@@ -193,7 +203,10 @@
         
                 <div class="p-block-data">
                     <p id="{{ $key }}-text">{{ $user->profile->$key }}</p>
-                    <textarea id="{{ $key }}-input" style="display: none;" placeholder="Введите текст..."></textarea>
+                    <textarea 
+                    id="{{ $key }}-input" 
+                    style="display: none;" 
+                    placeholder="Введите текст..."></textarea>
                 </div>
         
             </div>

@@ -3,7 +3,7 @@
         {{-- Previous Page Link --}}
         @if ($paginator->onFirstPage())
             <span class="page arrow-btn disabled">
-                <img src="{{ asset('icons/black/angle-left.svg') }}" alt="icon">
+                <img src="{{ asset('icons/gray/angle-left.svg') }}" alt="icon">
             </span>
         @else
             <a href="{{ $paginator->previousPageUrl() }}" class="page arrow-btn">
@@ -27,7 +27,7 @@
             </a>
         @else
             <span class="page arrow-btn disabled">
-                <img src="{{ asset('icons/black/angle-right.svg') }}" alt="icon">
+                <img src="{{ asset('icons/gray/angle-right.svg') }}" alt="icon">
             </span>
         @endif
     </div>

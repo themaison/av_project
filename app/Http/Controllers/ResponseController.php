@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Response;
+use App\Models\ResponseStatus;
 
 class ResponseController extends Controller
 {
@@ -52,11 +53,16 @@ class ResponseController extends Controller
         $response = Response::find($id);
 
         if ($response) {
-            $response->status = $request->status;
-            $response->save();
-            return response()->json(['success' => true]);
+            $response_status = ResponseStatus::find($request->status_id);
+            if ($response_status) {
+                $response->status_id = $response_status->id;
+                $response->save();
+                return response()->json(['success' => true]);
+            }
         }
 
         return response()->json(['success' => false]);
     }
+
+
 }

@@ -140,7 +140,7 @@
             });
 
             $('.cancel-btn, .x-btn').click(function() {
-                $('.av-form').fadeOut();
+                $('.av-form').hide();
                 $('.blur-bg').fadeOut();
                 $('body').removeClass('no-scroll'); // Удалить класс из body
             });
