@@ -148,7 +148,7 @@
                                 <div class="cover"></div>
                             @endif
 
-                            <p>{{ $response->vacancy->title }}</p>  
+                            <p class="response-data">{{ $response->vacancy->title }}</p>  
 
                             {{-- <div class="icon-block">
                                 <img src="{{ asset('icons/blue/castle.svg') }}" alt="icon">
@@ -164,7 +164,7 @@
                             @else
                                 <div class="cover"></div>
                             @endif
-                            <p>{{ $response->user->name }}</p>
+                            <p class="response-data">{{ $response->user->name }}</p>
                         </a>
 
                         @isset($response->cover_letter)

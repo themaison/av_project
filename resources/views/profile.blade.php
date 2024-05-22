@@ -5,7 +5,7 @@
 @section('content')
     <link href="{{asset('css/profile.css?v=').time()}}" rel="stylesheet">
 
-    <script src="{{ asset('js/axios.min.js') }}"></script>
+    {{-- <script src="{{ asset('js/axios.min.js') }}"></script> --}}
     <script>
         // $(window).on('load', function() {
         //     $(document).ready(function() {
