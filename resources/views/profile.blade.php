@@ -76,7 +76,7 @@
         <div class="profile-main">
             <img src="{{ asset('images/pa2.png') }}" alt="аватар" class="profile-avatar" style="--i: 0">
             <h2 style="--i: 1">{{ $user->name }}</h2>
-        </div>
+        </div> 
 
         <div class="profile-data">
             @foreach (array_keys(['contacts' => 'Контакты', 'description' => 'Навыки', 'resume' => 'Резюме']) as $index => $key)
