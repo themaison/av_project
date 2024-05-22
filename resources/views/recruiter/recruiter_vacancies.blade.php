@@ -3,13 +3,13 @@
 @section('title', 'мои вакансии')
 
 @section('content')
-    <link href="{{asset('css/av-list.css?v=').time()}}" rel="stylesheet">
-    <link href="{{asset('css/av-cover.css?v=').time()}}" rel="stylesheet">
-    <link href="{{asset('css/av-form.css?v=').time()}}" rel="stylesheet">
-    <link href="{{asset('css/av-pagination.css?v=').time()}}" rel="stylesheet">
-    <link href="{{ asset('css/recruiter_vacancies.css?v=').time() }}" rel="stylesheet">
-    
-    <script>
+    <link href="{{ asset('css/av-list.css?v=') . time() }}" rel="stylesheet">
+    <link href="{{ asset('css/av-cover.css?v=') . time() }}" rel="stylesheet">
+    <link href="{{ asset('css/av-form.css?v=') . time() }}" rel="stylesheet">
+    <link href="{{ asset('css/av-pagination.css?v=') . time() }}" rel="stylesheet">
+    <link href="{{ asset('css/recruiter_vacancies.css?v=') . time() }}" rel="stylesheet">
+
+    {{-- <script>
         window.onload = function() {
             var modules = document.getElementsByClassName('av-form-module');
             var nextButtons = document.getElementsByClassName('next-btn');
@@ -110,10 +110,6 @@
                 var skills = $(this).data('skills');
                 var cover = $(this).data('cover');
 
-                // console.log(cover);
-
-                // console.log(vacancyId, title, company, city);
-
                 // Обновить данные формы
                 $('input[name="title"]').val(title);
                 $('input[name="company"]').val(company);
@@ -152,15 +148,6 @@
                 $('body').removeClass('no-scroll'); // Удалить класс из body
             });
 
-            // $(document).mouseup(function (e) {
-            //     var container = $(".av-form");
-            //     if (container.has(e.target).length === 0){
-            //         container.fadeOut();
-            //         $('.blur-bg').fadeOut();
-            //         $('body').removeClass('no-scroll'); // Удалить класс из body
-            //     }
-            // });
-        
             $('.av-form').on('edit-submit', function(e) {
                 e.preventDefault();
 
@@ -181,7 +168,7 @@
                 });
             });
         });
-    </script>
+    </script> --}}
 
     <div class="content">
 
@@ -190,21 +177,20 @@
         <div class="title">
             <h2 style="--i: 0">мои вакансии</h2>
             <p style="--i: 1">редактируйте и создавайте новые вакансии<br>
-            привлекайте новых соискателей и отбирайте лучших из них</p>
-            
+                привлекайте новых соискателей и отбирайте лучших из них</p>
+
             <a href="/recruiter_vacancies/new_vacancy" class="fill-btn" style="--i: 2">
                 <img src="{{ asset('icons/light/brush.svg') }}" alt="icon">
                 создать вакансию
             </a>
         </div>
 
-        @if($vacancies->isEmpty())
+        @if ($vacancies->isEmpty())
             <p class="hint-text" style="--i: 3">у вас еще нет вакансий</p>
         @else
             <div class="av-list" style="--i: 3">
-                    
                 @forelse ($vacancies as $index => $vacancy)
-                    <div class="l-row" style="--i:{{ $index + 3}}">
+                    <div class="l-row" style="--i:{{ $index + 3 }}">
                         <div class="set">
 
                             <div class="elem">
@@ -212,12 +198,10 @@
                             </div>
 
                             <a href="/vacancy_detail/{{ $vacancy->id }}" class="elem">
-                                @if($vacancy->cover)
-                                
+                                @if ($vacancy->cover)
                                     <div class="cover">
                                         <img src="{{ Storage::url($vacancy->cover) }}" alt="cover">
                                     </div>
-
                                 @else
                                     <div class="cover"></div>
                                 @endif
@@ -227,22 +211,22 @@
                         </div>
 
                         <div class="double-btn">
-                            <div class="outline-btn edit-btn" 
-                                data-vacancy-id="{{ $vacancy->id }}"
-                                data-title="{{ $vacancy->title }}"
-                                data-company="{{ $vacancy->company }}"
-                                data-city="{{ $vacancy->city }}"
-                                data-experience="{{ $vacancy->experience }}"
-                                data-salary_from="{{ $vacancy->salary_from }}"
-                                data-salary_to="{{ $vacancy->salary_to }}"
+                            {{-- <div class="outline-btn edit-btn" data-vacancy-id="{{ $vacancy->id }}"
+                                data-title="{{ $vacancy->title }}" data-company="{{ $vacancy->company }}"
+                                data-city="{{ $vacancy->city }}" data-experience="{{ $vacancy->experience }}"
+                                data-salary_from="{{ $vacancy->salary_from }}" data-salary_to="{{ $vacancy->salary_to }}"
                                 data-responsibilities="{{ $vacancy->responsibilities }}"
                                 data-requirements="{{ $vacancy->requirements }}"
-                                data-conditions="{{ $vacancy->conditions }}"
-                                data-skills="{{ $vacancy->skills }}"
+                                data-conditions="{{ $vacancy->conditions }}" data-skills="{{ $vacancy->skills }}"
                                 data-cover="{{ Storage::url($vacancy->cover) }}">
                                 <img src="{{ asset('icons/black/pencil.svg') }}" alt="icon">
                                 изменить
-                            </div>
+                            </div> --}}
+
+                            <a href="/vacancy_detail/{{ $vacancy->id }}" class="outline-btn edit-btn">
+                                <img src="{{ asset('icons/black/pencil.svg') }}" alt="icon">
+                                изменить
+                            </a>
 
                             {{-- <div class="outline-btn edit-btn" data-vacancy-id="{{ $vacancy->id }}">
                                 <img src="{{ asset('icons/black/pencil.svg') }}" alt="icon">
@@ -267,8 +251,8 @@
             <div class="pagination" style="--i: 3">
                 {{ $vacancies->links('vendor.pagination.custom_pagination') }}
             </div>
-      
-            <form id="edit-form" class="av-form" method="POST" enctype="multipart/form-data" action="" style="{{ $errors->any() ? 'display: flex' : 'display: none' }}">
+
+            {{-- <form id="edit-form" class="av-form" method="POST" enctype="multipart/form-data" action="" style="{{ $errors->any() ? 'display: flex' : 'display: none' }}">
                 @csrf
                 @method('PUT')
 
@@ -385,11 +369,6 @@
 
                             <label for="cover">обложка вакансии</label>
                             <p class="hint-text" id="file_cover-text">желательный формат .png или .jpg</p>
-                            
-                            {{-- <div class="cover">
-                                <img src="" alt="cover">
-                            </div>  --}}
-
                             <div class="cover">
                                 @if ($vacancy->cover)
                                     <img src="" alt="cover">
@@ -414,7 +393,7 @@
                         </button>
                     </div>
                 </div>
-            </form>
+            </form> --}}
         @endif
 
     </div>

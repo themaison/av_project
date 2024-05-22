@@ -42,7 +42,7 @@ class VacancyController extends Controller
 
     public function recruiter_vacancies_index()
     {
-        $vacancies = Vacancy::where('user_id', auth()->user()->id)->paginate(5);
+        $vacancies = Vacancy::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->paginate(5);
         return view('recruiter/recruiter_vacancies', compact('vacancies'));
     }
 
@@ -55,11 +55,12 @@ class VacancyController extends Controller
     {
         // Проверка входных данных
         $request->validate([
-            'title' => 'required',
-            'company' => 'required',
-            'city' => 'required',
-            'salary_from' => 'numeric|min:0',
-            'salary_to' => 'numeric|min:0',
+            'title' => 'required|max:40',
+            'company' => 'required|max:40',
+            'city' => 'required|max:40',
+            'salary-from' => 'nullable|numeric|min:0|max:2147483647',
+            'salary-to' => 'nullable|numeric|min:0|gte:salary-from|max:2147483647',
+            'experience' => 'nullable|numeric|min:0|max:100'
         ]);
 
         // Создание новой вакансии
@@ -68,6 +69,7 @@ class VacancyController extends Controller
         if ($request->hasFile('cover')) {
             $path = $request->file('cover')->store('public/images/covers');
             $vacancy->cover = $path;
+            // session(['cover_path' => $path]);
         }
 
         $vacancy->title = $request->title;
@@ -89,6 +91,19 @@ class VacancyController extends Controller
         return redirect('/recruiter_vacancies');
     }
 
+    public function upload_cover(Request $request)
+    {
+        // $request->validate([
+        //     'cover' => 'required|file|image|max:5000',
+        // ]);
+
+        $path = $request->file('cover')->store('public/images/covers');
+
+        session(['cover_path' => $path]);
+
+        return response()->json(['success' => true]);
+    }
+
     public function vacancy_delete($id)
     {
         $vacancy = Vacancy::find($id);
@@ -101,10 +116,13 @@ class VacancyController extends Controller
     {
         // Проверка входных данных
         $request->validate([
-            'title' => 'required',
-            'company' => 'required',
-            'city' => 'required',
+            'title' => 'required|max:40',
+            'company' => 'required|max:40',
+            'city' => 'required|max:40',
+            'salary_from' => 'numeric|min:0',
+            'salary_to' => 'numeric|min:0|gte:salary_from',
         ]);
+        
 
         $vacancy = Vacancy::find($id);
         if ($request->hasFile('cover')) {
