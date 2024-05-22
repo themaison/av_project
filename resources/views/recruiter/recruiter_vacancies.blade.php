@@ -47,6 +47,7 @@
             }
 
             var cover_input = document.querySelector('.file-cover');
+            var cover_result; // Глобальная переменная для хранения результата
 
             // Обработчик события изменения input
             cover_input.addEventListener('change', function(e) {
@@ -54,30 +55,36 @@
                 var reader = new FileReader();
 
                 reader.onloadend = function() {
-                    // Удаляем старый элемент .cover, если он существует
-                    var old_cover = document.querySelector('.cover');
-                    if (old_cover) {
-                        old_cover.remove();
-                    }
-
-                    // Создаем новый элемент div и img
-                    var cover_div = document.createElement('div');
-                    cover_div.className = 'cover';
-                    var cover_img = document.createElement('img');
-                    cover_img.src = reader.result;
-
-                    // Добавляем img в div
-                    cover_div.appendChild(cover_img);
-
-                    // Добавляем div в DOM после .hint-text
-                    var anchor = document.querySelector('#file_cover-text');
-                    anchor.insertAdjacentElement('afterend', cover_div);
+                    cover_result = reader.result; // Сохраняем результат в глобальную переменную
                 }
 
                 if (file) {
                     reader.readAsDataURL(file);
                 }
             });
+
+            // Обработчик события отправки формы
+            document.querySelector('#edit-form').addEventListener('submit', function(e) {
+                // Удаляем старый элемент .cover, если он существует
+                var old_cover = document.querySelector('.cover');
+                if (old_cover) {
+                    old_cover.remove();
+                }
+
+                // Создаем новый элемент div и img
+                var cover_div = document.createElement('div');
+                cover_div.className = 'cover';
+                var cover_img = document.createElement('img');
+                cover_img.src = cover_result; // Используем сохраненный результат
+
+                // Добавляем img в div
+                cover_div.appendChild(cover_img);
+
+                // Добавляем div в DOM после .hint-text
+                var anchor = document.querySelector('#file_cover-text');
+                anchor.insertAdjacentElement('afterend', cover_div);
+            });
+
         }
         
         $(document).ready(function() {
@@ -379,11 +386,17 @@
                             <label for="cover">обложка вакансии</label>
                             <p class="hint-text" id="file_cover-text">желательный формат .png или .jpg</p>
                             
-                            <div class="cover">
+                            {{-- <div class="cover">
                                 <img src="" alt="cover">
-                            </div> 
-                            
-                            {{-- <div class="cover"></div> --}}
+                            </div>  --}}
+
+                            <div class="cover">
+                                @if ($vacancy->cover)
+                                    <img src="" alt="cover">
+                                @else
+                                    <img src="{{ asset('images/vacancy_cover.jpg') }}" alt="v-cover">
+                                @endif
+                            </div>
 
                             <input type="file" class="file-cover" name="cover" accept=".png, .jpg, .jpeg"/>
 
