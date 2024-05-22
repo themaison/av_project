@@ -5,91 +5,10 @@
 @section('content')
     <link href="{{ asset('css/profile.css?v=') . time() }}" rel="stylesheet">
 
-    {{-- <script src="{{ asset('js/axios.min.js') }}"></script> --}}
     <script>
-        // $(window).on('load', function() {
-        //     $(document).ready(function() {
-        //         $('.add-btn, .edit-btn').on('click', async function() {
-        //             var field = $(this).data('field');
-        //             var text = $('#' + field + '-text');
-        //             var input = $('#' + field + '-input');
-        //             var doubleBtn = $('.double-btn[data-field="' + field + '"]');
-
-        //             // Скрываем кнопку "добавить"/"изменить" и отображаем кнопки "сохранить" и "отмена"
-        //             $(this).hide();
-        //             doubleBtn.show();
-
-        //             // Если кнопка "добавить" была нажата, то отображаем текстовое поле для ввода
-        //             // и скрываем поле с данными
-        //             if ($(this).hasClass('add-btn')) {
-        //                 input.show();
-        //                 text.hide();
-        //             }
-        //             // Если кнопка "изменить" была нажата, то отображаем текстовое поле для ввода
-        //             // с текущими данными и скрываем поле с данными
-        //             else {
-        //                 input.val(text.text()).show();
-        //                 text.hide();
-        //             }
-        //         });
-
-        //         $('.cancel-btn').on('click', function() {
-        //             var field = $(this).parent().data('field');
-        //             var text = $('#' + field + '-text');
-        //             var input = $('#' + field + '-input');
-        //             var addBtn = $('.add-btn[data-field="' + field + '"]');
-        //             var editBtn = $('.edit-btn[data-field="' + field + '"]');
-        //             var doubleBtn = $('.double-btn[data-field="' + field + '"]');
-
-        //             // Скрываем кнопки "сохранить" и "отмена" и отображаем кнопку "добавить"/"изменить"
-        //             doubleBtn.hide();
-        //             if (text.text().trim() === '') {
-        //             addBtn.show();
-        //             } else {
-        //             editBtn.show();
-        //             }
-
-        //             // Скрываем текстовое поле для ввода и отображаем поле с данными
-        //             input.hide();
-        //             text.show();
-        //         });
-
-        //         $('.save-btn').on('click', async function() {
-        //             var field = $(this).parent().data('field');
-        //             var text = $('#' + field + '-text');
-        //             var input = $('#' + field + '-input');
-        //             var addBtn = $('.add-btn[data-field="' + field + '"]');
-        //             var editBtn = $('.edit-btn[data-field="' + field + '"]');
-        //             var doubleBtn = $('.double-btn[data-field="' + field + '"]');
-
-        //             // Сохраняем введённые данные в поле с данными
-        //             text.text(input.val());
-
-        //             // Отправляем асинхронный запрос на сервер для сохранения данных в базе данных
-        //             await axios.post('/profile/profile->id/update-profile', {
-        //             field: field,
-        //             value: input.val()
-        //             });
-
-        //             // Скрываем кнопки "сохранить" и "отмена" и отображаем кнопку "добавить"/"изменить"
-        //             doubleBtn.hide();
-        //             if (text.text().trim() === '') {
-        //             addBtn.show();
-        //             } else {
-        //             editBtn.show();
-        //             }
-
-        //             // Скрываем текстовое поле для ввода и отображаем поле с данными
-        //             input.hide();
-        //             text.show();
-        //         });
-        //     });
-        // });
-
-        $(window).on('load', function() {
-            $(document).ready(function() {
-                $('.add-btn, .edit-btn').click(function() {
-                    var field = $(this).data('field');
+        $(document).ready(function() {
+            $('.add-btn, .edit-btn').click(function() {
+                var field = $(this).data('field');
 
                 $('#' + field + '-text').hide();
                 $('#' + field + '-input').val($('#' + field + '-text').text()).fadeIn();
@@ -98,11 +17,11 @@
                 $('.double-btn[data-field="' + field + '"]').fadeIn();
             });
 
-                $('.cancel-btn').click(function() {
-                    var field = $(this).parent().data('field');
+            $('.cancel-btn').click(function() {
+                var field = $(this).parent().data('field');
 
-                    $('#' + field + '-text').fadeIn();
-                    $('#' + field + '-input').hide();
+                $('#' + field + '-text').fadeIn();
+                $('#' + field + '-input').hide();
 
                 $('.double-btn[data-field="' + field + '"]').hide();
                 // if ($('#' + field + '-text').text().trim() === '') {
