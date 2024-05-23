@@ -237,7 +237,10 @@
                 <img src="{{ asset('icons/black/x.svg') }}" alt="icon">
             </button>
             <div class="form-title">
-                <h3>{{ $vacancy->title }}</h3>
+                <h3>Редактирование</h3>
+                <div class="av-icon">
+                    <img src="{{ asset('icons/black/pencil.svg') }}" alt="icon">
+                </div>
             </div>
 
             <div class="av-form-module" id="module_1">
@@ -505,7 +508,7 @@
     
                         <div class="v-block-detail">
                             <p class="line-limit">{{ $vacancy->company }}</p>
-                            <p class="tag"><img src="{{ asset('icons/black/map-pin.svg') }}" alt="map-pin">{{ $vacancy->city }}</p>
+                            <p class="tag line-limit"><img src="{{ asset('icons/black/map-pin.svg') }}" alt="map-pin">{{ $vacancy->city }}</p>
                         </div>
                     </div>
     

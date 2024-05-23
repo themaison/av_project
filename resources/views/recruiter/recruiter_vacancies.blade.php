@@ -208,7 +208,7 @@
                         <div class="set">
 
                             <div class="elem">
-                                <p class="hint-text">{{ $vacancy->created_at }}</p>
+                                <p class="hint-text created-at">{{ $vacancy->created_at }}</p>
                             </div>
 
                             <a href="/vacancy_detail/{{ $vacancy->id }}" class="elem">

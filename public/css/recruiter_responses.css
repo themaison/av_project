@@ -107,25 +107,24 @@ body {
     background-color: #EBEBEB;
 }
 
-
 .r-stat-1 {
     color: #75BB63;
-    width: 120px;
+    width: 130px;
 }
 
 .r-stat-2 {
     color: #FF6565;
-    width: 120px;
+    width: 130px;
 }
 
 .r-stat-3 {
     color: #3FA3FF;
-    width: 120px;
+    width: 130px;
 }
 
 .r-stat-4 {
     color: #979797;
-    width: 120px;
+    width: 130px;
 }
 
 .selected {
