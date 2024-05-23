@@ -62,6 +62,7 @@ Route::group(['middleware' => ['auth', 'role:recruiter']], function () {
     Route::get('/recruiter_vacancies', [VacancyController::class, 'recruiter_vacancies_index']);
     Route::get('/recruiter_vacancies/new_vacancy', [VacancyController::class, 'new_vacancy_index']);
     Route::post('/recruiter_vacancies/new_vacancy/create', [VacancyController::class, 'create_vacancy']);
+    Route::post('/recruiter_vacancies/new_vacancy/upload_cover', [VacancyController::class, 'upload_cover']);
 
     Route::put('/vacancy/{id}/update', [VacancyController::class, 'vacancy_update']);
     Route::delete('/vacancy/{id}/delete', [VacancyController::class, 'vacancy_delete']);
