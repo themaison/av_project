@@ -3,9 +3,9 @@
 @section('title', 'вакансия')
 
 @section('content')
-    <link href="{{asset('css/av-form.css?v=').time()}}" rel="stylesheet">
-    <link href="{{asset('css/av-cover.css?v=').time()}}" rel="stylesheet">
-    <link href="{{asset('css/vacancy_detail.css?v=').time()}}" rel="stylesheet">
+    <link href="{{ asset('css/av-form.css?v=') . time() }}" rel="stylesheet">
+    <link href="{{ asset('css/av-cover.css?v=') . time() }}" rel="stylesheet">
+    <link href="{{ asset('css/vacancy_detail.css?v=') . time() }}" rel="stylesheet">
 
     <script>
         window.onload = function() {
@@ -18,6 +18,7 @@
             for (var i = 0; i < modules.length; i++) {
                 modules[i].style.display = 'none';
             }
+
             modules[currentModule].style.display = 'flex';
 
             // Обработчики событий для кнопок "Дальше"
@@ -43,70 +44,42 @@
                     }
                 });
             }
-            reader.onloadend = function() {
-    cover_result = reader.result; // Сохраняем результат в глобальную переменную
-
-    // Удаляем старый элемент .cover-preview, если он существует
-    var old_cover_preview = document.querySelector('.cover-preview');
-    if (old_cover_preview) {
-        old_cover_preview.remove();
-    }
-
-    // Создаем новый элемент div и img
-    var cover_preview_div = document.createElement('div');
-    cover_preview_div.className = 'cover-preview';
-    var cover_preview_img = document.createElement('img');
-    cover_preview_img.src = cover_result;
-
-    // Добавляем img в div
-    cover_preview_div.appendChild(cover_preview_img);
-
-    // Добавляем div в DOM после .hint-text
-    var anchor = document.querySelector('#file_cover-text');
-    anchor.insertAdjacentElement('afterend', cover_preview_div);
-}
 
 
-            // var cover_input = document.querySelector('.file-cover');
-            // var cover_result; // Глобальная переменная для хранения результата
+            var cover_input = document.querySelector('.file-cover');
 
-            // // Обработчик события изменения input
-            // cover_input.addEventListener('change', function(e) {
-            //     var file = e.target.files[0];
-            //     var reader = new FileReader();
+            // Обработчик события изменения input
+            cover_input.addEventListener('change', function(e) {
+                var file = e.target.files[0];
+                var reader = new FileReader();
 
-            //     reader.onloadend = function() {
-            //         cover_result = reader.result; // Сохраняем результат в глобальную переменную
-            //     }
+                reader.onloadend = function() {
+                    // Удаляем старый элемент .cover, если он существует
+                    var old_cover = document.querySelector('.cover');
+                    if (old_cover) {
+                        old_cover.remove();
+                    }
 
-            //     if (file) {
-            //         reader.readAsDataURL(file);
-            //     }
-            // });
+                    // Создаем новый элемент div и img
+                    var cover_div = document.createElement('div');
+                    cover_div.className = 'cover';
+                    var cover_img = document.createElement('img');
+                    cover_img.src = reader.result;
 
-            // // Обработчик события отправки формы
-            // document.querySelector('#edit-form').addEventListener('submit', function(e) {
-            //     // Удаляем старый элемент .cover, если он существует
-            //     var old_cover = document.querySelector('.cover');
-            //     if (old_cover) {
-            //         old_cover.remove();
-            //     }
+                    // Добавляем img в div
+                    cover_div.appendChild(cover_img);
 
-            //     // Создаем новый элемент div и img
-            //     var cover_div = document.createElement('div');
-            //     cover_div.className = 'cover';
-            //     var cover_img = document.createElement('img');
-            //     cover_img.src = cover_result; // Используем сохраненный результат
+                    // Добавляем div в DOM после .hint-text
+                    var anchor = document.querySelector('#file_cover-text');
+                    anchor.insertAdjacentElement('afterend', cover_div);
+                }
 
-            //     // Добавляем img в div
-            //     cover_div.appendChild(cover_img);
+                if (file) {
+                    reader.readAsDataURL(file);
+                }
+            });
+        };
 
-            //     // Добавляем div в DOM после .hint-text
-            //     var anchor = document.querySelector('#file_cover-text');
-            //     anchor.insertAdjacentElement('afterend', cover_div);
-            // });
-        }
-        
         $(document).ready(function() {
             var previousUrl = document.referrer;
             var linkText;
@@ -137,22 +110,14 @@
                 $('body').removeClass('no-scroll');
             });
 
-            $('#edit-btn').click(function() {
-                var vacancyId = $(this).data('vacancy-id');
-                // var vacancyTitle = $(this).data('vacancyTitle');
-                $('#edit-form').attr('action', '/vacancy/' + vacancyId + '/update');
-                $('#edit-form').fadeIn().css('display', 'flex');
-                $('.blur-bg').fadeIn();
-                $('body').addClass('no-scroll'); // Добавить класс к body
-            });
-
             $('#response-btn').click(function() {
-                $('#response-form').attr('action', '/vacancy/' + {{ $vacancy->id }} + '/create_response');
+                $('#response-form').attr('action', '/vacancy/' + {{ $vacancy->id }} +
+                    '/create_response');
                 $('#response-form').fadeIn().css('display', 'flex');
                 $('.blur-bg').fadeIn();
             });
-        
-        
+
+
             $('#response-form').on('submit', function(e) {
                 e.preventDefault();
 
@@ -163,7 +128,8 @@
                     success: function(response) {
                         if (response.success) {
                             $('#response-form').hide();
-                            $('#response-btn').replaceWith('<div class="hint-btn">уже откликнулись</div>');
+                            $('#response-btn').replaceWith(
+                                '<div class="hint-btn">уже откликнулись</div>');
                             $('.blur-bg').fadeOut();
                             $('body').removeClass('no-scroll');
                         } else {
@@ -186,17 +152,29 @@
                     },
                     success: function(data) {
                         if (data.favorite) {
-                            $('#favorite-btn').removeClass('outline-btn').addClass('fill-btn');
-                            $('#favorite-icon').attr('src', '{{ asset('icons/light/bookmark.svg') }}');
+                            $('#favorite-btn').removeClass('outline-btn').addClass(
+                                'fill-btn');
+                            $('#favorite-icon').attr('src',
+                                '{{ asset('icons/light/bookmark.svg') }}');
                         } else {
-                            $('#favorite-btn').removeClass('fill-btn').addClass('outline-btn');
-                            $('#favorite-icon').attr('src', '{{ asset('icons/black/bookmark.svg') }}');
+                            $('#favorite-btn').removeClass('fill-btn').addClass(
+                                'outline-btn');
+                            $('#favorite-icon').attr('src',
+                                '{{ asset('icons/black/bookmark.svg') }}');
                         }
                     }
                 });
             });
 
-            $('#edit-form').on('edit-submit', function(e) {
+            $('#edit-btn').click(function() {
+                var vacancyId = $(this).data('vacancy-id');
+                $('#edit-form').attr('action', '/vacancy/' + vacancyId + '/update');
+                $('#edit-form').fadeIn().css('display', 'flex');
+                $('.blur-bg').fadeIn();
+                $('body').addClass('no-scroll'); // Добавить класс к body
+            });
+
+            $('#edit-form').on('submit', function(e) {
                 e.preventDefault();
 
                 $.ajax({
@@ -204,114 +182,147 @@
                     method: 'PUT',
                     data: $(this).serialize(),
                     success: function(response) {
-                        if (response.success) {
-                            $('#edit-form').fadeOut();
-                            $('.blur-bg').fadeOut();
-                            $('body').removeClass('no-scroll');
-                            // return redirect('/recruiter_vacancies');
-                        } else {
-                            // Обработка ошибок
-                        }
+                        // Сбросить метод запроса обратно на GET
+                        $.ajaxSetup({
+                            type: 'GET'
+                        });
+                        // Перенаправить на страницу деталей вакансии
+                        window.location.href = response.redirectUrl;
                     }
                 });
             });
+
+            // Проверить, есть ли параметр 'edit' в URL
+            var urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('edit')) {
+                var vacancyId = $(this).data('vacancy-id');
+                $('#edit-form').attr('action', '/vacancy/' + vacancyId + '/update');
+                $('#edit-form').fadeIn().css('display', 'flex');
+                $('.blur-bg').fadeIn();
+                $('body').addClass('no-scroll'); // Добавить класс к b
+            }
+
         });
     </script>
-        
-    
+
 
     <div class="content">
 
         <div class="blur-bg"></div>
 
-        <form class="av-form" 
-        id="edit-form" 
-        method="POST" 
-        enctype="multipart/form-data" 
-        action="" 
-        style="{{ $errors->any() ? 'display: flex' : 'display: none' }}">
+        <form id="edit-form" class="av-form" method="POST" action="" enctype="multipart/form-data"
+            style="{{ $errors->any() ? 'display: flex' : 'display: none' }}">
             @csrf
+
             @method('PUT')
 
-            <button class="x-btn">
+            <div class="x-btn">
                 <img src="{{ asset('icons/black/x.svg') }}" alt="icon">
-            </button>
-            <div class="form-title">
-                <h3>{{ $vacancy->title }}</h3>
             </div>
 
+
             <div class="av-form-module" id="module_1">
+                <div class="form-title">
+                    <h3>Редактирование</h3>
+
+                    <div class="av-icon">
+                        <img src="{{ asset('icons/black/brush.svg') }}" alt="icon">
+                    </div>
+
+                </div>
+
                 <div class="inputs-block">
-    
+
                     <div class="input-block">
                         <label for="title">название вакансии</label>
                         <input type="text" name="title" value="{{ $vacancy->title }}" placeholder="введите текст...">
-                        
+
                         @error('title')
                             <p class="error-text">{{ $message }}</p>
                         @enderror
-                        
+
                     </div>
-    
+
                     <div class="input-block">
                         <label for="company">компания (ИП)</label>
-                        <input type="text" name="company"  value="{{ $vacancy->company }}" placeholder="введите текст...">
-                        
+                        <input type="text" name="company" value="{{ $vacancy->company }}"
+                            placeholder="введите текст...">
+
                         @error('company')
                             <p class="error-text">{{ $message }}</p>
                         @enderror
-                    
+
                     </div>
-    
+
                     <div class="input-block">
                         <label for="city">город</label>
-                        <input type="text" name="city"  value="{{ $vacancy->city }}" placeholder="введите текст...">
-                        
+                        <input type="text" name="city" value="{{ $vacancy->city }}" placeholder="введите текст...">
+
                         @error('city')
                             <p class="error-text">{{ $message }}</p>
                         @enderror
-                    
+
                     </div>
 
                     <div class="input-block">
                         <label for="salary">заработная плата (₽)</label>
-    
+
                         <div class="double-block">
                             <div class="input-block">
-                                <input type="text" name ="salary-from"  value="{{ $vacancy->salary_from }}" placeholder="от 10 000">
+                                <input type="number" name ="salary-from" value="{{ $vacancy->salary_from }}"
+                                    placeholder="от 10 000">
                             </div>
-    
+
                             <div>—</div>
-    
+
                             <div class="input-block">
-                                <input type="text" name ="salary-to"  value="{{ $vacancy->salary_to }}" placeholder="до 100 000">
+                                <input type="number" name ="salary-to" value="{{ $vacancy->salary_to }}"
+                                    placeholder="до 100 000">
+
                             </div>
                         </div>
-    
+
+                        @error('salary-from')
+                            <p class="error-text">{{ $message }}</p>
+                        @enderror
+
+                        @error('salary-to')
+                            <p class="error-text">{{ $message }}</p>
+                        @enderror
+
                     </div>
-    
+
                     <div class="input-block">
                         <label for="experience">опыт работы (год)</label>
-                        <input type="number" name="experience" value="{{ $vacancy->experience }}" placeholder="введите число">
+                        <input type="number" name="experience" value="{{ $vacancy->experience }}"
+                            placeholder="введите число">
                     </div>
 
                 </div>
-    
+
                 <div class="form-nav">
-                    <button class="fill-btn next-btn">
-                        далее
-                        <img src="{{ asset('icons/light/angle-right.svg') }}" alt="icon">
-                    </button>
+                    <button class="fill-btn next-btn">дальше<img src="{{ asset('icons/light/angle-right.svg') }}"
+                            alt="icon"></button>
                 </div>
             </div>
 
             <div class="av-form-module" id="module_2">
+
+                <div class="form-title">
+                    <h3>Редактирование</h3>
+
+                    <div class="av-icon">
+                        <img src="{{ asset('icons/black/brush.svg') }}" alt="icon">
+                    </div>
+
+                </div>
+
+
                 <div class="inputs-block">
-    
+
                     <div class="input-block">
                         <label for="responsibilities">обязанности</label>
-                        <textarea 
-                        name="responsibilities" placeholder="введите текст...">{{ $vacancy->responsibilities }}</textarea>
+                        <textarea name="responsibilities" placeholder="введите текст...">{{ $vacancy->responsibilities }}</textarea>
                     </div>
 
                     <div class="input-block">
@@ -329,56 +340,73 @@
                         <p class="hint-text">введите навыки через запятую</p>
                         <textarea name="skills" placeholder="введите текст...">{{ $vacancy->skills }}</textarea>
                     </div>
-                    
+
                 </div>
-    
+
+
                 <div class="form-nav">
                     <button class="outline-btn prev-btn">
                         назад
                     </button>
                     <button class="fill-btn next-btn">
-                        далее
+                        дальше
                         <img src="{{ asset('icons/light/angle-right.svg') }}" alt="icon">
                     </button>
                 </div>
-            </div>    
+            </div>
 
             <div class="av-form-module" id="module_3">
+
+                <div class="form-title">
+                    <h3>Редактирование</h3>
+
+                    <div class="av-icon">
+                        <img src="{{ asset('icons/black/brush.svg') }}" alt="icon">
+                    </div>
+
+                </div>
+
                 <div class="inputs-block">
-    
+
                     <div class="input-block">
 
                         <label for="cover">обложка вакансии</label>
                         <p class="hint-text" id="file_cover-text">желательный формат .png или .jpg</p>
-                        
+
                         <div class="cover">
                             @if ($vacancy->cover)
                                 <img src="{{ Storage::url($vacancy->cover) }}" alt="cover">
                             @else
-                                <img src="{{  asset('images/vacancy_cover.jpg') }}" alt="v-cover">
+                                <img src="{{ asset('images/vacancy_cover.jpg') }}" alt="v-cover">
                             @endif
-                            {{-- <img src="{{ Storage::url($vacancy->cover) }}" alt=""> --}}
+
                         </div>
 
-                        <input type="file" class="file-cover" name="cover" accept=".png, .jpg, .jpeg"/>
+                        <input type="file" class="file-cover" name="cover" accept=".png, .jpg, .jpeg" />
 
                         <p class="error-text cover-error"></p>
 
                     </div>
+
                 </div>
-    
+
+
                 <div class="form-nav">
                     <button class="outline-btn prev-btn">
                         назад
                     </button>
-                    <button type="submit" class="fill-btn" id="edit-submit">
+
+                    <button class="fill-btn" type="submit">
                         сохранить
                     </button>
                 </div>
+
             </div>
+
         </form>
 
-        <form id="response-form" class="av-form" method="POST" action="/vacancy/{{ $vacancy->id }}/create_response" enctype="multipart/form-data" style="display: none">
+        <form id="response-form" class="av-form" method="POST" action="/vacancy/{{ $vacancy->id }}/create_response"
+            enctype="multipart/form-data" style="display: none">
             @csrf
 
             <div class="x-btn">
@@ -388,7 +416,7 @@
             <div class="form-title">
                 <h3>Отклик</h3>
                 <div class="av-icon">
-                    <img src="{{  asset('icons/black/hand-tap.svg') }}" alt="icon">
+                    <img src="{{ asset('icons/black/hand-tap.svg') }}" alt="icon">
                 </div>
             </div>
 
@@ -397,7 +425,7 @@
                 <div class="input-block">
                     <label for="cover_letter">сопроводительное письмо</label>
                     <textarea name="cover_letter" placeholder="введите текст...">{{ old('cover_letter') }}</textarea>
-                    
+
                     @error('cover_letter')
                         <p class="error-text">{{ $message }}</p>
                     @enderror
@@ -416,20 +444,20 @@
         <div class="breakpoints" style="--i: 0">
             <a href="{{ url()->previous() }}" id="previous-page"></a>
             <p>/</p>
-            <a href="/vacancy_detail/{{  $vacancy->id }}" id="current-page">{{ $vacancy->title }}</a>
+            <a href="/vacancy_detail/{{ $vacancy->id }}" id="current-page">{{ $vacancy->title }}</a>
         </div>
 
         <div class="vacancy-column-content">
 
             <div class="cover" style="--i: 1">
                 @if ($vacancy->cover)
-                <img src="{{ Storage::url($vacancy->cover) }}" alt="cover">
+                    <img src="{{ Storage::url($vacancy->cover) }}" alt="cover">
                 @else
-                <img src="{{  asset('images/vacancy_cover.jpg') }}" alt="v-cover">
+                    <img src="{{ asset('images/vacancy_cover.jpg') }}" alt="v-cover">
                 @endif
             </div>
 
-            {{-- @if($vacancy->cover)
+            {{-- @if ($vacancy->cover)
                 <div class="cover" style="--i: 1">
                     <img src="{{ Storage::url($vacancy->cover) }}" alt="cover">
                 </div>
@@ -442,28 +470,28 @@
                 @auth
 
                     <div class="double-btn" style="--i: 3">
-                        @if(auth()->user()->hasRole('applicant'))
-
-                            @if(auth()->user()->responses()->where('vacancy_id', $vacancy->id)->exists())
+                        @if (auth()->user()->hasRole('applicant'))
+                            @if (auth()->user()->responses()->where('vacancy_id', $vacancy->id)->exists())
                                 <div class="hint-btn">уже откликнулись</div>
                             @else
                                 <div class="fill-btn" id="response-btn">откликнуться</div>
                             @endif
-                            
+
                             @php
-                                $isFavorite = Auth::user()->favorites()->where('vacancy_id', $vacancy->id)->exists();
+                                $isFavorite = Auth::user()
+                                    ->favorites()
+                                    ->where('vacancy_id', $vacancy->id)
+                                    ->exists();
                             @endphp
 
-                            <div 
-                                id="favorite-btn" 
-                                href="/vacancy/{{ $vacancy->id }}/toggle_favorite" 
-                                class="{{ $isFavorite ? 'fill-btn square-btn' : 'outline-btn square-btn' }}" 
+                            <div id="favorite-btn" href="/vacancy/{{ $vacancy->id }}/toggle_favorite"
+                                class="{{ $isFavorite ? 'fill-btn square-btn' : 'outline-btn square-btn' }}"
                                 data-vacancy-id="{{ $vacancy->id }}">
-                            
-                                <img id="favorite-icon" src="{{  $isFavorite ? asset('icons/light/bookmark.svg') : asset('icons/black/bookmark.svg') }}" alt="icon">
+
+                                <img id="favorite-icon"
+                                    src="{{ $isFavorite ? asset('icons/light/bookmark.svg') : asset('icons/black/bookmark.svg') }}"
+                                    alt="icon">
                             </div>
-
-
                         @elseif(auth()->user()->hasRole('recruiter'))
                             <div id="edit-btn" class="fill-btn" data-vacancy-id="{{ $vacancy->id }}">
                                 <img src="{{ asset('icons/light/pencil.svg') }}" alt="icon">
@@ -480,15 +508,15 @@
                 <div class="double-block">
                     <div class="inline-block" id="salary-block" style="--i: 4">
                         <h3>Заработная плата</h3>
-    
+
                         <div class="v-block-detail">
-                            @if($vacancy->experience <= 0)
+                            @if ($vacancy->experience <= 0)
                                 <p>Без опыта</p>
                             @else
                                 <p>Опыт от {{ $vacancy->experience }} лет</p>
                             @endif
-    
-                            @if($vacancy->salary_from && $vacancy->salary_to)
+
+                            @if ($vacancy->salary_from && $vacancy->salary_to)
                                 <p class="tag">{{ $vacancy->salary_from }} — {{ $vacancy->salary_to }}₽</p>
                             @elseif($vacancy->salary_from)
                                 <p class="tag">от {{ $vacancy->salary_from }}₽</p>
@@ -499,51 +527,52 @@
                             @endif
                         </div>
                     </div>
-    
+
                     <div class="inline-block" id="company-block" style="--i: 5">
                         <h3>Компания</h3>
-    
+
                         <div class="v-block-detail">
                             <p class="line-limit">{{ $vacancy->company }}</p>
-                            <p class="tag"><img src="{{ asset('icons/black/map-pin.svg') }}" alt="map-pin">{{ $vacancy->city }}</p>
+                            <p class="tag"><img src="{{ asset('icons/black/map-pin.svg') }}"
+                                    alt="map-pin">{{ $vacancy->city }}</p>
                         </div>
                     </div>
-    
+
                 </div>
-    
-                @if($vacancy->responsibilities)
+
+                @if ($vacancy->responsibilities)
                     <div class="vacancy-content-block" style="--i: 6">
                         <h3>Обязанности</h3>
                         <p>{{ $vacancy->responsibilities }}</p>
                     </div>
                 @endif
-                
-                @if($vacancy->requirements)
+
+                @if ($vacancy->requirements)
                     <div class="vacancy-content-block" style="--i: 7">
                         <h3>Требования</h3>
                         <p>{{ $vacancy->requirements }}</p>
                     </div>
                 @endif
-    
-                @if($vacancy->conditions)
+
+                @if ($vacancy->conditions)
                     <div class="vacancy-content-block" style="--i: 8">
                         <h3>Условия</h3>
                         <p>{{ $vacancy->conditions }}</p>
                     </div>
                 @endif
-    
-                @if($vacancy->skills)
+
+                @if ($vacancy->skills)
                     <div class="vacancy-content-block" style="--i: 9">
                         <h3>Навыки</h3>
                         <div class="tags">
-                            @foreach(explode(',', $vacancy->skills) as $skill)
+                            @foreach (explode(',', $vacancy->skills) as $skill)
                                 <div class="tag">{{ $skill }}</div>
                             @endforeach
                         </div>
                     </div>
                 @endif
-                
+
             </div>
         </div>
     </div>
-@endsection        
+@endsection

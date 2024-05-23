@@ -18,9 +18,9 @@ use App\Http\Controllers\FavoriteController;
 |
 */
 
-Route::fallback(function () {
-    return redirect()->route('vacancy_search');
-});
+// Route::fallback(function () {
+//     return redirect()->route('vacancy_search');
+// });
 
 Route::get('/logout', [UserController::class, 'logout']);
 

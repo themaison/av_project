@@ -80,26 +80,26 @@
                     anchor.insertAdjacentElement('afterend', cover_div);
 
                     // Отправка файла на сервер
-                    var formData = new FormData();
-                    formData.append('cover', file);
+                    // var formData = new FormData();
+                    // formData.append('cover', file);
 
-                    $.ajax({
-                        url: '/recruiter_vacancies/new_vacancy/upload_cover',
-                        type: 'POST',
-                        data: formData,
-                        processData: false,
-                        contentType: false,
-                        success: function(data) {
-                            if (data.success) {
-                                console.log('Файл успешно загружен');
-                            } else {
-                                console.error('Ошибка при загрузке файла');
-                            }
-                        },
-                        error: function(error) {
-                            console.error('Ошибка при отправке файла', error);
-                        }
-                    });
+                    // $.ajax({
+                    //     url: '/recruiter_vacancies/new_vacancy/upload_cover',
+                    //     type: 'POST',
+                    //     data: formData,
+                    //     processData: false,
+                    //     contentType: false,
+                    //     success: function(data) {
+                    //         if (data.success) {
+                    //             console.log('Файл успешно загружен');
+                    //         } else {
+                    //             console.error('Ошибка при загрузке файла');
+                    //         }
+                    //     },
+                    //     error: function(error) {
+                    //         console.error('Ошибка при отправке файла', error);
+                    //     }
+                    // });
                 }
 
                 if (file) {
@@ -324,11 +324,11 @@
                         <label for="cover">обложка вакансии</label>
                         <p class="hint-text" id="file_cover-text">желательный формат .png или .jpg</p>
 
-                        @if (session('cover_path'))
+                        {{-- @if (session('cover_path'))
                             <div class="cover">
                                 <img src="{{ Storage::url(session('cover_path')) }}" alt="cover">
                             </div>
-                        @endif
+                        @endif --}}
 
                         <input type="file" class="file-cover" name="cover" accept=".png, .jpg, .jpeg" />
 

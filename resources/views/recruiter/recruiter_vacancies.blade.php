@@ -223,7 +223,7 @@
                                 изменить
                             </div> --}}
 
-                            <a href="/vacancy_detail/{{ $vacancy->id }}" class="outline-btn edit-btn">
+                            <a href="/vacancy_detail/{{ $vacancy->id }}?edit=true" class="outline-btn edit-btn">
                                 <img src="{{ asset('icons/black/pencil.svg') }}" alt="icon">
                                 изменить
                             </a>

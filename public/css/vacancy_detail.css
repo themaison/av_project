@@ -16,7 +16,7 @@ body {
 .av-form {
     display: flex;
     position: fixed;
-    top: 25%;
+    top: 50%;
     z-index: 2;
 }
 

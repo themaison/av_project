@@ -69,8 +69,11 @@ class VacancyController extends Controller
         if ($request->hasFile('cover')) {
             $path = $request->file('cover')->store('public/images/covers');
             $vacancy->cover = $path;
-            // session(['cover_path' => $path]);
         }
+
+        // if (session()->has('cover_path')) {
+        //     $vacancy->cover = session('cover_path');
+        // }
 
         $vacancy->title = $request->title;
         $vacancy->company = $request->company;
@@ -119,17 +122,18 @@ class VacancyController extends Controller
             'title' => 'required|max:40',
             'company' => 'required|max:40',
             'city' => 'required|max:40',
-            'salary_from' => 'numeric|min:0',
-            'salary_to' => 'numeric|min:0|gte:salary_from',
+            'salary-from' => 'nullable|numeric|min:0|max:2147483647',
+            'salary-to' => 'nullable|numeric|min:0|gte:salary-from|max:2147483647',
+            'experience' => 'nullable|numeric|min:0|max:100'
         ]);
-        
 
         $vacancy = Vacancy::find($id);
+
         if ($request->hasFile('cover')) {
             $path = $request->file('cover')->store('public/images/covers');
             $vacancy->cover = $path;
         }
-        
+
         $vacancy->title = $request->input('title');
         $vacancy->company = $request->input('company');
         $vacancy->city = $request->input('city');
@@ -140,18 +144,16 @@ class VacancyController extends Controller
         $vacancy->requirements = $request->input('requirements');
         $vacancy->conditions = $request->input('conditions');
         $vacancy->skills = $request->input('skills');
-        
+
         $vacancy->save();
 
-        // return redirect('/recruiter_vacancies');
-        // Получить URL предыдущей страницы
-        $previousUrl = url()->previous();
-
-        // Определить, на какую страницу следует перенаправить
-        if (strpos($previousUrl, '/recruiter_vacancies') !== false) {
-            return redirect('/recruiter_vacancies');
-        } else {
-            return redirect('/vacancy_detail/' . $id);
+        // Если запрос является AJAX-запросом, вернуть ответ JSON
+        if ($request->ajax()) {
+            return response()->json(['success' => true, 'redirectUrl' => '/vacancy_detail/' . $id]);
         }
+
+        // Иначе, перенаправить на страницу деталей вакансии
+        return redirect('/vacancy_detail/' . $id);
     }
+
 }
