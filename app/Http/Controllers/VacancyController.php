@@ -148,9 +148,9 @@ class VacancyController extends Controller
         $vacancy->save();
 
         // Если запрос является AJAX-запросом, вернуть ответ JSON
-        // if ($request->ajax()) {
-        //     return response()->json(['success' => true, 'redirectUrl' => '/vacancy_detail/' . $id]);
-        // }
+        if ($request->ajax()) {
+            return response()->json(['success' => true, 'redirectUrl' => '/vacancy_detail/' . $id]);
+        }
 
         // Иначе, перенаправить на страницу деталей вакансии
         return redirect('/vacancy_detail/' . $id);

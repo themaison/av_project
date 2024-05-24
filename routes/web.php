@@ -65,6 +65,7 @@ Route::group(['middleware' => ['auth', 'role:recruiter']], function () {
     Route::post('/recruiter_vacancies/new_vacancy/upload_cover', [VacancyController::class, 'upload_cover']);
 
     Route::put('/vacancy/{id}/update', [VacancyController::class, 'vacancy_update']);
+    // Route::match(['PUT', 'GET'], '/vacancy/{id}/update', [VacancyController::class, 'vacancy_update']);
     Route::delete('/vacancy/{id}/delete', [VacancyController::class, 'vacancy_delete']);
 
     Route::get('/recruiter_responses', [ResponseController::class, 'recruiter_responses_index']);

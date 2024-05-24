@@ -223,7 +223,7 @@
                                 изменить
                             </div> --}}
 
-                            <a href="/vacancy_detail/{{ $vacancy->id }}?edit=true" class="outline-btn edit-btn">
+                            <a href="/vacancy_detail/{{ $vacancy->id }}?edit=true" class="outline-btn edit-btn" data-vacancy-id="{{ $vacancy->id }}">
                                 <img src="{{ asset('icons/black/pencil.svg') }}" alt="icon">
                                 изменить
                             </a>
@@ -231,7 +231,7 @@
                             {{-- <div class="outline-btn edit-btn" data-vacancy-id="{{ $vacancy->id }}">
                                 <img src="{{ asset('icons/black/pencil.svg') }}" alt="icon">
                                 изменить
-                            </div> --}}
+                            </div> --}}                                                      
 
                             <form action="/vacancy/{{ $vacancy->id }}/delete" method="POST">
                                 @csrf

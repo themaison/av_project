@@ -100,6 +100,7 @@
                 $('#edit-form').css('display', 'flex');
                 $('.blur-bg').fadeIn();
                 $('body').addClass('no-scroll');
+                $('#edit-form').attr('action', '/vacancy/' + vacancyId + '/update');
             }
 
             $('#previous-page').text(linkText);
@@ -169,8 +170,8 @@
             // Проверить, есть ли параметр 'edit' в URL
             var urlParams = new URLSearchParams(window.location.search);
             if (urlParams.has('edit')) {
-                // var vacancyId = $(this).data('vacancy-id');
-                // $('#edit-form').attr('action', '/vacancy/' + vacancyId + '/update');
+                var vacancyId = $(this).data('vacancy-id');
+                $('#edit-form').attr('action', '/vacancy/' + vacancyId + '/update');
                 $('#edit-form').fadeIn().css('display', 'flex');
                 $('.blur-bg').fadeIn();
                 $('body').addClass('no-scroll'); // Добавить класс к b
@@ -184,15 +185,24 @@
                 $('body').addClass('no-scroll'); // Добавить класс к body
             });
 
-            // $('#edit-form').on('submit', function(e) {
+            // $('#edit-form').on('edit-submit', function(e) {
             //     e.preventDefault();
 
             //     var formData = new FormData(this);
 
             //     $.ajax({
             //         url: $(this).attr('action'),
-            //         method: 'POST',
+            //         method: 'PUT',
             //         data: $(this).serialize(),
+            //         // success: function(response) {
+            //         //     if (response.success) {
+            //         //         $('#edit-form').fadeOut();
+            //         //         $('.blur-bg').fadeOut();
+            //         //         // return redirect('/recruiter_vacancies');
+            //         //     } else {
+            //         //         // Обработка ошибок
+            //         //     }
+            //         // }
             //         success: function(response) {
             //             // Сбросить метод запроса обратно на GET
             //             $.ajaxSetup({
@@ -203,6 +213,26 @@
             //         }
             //     });
             // });
+            $('#edit-form').on('edit-submit', function(e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+                formData.append('_method', 'PUT'); // Добавьте это
+                $.ajax({
+                    url: $(this).attr('action'),
+                    method: 'POST', // Измените это на POST
+                    data: formData,
+                    processData: false, // Добавьте это
+                    contentType: false, // И добавьте это
+                    success: function(response) {
+                        // Сбросить метод запроса обратно на GET
+                        $.ajaxSetup({
+                            type: 'GET'
+                        });
+                        // Перенаправить на страницу деталей вакансии
+                        window.location.href = response.redirectUrl;
+                    }
+                });
+            });
 
         });
     </script>
@@ -398,7 +428,7 @@
                         назад
                     </button>
 
-                    <button class="fill-btn" type="submit">
+                    <button class="fill-btn" type="submit" id="edit-submit">
                         сохранить
                     </button>
                 </div>
