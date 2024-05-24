@@ -83,9 +83,9 @@ class VacancyController extends Controller
         $vacancy->salary_from = $request->input('salary-from');
         $vacancy->salary_to = $request->input('salary-to');
         $vacancy->experience = $request->experience;
-        $vacancy->responsibilities = $request->responsibilities;
-        $vacancy->requirements = $request->requirements;
-        $vacancy->conditions = $request->conditions;
+        $vacancy->responsibilities = nl2br(e($request->responsibilities));
+        $vacancy->requirements = nl2br(e($request->requirements));
+        $vacancy->conditions = nl2br(e($request->conditions));
         $vacancy->skills = $request->skills;
 
         // Получение текущего пользователя
@@ -138,16 +138,16 @@ class VacancyController extends Controller
             $vacancy->cover = $path;
         }
 
-        $vacancy->title = $request->input('title');
-        $vacancy->company = $request->input('company');
-        $vacancy->city = $request->input('city');
+        $vacancy->title = $request->title;
+        $vacancy->company = $request->company;
+        $vacancy->city = $request->city;
         $vacancy->salary_from = $request->input('salary-from');
         $vacancy->salary_to = $request->input('salary-to');
-        $vacancy->experience = $request->input('experience');
-        $vacancy->responsibilities = $request->input('responsibilities');
-        $vacancy->requirements = $request->input('requirements');
-        $vacancy->conditions = $request->input('conditions');
-        $vacancy->skills = $request->input('skills');
+        $vacancy->experience = $request->experience;
+        $vacancy->responsibilities = nl2br(e($request->responsibilities));
+        $vacancy->requirements = nl2br(e($request->requirements));
+        $vacancy->conditions = nl2br(e($request->conditions));
+        $vacancy->skills = $request->skills;
 
         $vacancy->save();
 
