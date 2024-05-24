@@ -53,6 +53,8 @@ class VacancyController extends Controller
 
     public function create_vacancy(Request $request)
     {
+
+        // dd($request);
         // Проверка входных данных
         $request->validate([
             'title' => 'required|max:40',
@@ -117,6 +119,8 @@ class VacancyController extends Controller
 
     public function vacancy_update(Request $request, $id)
     {
+
+        // dd($id);
         // Проверка входных данных
         $request->validate([
             'title' => 'required|max:40',

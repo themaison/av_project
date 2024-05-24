@@ -81,6 +81,10 @@
         };
 
         $(document).ready(function() {
+            // var vacancyId = $(this).data('vacancy-id');
+            // $('#edit-form').attr('action', '/acancy/' + vacancyId + '/update');
+
+
             var previousUrl = document.referrer;
             var linkText;
 
@@ -171,14 +175,15 @@
             if (urlParams.has('edit')) {
                 // var vacancyId = $(this).data('vacancy-id');
                 // $('#edit-form').attr('action', '/vacancy/' + vacancyId + '/update');
+
                 $('#edit-form').fadeIn().css('display', 'flex');
                 $('.blur-bg').fadeIn();
                 $('body').addClass('no-scroll'); // Добавить класс к b
             }
 
             $('#edit-btn').click(function() {
-                var vacancyId = $(this).data('vacancy-id');
-                $('#edit-form').attr('action', '/vacancy/' + vacancyId + '/update');
+                // var vacancyId = $(this).data('vacancy-id');
+                // $('#edit-form').attr('action', '/vacancy/' + vacancyId + '/update');
                 $('#edit-form').fadeIn().css('display', 'flex');
                 $('.blur-bg').fadeIn();
                 $('body').addClass('no-scroll'); // Добавить класс к body
@@ -212,8 +217,8 @@
 
         <div class="blur-bg"></div>
 
-        <form id="edit-form" class="av-form" method="POST" action="" enctype="multipart/form-data"
-            style="{{ $errors->any() ? 'display: flex' : 'display: none' }}">
+        <form id="edit-form" class="av-form" method="POST" action="/vacancy/{{ $vacancy->id }}/update"
+            enctype="multipart/form-data" style="{{ $errors->any() ? 'display: flex' : 'display: none' }}">
             @csrf
 
             @method('PUT')
