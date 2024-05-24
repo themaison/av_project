@@ -94,6 +94,16 @@ body {
     gap: 15px;
 }
 
+.vacancy-title {
+    text-align:center; 
+    word-wrap: break-word;
+    width: 100%;
+    /* max-width: 1000px; */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 .cover {
     width: 100%;
     height: 360px;
@@ -145,13 +155,17 @@ body {
 }
 
 .v-block-detail {
+    width: 100%;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 15px;
 }
 
 .v-block-detail .line-limit {
-    max-width: 250px;
+    width: 100%;
+    max-width: 240px;
+    word-wrap: break-word;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -165,8 +179,8 @@ body {
 }
 
 .tag {
-    display: flex;
-    justify-content: center;
+    /* display: flex;
+    justify-content: center; */
 
     gap: 5px;
     align-items: center;
@@ -178,9 +192,9 @@ body {
     background-color: #EFFBFF;
 }
 
-/* .tag img {
+.tag img {
     padding: 5px 5px 5px 0px;
-} */
+}
 
 #response-form {
     top: 25%;

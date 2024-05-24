@@ -39,7 +39,12 @@ body {
     opacity: 0;
 }
 
+.created-at {
+    width: 150px;
+}
+
 .vacancy-title {
+    min-width: 70px;
     max-width: 250px;
     overflow: hidden;
     white-space: nowrap;

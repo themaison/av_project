@@ -533,7 +533,7 @@
 
                         <div class="v-block-detail">
                             <p class="line-limit">{{ $vacancy->company }}</p>
-                            <p class="tag"><img src="{{ asset('icons/black/map-pin.svg') }}"
+                            <p class="tag line-limit"><img src="{{ asset('icons/black/map-pin.svg') }}"
                                     alt="map-pin">{{ $vacancy->city }}</p>
                         </div>
                     </div>
