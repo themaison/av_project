@@ -107,6 +107,10 @@ body {
     background-color: #EBEBEB;
 }
 
+.created-at {
+    width: 150px;
+}
+
 .r-stat-1 {
     color: #75BB63;
     width: 130px;

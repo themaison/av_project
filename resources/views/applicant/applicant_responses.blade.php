@@ -71,7 +71,7 @@
                 <div class="l-row" style="--i: {{ $index }}">
                     <div class="set">
                         <div class="elem">
-                            <p class="hint-text">{{ $response->created_at }}</p>
+                            <p class="hint-text created-at">{{ $response->created_at }}</p>
                         </div>
 
                         <div class="elem">
