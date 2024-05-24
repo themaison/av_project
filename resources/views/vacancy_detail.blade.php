@@ -166,6 +166,16 @@
                 });
             });
 
+            // Проверить, есть ли параметр 'edit' в URL
+            var urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('edit')) {
+                // var vacancyId = $(this).data('vacancy-id');
+                // $('#edit-form').attr('action', '/vacancy/' + vacancyId + '/update');
+                $('#edit-form').fadeIn().css('display', 'flex');
+                $('.blur-bg').fadeIn();
+                $('body').addClass('no-scroll'); // Добавить класс к b
+            }
+
             $('#edit-btn').click(function() {
                 var vacancyId = $(this).data('vacancy-id');
                 $('#edit-form').attr('action', '/vacancy/' + vacancyId + '/update');
@@ -174,33 +184,25 @@
                 $('body').addClass('no-scroll'); // Добавить класс к body
             });
 
-            $('#edit-form').on('submit', function(e) {
-                e.preventDefault();
+            // $('#edit-form').on('submit', function(e) {
+            //     e.preventDefault();
 
-                $.ajax({
-                    url: $(this).attr('action'),
-                    method: 'PUT',
-                    data: $(this).serialize(),
-                    success: function(response) {
-                        // Сбросить метод запроса обратно на GET
-                        $.ajaxSetup({
-                            type: 'GET'
-                        });
-                        // Перенаправить на страницу деталей вакансии
-                        window.location.href = response.redirectUrl;
-                    }
-                });
-            });
+            //     var formData = new FormData(this);
 
-            // Проверить, есть ли параметр 'edit' в URL
-            var urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.has('edit')) {
-                var vacancyId = $(this).data('vacancy-id');
-                $('#edit-form').attr('action', '/vacancy/' + vacancyId + '/update');
-                $('#edit-form').fadeIn().css('display', 'flex');
-                $('.blur-bg').fadeIn();
-                $('body').addClass('no-scroll'); // Добавить класс к b
-            }
+            //     $.ajax({
+            //         url: $(this).attr('action'),
+            //         method: 'POST',
+            //         data: $(this).serialize(),
+            //         success: function(response) {
+            //             // Сбросить метод запроса обратно на GET
+            //             $.ajaxSetup({
+            //                 type: 'GET'
+            //             });
+            //             // Перенаправить на страницу деталей вакансии
+            //             window.location.href = response.redirectUrl;
+            //         }
+            //     });
+            // });
 
         });
     </script>
