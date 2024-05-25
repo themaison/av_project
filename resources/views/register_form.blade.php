@@ -31,7 +31,7 @@
                 
                 <div class="input-block">
                     <label for="fullname">фио</label>
-                    <input type="text" name="fullname" value="{{ old('fullname') }}" placeholder="введите почту...">
+                    <input type="text" name="fullname" value="{{ old('fullname') }}" placeholder="введите фио...">
                     
                     @error('fullname')
                         <p class="error-text">{{ $message }}</p>
@@ -74,7 +74,7 @@
 
 
             <div class="form-nav">
-                <button type="sybmit" class="fill-btn">войти</button>
+                <button type="sybmit" class="fill-btn">зарегестрироваться</button>
                 <p>Есть аккаунт? <a href="/login">Войти</a></p>
             </div>
 
