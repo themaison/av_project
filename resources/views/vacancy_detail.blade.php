@@ -504,13 +504,13 @@
                             @endif
 
                             @if($vacancy->salary_from && $vacancy->salary_to)
-                                <p>{{ number_format($vacancy->salary_from, 0, ',', ' ') }} — {{ number_format($vacancy->salary_to, 0, ',', ' ') }}₽</p>
+                                <p class="tag">{{ number_format($vacancy->salary_from, 0, ',', ' ') }} — {{ number_format($vacancy->salary_to, 0, ',', ' ') }}₽</p>
                             @elseif($vacancy->salary_from)
-                                <p>от {{ number_format($vacancy->salary_from, 0, ',', ' ') }}₽</p>
+                                <p class="tag">от {{ number_format($vacancy->salary_from, 0, ',', ' ') }}₽</p>
                             @elseif($vacancy->salary_to)
-                                <p>до {{ number_format($vacancy->salary_to, 0, ',', ' ') }}₽</p>
+                                <p class="tag">до {{ number_format($vacancy->salary_to, 0, ',', ' ') }}₽</p>
                             @else
-                                <p>Не указана</p>
+                                <p class="tag">Не указана</p>
                             @endif
                         </div>
                     </div>
