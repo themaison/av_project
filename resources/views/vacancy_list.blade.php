@@ -225,16 +225,15 @@
                                     <div class="cover"></div>
                                 @endif
 
-
                                 <div class="text-content">
                                     <h3>{{ $vacancy->title }}</h3>
-
-                                    @if ($vacancy->salary_from && $vacancy->salary_to)
-                                        <p>{{ $vacancy->salary_from }} — {{ $vacancy->salary_to }}₽</p>
+                                
+                                    @if($vacancy->salary_from && $vacancy->salary_to)
+                                        <p>{{ number_format($vacancy->salary_from, 0, ',', ' ') }} — {{ number_format($vacancy->salary_to, 0, ',', ' ') }}₽</p>
                                     @elseif($vacancy->salary_from)
-                                        <p>от {{ $vacancy->salary_from }}₽</p>
+                                        <p>от {{ number_format($vacancy->salary_from, 0, ',', ' ') }}₽</p>
                                     @elseif($vacancy->salary_to)
-                                        <p>до {{ $vacancy->salary_to }}₽</p>
+                                        <p>до {{ number_format($vacancy->salary_to, 0, ',', ' ') }}₽</p>
                                     @else
                                         <p>Не указана</p>
                                     @endif
