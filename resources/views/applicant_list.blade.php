@@ -22,8 +22,8 @@
 
             @if (isset($users) && $users->count() > 0)
                 <h2 style="--i: 0">«{{ $query }}»</h2>
-                <p style="--i: 1">{{ getWordForm($users->count(), ['найдено', 'найдены', 'найдены']) }}
-                    <span>{{ $users->count() }} резюме</span>
+                <p style="--i: 1">{{ getWordForm($users->total(), ['найдено', 'найдены', 'найдены']) }}
+                    <span>{{ $users->total() }} резюме</span>
                 </p>
             @else
                 <h2 style="--i: 0">Пусто</h2>
@@ -73,14 +73,14 @@
                                 <div class="l2-data">
 
                                     @if ($user->profile->resume)
-                                        <div class="text-content">
+                                        <div class="text-content limited-height">
                                             <h4>Резюме</h4>
                                             <p>{!! $user->profile->resume !!}</p>
                                         </div>
                                     @endif
 
                                     @if ($user->profile->description)
-                                        <div class="text-content">
+                                        <div class="text-content limited-height">
                                             <h4>Навыки</h4>
                                             <p>{!! $user->profile->description !!}</p>
                                         </div>

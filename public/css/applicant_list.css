@@ -82,9 +82,31 @@ h4 {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* .a-card .l2-data {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+} */
+
 .icon-block {
     justify-content: left;
 }
+
+/* .text-content p {
+    max-width: 130px;
+    word-wrap: break-word;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+} */
+
+.limited-height {
+    max-height: 200px; /* Задайте максимальную высоту, которую вы хотите */
+    overflow: hidden; /* Скрывает все, что выходит за пределы элемента */
+    text-overflow: ellipsis; /* Добавляет многоточие в конце, если текст выходит за пределы элемента */
+    white-space: nowrap; /* Убирает переносы строк, делая текст однострочным */
+}
+
 
 .a-card .l1-data:hover {
     color: #3FA3FF;

@@ -87,7 +87,7 @@
         <div class="search-box">
             <h2 style="--i: 0">избранное</h2>
             @if(isset($vacancies) && $vacancies->count()>0)
-            <p style="--i: 1">{{ getWordForm($vacancies->count(), ['сохранена', 'сохранено', 'сохранены']) }} <span>{{ $vacancies->count() }} {{ getWordForm($vacancies->count(), ['вакансия', 'вакансии', 'вакансий']) }}<span></p>
+            <p style="--i: 1">{{ getWordForm($vacancies->total(), ['сохранена', 'сохранено', 'сохранены']) }} <span>{{ $vacancies->total() }} {{ getWordForm($vacancies->total(), ['вакансия', 'вакансии', 'вакансий']) }}<span></p>
             @else
             <p class="hint-text" style="--i: 1">вы еще не добавили ни одной вакансии</span></p>
             @endif

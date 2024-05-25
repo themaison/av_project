@@ -60,9 +60,13 @@ class VacancyController extends Controller
             'title' => 'required|max:40',
             'company' => 'required|max:40',
             'city' => 'required|max:40',
-            'salary-from' => 'nullable|numeric|min:0|max:2147483647',
-            'salary-to' => 'nullable|numeric|min:0|gte:salary-from|max:2147483647',
-            'experience' => 'nullable|numeric|min:0|max:100'
+            'salary-from' => 'nullable|numeric|min:0|max:99999999',
+            'salary-to' => 'nullable|numeric|min:0|gte:salary-from|max:99999999',
+            'experience' => 'nullable|numeric|min:0|max:100',
+            'responsibilities' => 'nullable|max:255',
+            'requirements' => 'nullable|max:255',
+            'conditions' => 'nullable|max:255',
+            'skills' => 'nullable|max:255',
         ]);
 
         // Создание новой вакансии
@@ -126,9 +130,13 @@ class VacancyController extends Controller
             'title' => 'required|max:40',
             'company' => 'required|max:40',
             'city' => 'required|max:40',
-            'salary-from' => 'nullable|numeric|min:0|max:2147483647',
-            'salary-to' => 'nullable|numeric|min:0|gte:salary-from|max:2147483647',
-            'experience' => 'nullable|numeric|min:0|max:100'
+            'salary-from' => 'nullable|numeric|min:0|max:99999999',
+            'salary-to' => 'nullable|numeric|min:0|gte:salary-from|max:99999999',
+            'experience' => 'nullable|numeric|min:0|max:100',
+            'responsibilities' => 'nullable|max:255',
+            'requirements' => 'nullable|max:255',
+            'conditions' => 'nullable|max:255',
+            'skills' => 'nullable|max:255',
         ]);
 
         $vacancy = Vacancy::find($id);
