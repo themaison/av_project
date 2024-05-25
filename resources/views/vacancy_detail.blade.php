@@ -550,21 +550,21 @@
                 @if ($vacancy->responsibilities)
                     <div class="vacancy-content-block" style="--i: 6">
                         <h3>Обязанности</h3>
-                        <p>{{ $vacancy->responsibilities }}</p>
+                        <p>{!! $vacancy->responsibilities !!}</p>
                     </div>
                 @endif
 
                 @if ($vacancy->requirements)
                     <div class="vacancy-content-block" style="--i: 7">
                         <h3>Требования</h3>
-                        <p>{{ $vacancy->requirements }}</p>
+                        <p>{!! $vacancy->requirements !!}</p>
                     </div>
                 @endif
 
                 @if ($vacancy->conditions)
                     <div class="vacancy-content-block" style="--i: 8">
                         <h3>Условия</h3>
-                        <p>{{ $vacancy->conditions }}</p>
+                        <p>{!! $vacancy->conditions !!}</p>
                     </div>
                 @endif
 

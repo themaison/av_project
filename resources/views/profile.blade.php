@@ -11,7 +11,8 @@
                 var field = $(this).data('field');
 
                 $('#' + field + '-text').hide();
-                $('#' + field + '-input').val($('#' + field + '-text').text()).fadeIn();
+                // $('#' + field + '-input').val($('#' + field + '-text').text()).fadeIn();
+                $('#' + field + '-input').val($('#' + field + '-text').html().replace(/<br>/g, '\n')).fadeIn();
 
                 $(this).hide();
                 $('.double-btn[data-field="' + field + '"]').fadeIn();
@@ -37,7 +38,10 @@
                 var newValue = $('#' + field + '-input').val().trim();
 
                 // Обновляем текстовый блок сразу после нажатия кнопки "сохранить"
-                $('#' + field + '-text').text(newValue);
+                // $('#' + field + '-text').text(newValue);
+
+                // Обновляем текстовый блок сразу после нажатия кнопки "сохранить"
+                $('#' + field + '-text').html(newValue.replace(/\n/g, '<br>'));
 
                 $.ajax({
                     url: '/profile/' + {{ $user->id }} + '/update-profile',
@@ -76,7 +80,7 @@
         <div class="profile-main">
             <img src="{{ asset('images/pa2.png') }}" alt="аватар" class="profile-avatar" style="--i: 0">
             <h2 style="--i: 1">{{ $user->name }}</h2>
-        </div> 
+        </div>
 
         <div class="profile-data">
             @foreach (array_keys(['contacts' => 'Контакты', 'description' => 'Навыки', 'resume' => 'Резюме']) as $index => $key)
@@ -120,7 +124,7 @@
                     </div>
 
                     <div class="p-block-data">
-                        <p id="{{ $key }}-text">{{ $user->profile->$key }}</p>
+                        <p id="{{ $key }}-text">{!! $user->profile->$key !!}</p>
                         <textarea id="{{ $key }}-input" style="display: none;" placeholder="Введите текст..."></textarea>
                     </div>
 

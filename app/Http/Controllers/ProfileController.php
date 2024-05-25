@@ -27,7 +27,7 @@ class ProfileController extends Controller
         ]);
     
         $field = $request->field;
-        $value = $request->value;
+        $value = nl2br(e($request->value));
     
         // Проверка, что поле допустимо для обновления
         if (!in_array($field, ['contacts', 'description', 'resume'])) {
@@ -43,6 +43,7 @@ class ProfileController extends Controller
     
         return response()->json(['success' => true]);
     }
+    
     
     
 }
