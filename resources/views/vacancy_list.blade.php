@@ -89,9 +89,9 @@
 
             @if (isset($vacancies) && $vacancies->count() > 0)
                 <h2 style="--i: 0">«{{ $query }}»</h2>
-                <p style="--i: 1">{{ getWordForm($vacancies->count(), ['найдена', 'найдены', 'найдено']) }}
-                    <span>{{ $vacancies->count() }}
-                        {{ getWordForm($vacancies->count(), ['вакансия', 'вакансии', 'вакансий']) }}</span>
+                <p style="--i: 1">{{ getWordForm($vacancies->total(), ['найдена', 'найдены', 'найдено']) }}
+                    <span>{{ $vacancies->total() }}
+                        {{ getWordForm($vacancies->total(), ['вакансия', 'вакансии', 'вакансий']) }}</span>
                 </p>
             @else
                 <h2 style="--i: 0">Пусто</h2>
