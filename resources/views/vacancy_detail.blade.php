@@ -309,24 +309,41 @@
 
                     <div class="input-block">
                         <label for="responsibilities">обязанности</label>
-                        <textarea name="responsibilities" placeholder="введите текст...">{{ $vacancy->responsibilities }}</textarea>
+                        <textarea name="responsibilities" placeholder="введите текст...">{{ old('responsibilities') }}</textarea>
+
+                        @error('responsibilities')
+                            <p class="error-text">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="input-block">
                         <label for="requirements">требования</label>
-                        <textarea name="requirements" placeholder="введите текст...">{{ $vacancy->requirements }}</textarea>
+                        <textarea name="requirements" placeholder="введите текст...">{{ old('requirements') }}</textarea>
+
+                        @error('requirements')
+                            <p class="error-text">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="input-block">
                         <label for="conditions">условия</label>
-                        <textarea name="conditions" placeholder="введите текст...">{{ $vacancy->conditions }}</textarea>
+                        <textarea name="conditions" placeholder="введите текст...">{{ old('conditions') }}</textarea>
+
+                        @error('conditions')
+                            <p class="error-text">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="input-block">
                         <label for="skills">навыки</label>
                         <p class="hint-text">введите навыки через запятую</p>
-                        <textarea name="skills" placeholder="введите текст...">{{ $vacancy->skills }}</textarea>
+                        <textarea name="skills" placeholder="введите текст...">{{ old('skills') }}</textarea>
+
+                        @error('skills')
+                            <p class="error-text">{{ $message }}</p>
+                        @enderror
                     </div>
+
 
                 </div>
 
@@ -503,8 +520,9 @@
                                 <p>Опыт от {{ $vacancy->experience }} лет</p>
                             @endif
 
-                            @if($vacancy->salary_from && $vacancy->salary_to)
-                                <p>{{ number_format($vacancy->salary_from, 0, ',', ' ') }} — {{ number_format($vacancy->salary_to, 0, ',', ' ') }}₽</p>
+                            @if ($vacancy->salary_from && $vacancy->salary_to)
+                                <p>{{ number_format($vacancy->salary_from, 0, ',', ' ') }} —
+                                    {{ number_format($vacancy->salary_to, 0, ',', ' ') }}₽</p>
                             @elseif($vacancy->salary_from)
                                 <p>от {{ number_format($vacancy->salary_from, 0, ',', ' ') }}₽</p>
                             @elseif($vacancy->salary_to)

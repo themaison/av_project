@@ -261,23 +261,40 @@
                     <div class="input-block">
                         <label for="responsibilities">обязанности</label>
                         <textarea name="responsibilities" placeholder="введите текст...">{{ old('responsibilities') }}</textarea>
+
+                        @error('responsibilities')
+                            <p class="error-text">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="input-block">
                         <label for="requirements">требования</label>
                         <textarea name="requirements" placeholder="введите текст...">{{ old('requirements') }}</textarea>
+
+                        @error('requirements')
+                            <p class="error-text">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="input-block">
                         <label for="conditions">условия</label>
                         <textarea name="conditions" placeholder="введите текст...">{{ old('conditions') }}</textarea>
+
+                        @error('conditions')
+                            <p class="error-text">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="input-block">
                         <label for="skills">навыки</label>
                         <p class="hint-text">введите навыки через запятую</p>
                         <textarea name="skills" placeholder="введите текст...">{{ old('skills') }}</textarea>
+
+                        @error('skills')
+                            <p class="error-text">{{ $message }}</p>
+                        @enderror
                     </div>
+
 
                 </div>
 
