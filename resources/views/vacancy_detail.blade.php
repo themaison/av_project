@@ -189,26 +189,6 @@
                 $('body').addClass('no-scroll'); // Добавить класс к body
             });
 
-            // $('#edit-form').on('submit', function(e) {
-            //     e.preventDefault();
-
-            //     var formData = new FormData(this);
-
-            //     $.ajax({
-            //         url: $(this).attr('action'),
-            //         method: 'POST',
-            //         data: $(this).serialize(),
-            //         success: function(response) {
-            //             // Сбросить метод запроса обратно на GET
-            //             $.ajaxSetup({
-            //                 type: 'GET'
-            //             });
-            //             // Перенаправить на страницу деталей вакансии
-            //             window.location.href = response.redirectUrl;
-            //         }
-            //     });
-            // });
-
         });
     </script>
 
@@ -523,14 +503,14 @@
                                 <p>Опыт от {{ $vacancy->experience }} лет</p>
                             @endif
 
-                            @if ($vacancy->salary_from && $vacancy->salary_to)
-                                <p class="tag">{{ $vacancy->salary_from }} — {{ $vacancy->salary_to }}₽</p>
+                            @if($vacancy->salary_from && $vacancy->salary_to)
+                                <p>{{ number_format($vacancy->salary_from, 0, ',', ' ') }} — {{ number_format($vacancy->salary_to, 0, ',', ' ') }}₽</p>
                             @elseif($vacancy->salary_from)
-                                <p class="tag">от {{ $vacancy->salary_from }}₽</p>
+                                <p>от {{ number_format($vacancy->salary_from, 0, ',', ' ') }}₽</p>
                             @elseif($vacancy->salary_to)
-                                <p class="tag">до {{ $vacancy->salary_to }}₽</p>
+                                <p>до {{ number_format($vacancy->salary_to, 0, ',', ' ') }}₽</p>
                             @else
-                                <p class="tag">Не указана</p>
+                                <p>Не указана</p>
                             @endif
                         </div>
                     </div>
